@@ -25,12 +25,16 @@ public class Project implements Serializable{
 	private Long id;
 	private String name;
 	private String desctiption;
-	private Date creationDate;
+	private Date creationDate;	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn(name = "user_id")	
 	private User user;
 	private boolean appeoved;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name = "competition_id")	
+	private Competition competition;
 	
 	@OneToMany(mappedBy = "project_id")
 	@Basic (fetch = FetchType.LAZY) 
@@ -47,7 +51,7 @@ public class Project implements Serializable{
 	public Project(){}
 
 	public Project(Long id, String name, String desctiption, Date creationDate,
-			User user, boolean appeoved) {
+			User user, boolean appeoved, Competition competition) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -55,12 +59,13 @@ public class Project implements Serializable{
 		this.creationDate = creationDate;
 		this.user = user;
 		this.appeoved = appeoved;
+		this.competition = competition;
 	}
 
 	public Project(Long id, String name, String desctiption, Date creationDate,
-			User user, boolean appeoved, Set<Voice> voices,
+			User user, boolean appeoved, Competition competition, Set<Voice> voices,
 			Set<Comment> comments, Set<Photo> photos) {
-		this(id, name, desctiption, creationDate, user, appeoved);
+		this(id, name, desctiption, creationDate, user, appeoved, competition);
 		this.voices = voices;
 		this.comments = comments;
 		this.photos = photos;

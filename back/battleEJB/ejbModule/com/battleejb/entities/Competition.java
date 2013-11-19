@@ -2,13 +2,18 @@ package entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -24,9 +29,13 @@ public class Competition implements Serializable {
 	private Date DateEnd;
 	private Date registerDeadline;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn(name = "user_id")
 	private User winner;
+	
+	@OneToMany(mappedBy = "competition_id")
+	@Basic (fetch = FetchType.LAZY) 
+	private Set<Project> projects = new HashSet<Project>();
 	
 	public Competition(){}
 
@@ -40,6 +49,15 @@ public class Competition implements Serializable {
 		DateEnd = dateEnd;
 		this.registerDeadline = registerDeadline;
 		this.winner = winner;
+	}
+	
+	
+
+	public Competition(Long id, String name, String desctiption,
+			Date dateStart, Date dateEnd, Date registerDeadline, User winner,
+			Set<Project> projects) {
+		this(id, name, desctiption, dateStart, dateEnd, registerDeadline, winner);
+		this.projects = projects;
 	}
 
 	public Long getId() {
