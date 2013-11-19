@@ -57,9 +57,11 @@ CREATE TABLE Project(
   description VARCHAR(25500) NOT NULL,
   creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id BIGINT NOT NULL,
+  competition_id BIGINT NOT NULL,
   approved TINYINT(1) DEFAULT 0,
   PRIMARY KEY(id),
-  FOREIGN KEY (user_id) REFERENCES User(id)
+  FOREIGN KEY (user_id) REFERENCES User(id),
+  FOREIGN KEY (competition_id) REFERENCES Competition(id)
 )ENGINE = InnoDB CHARACTER SET=UTF8;
 
 DROP TABLE IF EXISTS Photo;
