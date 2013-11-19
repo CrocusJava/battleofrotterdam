@@ -11,11 +11,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name="User.findByLogin", query="SELECT u FROM User u WHERE u.login = :login")
+})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -44580243018161668L;
