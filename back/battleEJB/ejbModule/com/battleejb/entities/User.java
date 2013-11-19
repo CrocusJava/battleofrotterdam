@@ -1,4 +1,4 @@
-package entities;
+package com.battleejb.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
