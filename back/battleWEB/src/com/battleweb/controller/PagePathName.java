@@ -6,7 +6,7 @@ package com.battleweb.controller;
  */
 public interface PagePathName {
 
-	public static final String MAIN_PAGE_PATH = "MAIN_PAGE_PATH";
+	public static final String INDEX_PAGE_PATH = "INDEX_PAGE_PATH";
 	public static final String PAGE_PATH_OTHER1 = "PAGE_PATH_OTHER1";
 	public static final String PAGE_PATH_OTHER2 = "PAGE_PATH_OTHER2";
 	public static final String PAGE_PATH_OTHER3 = "PAGE_PATH_OTHER3";
