@@ -6,16 +6,15 @@
 		
 		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
 		<jta-data-source>java:jboss/jdbc/resource</jta-data-source>
-
+		
 		<class>com.battleejb.entities.Address</class>
 		<class>com.battleejb.entities.Comment</class>
 		<class>com.battleejb.entities.Competition</class>
 		<class>com.battleejb.entities.Photo</class>
 		<class>com.battleejb.entities.Project</class> 
 		<class>com.battleejb.entities.Role</class>
-		 <class>com.battleejb.entities.User</class>
+		<class>com.battleejb.entities.User</class>
 		<class>com.battleejb.entities.Voice</class>
-		
 		<properties>
          <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="false" />

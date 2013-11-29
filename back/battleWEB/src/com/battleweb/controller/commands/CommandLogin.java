@@ -38,6 +38,7 @@ public class CommandLogin implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		//JsonReader jsonLoginReaderRequest=Json.createReader(new StringReader(request.getQueryString()));
 		JsonReader jsonLoginReaderRequest=Json.createReader(new StringReader(request.getParameter("jsonLoginRequest")));
 		JsonObject jsonLoginObjectRequest=jsonLoginReaderRequest.readObject();
 		jsonLoginReaderRequest.close();
