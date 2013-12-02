@@ -16,7 +16,7 @@ public class Photo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Integer id;
 
     @Lob()
 	private String description;
@@ -36,11 +36,11 @@ public class Photo implements Serializable {
     public Photo() {
     }
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

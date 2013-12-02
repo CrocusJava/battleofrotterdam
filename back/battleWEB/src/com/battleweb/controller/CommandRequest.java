@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 
 import com.battleweb.controller.commands.Command;
@@ -19,8 +20,8 @@ import com.battleweb.controller.commands.CommandLogin;
  * @author rtkachuk
  * @see Command
  */
-@Singleton
 @Startup
+@Stateless
 @LocalBean
 public class CommandRequest {
 
@@ -31,11 +32,11 @@ public class CommandRequest {
 
 	@PostConstruct
 	public void init() {
-		commands.put("login", commandLogin);
+		commands.put(Constants.COMMAND_LOGIN, commandLogin);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
-		String action = request.getParameter("command");
+		String action = request.getParameter(Constants.COMMAND);
 		Command command = commands.get(action);
 		return command;
 	}

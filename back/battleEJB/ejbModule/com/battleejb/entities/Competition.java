@@ -16,7 +16,7 @@ public class Competition implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Integer id;
 
     @Temporal( TemporalType.DATE)
 	private Date dateEnd;
@@ -44,11 +44,11 @@ public class Competition implements Serializable {
     public Competition() {
     }
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

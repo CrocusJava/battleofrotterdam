@@ -18,7 +18,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Integer id;
 
 	private byte active;
 
@@ -63,11 +63,11 @@ public class User implements Serializable {
     public User() {
     }
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

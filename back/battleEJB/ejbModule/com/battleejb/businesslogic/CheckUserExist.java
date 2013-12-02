@@ -19,16 +19,10 @@ public class CheckUserExist {
 	
 	@EJB
 	private UserBean userBean;
-	
-	//TODO Added support session
+
 	public User checkExistUserLoginPassword(String login, String password){
-		User user=null;
-		try {
-			user=userBean.checkByLogin(login);
-		} catch (NoResultException e) {
-			return null;
-		} 
-		if (!user.getPassword().equals(password)){
+		User user=userBean.checkByLogin(login);
+		if (null!=user && !user.getPassword().equals(password)){
 			return null;
 		}
 		return user;

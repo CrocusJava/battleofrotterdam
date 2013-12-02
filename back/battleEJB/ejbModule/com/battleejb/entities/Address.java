@@ -15,7 +15,7 @@ public class Address implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Integer id;
 
 	private String apartment;
 
@@ -32,11 +32,11 @@ public class Address implements Serializable {
     public Address() {
     }
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

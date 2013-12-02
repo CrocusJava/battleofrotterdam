@@ -15,7 +15,7 @@ public class Comment implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Integer id;
 
 	private Timestamp commentDate;
 
@@ -36,11 +36,11 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -15,7 +15,7 @@ public class Voice implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private Integer id;
 
 	private int level;
 
@@ -32,11 +32,11 @@ public class Voice implements Serializable {
     public Voice() {
     }
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
