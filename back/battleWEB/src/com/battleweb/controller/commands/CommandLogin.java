@@ -1,31 +1,21 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.json.Json;
-import javax.json.JsonNumber;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonString;
-import javax.json.JsonValue;
-import javax.json.JsonWriter;
-import javax.json.JsonValue.ValueType;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.battleejb.businesslogic.CheckUserExist;
+import com.battleejb.businesslogic.BusinessLogicUser;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
-
-import org.glassfish.json.*;
 
 /**
  * 
@@ -37,7 +27,7 @@ import org.glassfish.json.*;
 public class CommandLogin implements Command {
 
 	@EJB 
-	private CheckUserExist checkUserExist;
+	private BusinessLogicUser businessLogicUser;
 	@EJB
 	private ToolSession toolSession;
 	@EJB
@@ -55,7 +45,7 @@ public class CommandLogin implements Command {
 
 
 		if (login!=null && password!=null && login.length()!=0 && password.length()!=0){
-			user=checkUserExist.checkExistUserLoginPassword(login, password);	
+			user=businessLogicUser.checkExistUserLoginPassword(login, password);	
 		}
 		
 		if (null!=user){
