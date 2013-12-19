@@ -20,6 +20,17 @@ public interface Constants {
 	public static final String PARAMETER_PASSWORD = "password";
 	public static final String PARAMETER_IDUSER = "IDuser";
 	public static final String PARAMETER_IDROLE = "IDrole";
+	public static final String PARAMETER_FIRSTNAME = "firstname";
+	public static final String PARAMETER_MISSLENAME = "middlename";
+	public static final String PARAMETER_LASTNAME = "lastname";
+	public static final String PARAMETER_TOWN = "town";
+	public static final String PARAMETER_STREET = "street";
+	public static final String PARAMETER_HOUSENUMBER = "housenumber";
+	public static final String PARAMETER_POSTCODE = "postcode";
+	public static final String PARAMETER_BIRSTAY = "birthday";
+	public static final String PARAMETER_PHONE = "phone";
+	public static final String PARAMETER_EMAIL = "email";
+	
 	
 	public static final String PARAMETER_OTHER1 = "PARAMETER_OTHER1";
 	public static final String PARAMETER_OTHER2 = "PARAMETER_OTHER2";

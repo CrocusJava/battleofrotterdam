@@ -1,7 +1,9 @@
 package com.battleejb.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -18,13 +20,17 @@ public class Role implements Serializable {
 	private Integer id;
 
 	private String name;
-
-	//bi-directional many-to-one association to User
+	
 	@OneToMany(mappedBy="role")
 	private List<User> users;
 
     public Role() {
     }
+
+	public Role(String name) {
+		super();
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return this.id;

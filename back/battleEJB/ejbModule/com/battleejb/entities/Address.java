@@ -1,7 +1,9 @@
 package com.battleejb.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -24,13 +26,21 @@ public class Address implements Serializable {
 	private String houseNumber;
 
 	private String street;
-
-	//bi-directional many-to-one association to User
+		
 	@OneToMany(mappedBy="address")
 	private List<User> users;
 
     public Address() {
     }
+    
+	public Address(String apartment, String district, String houseNumber,
+			String street) {
+		super();
+		this.apartment = apartment;
+		this.district = district;
+		this.houseNumber = houseNumber;
+		this.street = street;
+	}
 
 	public Integer getId() {
 		return this.id;

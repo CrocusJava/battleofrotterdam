@@ -1,7 +1,9 @@
 package com.battleejb.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -36,32 +38,39 @@ public class User implements Serializable {
 
 	private String surname;
 
-	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="user")
 	private List<Comment> comments;
 
-	//bi-directional many-to-one association to Competition
 	@OneToMany(mappedBy="user")
 	private List<Competition> competitions;
 
-	//bi-directional many-to-one association to Project
 	@OneToMany(mappedBy="user")
 	private List<Project> projects;
 
-	//bi-directional many-to-one association to Address
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	private Address address;
 
-	//bi-directional many-to-one association to Role
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	private Role role;
 
-	//bi-directional many-to-one association to Voice
 	@OneToMany(mappedBy="user")
 	private List<Voice> voices;
 
     public User() {
     }
+    
+	public User(String email, String login, String name, String password,
+			String photoPath, String surname, Address address, Role role) {
+		super();
+		this.email = email;
+		this.login = login;
+		this.name = name;
+		this.password = password;
+		this.photoPath = photoPath;
+		this.surname = surname;
+		this.address = address;
+		this.role = role;
+	}
 
 	public Integer getId() {
 		return this.id;
