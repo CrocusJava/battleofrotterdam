@@ -25,6 +25,8 @@ public class User implements Serializable {
 	private byte active;
 
 	private byte commentAble;
+	
+	private byte approveregistration;
 
 	private String email;
 
@@ -96,6 +98,14 @@ public class User implements Serializable {
 		this.commentAble = commentAble;
 	}
 
+	public byte getApproveregistration() {
+		return this.approveregistration;
+	}
+
+	public void setApproveregistration(byte approveregistration) {
+		this.approveregistration = approveregistration;
+	}
+	
 	public String getEmail() {
 		return this.email;
 	}
