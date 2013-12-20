@@ -18,7 +18,7 @@ public class Project implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
-	private byte approved;
+	private Boolean approved;
 
 	private Timestamp creationDate;
 
@@ -47,9 +47,13 @@ public class Project implements Serializable {
 	@OneToMany(mappedBy="project")
 	private List<Voice> voices;
 
+//-----------------------------------	
+	
     public Project() {
     }
 
+//-----------------------------------
+    
 	public Integer getId() {
 		return this.id;
 	}
@@ -58,11 +62,11 @@ public class Project implements Serializable {
 		this.id = id;
 	}
 
-	public byte getApproved() {
-		return this.approved;
+	public Boolean getApproved() {
+		return approved;
 	}
 
-	public void setApproved(byte approved) {
+	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}
 

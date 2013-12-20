@@ -18,29 +18,26 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-
-	private String apartment;
-
-	private String district;
+	
+	private String town;
+	
+	private String postcode;
+	
+	private String street;
 
 	private String houseNumber;
-
-	private String street;
+	
+	private String apartment;
 		
 	@OneToMany(mappedBy="address")
 	private List<User> users;
 
+//-----------------------------
+	
     public Address() {
     }
-    
-	public Address(String apartment, String district, String houseNumber,
-			String street) {
-		super();
-		this.apartment = apartment;
-		this.district = district;
-		this.houseNumber = houseNumber;
-		this.street = street;
-	}
+ 
+//------------------------------
 
 	public Integer getId() {
 		return this.id;
@@ -49,6 +46,22 @@ public class Address implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
 
 	public String getApartment() {
 		return this.apartment;
@@ -56,14 +69,6 @@ public class Address implements Serializable {
 
 	public void setApartment(String apartment) {
 		this.apartment = apartment;
-	}
-
-	public String getDistrict() {
-		return this.district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
 	}
 
 	public String getHouseNumber() {

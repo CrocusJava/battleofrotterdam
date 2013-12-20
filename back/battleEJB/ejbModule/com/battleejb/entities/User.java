@@ -1,77 +1,147 @@
 package com.battleejb.entities;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the User database table.
  * 
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name="User.findByLogin", query="SELECT u FROM User u WHERE u.login = :login")
-})
+@NamedQueries({ @NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login") })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	private byte active;
+	private Boolean active;
 
-	private byte commentAble;
-	
-	private byte approveregistration;
+	private Boolean commentAble;
+
+	private Boolean approveregistration;
 
 	private String email;
 
 	private String login;
 
-	private String name;
+	private String firstname;
+
+	private String middlename;
+
+	private String lastname;
 
 	private String password;
 
 	private String photoPath;
 
-	private String surname;
+	private String phone;
 
-	@OneToMany(mappedBy="user")
+	@Temporal(TemporalType.DATE)
+	private Date birthday;
+
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Competition> competitions;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Project> projects;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Address address;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Role role;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Voice> voices;
 
-    public User() {
-    }
-    
-	public User(String email, String login, String name, String password,
-			String photoPath, String surname, Address address, Role role) {
-		super();
-		this.email = email;
-		this.login = login;
-		this.name = name;
-		this.password = password;
-		this.photoPath = photoPath;
-		this.surname = surname;
-		this.address = address;
-		this.role = role;
+//--------------------------	
+	
+	public User() {
+	}
+
+//---------------------------	
+		
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public Boolean getCommentAble() {
+		return commentAble;
+	}
+
+	public void setCommentAble(Boolean commentAble) {
+		this.commentAble = commentAble;
+	}
+
+	public Boolean getApproveregistration() {
+		return approveregistration;
+	}
+
+	public void setApproveregistration(Boolean approveregistration) {
+		this.approveregistration = approveregistration;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getMiddlename() {
+		return middlename;
+	}
+
+	public void setMiddlename(String middlename) {
+		this.middlename = middlename;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public Integer getId() {
@@ -82,30 +152,6 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public byte getActive() {
-		return this.active;
-	}
-
-	public void setActive(byte active) {
-		this.active = active;
-	}
-
-	public byte getCommentAble() {
-		return this.commentAble;
-	}
-
-	public void setCommentAble(byte commentAble) {
-		this.commentAble = commentAble;
-	}
-
-	public byte getApproveregistration() {
-		return this.approveregistration;
-	}
-
-	public void setApproveregistration(byte approveregistration) {
-		this.approveregistration = approveregistration;
-	}
-	
 	public String getEmail() {
 		return this.email;
 	}
@@ -120,14 +166,6 @@ public class User implements Serializable {
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPassword() {
@@ -146,14 +184,6 @@ public class User implements Serializable {
 		this.photoPath = photoPath;
 	}
 
-	public String getSurname() {
-		return this.surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
 	public List<Comment> getComments() {
 		return this.comments;
 	}
@@ -161,7 +191,7 @@ public class User implements Serializable {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
 	public List<Competition> getCompetitions() {
 		return this.competitions;
 	}
@@ -169,7 +199,7 @@ public class User implements Serializable {
 	public void setCompetitions(List<Competition> competitions) {
 		this.competitions = competitions;
 	}
-	
+
 	public List<Project> getProjects() {
 		return this.projects;
 	}
@@ -177,7 +207,7 @@ public class User implements Serializable {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-	
+
 	public Address getAddress() {
 		return this.address;
 	}
@@ -185,7 +215,7 @@ public class User implements Serializable {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
 	public Role getRole() {
 		return this.role;
 	}
@@ -193,7 +223,7 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
+
 	public List<Voice> getVoices() {
 		return this.voices;
 	}
@@ -201,5 +231,5 @@ public class User implements Serializable {
 	public void setVoices(List<Voice> voices) {
 		this.voices = voices;
 	}
-	
+
 }
