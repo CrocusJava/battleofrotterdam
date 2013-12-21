@@ -3,6 +3,7 @@ package com.battleweb.controller.commands;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,14 @@ import com.battleejb.entities.Address;
 import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
 
+/**
+ * @author Lukashchuk Ivan
+ * 
+ */
 public class CommandRegistration implements Command {
 
 	@EJB
@@ -24,56 +30,90 @@ public class CommandRegistration implements Command {
 	private ToolJSON toolJSON;
 	@EJB
 	private ToolMD5 toolMD5;
+	@EJB
+	private ToolEmail toolEmail;
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		String registrationMessage = "blablabal проверьте почту...";
+		boolean statusMail = false;
+		boolean statusLogin = false;
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		String login = jsonObjectRequest.getString(Constants.PARAMETER_LOGIN);
-		String password = jsonObjectRequest
-				.getString(Constants.PARAMETER_PASSWORD);
-		String firstname = jsonObjectRequest
-				.getString(Constants.PARAMETER_FIRSTNAME);
-		String middlename = jsonObjectRequest
-				.getString(Constants.PARAMETER_MISSLENAME);
-		String lastname = jsonObjectRequest
-				.getString(Constants.PARAMETER_LASTNAME);
-		String town = jsonObjectRequest.getString(Constants.PARAMETER_TOWN);
-		String street = jsonObjectRequest.getString(Constants.PARAMETER_STREET);
-		String housenumber = jsonObjectRequest
-				.getString(Constants.PARAMETER_HOUSENUMBER);
-		String postcode = jsonObjectRequest
-				.getString(Constants.PARAMETER_POSTCODE);
-		String birthday = jsonObjectRequest
-				.getString(Constants.PARAMETER_BIRSTAY);
-		String phone = jsonObjectRequest.getString(Constants.PARAMETER_PHONE);
 		String email = jsonObjectRequest.getString(Constants.PARAMETER_EMAIL);
-		
-		Role role = new Role();
-		role.setName("user");
-		
-		Address address = new Address();
-		address.setStreet(street);
-		address.setHouseNumber(housenumber);
-		//town
-		
-		User user = new User();
-		user.setAddress(address);
-		user.setRole(role);
-		user.setLogin(login);
-		user.setPassword(toolMD5.generateMD5(password));
-		user.setName(firstname);
-		user.setSurname(lastname);
-		//middlename
-		user.setEmail(email);
-//		user.setPhotoPath("default");
-		
-		userBean.create(user);
-		
-		//+ отправка на email...
-		
-		return null;  //page path???
-	}
 
+		statusMail = userBean.chackEmailExist(email);
+		statusLogin = userBean.chackLoginExist(login);
+
+		if (statusLogin && statusMail) {
+			String password = jsonObjectRequest
+					.getString(Constants.PARAMETER_PASSWORD);
+			String firstname = jsonObjectRequest
+					.getString(Constants.PARAMETER_FIRSTNAME);
+			String middlename = jsonObjectRequest
+					.getString(Constants.PARAMETER_MISSLENAME);
+			String lastname = jsonObjectRequest
+					.getString(Constants.PARAMETER_LASTNAME);
+			String town = jsonObjectRequest.getString(Constants.PARAMETER_TOWN);
+			String street = jsonObjectRequest
+					.getString(Constants.PARAMETER_STREET);
+			String housenumber = jsonObjectRequest
+					.getString(Constants.PARAMETER_HOUSENUMBER);
+			String postcode = jsonObjectRequest
+					.getString(Constants.PARAMETER_POSTCODE);
+			String birthday = jsonObjectRequest
+					.getString(Constants.PARAMETER_BIRSTAY);
+			String phone = jsonObjectRequest
+					.getString(Constants.PARAMETER_PHONE);
+
+			Address address = new Address();
+			address.setStreet(street);
+			address.setHouseNumber(housenumber);
+			address.setTown(town);
+			address.setPostcode(postcode);
+			
+			Role role = new Role();
+			role.setId(1);
+			role.setName("user");
+
+			User user = new User();
+			user.setAddress(address);
+			user.setRole(role);
+			user.setLogin(login);
+			user.setPassword(toolMD5.generateMD5(password));
+			user.setFirstname(firstname);
+			user.setLastname(lastname);
+			user.setMiddlename(middlename);
+			user.setEmail(email);
+			// user.setBirthday(new Date(birthday));//что там с форматом?
+			user.setPhone(phone);
+			user.setApproveregistration(false);
+			userBean.create(user);
+
+			StringBuilder message = new StringBuilder();
+			message.append("Dear, user bla-bla-bla ");
+			message.append("http://edu.bionic-university.com:1120/battleWEB/controller?command=approveregistration&amp;iduser=");
+			message.append(user.getId());
+			message.append("&amp;value=");
+			message.append(toolMD5.generateMD5(user.getLogin()));
+
+			toolEmail.send("Battle of Rotterdam registration",
+					message.toString(), "battleofrotterdam@gmail.com", email);
+		}
+
+		JsonObject jsonObjectResponse = Json
+				.createObjectBuilder()
+				.add(Constants.PARAMETER_STATUSMAIL, statusMail)
+				.add(Constants.PARAMETER_STATUSLOFIN, statusLogin)
+				.add(Constants.PARAMETER_EMAIL, email)
+				.add(Constants.PARAMETER_REGISTRATIONMESSAGE,
+						registrationMessage).build();
+
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+
+		return null;
+	}
 }

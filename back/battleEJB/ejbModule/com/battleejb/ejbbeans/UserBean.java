@@ -36,8 +36,28 @@ public class UserBean extends AbstractFacade<User> {
 			user = em.createNamedQuery("User.findByLogin", User.class)
 					.setParameter("login", login).getSingleResult();
 		} catch (PersistenceException e) {
-			//TODO LOG
+			// TODO LOG
 		}
 		return user;
+	}
+
+	public boolean chackLoginExist(String login) {
+		int result = (Integer) em.createQuery("SELECT COUNT(u) FROM User u WHERE login=:login")
+				.setParameter("login", login).getSingleResult();
+		if(result > 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public boolean chackEmailExist(String email) {
+		int result = (Integer) em.createQuery("SELECT COUNT(u) FROM User u WHERE email=:email")
+				.setParameter("email", email).getSingleResult();
+		if(result > 0){
+			return false;
+		}else{
+			return true;
+		}
 	}
 }
