@@ -39,8 +39,11 @@ public interface Constants {
 	
 	public static final String PARAMETER_TEXT_MESSAGE_NEW_PASSWORD = "newpasswordmessage";
 	public static final String PARAMETER_TEXT_MESSAGE_REGISTRATION = "registrationmessage";
+	public static final String PARAMETER_TEXT_MESSAGE_APPROVEREGISTRATION = "approveregistrationmessage";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
 	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
+	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
+	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
 }
