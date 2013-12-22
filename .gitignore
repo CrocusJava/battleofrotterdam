@@ -4,3 +4,5 @@ $ cat .gitignore
 .settings
 .metadata
 build/
+External Plug-in Libraries/
+~
