@@ -22,7 +22,11 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login") })
+@NamedQueries({
+	@NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login"),
+	@NamedQuery(name = "User.getCountOfUserByLogin", query = "SELECT COUNT(u) FROM User u WHERE u.login=:login"),
+	@NamedQuery(name = "User.getCountOfUserByEmail", query = "SELECT COUNT(u) FROM User u WHERE u.email=:email")
+	})
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 

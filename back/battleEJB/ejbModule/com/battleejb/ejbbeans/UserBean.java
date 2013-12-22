@@ -42,7 +42,7 @@ public class UserBean extends AbstractFacade<User> {
 	}
 
 	public boolean chackLoginExist(String login) {
-		int result = (Integer) em.createQuery("SELECT COUNT(u) FROM User u WHERE login=:login")
+		int result = (Integer) em.createNamedQuery("User.getCountOfUserByLogin")
 				.setParameter("login", login).getSingleResult();
 		if(result > 0){
 			return false;
@@ -52,7 +52,7 @@ public class UserBean extends AbstractFacade<User> {
 	}
 	
 	public boolean chackEmailExist(String email) {
-		int result = (Integer) em.createQuery("SELECT COUNT(u) FROM User u WHERE email=:email")
+		int result = (Integer) em.createNamedQuery("User.getCountOfUserByEmail")
 				.setParameter("email", email).getSingleResult();
 		if(result > 0){
 			return false;
