@@ -8,7 +8,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Role database table.
+ * The persistent class for the Text database table.
  * 
  */
 @Entity
@@ -19,41 +19,35 @@ public class Text implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
-	private String name;
+	private Integer key;
 	
-	@OneToMany(mappedBy="role")
-	private List<User> users;
+	private String value;
 
     public Text() {
     }
 
-	public Text(String name) {
-		super();
-		this.name = name;
-	}
-
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return this.name;
+	public Integer getKey() {
+		return key;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setKey(Integer key) {
+		this.key = key;
 	}
 
-	public List<User> getUsers() {
-		return this.users;
+	public String getValue() {
+		return value;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 }
