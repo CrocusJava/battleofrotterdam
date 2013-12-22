@@ -28,11 +28,11 @@ public class TextBean extends AbstractFacade<Text> {
 		return em;
 	}
 	
-	public Text findByKey(Integer key) {
+	public Text findByKey(Integer keyval) {
 		Text text = null;
 		try {
 			text = em.createNamedQuery("Text.findByKey", Text.class)
-					.setParameter("key", key).getSingleResult();
+					.setParameter("keyval", keyval).getSingleResult();
 		} catch (PersistenceException e) {
 			// TODO LOG
 		}

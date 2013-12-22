@@ -13,7 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "Text.findByKey", query = "SELECT t FROM Text t WHERE t.key = :key") })
+@NamedQueries({ @NamedQuery(name = "Text.findByKey", query = "SELECT t FROM Text t WHERE t.keyval = :keyval") })
 public class Text implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +21,7 @@ public class Text implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
-	private Integer key;
+	private Integer keyval;
 	
 	private String valueEn;
 
@@ -38,12 +38,12 @@ public class Text implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getKey() {
-		return key;
+	public Integer getKeyval() {
+		return keyval;
 	}
 
-	public void setKey(Integer key) {
-		this.key = key;
+	public void setKey(Integer keyval) {
+		this.keyval = keyval;
 	}
 
 	public String getValueEn() {
