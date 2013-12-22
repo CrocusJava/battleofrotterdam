@@ -3,6 +3,8 @@ package com.battleweb.tools;
 
 import java.util.Properties;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -12,6 +14,8 @@ import javax.mail.internet.MimeMessage;
  * @author Lukashchuk Ivan
  * 
  */
+@Stateless
+@LocalBean
 public class ToolEmail {
 	
 	 	private String username;

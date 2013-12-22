@@ -15,6 +15,12 @@ public interface Constants {
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	
+	//Set name properties in session
+	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
+	public static final String PARAMETER_SESSION_USER= "user";
+	public static final String PARAMETER_SESSION_IDUSER= "iduser";
+	public static final String PARAMETER_SESSION_IDROLE= "idrole";
+	
 	//Set of name parameters JSON objects
 	public static final String PARAMETER_LOGIN = "login";
 	public static final String PARAMETER_PASSWORD = "password";
