@@ -15,6 +15,7 @@ import com.battleejb.businesslogic.BusinessLogicUser;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
+import com.battleweb.tools.ToolMD5;
 import com.battleweb.tools.ToolSession;
 
 /**
@@ -32,6 +33,8 @@ public class CommandLogin implements Command {
 	private ToolSession toolSession;
 	@EJB
 	private ToolJSON toolJSON;
+	@EJB
+	private ToolMD5 toolMD5;
 	
 	private User user;
 	
@@ -41,7 +44,7 @@ public class CommandLogin implements Command {
 
 		JsonObject jsonObjectRequest=toolJSON.getJsonObjectRequest(request);
 		String login=jsonObjectRequest.getString(Constants.PARAMETER_LOGIN);
-		String password=jsonObjectRequest.getString(Constants.PARAMETER_PASSWORD);
+		String password=toolMD5.generateMD5(jsonObjectRequest.getString(Constants.PARAMETER_PASSWORD));
 
 
 		if (login!=null && password!=null && login.length()!=0 && password.length()!=0){
