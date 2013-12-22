@@ -9,9 +9,11 @@ import java.util.List;
 
 /**
  * The persistent class for the Text database table.
+ * @author rtkachuk
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Text.findByKey", query = "SELECT t FROM Text t WHERE t.key = :key") })
 public class Text implements Serializable {
 	private static final long serialVersionUID = 1L;
 
