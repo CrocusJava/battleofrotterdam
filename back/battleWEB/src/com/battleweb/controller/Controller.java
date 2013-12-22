@@ -16,7 +16,7 @@ import com.battleweb.controller.commands.Command;
  * @author rtkachuk
  * 
  */
-@WebServlet(name = "Controller", urlPatterns = { "/index" })
+@WebServlet(name = "Controller", urlPatterns = { "/controller" })
 public class Controller extends HttpServlet {
 
 	@EJB 

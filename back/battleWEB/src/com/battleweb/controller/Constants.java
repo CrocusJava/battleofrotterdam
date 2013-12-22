@@ -14,9 +14,6 @@ public interface Constants {
 	public static final String COMMAND_REGISTRATION = "registration";
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
-	public static final String COMMAND_OTHER1 = "COMMAND_OTHER1";
-	public static final String COMMAND_OTHER2 = "COMMAND_OTHER2";
-	public static final String COMMAND_OTHER3 = "COMMAND_OTHER3";
 	
 	//Set of name parameters JSON objects
 	public static final String PARAMETER_LOGIN = "login";
@@ -40,7 +37,10 @@ public interface Constants {
 	public static final String PARAMETER_USERNAME = "username";	
 	public static final String PARAMETER_APPROVEREGISTRATIONMESSAGE = "approveregistrationmessage";	
 	
-	public static final String PARAMETER_OTHER1 = "PARAMETER_OTHER1";
-	public static final String PARAMETER_OTHER2 = "PARAMETER_OTHER2";
-	public static final String PARAMETER_OTHER3 = "PARAMETER_OTHER3";
+	public static final String PARAMETER_TEXT_MESSAGE_NEW_PASSWORD = "newpasswordmessage";
+	public static final String PARAMETER_TEXT_MESSAGE_REGISTRATION = "registrationmessage";
+	
+	//Set key of value Text
+	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
+	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
 }
