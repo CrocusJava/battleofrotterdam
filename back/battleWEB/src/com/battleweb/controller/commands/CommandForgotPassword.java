@@ -3,6 +3,8 @@ package com.battleweb.controller.commands;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
@@ -22,6 +24,8 @@ import com.battleweb.tools.ToolSession;
  * @author Lukashchuk Ivan
  * 
  */
+@Stateless
+@LocalBean
 public class CommandForgotPassword implements Command {
 
 	@EJB

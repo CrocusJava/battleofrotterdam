@@ -3,6 +3,8 @@ package com.battleweb.controller.commands;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
@@ -22,6 +24,8 @@ import com.battleweb.tools.ToolMD5;
  * @author Lukashchuk Ivan
  * 
  */
+@Stateless
+@LocalBean
 public class CommandRegistration implements Command {
 
 	@EJB
@@ -37,7 +41,7 @@ public class CommandRegistration implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		String registrationMessage = "blablabal проверьте почту...";
+		String registrationMessage = "blablabal пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ...";
 		boolean statusMail = false;
 		boolean statusLogin = false;
 
@@ -88,7 +92,7 @@ public class CommandRegistration implements Command {
 			user.setLastname(lastname);
 			user.setMiddlename(middlename);
 			user.setEmail(email);
-			// user.setBirthday(new Date(birthday));//что там с форматом?
+			// user.setBirthday(new Date(birthday));//пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
 			user.setPhone(phone);
 			user.setApproveregistration(false);
 			userBean.create(user);

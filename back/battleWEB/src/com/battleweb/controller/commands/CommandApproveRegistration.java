@@ -3,6 +3,8 @@ package com.battleweb.controller.commands;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
@@ -21,6 +23,8 @@ import com.battleweb.tools.ToolMD5;
  * @author Lukashchuk Ivan
  * 
  */
+@Stateless
+@LocalBean
 public class CommandApproveRegistration implements Command {
 
 	@EJB
@@ -32,7 +36,7 @@ public class CommandApproveRegistration implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		String approveRegistrationMessage = "bla bla регистрация подтверждена";
+		String approveRegistrationMessage = "bla bla пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 		
 		Integer userId = Integer.parseInt(request.getParameter(Constants.PARAMETER_IDUSER));
 
