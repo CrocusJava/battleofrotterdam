@@ -7,11 +7,15 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 
 /**
  * @author Lukashchuk Ivan
  * 
  */
+@Stateless
+@LocalBean
 public class ToolEmail {
 	
 	 	private String username;
