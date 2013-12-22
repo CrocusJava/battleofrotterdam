@@ -21,8 +21,10 @@ public class Text implements Serializable {
 
 	private Integer key;
 	
-	private String value;
+	private String valueEn;
 
+	private String valueNl;
+	
     public Text() {
     }
 
@@ -42,12 +44,20 @@ public class Text implements Serializable {
 		this.key = key;
 	}
 
-	public String getValue() {
-		return value;
+	public String getValueEn() {
+		return valueEn;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setValueEn(String valueEn) {
+		this.valueEn = valueEn;
+	}
+
+	public String getValueNl() {
+		return valueNl;
+	}
+
+	public void setValueNl(String valueNl) {
+		this.valueNl = valueNl;
 	}
 	
 }
