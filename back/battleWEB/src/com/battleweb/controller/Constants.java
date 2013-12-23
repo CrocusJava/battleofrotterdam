@@ -14,6 +14,7 @@ public interface Constants {
 	public static final String COMMAND_REGISTRATION = "registration";
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
+	public static final String COMMAND_INDEX = "index";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -47,10 +48,20 @@ public interface Constants {
 	public static final String PARAMETER_TEXT_MESSAGE_REGISTRATION = "registrationmessage";
 	public static final String PARAMETER_TEXT_MESSAGE_APPROVEREGISTRATION = "approveregistrationmessage";
 	
+	public static final String PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT = "battledescriptionshort";
+	public static final String PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION = "battleanimationdescription";
+	public static final String PARAMETER_BATTLE_YEAR_FINISH_DATE = "battleyearfinishdate";
+	public static final String PARAMETER_BATTLE_MONTH_FINISH_DATE = "battlemonthfinishdate";
+	
+	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
 	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
+	
+	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
+	public static final Integer TEXT_BATTLE_ANIMATION_DESCRIPTION = 510;
+	
 		
 }

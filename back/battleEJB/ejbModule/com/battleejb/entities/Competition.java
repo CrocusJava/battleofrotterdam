@@ -13,11 +13,13 @@ import java.util.List;
  * 
  */
 @Entity
+@NamedQueries({ @NamedQuery(name = "Competition.findCurrentYearCompetition", 
+							query = "SELECT c FROM Competition c WHERE c.type = :type AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate") })
 public class Competition implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
     @Temporal( TemporalType.DATE)
@@ -33,6 +35,11 @@ public class Competition implements Serializable {
 
     @Temporal( TemporalType.DATE)
 	private Date registerDeadline;
+
+	//bi-directional many-to-one association to CompetitionType
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="type_id")
+	private CompetitionType type;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne(fetch=FetchType.LAZY)
