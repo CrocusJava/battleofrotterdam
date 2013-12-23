@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2013 at 05:31 PM
+-- Generation Time: Dec 23, 2013 at 07:57 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -75,10 +75,42 @@ CREATE TABLE IF NOT EXISTS `Competition` (
   `dateStart` date DEFAULT NULL,
   `dateEnd` date DEFAULT NULL,
   `registerDeadline` date DEFAULT NULL,
-  `winner_id` bigint(20) NOT NULL,
+  `type_id` bigint(20) NOT NULL,
+  `winner_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `winner_id` (`winner_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `winner_id` (`winner_id`),
+  KEY `Competition_ibfk_2` (`type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `Competition`
+--
+
+INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `winner_id`) VALUES
+(1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-01-01', 1, NULL),
+(2, 'First Month Competition Name', 'description of First Month Competition', '2013-12-01', '2014-01-01', '2013-12-10', 2, NULL),
+(3, 'Second Month Competition Name', 'description of Second Month Competition', '2014-01-01', '2014-02-01', '2014-01-10', 2, NULL),
+(4, 'Third Month Competition Name', 'description of Third Month Competition', '2014-02-01', '2014-03-01', '2014-02-10', 2, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `CompetitionType`
+--
+
+CREATE TABLE IF NOT EXISTS `CompetitionType` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `CompetitionType`
+--
+
+INSERT INTO `CompetitionType` (`id`, `name`) VALUES
+(1, 'year'),
+(2, 'month');
 
 -- --------------------------------------------------------
 
@@ -149,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `Text`
@@ -159,7 +191,35 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (1, 100, 'Your new password will be sent to your email', 'Uw nieuwe wachtwoord zal naar uw e-mail worden verzonden'),
 (2, 200, 'Please check your email to complete your registration', 'Controleer uw e-mail om uw registratie te voltooien'),
 (3, 300, 'Thank you! Now you can login and try create your first project', 'Dank je wel! Nu kunt u inloggen en probeer maak uw eerste project'),
-(4, 310, 'Something WRONG. Please check your email again', 'Iets mis. Controleer uw e-mail opnieuw');
+(4, 310, 'Something WRONG. Please check your email again', 'Iets mis. Controleer uw e-mail opnieuw'),
+(5, 500, 'Some general information about the site', 'Wat algemene informatie over de site'),
+(6, 510, 'Some description of the video', 'Enkele beschrijving van de video');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `URL`
+--
+
+CREATE TABLE IF NOT EXISTS `URL` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `keyval` bigint(20) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `keyval` (`keyval`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `URL`
+--
+
+INSERT INTO `URL` (`id`, `keyval`, `name`, `value`) VALUES
+(1, 100, 'Name of Battle video url', 'Value of Battle video url'),
+(2, 110, 'Name of Link1 on Home-page', 'Value of Link1 on Home-page'),
+(3, 120, 'Name of Link2 on Home-page', 'Value of Link2 on Home-page'),
+(4, 130, 'Name of Link3 on Home-page', 'Value of Link3 on Home-page'),
+(5, 140, 'Name of Link4 on Home-page', 'Value of Link4 on Home-page');
 
 -- --------------------------------------------------------
 
@@ -228,7 +288,8 @@ ALTER TABLE `Comment`
 -- Constraints for table `Competition`
 --
 ALTER TABLE `Competition`
-  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`winner_id`) REFERENCES `User` (`id`);
+  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`winner_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `Competition_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `CompetitionType` (`id`);
 
 --
 -- Constraints for table `Photo`
