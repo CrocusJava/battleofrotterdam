@@ -1,6 +1,8 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -11,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Address;
 import com.battleejb.entities.Role;
@@ -36,12 +39,16 @@ public class CommandRegistration implements Command {
 	private ToolMD5 toolMD5;
 	@EJB
 	private ToolEmail toolEmail;
-
+	@EJB
+	private TextBean textBean;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		String registrationMessage = "blablabal ��������� �����...";
+
+		String registrationMessage = textBean.findLocaleTextByKey(
+				Constants.TEXT_MESSAGE_REGISTRATION, request.getLocale());
+
 		boolean statusMail = false;
 		boolean statusLogin = false;
 
@@ -78,9 +85,9 @@ public class CommandRegistration implements Command {
 			address.setHouseNumber(housenumber);
 			address.setTown(town);
 			address.setPostcode(postcode);
-			
+
 			Role role = new Role();
-			role.setId(1);
+			role.setId(2);
 			role.setName("user");
 
 			User user = new User();
@@ -92,17 +99,27 @@ public class CommandRegistration implements Command {
 			user.setLastname(lastname);
 			user.setMiddlename(middlename);
 			user.setEmail(email);
-			// user.setBirthday(new Date(birthday));//��� ��� � ��������?
 			user.setPhone(phone);
 			user.setApproveregistration(false);
+			user.setActive(true);
+			user.setCommentAble(true);
+			user.setPhotoPath("default");
+
+			String[] date = birthday.split("/");
+			user.setBirthday(new Date(Integer.parseInt(date[2]) - 1900, Integer
+					.parseInt(date[1]) - 1, Integer.parseInt(date[0])));
+			
 			userBean.create(user);
 
+			// this message to the database too!!!
+			// **********************************
 			StringBuilder message = new StringBuilder();
 			message.append("Dear, user bla-bla-bla ");
-			message.append("http://edu.bionic-university.com:1120/battleWEB/controller?command=approveregistration&amp;iduser=");
+			message.append("http://edu.bionic-university.com:1120/battleWEB/controller?command=approveregistration&iduser=");
 			message.append(user.getId());
-			message.append("&amp;value=");
+			message.append("&value=");
 			message.append(toolMD5.generateMD5(user.getLogin()));
+			// **********************************
 
 			toolEmail.send("Battle of Rotterdam registration",
 					message.toString(), "battleofrotterdam@gmail.com", email);

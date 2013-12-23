@@ -1,5 +1,7 @@
 package com.battleejb.ejbbeans;
 
+import java.util.Locale;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import com.battleejb.entities.Text;
 
 /**
  * @author rtkachuk
+ * @author Lukashchuk Ivan
  * 
  */
 @Stateless
@@ -27,7 +30,7 @@ public class TextBean extends AbstractFacade<Text> {
 	protected EntityManager getEntityManager() {
 		return em;
 	}
-	
+
 	public Text findByKey(Integer keyval) {
 		Text text = null;
 		try {
@@ -37,5 +40,15 @@ public class TextBean extends AbstractFacade<Text> {
 			// TODO LOG
 		}
 		return text;
+	}
+
+	public String findLocaleTextByKey(Integer keyval, Locale locale) {
+		String loc = locale.toString();
+		String queryName = "User.findEnTextByKey";
+		if (loc.equalsIgnoreCase("nl")) {
+			queryName = "User.findNlTextByKey";
+		}
+		return (String) em.createNamedQuery(queryName)
+				.setParameter("keyval", keyval).getSingleResult();
 	}
 }

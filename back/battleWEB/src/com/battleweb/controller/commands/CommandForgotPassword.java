@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Address;
 import com.battleejb.entities.User;
@@ -36,34 +37,47 @@ public class CommandForgotPassword implements Command {
 	private ToolMD5 toolMD5;
 	@EJB
 	private ToolEmail toolEmail;
+	@EJB
+	private TextBean textBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String newPasswordMessage = "blabla chack your email..";
+		String newPasswordMessage = "bla bla bla"; //message if email not exist in the DB;
+		boolean emailStatus = false;
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		String email = jsonObjectRequest.getString(Constants.PARAMETER_EMAIL);
 
-		User user = (User) request.getSession().getAttribute("user");
+		User user = (User) userBean.findByEmail(email);
 
-		String newPassword = user.getPassword().substring(0, 7);
-		user.setPassword(toolMD5.generateMD5(newPassword));
-		userBean.edit(user);
+		if (user != null) {
+			String newPassword = user.getPassword().substring(0, 7);
+			user.setPassword(toolMD5.generateMD5(newPassword));
+			userBean.edit(user);
 
-		StringBuilder message = new StringBuilder();
-		message.append("Your new password: ");
-		message.append(newPassword);
+			// this message to the database too!!!
+			// **********************************
+			StringBuilder message = new StringBuilder();
+			message.append("Your new password: ");
+			message.append(newPassword);
+			// **********************************
 
-		toolEmail.send("Battle of Rotterdam new password", message.toString(),
-				"battleofrotterdam@gmail.com", email);
-
+			toolEmail.send("Battle of Rotterdam new password",
+					message.toString(), "battleofrotterdam@gmail.com", email);
+			
+			newPasswordMessage = textBean.findLocaleTextByKey(
+					Constants.TEXT_MESSAGE_NEW_PASSWORD, request.getLocale());
+			emailStatus = true;
+		}
+		
 		JsonObject jsonObjectResponse = Json
 				.createObjectBuilder()
+				.add(Constants.PARAMETER_STATUSMAIL, emailStatus)
 				.add(Constants.PARAMETER_EMAIL, email)
-				.add(Constants.PARAMETER_NEWPASSWORDMESSAGE,
-						newPasswordMessage).build();
+				.add(Constants.PARAMETER_NEWPASSWORDMESSAGE, newPasswordMessage)
+				.build();
 
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 

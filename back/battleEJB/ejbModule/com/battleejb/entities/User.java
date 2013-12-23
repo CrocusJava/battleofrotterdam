@@ -19,11 +19,14 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the User database table.
+ * @author rtkachuk
+ * @author Lukashchuk Ivan
  * 
  */
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login"),
+	@NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
 	@NamedQuery(name = "User.getCountOfUserByLogin", query = "SELECT COUNT(u) FROM User u WHERE u.login=:login"),
 	@NamedQuery(name = "User.getCountOfUserByEmail", query = "SELECT COUNT(u) FROM User u WHERE u.email=:email")
 	})
@@ -31,7 +34,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private Boolean active;

@@ -12,6 +12,7 @@ import com.battleejb.interceptors.FaultBarrierInterceptor;
 
 /**
  * @author rtkachuk
+ * @author Lukashchuk Ivan
  * 
  */
 @Stateless
@@ -40,9 +41,20 @@ public class UserBean extends AbstractFacade<User> {
 		}
 		return user;
 	}
+	
+	public User findByEmail(String email) {
+		User user = null;
+		try {
+			user = em.createNamedQuery("User.findByEmail", User.class)
+					.setParameter("email", email).getSingleResult();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
 
 	public boolean chackLoginExist(String login) {
-		int result = (Integer) em.createNamedQuery("User.getCountOfUserByLogin")
+		long result = (Long) em.createNamedQuery("User.getCountOfUserByLogin")
 				.setParameter("login", login).getSingleResult();
 		if(result > 0){
 			return false;
@@ -52,7 +64,7 @@ public class UserBean extends AbstractFacade<User> {
 	}
 	
 	public boolean chackEmailExist(String email) {
-		int result = (Integer) em.createNamedQuery("User.getCountOfUserByEmail")
+		long result = (Long) em.createNamedQuery("User.getCountOfUserByEmail")
 				.setParameter("email", email).getSingleResult();
 		if(result > 0){
 			return false;

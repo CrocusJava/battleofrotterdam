@@ -52,4 +52,5 @@ public interface Constants {
 	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
+		
 }
