@@ -1,0 +1,24 @@
+#---------- command=login ----------#
+{
+"login":"test",
+"password":"test"
+}
+
+#---------- command=registration ----------#
+{
+"login":"test40",			/*test*/ 
+"password":"test5",
+"firstname":"firstnametest",
+"middlename":"middlenametest",
+"lastname":"lastnametest",
+"town":"towntest",
+"street":"streettest",
+"housenumber":"5",
+"postcode":"080808",
+"birthday":"01/01/1991",
+"phone":"0980101010",
+"email":"test5@gmail.com"		/*свой майл*/
+}
+
+#---------- command=index ----------#
+

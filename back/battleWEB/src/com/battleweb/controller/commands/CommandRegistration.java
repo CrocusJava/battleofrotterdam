@@ -1,6 +1,9 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -104,10 +107,13 @@ public class CommandRegistration implements Command {
 			user.setActive(true);
 			user.setCommentAble(true);
 			user.setPhotoPath("default");
-
-			String[] date = birthday.split("/");
-			user.setBirthday(new Date(Integer.parseInt(date[2]) - 1900, Integer
-					.parseInt(date[1]) - 1, Integer.parseInt(date[0])));
+			
+			try {
+				SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyy");
+				user.setBirthday(format.parse(birthday));
+			} catch (ParseException e) {
+				//TODO Log
+			}
 			
 			userBean.create(user);
 
