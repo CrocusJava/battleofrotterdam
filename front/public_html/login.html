@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap 101 Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+            .navbar-header .active a.navbar-brand {
+                color:#fff;
+            }
+        </style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="page-header">
+            <h1>Example page header <small>Subtext for header</small></h1>
+        </div>
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">HOME</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#about">ABOUT THE BATTLE</a></li>
+                        <li><a href="account_photo.html">SUBMIT PHOTO</a></li>
+                        <li><a href="#">CURRRENT RANKINGS</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li class="active"><a href="login.html">LINKS</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+
+                    <div class="well"><!--start .well-->
+
+                        <ul class="nav nav-pills">
+                            <li class="active"><a href="login.html">LOGIN</a></li>
+                            <li><a href="registration.html">REGISTER</a></li>
+                        </ul>
+
+                        <h4>If you already have an account, please login here!</h4>
+                        <form class="form-horizontal" method="GET" action="">
+
+                            <div class="form-group">
+                                <label for="AccountID" class=" col-sm-2 control-label"><small class="pull-left">AccountID:</small></label>
+                                <div class="col-sm-4 ">
+                                    <input type="text" class="form-control input-sm" id="AccountID" name="AccountID" placeholder="Account ID"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Password" class="control-label col-sm-2"><small class="pull-left">Password:</small></label>
+                                <div class="col-sm-4 ">
+                                    <input type="password" class="form-control input-sm" id="Password" name="Password" placeholder="Password"></div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-sm-2 col-xs-2">
+                                    <button type="submit" class="btn btn-primary btn-lg" name="submit" value="ok">Sign up</button>
+                                </div>
+                                <div class="col-sm-10 col-xs-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="forgot_password"><small>Forgot password?</small></label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="forgot_account"><small>Forgot account?</small></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div><!--end .well-->
+
+                </div> <!-- col-md-12 -->
+
+            </div> <!-- end row -->
+
+            <!-- footer -->
+
+
+            <div class="container">
+                <div class="page-header text-center" style="border:3px solid black; background-color: black;color:#fff;">
+                    <h1>Example page footer </h1>
+                </div>
+            </div>
+        </div> <!-- container -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/javascript.js"></script>
+    </body>
+</html>
+
