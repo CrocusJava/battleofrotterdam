@@ -1,6 +1,7 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -13,13 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
-import com.battleejb.entities.Address;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
-import com.battleweb.tools.ToolSession;
 
 /**
  * @author Lukashchuk Ivan
@@ -43,9 +42,10 @@ public class CommandForgotPassword implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		String newPasswordMessage = "bla bla bla"; //message if email not exist in the DB;
-		boolean emailStatus = false;
+		
+		Locale locale = request.getLocale();
+		String newPasswordMessage = textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_EMAIL_NOT_EXIST, locale);
+		boolean emailStatus = false;		
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		String email = jsonObjectRequest.getString(Constants.PARAMETER_EMAIL);
@@ -57,18 +57,17 @@ public class CommandForgotPassword implements Command {
 			user.setPassword(toolMD5.generateMD5(newPassword));
 			userBean.edit(user);
 
-			// this message to the database too!!!
-			// **********************************
 			StringBuilder message = new StringBuilder();
-			message.append("Your new password: ");
+			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_YOUR_LOGIN, locale));
+			message.append(user.getLogin());			
+			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_YOUR_PASSWORD, locale));
 			message.append(newPassword);
-			// **********************************
 
 			toolEmail.send("Battle of Rotterdam new password",
 					message.toString(), "battleofrotterdam@gmail.com", email);
 			
 			newPasswordMessage = textBean.findLocaleTextByKey(
-					Constants.TEXT_MESSAGE_NEW_PASSWORD, request.getLocale());
+					Constants.TEXT_MESSAGE_NEW_PASSWORD, locale);
 			emailStatus = true;
 		}
 		

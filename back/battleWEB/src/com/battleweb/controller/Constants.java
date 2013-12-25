@@ -56,7 +56,13 @@ public interface Constants {
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
+	public static final Integer TEXT_MESSAGE_YOUR_LOGIN = 110;
+	public static final Integer TEXT_MESSAGE_YOUR_PASSWORD = 111;
+	public static final Integer TEXT_MESSAGE_EMAIL_NOT_EXIST = 120;
+	
 	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
+	public static final Integer TEXT_MESSAGE_REGISTRATION_MAIL = 210;
+	
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
 	

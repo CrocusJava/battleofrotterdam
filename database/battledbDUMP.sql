@@ -196,7 +196,8 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (6, 510, 'Some description of the video', 'Enkele beschrijving van de video'),
 (7, 210, 'Dear, user thank you for registration on the Battle of Rotterdam site, please click on the link to complete your registration','Geachte, gebruiker bedankt voor registratie op de Battle of Rotterdam site, klik op de link om uw registratie te voltooien'),
 (8, 110,'Your login: ','Uw loginnaam: '),
-(9, 111,'Your new password: ','Uw nieuwe wachtwoord: ');
+(9, 111,'Your new password: ','Uw nieuwe wachtwoord: '),
+(10, 120,'Email not exist in the database','E-mail niet in de database');
 
 -- --------------------------------------------------------
 

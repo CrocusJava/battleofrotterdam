@@ -3,8 +3,6 @@ package com.battleweb.controller.commands;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.ejb.EJB;
@@ -49,8 +47,9 @@ public class CommandRegistration implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		Locale locale = request.getLocale();
 		String registrationMessage = textBean.findLocaleTextByKey(
-				Constants.TEXT_MESSAGE_REGISTRATION, request.getLocale());
+				Constants.TEXT_MESSAGE_REGISTRATION, locale);
 
 		boolean statusMail = false;
 		boolean statusLogin = false;
@@ -116,17 +115,14 @@ public class CommandRegistration implements Command {
 			}
 			
 			userBean.create(user);
-
-			// this message to the database too!!!
-			// **********************************
+		
 			StringBuilder message = new StringBuilder();
-			message.append("Dear, user bla-bla-bla ");
-			message.append("http://edu.bionic-university.com:1120/battleWEB/controller?command=approveregistration&iduser=");
+			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_REGISTRATION_MAIL, locale));
+			message.append(" http://edu.bionic-university.com:1120/battleWEB/controller?command=approveregistration&iduser=");
 			message.append(user.getId());
 			message.append("&value=");
 			message.append(toolMD5.generateMD5(user.getLogin()));
-			// **********************************
-
+			
 			toolEmail.send("Battle of Rotterdam registration",
 					message.toString(), "battleofrotterdam@gmail.com", email);
 		}
