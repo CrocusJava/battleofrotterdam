@@ -1,4 +1,5 @@
 $(function() {
+    $("#count-down").county({endDateTime: new Date('2013/12/27 10:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
     $('.navbar a').click(function() {
         $('.navbar .active').removeClass("active");
         $(this).parent().addClass("active");
