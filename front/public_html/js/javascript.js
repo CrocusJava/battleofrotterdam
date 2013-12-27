@@ -1,5 +1,5 @@
 $(function() {
-    $("#count-down").county({endDateTime: new Date('2013/12/27 10:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+
     $('.navbar a').click(function() {
         $('.navbar .active').removeClass("active");
         $(this).parent().addClass("active");
@@ -16,6 +16,13 @@ $(function() {
     });
 
     $("#loginForm, #registrationForm").on("submit", AjaxRegistrationLogin);
+
+    try {
+        $("#count-down").county({endDateTime: new Date('2013/12/31 10:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+    }
+    catch (e) {
+
+    }
 });
 
 function AjaxRegistrationLogin() {
@@ -43,6 +50,16 @@ function AjaxRegistrationLogin() {
         data: data,
         contentType: "application/json"
     }).done(function(data) {
+        if (data.statuslogin === true && data.statusemail === true) {
+            $(".alert>h5").text(data.registrationmessage);
+            $("#visit_email").show();
+            $(".alert .btn-primary").click(function() {
+                $("#visit_email").hide();
+                window.location = "account_photo.html";
+            });
+
+        }
+
         console.log(data);
     }).fail(function(data) {
         console.log(data);
@@ -50,3 +67,6 @@ function AjaxRegistrationLogin() {
     console.log(data);
     return false;
 }
+//registrationmessage: "Please check your email to complete your registration"
+//statuslogin: true
+//
