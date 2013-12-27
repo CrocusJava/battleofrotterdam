@@ -10,6 +10,7 @@
 		<class>com.battleejb.entities.Address</class>
 		<class>com.battleejb.entities.Comment</class>
 		<class>com.battleejb.entities.Competition</class>
+		<class>com.battleejb.entities.CompetitionType</class>
 		<class>com.battleejb.entities.Photo</class>
 		<class>com.battleejb.entities.Project</class> 
 		<class>com.battleejb.entities.Role</class>

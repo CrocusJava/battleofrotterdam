@@ -52,6 +52,9 @@ public interface Constants {
 	public static final String PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION = "battleanimationdescription";
 	public static final String PARAMETER_BATTLE_YEAR_FINISH_DATE = "battleyearfinishdate";
 	public static final String PARAMETER_BATTLE_MONTH_FINISH_DATE = "battlemonthfinishdate";
+	public static final String PARAMETER_URL_BATTLE_ANIMATION = "battleanimationurl";
+	public static final String PARAMETER_URL_HOMEPAGE_LINK_TITLE = "linktitle";
+	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
 	
 	
 	//Set key of value Text
@@ -68,6 +71,13 @@ public interface Constants {
 	
 	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
 	public static final Integer TEXT_BATTLE_ANIMATION_DESCRIPTION = 510;
+
+	//Set key of value URL
+	public static final Integer URL_BATTLE_ANIMATION = 100;
+	public static final Integer URL_HOMEPAGE_LINK1 = 110;
+	public static final Integer URL_HOMEPAGE_LINK2 = 120;
+	public static final Integer URL_HOMEPAGE_LINK3 = 130;
+	public static final Integer URL_HOMEPAGE_LINK4 = 140;
 	
 		
 }
