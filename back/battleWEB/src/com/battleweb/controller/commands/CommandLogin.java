@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.battleejb.businesslogic.BusinessLogicUser;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
 import com.battleweb.tools.ToolSession;
@@ -52,6 +53,8 @@ public class CommandLogin implements Command {
 		}
 		
 		if (null!=user){
+			Log.debug(this, "User exist in database");
+			
 			toolSession.addUserSession(request, user);
 
 			JsonObject jsonObjectResponse=Json.createObjectBuilder()
@@ -62,7 +65,7 @@ public class CommandLogin implements Command {
 			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 			
 		} else {
-			
+			Log.debug(this, "User is not exist in database");
 			JsonObject jsonObjectResponse=Json.createObjectBuilder()
 					.add(Constants.PARAMETER_IDUSER, 0)
 					.add(Constants.PARAMETER_IDROLE, 0)
@@ -71,7 +74,7 @@ public class CommandLogin implements Command {
 			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 			
 		}
-		
+		Log.debug(this, "NO redirects!");
 		return null;
 	}
 }

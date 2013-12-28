@@ -20,6 +20,7 @@ import com.battleejb.entities.Address;
 import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
@@ -111,7 +112,7 @@ public class CommandRegistration implements Command {
 				SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyy");
 				user.setBirthday(format.parse(birthday));
 			} catch (ParseException e) {
-				//TODO Log
+				Log.error(this, e, "Can't parse date");
 			}
 			
 			userBean.create(user);
