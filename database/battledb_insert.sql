@@ -28,7 +28,11 @@ INSERT INTO Text VALUES
 (3, 300, 'Thank you! Now you can login and try create your first project', 'Dank je wel! Nu kunt u inloggen en probeer maak uw eerste project'),
 (4, 310, 'Something WRONG. Please check your email again', 'Iets mis. Controleer uw e-mail opnieuw'),
 (5, 500, 'Some general information about the site','Wat algemene informatie over de site'),
-(6, 510, 'Some description of the video','Enkele beschrijving van de video');
+(6, 510, 'Some description of the video','Enkele beschrijving van de video'),
+(7, 210, 'Dear, user thank you for registration on the Battle of Rotterdam site, please click on the link to complete your registration','Geachte, gebruiker bedankt voor registratie op de Battle of Rotterdam site, klik op de link om uw registratie te voltooien'),
+(8, 110,'Your login: ','Uw loginnaam: '),
+(9, 111,'Your new password: ','Uw nieuwe wachtwoord: '),
+(10, 120,'Email not exist in the database','E-mail niet in de database');
 
 
 INSERT INTO URL VALUES
