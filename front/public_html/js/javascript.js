@@ -6,19 +6,19 @@ $(function() {
 
     });
     $("a", ".well .nav.first").click(function() {
-        $("li", ".well .nav.first").removeClass("active");
-        $(this).parent().addClass("active");
+        $(this).tab("show");
     });
 
     $("a", ".well .nav.second").click(function() {
         $("li", ".well .nav.second").removeClass("active");
         $(this).parent().addClass("active");
+
     });
 
     $("#loginForm, #registrationForm").on("submit", AjaxRegistrationLogin);
 
     try {
-        $("#count-down").county({endDateTime: new Date('2013/12/31 10:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+        $("#count-down").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
     }
     catch (e) {
 
@@ -38,7 +38,7 @@ function AjaxRegistrationLogin() {
 
     var post = $(this).serializeArray();
     var data = {};
-    var url = "http://edu.bionic-university.com:1120/battleWEB/controller?command=" + command;
+    var url = "/battleWEB/controller?command=" + command;
     for (var i in post) {
         data[post[i].name] = post[i].value;
     }
