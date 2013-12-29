@@ -1,18 +1,19 @@
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bootstrap 101 Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap -->
+        <title>Battle of Rotterdam</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+        <!--        <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css">-->
+        <link type="text/css" rel="stylesheet" href="css/county.css">
 
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <style type="text/css">
+        <style>
             .navbar-header.active a.navbar-brand {
                 color:#fff;
 
             }
         </style>
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -21,85 +22,146 @@
         <![endif]-->
     </head>
     <body>
-        <div class="page-header">
-            <h1>Example page header <small>Subtext for header</small></h1>
+
+
+        <!-- Header
+      ================================================== -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container">
+                    <div class="row">
+                        <!-- header image
+     ================================================== -->
+                        <div class="col-lg-6">
+                            <div class="page-header">
+                                <h1> <img src="img/house.jpg" width="100" height="100"><small>Battle Of Rotterdam</small></h1>
+                            </div>
+                        </div>
+                        <!-- Header timer and Login - Registr
+     ================================================== -->
+                        <div class="col-lg-6" style="padding-top: 10px;">
+                            <div class="row">
+                                <div class="col-lg-6 text-right" style="padding-top: 10px;">
+                                    <b>Time Remaining:</b>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div id="count-down"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 text-center col-lg-offset-6">
+                                    <div class="btn-group btn-group-justified">
+                                        <a href="login.html" class="btn btn-success">
+                                            Login
+                                        </a>
+                                        <a href="registration.html" class="btn btn-primary">
+                                            Registration
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="navbar navbar-inverse" role="navigation">
+
+
+
+
+        <!-- Navbar
+      ================================================== -->
+        <div class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header active">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                    <a href="index.html" class="navbar-brand">HOME</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">HOME</a>
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="navbar-nav nav">
                         <li><a href="#about">ABOUT THE BATTLE</a></li>
                         <li><a href="account_photo.html">SUBMIT PHOTO</a></li>
                         <li><a href="#">CURRRENT RANKINGS</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="login.html">LINKS</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </div>
 
+
+
+        <!-- Container
+              ================================================== -->
         <div class="container">
             <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div style="border:3px solid black; height: 200px;">
-                        <h2>General information abou the website, the initative, a kind of smart guide </h2>
-                    </div>
-
-                </div> <!-- col-md-12 -->
-
-            </div> <!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div  style="margin:20px 0px;">
-                                <h2>Description of video animation</h2>
+                <div class="col-lg-12">
+                    <!-- Wraper
+           ================================================== -->
+                    <!-- Start -->
+                    <div id="wraper">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="jumbotron">
+                                    <h2><small>General information about the website, the initative, a kind of smart guide</small> </h2>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div style="border:3px solid black; height: 300px;margin:20px 0px;">
-                                <h2>Video animation about the battle</h2>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <h2 class="text-center"><small>Description of video animation</small></h2>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h2 class="text-center"><small>Video animation about the battle</small></h2>
+                                <video width="400" height="300" controls="controls" poster="img/house.jpg">
+                                    <source src="video/AlpinesGotMeWrong.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                                    video not suported
+                                </video>
                             </div>
                         </div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="well">
+                                    <h2><small>Previous winner with information and photos placed here</small></h2>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-
-                </div> <!-- col-md-12 -->
-
-            </div> <!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div style="border:3px solid black; height: 200px;">
-                        <h2>Previous winner with information and photos placed here</h2>
-                    </div>
-                </div> <!-- col-md-12 -->
-
-            </div> <!-- end row -->
-            <!-- footer -->
-
-            <div class="container">
-                <div class="page-header text-center" style="border:3px solid black; background-color: black;color:#fff;">
-                    <h1>Example page footer </h1>
+                    <!-- End -->
                 </div>
             </div>
+        </div>
 
-        </div> <!-- container -->
+
+
+
+        <!-- Footer
+              ================================================== -->
+        <footer style="height: 100px; background-color: #000;">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1><small>Footer</small></h1>
+                </div>
+            </div>
+        </footer>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://code.jquery.com/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/county.js"></script>
         <script src="js/javascript.js"></script>
+
     </body>
 </html>
-
