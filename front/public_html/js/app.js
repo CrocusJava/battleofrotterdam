@@ -190,7 +190,7 @@ function call_datatables() {
                     "sWidth": "45%"
                 }, {
                     "sWidth": "45%"
-                }, ]
+                }]
         });
     }
 }
@@ -332,16 +332,64 @@ function call_events_show_hide_login_registration() {
 
 function createComment(element) {
     var li = element.parents("li")[0];
-    var childrenUl = $($(li).children("ul:first")[0]);
+    var childrenUl = $(li).children("ul:first")[0];// получить контеинер если существует
 
-    console.log(childrenUl.html());
+    console.log(childrenUl);
+    createElements(childrenUl, li);
+
 }
 
 function call_event_create_comment() {
-    $(".reply").each(function() {
+    $(".comments").on("click", "a.reply", function() {
         var $this = $(this);
-        $this.on("click", function() {
-            createComment($this);
-        });
+        createComment($this);
     });
 }
+
+function createElements(conteiner, parent) {
+    var li = $(document.createElement("li"));
+
+    if (!conteiner) { // если ето первый коментарий направленный к пользователю то создать контеинер
+        var ul = $(document.createElement("ul"));
+        ul.appendTo(parent);
+        li.appendTo(ul);
+    }
+    else {
+        li.appendTo(conteiner);
+    }
+
+
+
+    var article = $(document.createElement("article"));
+    article.appendTo(li);
+
+    var h5 = $(document.createElement("h5"));
+    h5.addClass("autor").text("My Autor").appendTo(article);//имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
+
+    var img = $(document.createElement("img"));
+    img.addClass("avatar").attr({
+        "src": "img/c1.jpg", // тоже самое со ссылкой на фото участника
+        "alt": "preview"
+    }).appendTo(article);
+
+    var div = $(document.createElement("div"));
+    div.addClass("comment_inner").appendTo(article);
+
+    var p = $(document.createElement("p"));
+    p.text("Samesing text for testing create html element").appendTo(div);// текст нужно получить с формы
+
+    var a = $(document.createElement("a"));
+    a.addClass("reply").text("Reply").attr({
+        "href": "#comment"
+    }).appendTo(div);
+
+}
+
+//< article >
+//        < h5 class = "autor" > Bina Setiawan Grec < /h5>
+//        < img class = "avatar" src = "img/c2.jpg" alt = "preview" >
+//        < div class = "comment_inner" >
+//              < p > Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec pretium sagittis justo vel lobortis.Suspendisse dictum eleifend quam quis porta.Mauris sit amet magna elit.Mauris sed magna vel enim congue condimentum sit amet et augue.Duis tincidunt interdum varius.Suspendisse vel sem vitae quam < /p>
+//                  < a href = "#comment" class = "reply" > Reply < /a>
+//        < /div>
+//< /article>
