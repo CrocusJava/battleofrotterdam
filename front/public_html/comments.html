@@ -129,7 +129,7 @@
                             </div>
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
                             <div class="comments">
-                                <ul>
+                                <ul id="main_conteiner_comments">
                                     <li>
                                         <!-- Comment Entry -->
                                         <article>
@@ -227,26 +227,26 @@
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
                             <!-- Start Form Comment -->
                             <h3>LEAVE COMMENT</h3>
-                            <form action="" method="post" class="comment_form_validation" novalidate="novalidate">
+                            <form action="" method="post" class="comment_form_validation" novalidate="novalidate" id="comments_form">
                                 <div class="row-fluid">
                                     <div class="span6">
                                         <div class="form-padding">
                                             <label for="f1">Your name (required):</label>
-                                            <input type="text" name="f1" id="f1" class="input-block-level" value="" required="">
+                                            <input type="text" name="firstname" id="f1" class="input-block-level" value="" required="">
                                         </div>
                                     </div>
                                     <div class="span6">
                                         <div class="form-padding">
                                             <label for="f2">Your email (required):</label>
-                                            <input type="text" name="f2" id="f2" class="input-block-level" value="" size="40" required="">
+                                            <input type="text" name="email" id="f2" class="input-block-level" value="" size="40" required="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row-fluid">
                                     <div class="span12">
                                         <div class="form-padding">
-                                            <label for="f5">Comment:</label>
-                                            <textarea name="your-message" id="f5" class="input-block-level" rows="10" required=""></textarea>
+                                            <label for="f3">Comment:</label>
+                                            <textarea name="message" id="f3" class="input-block-level" rows="10" required=""></textarea>
                                             <input type="submit" class="btn btn-primary btn-large flat" value=" Comment ">
                                         </div>
                                     </div>
