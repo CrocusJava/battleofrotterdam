@@ -21,7 +21,9 @@ function call_form_validation() {
         });
     }
     if ($('.comment_form_validation').length > 0) {
-        $('.comment_form_validation').validate();
+        $('.comment_form_validation').validate({
+            submitHandler: AjaxSendComment
+        });
     }
     if ($('.singup_form_validation').length > 0) {
         $('.singup_form_validation').validate({
@@ -280,23 +282,28 @@ function call_lightbox() {
         });
     }
 }
-
-
-function AjaxRegistrationLogin(form) {
+function data_collection_forms(form) {
+    var collection = {};
+    collection.data = {};
     var command = $(form).attr("id");
+    collection.url = "/battleWEB/controller?command=" + command;
 
     var post = $(form).serializeArray();
-    var data = {};
-    var url = "/battleWEB/controller?command=" + command;
+
     for (var i in post) {
-        data[post[i].name] = post[i].value;
+        collection.data[post[i].name] = post[i].value;
     }
-    data = JSON.stringify(data);
+    collection.data = JSON.stringify(collection.data);
+    return collection;
+}
+
+function AjaxRegistrationLogin(form) {
+    var config = data_collection_forms(form);
     $.ajax({
-        url: url,
+        url: config.url,
         type: "POST",
         dataType: "json",
-        data: data,
+        data: config.data,
         contentType: "application/json"
     }).done(function(data) {
         if (data.statuslogin === true && data.statusemail === true) {
@@ -313,7 +320,26 @@ function AjaxRegistrationLogin(form) {
     }).fail(function(data) {
         console.log(data, "\n faile");
     });
-    console.log(data);
+    console.log(config);
+    return false;
+}
+
+function AjaxSendComment(form) {
+    var config = data_collection_forms(form);
+    $.ajax({
+        url: config.url,
+        type: "POST",
+        dataType: "json",
+        data: config.data,
+        contentType: "application/json"
+    }).done(function(data) {
+
+        console.log(data);
+    }).fail(function(error) {
+        console.log(error);
+    });
+    console.log(JSON.parse(config.data));
+    createComment(form, JSON.parse(config.data));
     return false;
 }
 
@@ -330,23 +356,36 @@ function call_events_show_hide_login_registration() {
     });
 }
 
-function createComment(element) {
-    var li = element.parents("li")[0];
-    var childrenUl = $(li).children("ul:first")[0];// получить контеинер если существует
 
-    console.log(childrenUl);
-    createElements(childrenUl, li);
-
-}
 
 function call_event_create_comment() {
     $(".comments").on("click", "a.reply", function() {
+        $("#f3").focus();
         var $this = $(this);
-        createComment($this);
+        $("#comments_form").data("element", $this);
+
     });
 }
 
-function createElements(conteiner, parent) {
+
+
+function createComment(element, info) {
+    var tmp = element;
+    element = $(element).data("element");
+    if (element) { //если контеинер получен по клику
+        $(tmp).removeData("element");
+        var li = element.parents("li")[0];
+        var Ul = $(li).children("ul:first")[0];// получить контеинер если существует
+    }
+    else {
+        var Ul = $("#main_conteiner_comments"); // если коментарий не адресован пользователю то коментарий адресован проекту
+    }
+    console.log(Ul);
+    createElements(Ul, li, info);
+
+}
+
+function createElements(conteiner, parent, info) {
     var li = $(document.createElement("li"));
 
     if (!conteiner) { // если ето первый коментарий направленный к пользователю то создать контеинер
@@ -358,13 +397,11 @@ function createElements(conteiner, parent) {
         li.appendTo(conteiner);
     }
 
-
-
     var article = $(document.createElement("article"));
     article.appendTo(li);
 
     var h5 = $(document.createElement("h5"));
-    h5.addClass("autor").text("My Autor").appendTo(article);//имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
+    h5.addClass("autor").text(info.firstname).appendTo(article);//имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
 
     var img = $(document.createElement("img"));
     img.addClass("avatar").attr({
@@ -376,7 +413,7 @@ function createElements(conteiner, parent) {
     div.addClass("comment_inner").appendTo(article);
 
     var p = $(document.createElement("p"));
-    p.text("Samesing text for testing create html element").appendTo(div);// текст нужно получить с формы
+    p.text(info.message).appendTo(div);// текст нужно получить с формы
 
     var a = $(document.createElement("a"));
     a.addClass("reply").text("Reply").attr({
