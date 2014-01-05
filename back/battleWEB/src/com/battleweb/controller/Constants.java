@@ -55,6 +55,7 @@ public interface Constants {
 	public static final String PARAMETER_URL_BATTLE_ANIMATION = "battleanimationurl";
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_TITLE = "linktitle";
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
+	public static final String PARAMETER_BATTLE_LINKS = "battlelinks";
 	
 	
 	//Set key of value Text
