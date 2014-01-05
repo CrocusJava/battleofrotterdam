@@ -12,6 +12,7 @@ $(window).load(function() {
     call_form_validation();
     call_events_show_hide_login_registration();
     call_event_create_comment();
+    call_activate_menu_links();
 });
 
 function call_form_validation() {
@@ -82,7 +83,7 @@ function call_functional_reservations() {
 }
 
 function call_tab() {
-    $('.lobster_tab a').click(function(e) {
+    $('.nav-tabs a').click(function(e) { //lobster_tab
         e.preventDefault();
         $(this).tab('show');
     });
@@ -430,3 +431,17 @@ function createElements(conteiner, parent, info) {
 //                  < a href = "#comment" class = "reply" > Reply < /a>
 //        < /div>
 //< /article>
+
+function call_activate_menu_links() {
+    $(".main_navbar").on("click", "a", function() {
+        $(this).parent().addClass("active").siblings().removeClass("active");
+    });
+    $(".lobster_tab").on("click", "a", function() {
+        $(this).parent().addClass("active").siblings().removeClass("active");
+    });
+    $(".link_acomodation").on("click", "a", function() {
+        $(this).parent().addClass("active").siblings().removeClass("active");
+        $(".span9").load("/frontBattleOfRotterdam/member.html .login_area");
+        return false;
+    });
+}
