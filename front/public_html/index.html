@@ -37,6 +37,10 @@
         <link href="css/mystyle.css" rel="stylesheet">
         <!-- End Lobster Theme -->
 
+        <!-- Style CountTime -->
+        <link href="css/county.css" rel="stylesheet">
+        <!-- End CountTime -->
+
     </head>
     <body class="theme_default">
         <div id="wrapper">
@@ -80,7 +84,9 @@
             <section id="content_top">
                 <div class="bg_content_top general_bg">
                     <div class="inner-wrapper text_center">
-                        <h1 class="no_margin main_title">Welcome <small>to the battle Rotterdam</small></h1>
+                        <h1 class="no_margin main_title">
+                            Welcome <small>to the battle Rotterdam</small>
+                        </h1>
                     </div>
                 </div>
             </section><!--end main Title content-->
@@ -91,8 +97,11 @@
                     <h1 class="no_margin logo"><small>Battle of</small> <strong>Rotterdam</strong> </h1><!-- End logo image -->
                     <!-- Start Message Your own -->
                     <div class="row-fluid">
-                        <div class="span8">
+                        <div class="span5">
                             <p class="no_margin"> Special for <strong>today</strong> you will get a suprize.</p>
+                        </div>
+                        <div class="span3">
+                            <div id="count-down"></div>
                         </div>
                         <div class="span4 text_right">
                             <a class="btn btn-primary flat" href="#"><i class=" icon-calendar"></i>Link</a>
@@ -380,6 +389,10 @@
         <!--load js cookie #[optional]-->
         <script src="js/jquery.cookie.js"></script>
         <!--end load js cookie-->
+
+        <!-- Load JS CountTime -->
+        <script src="js/county.js"></script>
+        <!-- End Load JS CountTime -->
 
         <!--Load JS config application-->
         <script src="js/app.js"></script>

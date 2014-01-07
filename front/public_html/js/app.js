@@ -1,4 +1,8 @@
 $(window).load(function() {
+    call_all();
+});
+
+function call_all() {
     call_grid();
     call_scroll();
     call_slider_sequence();
@@ -13,7 +17,8 @@ $(window).load(function() {
     call_events_show_hide_login_registration();
     call_event_create_comment();
     call_activate_menu_links();
-});
+    call_start_count_timer();
+}
 
 function call_form_validation() {
     if ($('.login_form_validation').length > 0) {
@@ -364,7 +369,6 @@ function call_event_create_comment() {
         $("#f3").focus();
         var $this = $(this);
         $("#comments_form").data("element", $this);
-
     });
 }
 
@@ -433,15 +437,33 @@ function createElements(conteiner, parent, info) {
 //< /article>
 
 function call_activate_menu_links() {
-    $(".main_navbar").on("click", "a", function() {
+    $(".main_navbar").on("click", "a", function() { // ссылки главного меню
         $(this).parent().addClass("active").siblings().removeClass("active");
     });
+
+    /* ############################################################################ */
+
     $(".lobster_tab").on("click", "a", function() {
         $(this).parent().addClass("active").siblings().removeClass("active");
     });
-    $(".link_acomodation").on("click", "a", function() {
-        $(this).parent().addClass("active").siblings().removeClass("active");
-        $(".span9").load("/frontBattleOfRotterdam/member.html .login_area");
+
+    /* ############################################################################ */
+
+    $(".link_acomodation").on("click", "a", function() { // ссылки боковой навигации на странице myaccount.html
+        var link = $(this).parent().addClass("active").siblings().removeClass("active").end().end().attr("href");
+        link = link.substr(1).split("/");
+        var url = "/frontBattleOfRotterdam/" + link[0] + " " + link[1];
+        $(".span9").load(url);
         return false;
     });
+}
+
+
+function call_start_count_timer() {
+    try {
+        $("#count-down").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+    }
+    catch (e) {
+
+    }
 }

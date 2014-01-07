@@ -1,0 +1,97 @@
+
+.county-reflection
+{
+    -moz-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    -ms-transform: scaleY(-1);
+}
+.county
+{
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+.county span.first
+{
+    padding-left: 20px;
+    border-radius: 4px 0px 0px 4px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+}
+.county span.last
+{
+    border-radius: 0px 4px 4px 0px;
+    -webkit-border-radius: 0px 4px 4px 0px;
+    -moz-border-radius: 0px 4px 4px 0px;
+}
+
+.county > span
+{
+    display: inline-block;
+    height: 48px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 42px;
+    position: relative;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+.county-days-wrapper, .county-hours-wrapper, .county-minutes-wrapper, .county-seconds-wrapper
+{
+    overflow: hidden !important;
+    position: relative !important;
+    height: 42px !important;
+    display: inline-block !important;
+    padding-left: 20px;
+}
+.county > span > span
+{
+    display: block;
+}
+.county-label-days, .county-label-hours, .county-label-minutes, .county-label-seconds
+{
+    font-size: 12px !important;
+    line-height: 6px !important;
+    height: 18px !important;
+    text-align: center !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    padding-top: 6px;
+    background-color: transparent !important;
+}
+
+.clear
+{
+    clear: both;
+}
+/*color schemes*/
+/*black*/
+.county.black .county-days-wrapper, .county.black .county-hours-wrapper, .county.black .county-minutes-wrapper, .county.black .county-seconds-wrapper
+{
+    background: #080808;
+    background: -moz-linear-gradient(top,  #080808 0%, #080808 40%, #000000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#080808), color-stop(40%,#080808), color-stop(100%,#000000));
+    background: -webkit-linear-gradient(top,  #080808 0%,#080808 40%,#000000 100%);
+    background: -o-linear-gradient(top,  #080808 0%,#080808 40%,#000000 100%);
+    background: -ms-linear-gradient(top,  #080808 0%,#080808 40%,#000000 100%);
+    background: linear-gradient(to bottom,  #080808 0%,#080808 40%,#000000 100%);
+    color: white;
+    border-top: solid 1px #494949;
+    border-bottom: solid 1px #242424;
+}
+.county.black .county-label-days, .county.black .county-label-hours, .county.black .county-label-minutes, .county.black .county-label-seconds
+{
+    color: #000000;
+}
+.county.black span.separator-left
+{
+    border-left: solid 1px #2E2E2E;
+}
+.county.black span.separator-right
+{
+    border-right: solid 1px #121212;
+}
+
+
