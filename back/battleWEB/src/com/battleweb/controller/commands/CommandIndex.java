@@ -2,21 +2,25 @@ package com.battleweb.controller.commands;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.CompetitionBean;
 import com.battleejb.ejbbeans.CompetitionTypeBean;
 import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.URLBean;
+import com.battleejb.entities.Comment;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
 import com.battleejb.entities.URL;
@@ -32,6 +36,9 @@ import com.battleweb.tools.ToolJSON;
 @Stateless
 @LocalBean
 public class CommandIndex implements Command{
+	//count of information that will be load on the home page
+	public static final Integer COMMENTS_COUNT = 5;
+	public static final Integer PHOTOS_COUNT = 3;
 	
 	@EJB
 	private ToolJSON toolJSON;
@@ -43,7 +50,8 @@ public class CommandIndex implements Command{
 	private CompetitionBean competitionBean;
 	@EJB
 	private CompetitionTypeBean competitionTypeBean;
-	
+	@EJB
+	private CommentBean commentBean;
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -96,9 +104,34 @@ public class CommandIndex implements Command{
 				.add(jsonObjectLink4)
 				.build();
 		
+		//get comments from db 
+		List<Comment> lastComments = commentBean.findLast(COMMENTS_COUNT);
+		JsonArrayBuilder lastCommentsArrayBuilder = Json.createArrayBuilder();
 		
-		//get projects from db
-		//***
+		System.out.println("********* "+lastComments);
+		System.out.println("********* "+lastComments.get(2));								//comment and user data loaded from db!
+//		System.out.println("********* "+lastComments.get(2).getCommentDate().toString()); 	//java.lang.ClassCastException!
+//		System.out.println("********* "+lastComments.get(2).getUser());						//java.lang.ClassCastException!
+		
+//		for(Comment comment:lastComments){													//java.lang.ClassCastException!
+//			JsonObject jsonObjectComment = Json.createObjectBuilder()
+//				.add(Constants.PARAMETER_USER_LOGIN, comment.getUser().getLogin())
+//				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
+//				.add(Constants.PARAMETER_COMMENT_DATE, comment.getCommentDate().toString())
+//				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
+//				.build();
+//			lastCommentsArrayBuilder.add(jsonObjectComment);
+//		}
+//
+//
+//		JsonArray lastCommentsArray = lastCommentsArrayBuilder.build();
+		
+		
+		
+		
+		//get photos from db 
+		
+
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
@@ -109,6 +142,7 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
 				.add(Constants.PARAMETER_URL_BATTLE_ANIMATION, animationURL)
 				.add(Constants.PARAMETER_BATTLE_LINKS, battleLinksArray)
+//				.add(Constants.PARAMETER_LAST_COMMENTS_LIST, lastCommentsArray)
 				.build();
 		
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
