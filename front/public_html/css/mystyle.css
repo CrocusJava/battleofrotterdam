@@ -1,0 +1,29 @@
+/* Nav Messages Preview*/
+
+.dropdown-menu .message-preview .avatar,
+.dropdown-menu .message-preview .name,
+.dropdown-menu .message-preview .message,
+.dropdown-menu .message-preview .time {
+    display: block;
+}
+
+.dropdown-menu .message-preview .avatar {
+    float: left;
+    margin-right: 15px;
+    width: 50px;
+}
+
+.dropdown-menu .message-preview .name {
+    font-weight: bold;
+}
+
+.dropdown-menu .message-preview .message {
+    font-size: 12px;
+}
+
+.dropdown-menu .message-preview .time {
+    font-size: 12px;
+}
+/*.dropdown-menu .message-preview > a {
+    white-space: normal;
+}*/
