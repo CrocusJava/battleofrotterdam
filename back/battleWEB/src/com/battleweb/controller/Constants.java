@@ -1,6 +1,7 @@
 package com.battleweb.controller;
 /**
  * @author rtkachuk
+ * @author marina
  *
  * Constants contains names of all path to web pages or elements of web pages
  */
@@ -56,7 +57,11 @@ public interface Constants {
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_TITLE = "linktitle";
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
 	public static final String PARAMETER_BATTLE_LINKS = "battlelinks";
-	
+	public static final String PARAMETER_LAST_COMMENTS_LIST = "lastcommentslist";
+	public static final String PARAMETER_USER_LOGIN = "userlogin";
+	public static final String PARAMETER_USER_PHOTOPATH = "userphotopath";
+	public static final String PARAMETER_COMMENT_DATE = "commentdate";
+	public static final String PARAMETER_COMMENT_TEXT = "commenttext";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
