@@ -68,7 +68,7 @@ public class CommandIndex implements Command{
 		Competition monthCompetition = competitionBean.getCurrentCompetitionByType(monthType, currentDate);
 		
 		//get descriptions from db
-		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());
+		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());//
 		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, request.getLocale());
 		
 		//get animation url from db
@@ -108,31 +108,31 @@ public class CommandIndex implements Command{
 		//get comments from db 
 		List<Comment> lastComments = commentBean.findLast(Constants.HOME_PAGE_COMMENTS_COUNT);
 		JsonArrayBuilder lastCommentsArrayBuilder = Json.createArrayBuilder();
-//		for(Comment comment:lastComments){													//java.lang.ClassCastException?!
+		for(Comment comment:lastComments){													
 			JsonObject jsonObjectComment = Json.createObjectBuilder()
-//				.add(Constants.PARAMETER_USER_LOGIN, comment.getUser().getLogin())
-//				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
-//				.add(Constants.PARAMETER_COMMENT_DATE, comment.getCommentDate().toString())
-//				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
+				.add(Constants.PARAMETER_USER_LOGIN, comment.getUser().getLogin())
+				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
+				.add(Constants.PARAMETER_COMMENT_DATE, comment.getCommentDate().toString())
+				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
 				.build();
 			lastCommentsArrayBuilder.add(jsonObjectComment);
-//		}
+		}
 		JsonArray lastCommentsArray = lastCommentsArrayBuilder.build();
 		
 		
 		//get photos from db 
 		List<Photo> lastPhotos = photoBean.findLast(Constants.HOME_PAGE_PHOTOS_COUNT);
 		JsonArrayBuilder lastPhotosArrayBuilder = Json.createArrayBuilder();
-//		for(Photo photo:lastPhotos){													//java.lang.ClassCastException?!
+		for(Photo photo:lastPhotos){													
 			JsonObject jsonObjectPhoto = Json.createObjectBuilder()
-//				.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
-//				.add(Constants.PARAMETER_PHOTO_DESCRIPTION, photo.getDescription())
-//				.add(Constants.PARAMETER_LOAD_DATE, photo.getLoadDate().toString())
-//				.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
-//				.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
+				.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
+				.add(Constants.PARAMETER_PHOTO_DESCRIPTION, photo.getDescription())
+				.add(Constants.PARAMETER_LOAD_DATE, photo.getLoadDate().toString())
+				.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
+				.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
 				.build();
 			lastPhotosArrayBuilder.add(jsonObjectPhoto);
-//		}
+		}
 		JsonArray lastPhotossArray = lastPhotosArrayBuilder.build();
 		
 		
