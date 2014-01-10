@@ -62,6 +62,12 @@ public interface Constants {
 	public static final String PARAMETER_USER_PHOTOPATH = "userphotopath";
 	public static final String PARAMETER_COMMENT_DATE = "commentdate";
 	public static final String PARAMETER_COMMENT_TEXT = "commenttext";
+	public static final String PARAMETER_LAST_PHOTOS_LIST = "lastphotoslist";
+	public static final String PARAMETER_PHOTO_PATH = "photopath";
+	public static final String PARAMETER_PHOTO_DESCRIPTION = "photodescription";
+	public static final String PARAMETER_LOAD_DATE = "loaddate";
+	public static final String PARAMETER_COMPETITION_NAME = "competitionname";
+	
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;

@@ -1,10 +1,19 @@
 package com.battleejb.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.*;
-
-import java.sql.Timestamp;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the Comment database table.
@@ -12,8 +21,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @NamedQueries({
-//	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC LIMIT :n ")
-	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC ")
+	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC")
 })
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,8 +29,9 @@ public class Comment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	private Timestamp commentDate;
+	
+	@Temporal(TemporalType.DATE)
+	private Date commentDate;
 
 	private String commentText;
 
@@ -53,11 +62,11 @@ public class Comment implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getCommentDate() {
-		return this.commentDate;
+	public Date getCommentDate() {
+		return commentDate;
 	}
 
-	public void setCommentDate(Timestamp commentDate) {
+	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
 

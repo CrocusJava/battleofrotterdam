@@ -18,11 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.CompetitionBean;
 import com.battleejb.ejbbeans.CompetitionTypeBean;
+import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.URLBean;
 import com.battleejb.entities.Comment;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
+import com.battleejb.entities.Photo;
 import com.battleejb.entities.URL;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
@@ -52,6 +54,8 @@ public class CommandIndex implements Command{
 	private CompetitionTypeBean competitionTypeBean;
 	@EJB
 	private CommentBean commentBean;
+	@EJB
+	private PhotoBean photoBean;
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -108,41 +112,47 @@ public class CommandIndex implements Command{
 		List<Comment> lastComments = commentBean.findLast(COMMENTS_COUNT);
 		JsonArrayBuilder lastCommentsArrayBuilder = Json.createArrayBuilder();
 		
-		System.out.println("********* "+lastComments);
-		System.out.println("********* "+lastComments.get(2));								//comment and user data loaded from db!
-//		System.out.println("********* "+lastComments.get(2).getCommentDate().toString()); 	//java.lang.ClassCastException!
-//		System.out.println("********* "+lastComments.get(2).getUser());						//java.lang.ClassCastException!
 		
 //		for(Comment comment:lastComments){													//java.lang.ClassCastException!
-//			JsonObject jsonObjectComment = Json.createObjectBuilder()
+			JsonObject jsonObjectComment = Json.createObjectBuilder()
 //				.add(Constants.PARAMETER_USER_LOGIN, comment.getUser().getLogin())
 //				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
 //				.add(Constants.PARAMETER_COMMENT_DATE, comment.getCommentDate().toString())
 //				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
-//				.build();
-//			lastCommentsArrayBuilder.add(jsonObjectComment);
+				.build();
+			lastCommentsArrayBuilder.add(jsonObjectComment);
 //		}
-//
-//
-//		JsonArray lastCommentsArray = lastCommentsArrayBuilder.build();
-		
-		
+		JsonArray lastCommentsArray = lastCommentsArrayBuilder.build();
 		
 		
 		//get photos from db 
+		List<Photo> lastPhotos = photoBean.findLast(PHOTOS_COUNT);
+		System.out.println("********* "+lastPhotos);
 		
-
+		JsonArrayBuilder lastPhotosArrayBuilder = Json.createArrayBuilder();
+//		for(Photo photo:lastPhotos){													//java.lang.ClassCastException!
+			JsonObject jsonObjectPhoto = Json.createObjectBuilder()
+//				.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
+//				.add(Constants.PARAMETER_PHOTO_DESCRIPTION, photo.getDescription())
+//				.add(Constants.PARAMETER_LOAD_DATE, photo.getLoadDate().toString())
+//				.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
+//				.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
+				.build();
+			lastPhotosArrayBuilder.add(jsonObjectPhoto);
+//		}
+		JsonArray lastPhotossArray = lastPhotosArrayBuilder.build();
+		
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
-				.add("testCurrentDate",currentDate.toString())
 				.add(Constants.PARAMETER_BATTLE_YEAR_FINISH_DATE,yearCompetition.getDateEnd().toString())
 				.add(Constants.PARAMETER_BATTLE_MONTH_FINISH_DATE,monthCompetition.getDateEnd().toString())
 				.add(Constants.PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT, battleDescriptionShort)
 				.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
 				.add(Constants.PARAMETER_URL_BATTLE_ANIMATION, animationURL)
 				.add(Constants.PARAMETER_BATTLE_LINKS, battleLinksArray)
-//				.add(Constants.PARAMETER_LAST_COMMENTS_LIST, lastCommentsArray)
+				.add(Constants.PARAMETER_LAST_COMMENTS_LIST, lastCommentsArray)
+				.add(Constants.PARAMETER_LAST_PHOTOS_LIST, lastPhotossArray)
 				.build();
 		
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
