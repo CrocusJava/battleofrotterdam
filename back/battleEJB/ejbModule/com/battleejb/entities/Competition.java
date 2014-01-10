@@ -28,7 +28,6 @@ public class Competition implements Serializable {
     @Temporal( TemporalType.DATE)
 	private Date dateStart;
 
-    @Lob()
 	private String description;
 
 	private String name;
@@ -36,20 +35,17 @@ public class Competition implements Serializable {
     @Temporal( TemporalType.DATE)
 	private Date registerDeadline;
 
-	//bi-directional many-to-one association to CompetitionType
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="type_id")
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private CompetitionType type;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="winner_id")
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private User user;
 
-	//bi-directional many-to-one association to Project
 	@OneToMany(mappedBy="competition")
 	private List<Project> projects;
 
+//---------------------------------------	
+	
     public Competition() {
     }
 

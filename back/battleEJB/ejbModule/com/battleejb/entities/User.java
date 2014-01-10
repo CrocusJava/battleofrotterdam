@@ -1,7 +1,6 @@
 package com.battleejb.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +63,7 @@ public class User implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 
-	@OneToMany(fetch=FetchType.EAGER, mappedBy = "user", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 
 	@OneToMany(mappedBy = "user")

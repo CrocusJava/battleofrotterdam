@@ -35,16 +35,13 @@ public class Comment implements Serializable {
 
 	private String commentText;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private User user;
 
-	//bi-directional many-to-one association to Project
-	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Project project;
 
-	//bi-directional many-to-one association to Photo
-	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Photo photo;
 
 //---------------------------------------------	

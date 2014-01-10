@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class Photo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-    @Lob()
 	private String description;
 
     @Temporal(TemporalType.DATE)
@@ -32,14 +30,14 @@ public class Photo implements Serializable {
 
 	private String path;
 
-	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="photo")
 	private List<Comment> comments;
 
-	//bi-directional many-to-one association to Project
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Project project;
 
+//--------------------------------------------	
+	
     public Photo() {
     }
 
