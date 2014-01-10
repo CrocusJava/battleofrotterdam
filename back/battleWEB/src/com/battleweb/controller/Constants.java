@@ -6,6 +6,9 @@ package com.battleweb.controller;
  * Constants contains names of all path to web pages or elements of web pages
  */
 public interface Constants {
+	//Parameters for the home-page view
+	public static final Integer HOME_PAGE_COMMENTS_COUNT = 5;
+	public static final Integer HOME_PAGE_PHOTOS_COUNT = 3;
 	
 	//Parameter for all request
 	public static final String COMMAND = "command";
@@ -83,6 +86,20 @@ public interface Constants {
 	
 	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
 	public static final Integer TEXT_BATTLE_ANIMATION_DESCRIPTION = 510;
+	public static final Integer TEXT_BATTLE_RULES = 520;
+	public static final Integer TEXT_BATTLE_DESCRIPTION_LONG = 530;
+	public static final Integer TEXT_WHO_MADE_DESCRIPTION = 540;
+	
+	public static final Integer TEXT_Q1 = 600;
+	public static final Integer TEXT_A1 = 605;
+	public static final Integer TEXT_Q2 = 610;
+	public static final Integer TEXT_A2 = 615;
+	public static final Integer TEXT_Q3 = 620;
+	public static final Integer TEXT_A3 = 625;
+	public static final Integer TEXT_Q4 = 630;
+	public static final Integer TEXT_A4 = 635;
+	public static final Integer TEXT_Q5 = 640;
+	public static final Integer TEXT_A5 = 645;
 
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;

@@ -38,9 +38,6 @@ import com.battleweb.tools.ToolJSON;
 @Stateless
 @LocalBean
 public class CommandIndex implements Command{
-	//count of information that will be load on the home page
-	public static final Integer COMMENTS_COUNT = 5;
-	public static final Integer PHOTOS_COUNT = 3;
 	
 	@EJB
 	private ToolJSON toolJSON;
@@ -109,11 +106,9 @@ public class CommandIndex implements Command{
 				.build();
 		
 		//get comments from db 
-		List<Comment> lastComments = commentBean.findLast(COMMENTS_COUNT);
+		List<Comment> lastComments = commentBean.findLast(Constants.HOME_PAGE_COMMENTS_COUNT);
 		JsonArrayBuilder lastCommentsArrayBuilder = Json.createArrayBuilder();
-		
-		
-//		for(Comment comment:lastComments){													//java.lang.ClassCastException!
+//		for(Comment comment:lastComments){													//java.lang.ClassCastException?!
 			JsonObject jsonObjectComment = Json.createObjectBuilder()
 //				.add(Constants.PARAMETER_USER_LOGIN, comment.getUser().getLogin())
 //				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
@@ -126,11 +121,9 @@ public class CommandIndex implements Command{
 		
 		
 		//get photos from db 
-		List<Photo> lastPhotos = photoBean.findLast(PHOTOS_COUNT);
-		System.out.println("********* "+lastPhotos);
-		
+		List<Photo> lastPhotos = photoBean.findLast(Constants.HOME_PAGE_PHOTOS_COUNT);
 		JsonArrayBuilder lastPhotosArrayBuilder = Json.createArrayBuilder();
-//		for(Photo photo:lastPhotos){													//java.lang.ClassCastException!
+//		for(Photo photo:lastPhotos){													//java.lang.ClassCastException?!
 			JsonObject jsonObjectPhoto = Json.createObjectBuilder()
 //				.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
 //				.add(Constants.PARAMETER_PHOTO_DESCRIPTION, photo.getDescription())
