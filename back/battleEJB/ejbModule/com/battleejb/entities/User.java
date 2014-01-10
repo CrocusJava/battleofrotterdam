@@ -65,7 +65,7 @@ public class User implements Serializable {
 	private Date birthday;
 
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "user", cascade=CascadeType.ALL)
-	private List<Comment> comments = new ArrayList<Comment>();
+	private List<Comment> comments;
 
 	@OneToMany(mappedBy = "user")
 	private List<Competition> competitions;
