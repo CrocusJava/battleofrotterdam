@@ -18,6 +18,7 @@ import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
 import com.battleweb.controller.commands.CommandRegistration;
+import com.battleweb.controller.commands.CommandUpload;
 
 /**
  * CommandRequest class is used to get appropriate Command by the String value
@@ -44,6 +45,8 @@ public class CommandRequest {
 	private CommandAboutBattle commandAboutBattle;
 	@EJB 
 	private CommandFAQ commandFAQ;
+	@EJB 
+	private CommandUpload commandUpload;
 
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -56,7 +59,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_INDEX, commandIndex);
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
 		commands.put(Constants.COMMAND_FAQ, commandFAQ);
-		commands.put(Constants.COMMAND_UPLOAD, commandFAQ);
+		commands.put(Constants.COMMAND_UPLOAD, commandUpload);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
