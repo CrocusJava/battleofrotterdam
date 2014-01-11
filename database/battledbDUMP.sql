@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 10, 2014 at 07:20 PM
+-- Generation Time: Jan 11, 2014 at 09:24 AM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `Text`
@@ -251,7 +251,12 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (20, 630, 'Where can I find information about renovation? ', 'Waar kan ik informatie vinden over verbouwen en renoveren? '),
 (21, 635, 'On our website you can find several links that direct you to various informative site pages. ', 'Op onze website kunt u verschillende links vinden die u doorverwijzen naar diverse informatieve sites.'),
 (22, 640, 'Where can I report fraud? ', 'Waar kan ik fraude vermelden?'),
-(23, 645, 'You can mark an entry as fraud in the submission itself. ', 'U kunt een inzending markeren als fraude bij de inzending zelf. ');
+(23, 645, 'You can mark an entry as fraud in the submission itself. ', 'U kunt een inzending markeren als fraude bij de inzending zelf. '),
+(24, 521, 'Rules and regulations', 'Regels en voorschriften'),
+(25, 531, 'Information about the Battle of Rotterdam ', 'Informatie over the Battle of Rotterdam'),
+(26, 541, 'About those who made it', 'Over de ontwikkelaars'),
+(27, 551, 'General Information', 'Algemene informatie'),
+(28, 550, 'On this website you can upload pictures of the renovation and you could win a cash prize!\r\nAfter you have created an account, you can upload photos and view the current position on the ranking page.\r\nShould you have any questions, please look first at the FAQ page.\r\nUnder "Links" you will find a variety of relevant websites to make your renovation a success.', 'Op deze website kunt u uw foto’s van de verbouwing insturen en maakt u kans op een geldprijs!\r\nNadat u een account aangemaakt heeft kunt u foto’s uploaden en de huidige plaats bekijken op de ranking page.\r\nMocht u nog vragen hebben kijkt u dan eerst even bij de FAQ pagina.\r\nOnder “links” vind u diverse relevante websites om uw verbouwing tot een succes te maken.');
 
 -- --------------------------------------------------------
 
