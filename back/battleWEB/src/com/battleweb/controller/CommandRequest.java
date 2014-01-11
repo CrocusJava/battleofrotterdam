@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.battleweb.controller.commands.Command;
 import com.battleweb.controller.commands.CommandAboutBattle;
 import com.battleweb.controller.commands.CommandApproveRegistration;
+import com.battleweb.controller.commands.CommandFAQ;
 import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
@@ -41,6 +42,8 @@ public class CommandRequest {
 	private CommandIndex commandIndex;
 	@EJB 
 	private CommandAboutBattle commandAboutBattle;
+	@EJB 
+	private CommandFAQ commandFAQ;
 
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -52,6 +55,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_FORGOTPASSWORD, commandForgotPassword);
 		commands.put(Constants.COMMAND_INDEX, commandIndex);
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
+		commands.put(Constants.COMMAND_FAQ, commandFAQ);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
