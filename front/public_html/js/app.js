@@ -450,7 +450,8 @@ function call_activate_menu_links() {
 
 function call_start_count_timer() {
     try {
-        $("#count-down").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+        $("#count-down-yearly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+        $("#count-down-monthly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
     }
     catch (e) {
 
