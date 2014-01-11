@@ -56,6 +56,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_INDEX, commandIndex);
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
 		commands.put(Constants.COMMAND_FAQ, commandFAQ);
+		commands.put(Constants.COMMAND_UPLOAD, commandFAQ);
 	}
 
 	public Command getCommand(HttpServletRequest request) {

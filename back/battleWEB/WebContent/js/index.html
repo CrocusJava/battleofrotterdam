@@ -63,7 +63,14 @@
                                     <li><a href="member.html#singup">SingUp</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><i class="icon-search"></i> Search</a></li>
+                            <li class="hidden-phone">
+                                <form class="search" action="#">
+                                    <div class="input-append">
+                                        <input type="text" class="span2 input-search" placeholder="Search">
+                                        <button type="submit" class="btn btn-info">Search</button>
+                                    </div>
+                                </form>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -85,19 +92,11 @@
                     <h1 class="no_margin logo font_hotel"><small>Battle of</small> <strong>Rotterdam</strong> </h1><!-- End logo image -->
                     <!-- Start Message Your own -->
                     <div class="row-fluid">
-                        <div class="span8">
+                        <div class="span5">
                             <p class="no_margin"> Special for <strong>today</strong> you will get a suprize.</p>
                         </div>
-                        <div class="span3">
-                            <!--Start List Flags-->
-                            <div id="languages">
-                                <ul class="unstyled">
-                                    <li><a href="img"><img src="img/germen.png" alt="flag"> Germen</a></li>
-                                    <li><a href="img"><img src="img/france.png" alt="flag"> France</a></li>
-                                    <li><a href="img"><img src="img/english.png" alt="flag"> English</a></li>
-                                </ul>
-                            </div>
-                            <!--End List Flags-->
+                        <div class="span7">
+                            <div id="count-down"></div>
                         </div>
                     </div><!-- End Message Your own -->
                 </div>
@@ -109,22 +108,6 @@
                     <div class="row-fluid">
                         <div class="span12">
 
-                            <!-- Start Timer -->
-                            <div class="row-fluid">
-                                <div class="span6">
-                                    <h3>Yearly time remaining</h3>
-                                    <div id="count-down-yearly"></div>
-                                </div>
-                                <div class="span6">
-                                    <div class="pull-right">
-                                        <h3>Monthly time remaining</h3>
-                                        <div id="count-down-monthly"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Timer -->
-
-                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
                             <div class="text_center">
                                 <h1 class="font_hotel">Welcome to the battle Rotterdam</h1>
@@ -147,7 +130,7 @@
 
                                 <div class="span6">
                                     <div class="video-container">
-                                        <h2 class="font_hotel text-right">Video Header</h2>
+                                        <h2 class="font_hotel">Video Header</h2>
                                         <div class="video-container">
                                             <iframe src="http://www.youtube.com/embed/aE2GCa-_nyU?feature=player_detailpage" frameborder="0" allowfullscreen ></iframe>
                                         </div>
@@ -162,45 +145,11 @@
                             <!-- Start Break Page Style-->
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
-                            <div id="myCarousel" class="carousel slide">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                                    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-                                </ol>
-                                <!-- Carousel items -->
-                                <div class="carousel-inner carousel_full_images">
-                                    <div class="item active"><img src="img/5388055503_bdfec0a3d5.jpg" data-src="img/5388055503_bdfec0a3d5.jpg" alt="preview">
-                                        <div class="carousel-caption">
-                                            <h4>Second Thumbnail label</h4>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="item"><img src="img/5388661724_e92356d456.jpg" data-src="img/5388661724_e92356d456.jpg" alt="preview">
-                                        <div class="carousel-caption">
-                                            <h4>Second Thumbnail label</h4>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="item"><img src="img/5388662544_9e6441ee70.jpg" data-src="img/5388662544_9e6441ee70.jpg" alt="preview">
-                                        <div class="carousel-caption">
-                                            <h4>Second Thumbnail label</h4>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Carousel nav -->
-                                <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
-                                <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
-                            </div>
-
-                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
-
                             <div class="row-fluid">
                                 <div class="span6">
                                     <!-- Start Testimonaila list-->
                                     <h3>What Our Winners Say</h3>
-                                    <ul class="unstyled custumer_say"  id="index_last_comments">
+                                    <ul class="unstyled custumer_say">
                                         <li class="clearfix">
                                             <img class="pull-left img_client" src="img/c1.jpg" alt="image">
                                             <h4 class="media-heading">Ray O’Sun</h4>
@@ -228,7 +177,7 @@
                                     <h3>Last Events</h3>
                                     <ul class="unstyled events">
                                         <li>
-                                            <div class="content_post" id="index_last_events">
+                                            <div class="content_post">
                                                 <img class="pull-left img_preview" src="img/file000995479886.jpg" alt="preview">
                                                 <h4>Free Breakfast For all Participants</h4>
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard .</p>
@@ -347,7 +296,7 @@
                 <!--Start Sucribe Panel-->
                 <div class="subcrible">
                     <div class="inner-wrapper">
-                        <div class="row-fluid"  style="visibility: hidden;">
+                        <div class="row-fluid">
                             <div class="span3"><h2> <strong>Subscribe</strong> to get <span class="font_hotel">our latest</span> news</h2></div>
                             <div class="span9">
                                 <!--Start Form Subcribe-->
@@ -366,8 +315,18 @@
                     <div class="inner-wrapper">
                         <div class="row-fluid ">
                             <div class="span3"><p class="font_hotel">Battle of Rotterdam</p></div>
-
-                            <div class="span9 text_right"><p>Copyright © 2014 Team3@Bionic-University.com</p></div>
+                            <div class="span3">
+                                <!--Start List Flags-->
+                                <div class="languages">
+                                    <ul class="unstyled">
+                                        <li><a href="img"><img src="img/germen.png" alt="flag"> Germen</a></li>
+                                        <li><a href="img"><img src="img/france.png" alt="flag"> France</a></li>
+                                        <li><a href="img"><img src="img/english.png" alt="flag"> English</a></li>
+                                    </ul>
+                                </div>
+                                <!--End List Flags-->
+                            </div>
+                            <div class="span6 text_right"><p>Copyright © 2013 Evreone. All Rights Reserved</p></div>
                         </div>
                     </div>
                 </div><!--End Footer Bottom-->

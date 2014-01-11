@@ -25,7 +25,7 @@
     font-size: 12px;
 }
 
-/*form.search{
+form.search{
     margin: 0px;
     padding-left: 5px;
 
@@ -39,22 +39,6 @@ input[type="text"].input-search{
 
     max-height: 20px;
     min-height: 20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
 
     margin: 0px;
     padding: 4px 9px;
@@ -84,7 +68,7 @@ input[type="text"]:focus.input-search{
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
 }
-form.search .input-append{
+.input-append{
     margin: 0px;
 }
 form.search .input-append .btn{
@@ -108,22 +92,6 @@ input[type="text"].input-search-small{
 
     max-height: 15px;
     min-height: 15px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
 
     margin: 0px;
     padding: 4px 9px;
@@ -143,43 +111,4 @@ input[type="text"].input-search-small{
     -ms-transition: none;
     -o-transition: none;
     transition: none;
-}*/
-
-/*==========================================================================*/
-
-#content .lobster_tab_content div {
-    padding: 0px;
-}
-
-#content .lobster_tab_content div.well{
-    padding: 20px;
-}
-#content .lobster_tab_content div.input-append {
-    padding-right: 50px;
-}
-
-#content .lobster_tab_content div.input-append .active{
-    border-color: #fff;
-}
-
-#languages {
-    font-size: 12px;
-    color: white;
-}
-#languages ul li:first-child {
-    float: left;
-    padding: 0 5px 5px 0;
-}
-
-#languages ul li {
-    float: left;
-    padding: 0 5px;
-}
-
-#languages ul li a {
-    color: white;
-}
-
-#languages a {
-    text-decoration: none;
 }
