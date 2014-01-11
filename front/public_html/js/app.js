@@ -247,15 +247,11 @@ function call_scroll() {
     $(window).scroll(function() {
         if ($(this).scrollTop() > 250) {
             $('#top_header').addClass('mini_menu');
-            $(".input-search").addClass("input-search-small").removeClass("input-search");
-            $(".btn", ".input-append").addClass("search-small-btn");
             $('#back_to_top').fadeIn();
 
 
         } else {
             $('#top_header').removeClass('mini_menu');
-            $(".input-search-small").addClass("input-search").removeClass("input-search-small");
-            $(".btn", ".input-append").removeClass("search-small-btn");
             $('#back_to_top').fadeOut('fast');
         }
     });

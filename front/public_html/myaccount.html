@@ -146,98 +146,100 @@
                             <div class="tab-content lobster_tab_content">
                                 <div class="tab-pane active" id="profile">
                                     <h2>General Information</h2>
-                                    <div class="well">
-                                        <div class="row-fluid">
+
+                                    <div class="row-fluid">
+                                        <form action="#" method="POST">
                                             <div class="span4">
-
                                                 <img class="img-polaroid" alt="photo" src="img/c1.jpg" />
-                                                <form action="#">
-
-                                                    <fieldset>
-                                                        <legend>photo data</legend>
-                                                    </fieldset>
-                                                    <label class="btn icon-edit">
-                                                        <input id="photopath" name="photopath" type="file" style="display: none;">
-                                                    </label>
-
-
-                                                </form>
+                                                <fieldset>
+                                                    <legend>photo data</legend>
+                                                </fieldset>
+                                                <label class="btn icon-edit">
+                                                    <input id="photopath" name="photopath" type="file" style="display: none;">
+                                                </label>
                                             </div>
+
+
                                             <div class="span8">
+                                                <fieldset>
+                                                    <legend>Login & Password</legend>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="login" name="login" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="password" name="password" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                </fieldset>
 
-                                                <form action="#">
-                                                    <fieldset>
-                                                        <legend>registration data</legend>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="login" name="login" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="password" name="password" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                    </fieldset>
-
-                                                    <fieldset>
-                                                        <legend>registration data</legend>
-                                                        <div class="input-append" data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="firstname" name="firstname" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append" data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="middlename" name="middlename" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="lastname" name="lastname" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="birthday" name="birthday" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                    </fieldset>
+                                                <fieldset>
+                                                    <legend> Your name</legend>
+                                                    <div class="input-append" data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="firstname" name="firstname" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append" data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="middlename" name="middlename" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="lastname" name="lastname" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="birthday" name="birthday" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                </fieldset>
 
 
 
-                                                    <fieldset>
-                                                        <legend>registration data</legend>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="town" name="town" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="street" name="street" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="housenumber" name="housenumber" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="postcode" name="postcode" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                    </fieldset>
+                                                <fieldset>
+                                                    <legend>Address</legend>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="town" name="town" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="street" name="street" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="housenumber" name="housenumber" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="postcode" name="postcode" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                </fieldset>
 
-                                                    <fieldset>
-                                                        <legend>registration data</legend>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="phone" name="phone" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                        <div class="input-append"  data-toggle="buttons-checkbox">
-                                                            <input class="span12" id="email" name="email" type="text">
-                                                            <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
+                                                <fieldset>
+                                                    <legend>Phone</legend>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="phone" name="phone" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                </fieldset>
 
-
+                                                <fieldset>
+                                                    <legend>Email</legend>
+                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                        <input class="span12" id="email" name="email" type="text">
+                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                    </div>
+                                                </fieldset>
                                             </div>
-                                        </div>
+
+                                            <button type="submit" class="btn btn-block btn-success">Aplay</button>
+
+
+                                        </form>
                                     </div>
                                 </div>
+
+
                                 <div class="tab-pane" id="project">
                                     <h2>General Information</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -247,9 +249,6 @@
 
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
 
-                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
-
-                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
 
 
                         </div>
