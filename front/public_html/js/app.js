@@ -1,23 +1,26 @@
 $(window).load(function() {
     call_all();
 });
-
 function call_all() {
     call_grid();
     call_scroll();
-    call_slider_sequence();
+    //call_slider_sequence();
     call_datatables();
     call_tab();
     call_full_calendar();
     call_functional_reservations();
     call_lightbox();
     call_control_color_theme();
-    call_lazy_load_images();
+    //call_lazy_load_images();
     call_form_validation();
     call_events_show_hide_login_registration();
     call_event_create_comment();
     call_activate_menu_links();
     call_start_count_timer();
+    call_start_carousel();
+    call_load_data_for_index_comments();
+    call_load_data_for_index_events();
+
 }
 
 function call_form_validation() {
@@ -52,7 +55,7 @@ function call_form_validation() {
 
 
 function call_lazy_load_images() {
-    //$("#content img").unveil(300)
+//$("#content img").unveil(300)
     $("#content img").unveil(300);
 }
 
@@ -76,7 +79,6 @@ function call_functional_reservations() {
         $(this).addClass('selected');
         $('#form_select_room').val($(this).data('date'));
     });
-
     $('.checkbox_extras').click(function(e) {
         call_grid();
         if ($(this).is(':checked')) {
@@ -99,7 +101,6 @@ function call_full_calendar() {
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-
     var selector = $('#calendar');
     if ($(selector).length > 0) {
         $('#calendar').fullCalendar({
@@ -222,8 +223,6 @@ function call_slider_sequence() {
                 80: "pause"
             }
         };
-
-
         var sequence = $("#sequence").sequence(options).data("sequence");
     }
 }
@@ -241,7 +240,6 @@ function call_grid() {
             });
         }
     }, 500);
-
 }
 
 function call_scroll() {
@@ -299,9 +297,7 @@ function data_collection_forms(form) {
     collection.data = {};
     var command = $(form).attr("id");
     collection.url = "/battleWEB/controller?command=" + command;
-
     var post = $(form).serializeArray();
-
     for (var i in post) {
         collection.data[post[i].name] = post[i].value;
     }
@@ -325,7 +321,6 @@ function AjaxRegistrationLogin(form) {
                 $("#visit_email").hide();
                 window.location = "account_photo.html";
             });
-
         }
 
         console.log(data);
@@ -386,19 +381,17 @@ function createComment(element, info) {
     if (element) { //если контеинер получен по клику
         $(tmp).removeData("element");
         var li = element.parents("li")[0];
-        var Ul = $(li).children("ul:first")[0];// получить контеинер если существует
+        var Ul = $(li).children("ul:first")[0]; // получить контеинер если существует
     }
     else {
         var Ul = $("#main_conteiner_comments"); // если коментарий не адресован пользователю то коментарий адресован проекту
     }
     console.log(Ul);
     createElements(Ul, li, info);
-
 }
 
 function createElements(conteiner, parent, info) {
     var li = $(document.createElement("li"));
-
     if (!conteiner) { // если ето первый коментарий направленный к пользователю то создать контеинер
         var ul = $(document.createElement("ul"));
         ul.appendTo(parent);
@@ -410,27 +403,23 @@ function createElements(conteiner, parent, info) {
 
     var article = $(document.createElement("article"));
     article.appendTo(li);
-
     var h5 = $(document.createElement("h5"));
-    h5.addClass("autor").text(info.firstname).appendTo(article);//имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
+    h5.addClass("autor").text(info.firstname).appendTo(article); //имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
 
     var img = $(document.createElement("img"));
     img.addClass("avatar").attr({
         "src": "img/c1.jpg", // тоже самое со ссылкой на фото участника
         "alt": "preview"
     }).appendTo(article);
-
     var div = $(document.createElement("div"));
     div.addClass("comment_inner").appendTo(article);
-
     var p = $(document.createElement("p"));
-    p.text(info.message).appendTo(div);// текст нужно получить с формы
+    p.text(info.message).appendTo(div); // текст нужно получить с формы
 
     var a = $(document.createElement("a"));
     a.addClass("reply").text("Reply").attr({
         "href": "#comment"
     }).appendTo(div);
-
 }
 
 //< article >
@@ -446,13 +435,11 @@ function call_activate_menu_links() {
     $(".main_navbar").on("click", "a", function() { // ссылки главного меню
         $(this).parent().addClass("active").siblings().removeClass("active");
     });
-
     /* ############################################################################ */
 
     $(".lobster_tab").on("click", "a", function() {
         $(this).parent().addClass("active").siblings().removeClass("active");
     });
-
     /* ############################################################################ */
 
     $(".link_acomodation").on("click", "a", function() { // ссылки боковой навигации на странице myaccount.html
@@ -472,4 +459,46 @@ function call_start_count_timer() {
     catch (e) {
 
     }
+}
+
+function call_start_carousel() {
+    $('#myCarousel').carousel();
+}
+
+function call_load_data_for_index_events() {
+    var index_last_events = {
+        name: "li", children: [
+            {name: "div", add_class: "content_post", children: [
+                    {name: "img", add_class: "pull-left img_preview", attr: {src: "img/file000995479886.jpg", alt: "preview"}},
+                    {name: "h4", bind: {"text": "text"}},
+                    {name: "p", bind: {"text": "text"}},
+                    {name: "a", add_class: "btn btn-primary btn-mini flat", bind: {"text": "text"}}
+                ]}
+        ]
+    };
+
+    $("#index_last_comments").load("/battleWeb/controller?command=index", function(data) {
+        call_markup_index(index_last_events, data);
+        console.log(data);
+    }, "json");
+}
+
+function call_load_data_for_index_comments() {
+    var index_last_comments = {
+        name: "li", add_class: "clearfix", children: [
+            {name: "img", add_class: "pull-left img_client", attr: {src: "img/c1.jpg", alt: "image"}},
+            {name: "h4", add_class: "media-heading", bind: {"text": "text"}},
+            {name: "p", bind: {"text": "text"}}
+        ]
+    };
+
+    $("#index_last_comments").load("/battleWeb/controller?command=index", function(data) {
+        call_markup_index(index_last_comments, data);
+        console.log(data);
+    }, "json");
+}
+
+
+function call_markup_index(markupTemplate, data) {
+
 }

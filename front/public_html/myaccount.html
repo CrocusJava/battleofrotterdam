@@ -55,9 +55,9 @@
                             <li><a href="#">Link</a></li>
                             <li><a href="#">Link</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-envelope-alt"></i> Messages <span class="badge"> 7 </span> <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-envelope-alt"></i> Messages <span class="badge badge-important">7</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-header"> 7 New Messages</li>
+                                    <li class="nav-header"><span class="badge badge-important">7 New Messages</span></li>
                                     <li class="message-preview">
                                         <a href="#">
                                             <span class="avatar"><img src="img/c4.jpg"></span>
@@ -67,7 +67,25 @@
                                         </a>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a href="#"><b>View Inbox </b><span class="badge"> 7 </span></a></li>
+                                    <li class="message-preview">
+                                        <a href="#">
+                                            <span class="avatar"><img src="img/c4.jpg"></span>
+                                            <span class="name">John Smith:</span>
+                                            <span class="message">Hey there, I wanted to ask you something...</span>
+                                            <span class="time"><i class="icon-time"></i> 4:34 PM</span>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="message-preview">
+                                        <a href="#">
+                                            <span class="avatar"><img src="img/c4.jpg"></span>
+                                            <span class="name">John Smith:</span>
+                                            <span class="message">Hey there, I wanted to ask you something...</span>
+                                            <span class="time"><i class="icon-time"></i> 4:34 PM</span>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><b>View Inbox </b><span class="badge badge-important">7</span></a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">
@@ -116,14 +134,19 @@
 
                         <div class="span3">
                             <!-- Start section list Link Acomodation -->
-                            <h2>Header!</h2>
-                            <ul class="unstyled custumer_say">
-                                <li class="clearfix">
-                                    <img class="pull-left img_client" src="img/c1.jpg" data-src="img/c1.jpg" alt="image">
-                                    <h4 class="media-heading">Joe Morton </h4>
-                                </li>
-                            </ul>
+                            <div style="padding: 0px 20px 10px;">
+                                <img src="img/c1.jpg" alt="name of customer" title="name of customer" width="150"/>
+                            </div>
+                            <!--                            <h2>Header!</h2>
+                                                        <ul class="unstyled custumer_say">
+                                                            <li class="clearfix">
+                                                                <img class="pull-left img_client" src="img/c1.jpg" data-src="img/c1.jpg" alt="image">
+                                                                <h4 class="media-heading">Joe Morton </h4>
+                                                            </li>
+                                                        </ul>-->
 
+
+                            <!-- Start section list Link Acomodation -->
                             <ul class="unstyled link_acomodation">
                                 <li><a href="#">My Info</a></li>
                                 <li class="active"><a href="#">Projects</a></li>
@@ -168,13 +191,13 @@
                             <h2>Most Popular Events</h2>
                             <!-- Start Tabs  lobster_tab   -->
                             <ul class="unstyled nav nav-tabs  clearfix">
-                                <li class="active pull-right"><a href="#social_event">Tab</a></li>
+                                <li class="pull-right"><a href="#social_event">Tab</a></li>
                                 <li class="pull-right"><a href="#profile">Profile</a></li>
                                 <li class="pull-right"><a href="#messages">Tab</a></li>
-                                <li class="pull-right"><a href="#settings">Settings</a></li>
+                                <li class="active pull-right"><a href="#settings">Settings</a></li>
                             </ul>
                             <div class="tab-content lobster_tab_content">
-                                <div class="tab-pane active" id="social_event">
+                                <div class="tab-pane" id="social_event">
                                     <h2>General Information</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
@@ -195,12 +218,130 @@
                                     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
                                     <p>Et harum quidem rerum facilis est et <em>expedita distinctio</em>. Nam libero tempore, cum soluta nobis.</p>
                                 </div>
-                                <div class="tab-pane" id="settings">
-                                    <h2>General Information</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-                                    <p>Et harum quidem rerum facilis est et <em>expedita distinctio</em>. Nam libero tempore, cum soluta nobis.</p>
+                                <div class="tab-pane active" id="settings">
+                                    <h4>General Information</h4>
+
+                                    <section>
+                                        <form>
+                                            <div class="modal" style="position: relative; z-index: 0;">
+                                                <div class="modal-header">
+                                                    <h5>Header's Settings </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="panel">
+                                                        <label>First Name</label>
+                                                        <input type="text" class="input-block-level" required="" name="firstname">
+                                                        <label>Middle Name</label>
+                                                        <input type="text" class="input-block-level" required="" name="middlename">
+                                                        <label>Last Name</label>
+                                                        <input type="text" class="input-block-level" required="" name="lastname">
+                                                        <label>Date of Birth</label>
+                                                        <input type="text" class="input-block-level" required="" name="birthday">
+                                                        <span class="help-block">Exaple: month/day/full year </span>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#" class="btn btn-primary">Abort</a>
+                                                    <a href="#" class="btn btn-info">Save</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section>
+
+                                    <section>
+                                        <form class="form-horizontal">
+                                            <div class="modal" style="position: relative; z-index: 0;">
+                                                <div class="modal-header">
+                                                    <h5>Header's Settings </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="panel">
+
+                                                        <div class="control-group">
+                                                            <label class="control-label">Town</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="input-block-level" required="" name="town">
+                                                            </div>
+                                                        </div>
+
+                                                        <label>Street</label>
+                                                        <input type="text" class="input-block-level" required="" name="street">
+
+                                                        <label>Number</label>
+                                                        <input type="text" class="input-block-level" required="" name="housenumber">
+
+                                                        <label>Postal Code</label>
+                                                        <input type="text" class="input-block-level" required="" name="postcode">
+
+                                                        <label>Phone</label>
+                                                        <input type="text" class="input-block-level" required="" name="phone">
+                                                        <span class="help-block">Example: +3(099)123 456 789</span>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#" class="btn btn-primary">Abort</a>
+                                                    <a href="#" class="btn btn-info">Save</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section>
+
+                                    <section>
+                                        <form>
+                                            <div class="modal" style="position: relative; z-index: 0;">
+                                                <div class="modal-header">
+                                                    <h5>Header's Settings </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="panel">
+
+                                                        <p class="text_center">
+                                                            <img src="img/Graphic1.png" data-src="img/Graphic1.png" alt="preview" width="100">
+                                                            <a href="#" class="btn flat btn-warning Mtop-1"><label style="margin-bottom: 0px;">Load Photo<input type="file" style="display: none;"></label></a>
+
+                                                        </p>
+                                                        <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                                                        <div class="gridmasonry" style="display: block; position: relative; height: 44px;">
+                                                            <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;">
+                                                                <button type="button" class="btn btn-info btn-large input-block-level flat">Facebook Connect</button>
+                                                            </div>
+                                                            <div class="item_grid item2" style="position: absolute; left: 160px; top: 0px;">
+                                                                <button type="button" class="btn btn-success btn-large input-block-level flat">Twiiter Connect</button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                                                        <label>Email</label>
+                                                        <input type="email" name="email" class="input-block-level" required="">
+                                                        <label>Password</label>
+                                                        <input type="password"  id="repassword" class="input-block-level" required="">
+
+                                                        <label>Re-enter Password</label>
+                                                        <input type="password" name="password"  class="input-block-level" required="">
+
+                                                        <label>Select Gender</label>
+                                                        <div>
+                                                            <label class="radio inline">
+                                                                <input type="radio" name="gender" value="male" checked="">
+                                                                Male
+                                                            </label>
+                                                            <label class="radio inline">
+                                                                <input type="radio" name="gender" value="female">
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#" class="btn btn-primary">Abort</a>
+                                                    <a href="#" class="btn btn-info">Save</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section>
+
                                 </div>
                             </div>
                             <!-- End Tabs -->

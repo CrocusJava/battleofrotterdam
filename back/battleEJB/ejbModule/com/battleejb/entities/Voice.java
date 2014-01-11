@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -21,16 +21,17 @@ public class Voice implements Serializable {
 
 	private int level;
 
-	private Timestamp voiceDate;
+	@Temporal( TemporalType.DATE)
+	private Date voiceDate;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private User user;
 
-	//bi-directional many-to-one association to Project
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Project project;
 
+//---------------------------------------------------	
+	
     public Voice() {
     }
 
@@ -50,11 +51,11 @@ public class Voice implements Serializable {
 		this.level = level;
 	}
 
-	public Timestamp getVoiceDate() {
-		return this.voiceDate;
+	public Date getVoiceDate() {
+		return voiceDate;
 	}
 
-	public void setVoiceDate(Timestamp voiceDate) {
+	public void setVoiceDate(Date voiceDate) {
 		this.voiceDate = voiceDate;
 	}
 
