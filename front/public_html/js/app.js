@@ -18,6 +18,8 @@ function call_all() {
     call_activate_menu_links();
     call_start_count_timer();
     call_start_carousel();
+    call_load_data_for_index_comments();
+    call_load_data_for_index_events();
 
 }
 
