@@ -19,6 +19,7 @@ public interface Constants {
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	public static final String COMMAND_INDEX = "index";
+	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -70,6 +71,16 @@ public interface Constants {
 	public static final String PARAMETER_PHOTO_DESCRIPTION = "photodescription";
 	public static final String PARAMETER_LOAD_DATE = "loaddate";
 	public static final String PARAMETER_COMPETITION_NAME = "competitionname";
+
+	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
+	public static final String PARAMETER_ABOUT_US = "aboutbus";
+	public static final String PARAMETER_RULES = "rules";
+	public static final String PARAMETER_INFORMATION = "information";
+	public static final String PARAMETER_TITLE = "title";
+	public static final String PARAMETER_TEXT_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
+	public static final String PARAMETER_TEXT_US_DESCRIPTION = "usdescription";
+	public static final String PARAMETER_TEXT_RULES_DESCRIPTION = "rulesdescription";
+	public static final String PARAMETER_TEXT_INFO_DESCRIPTION = "infodescription";
 	
 	
 	//Set key of value Text
@@ -86,9 +97,15 @@ public interface Constants {
 	
 	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
 	public static final Integer TEXT_BATTLE_ANIMATION_DESCRIPTION = 510;
-	public static final Integer TEXT_BATTLE_RULES = 520;
-	public static final Integer TEXT_BATTLE_DESCRIPTION_LONG = 530;
-	public static final Integer TEXT_WHO_MADE_DESCRIPTION = 540;
+	public static final Integer TEXT_BATTLE_RULES_DESCRIPTION = 520;
+	public static final Integer TEXT_BATTLE_DESCRIPTION_FULL = 530;
+	public static final Integer TEXT_ABOUT_US_DESCRIPTION = 540;
+	public static final Integer TEXT_INFO_DESCRIPTION = 550;
+	public static final Integer TEXT_TITLE_BATTLE_RULES = 521;
+	public static final Integer TEXT_TITLE_BATTLE_DESCRIPTION = 531;
+	public static final Integer TEXT_TITLE_ABOUT_US = 541;
+	public static final Integer TEXT_TITLE_INFO = 551;
+	
 	
 	public static final Integer TEXT_Q1 = 600;
 	public static final Integer TEXT_A1 = 605;
@@ -100,6 +117,8 @@ public interface Constants {
 	public static final Integer TEXT_A4 = 635;
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
+	
+	
 
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
