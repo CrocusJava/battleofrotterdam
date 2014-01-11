@@ -21,6 +21,7 @@ public interface Constants {
 	public static final String COMMAND_INDEX = "index";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
+	public static final String COMMAND_UPLOAD = "upload";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
