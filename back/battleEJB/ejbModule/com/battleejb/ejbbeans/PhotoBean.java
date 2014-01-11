@@ -7,22 +7,17 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.battleejb.entities.Comment;
-
-/**
- * @author marina
- * 
- */
+import com.battleejb.entities.Photo;
 
 @Stateless
 @LocalBean
-public class CommentBean extends AbstractFacade<Comment> {
-
+public class PhotoBean extends AbstractFacade<Photo> {
+	
 	@PersistenceContext(unitName = "persistence")
 	EntityManager em;
-
-	public CommentBean() {
-		super(Comment.class);
+	
+	public PhotoBean() {
+		super(Photo.class);
 	}
 
 	@Override
@@ -30,8 +25,8 @@ public class CommentBean extends AbstractFacade<Comment> {
 		return em;
 	}
 	
-	public List<Comment> findLast(Integer n){
-		return em.createNamedQuery("Comment.findLast", Comment.class).setMaxResults(n).getResultList();
+	public List<Photo> findLast(Integer n){
+		return em.createNamedQuery("Photo.findLast", Photo.class).setMaxResults(n).getResultList();
 	}
-
+	
 }

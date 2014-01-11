@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,6 +13,9 @@ import java.util.List;
  * 
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Photo.findLast", query="SELECT p FROM Photo AS p ORDER BY p.loadDate DESC")
+})
 public class Photo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,21 +23,21 @@ public class Photo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-    @Lob()
 	private String description;
 
-	private Timestamp loadDate;
+    @Temporal(TemporalType.DATE)
+	private Date loadDate;
 
 	private String path;
 
-	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="photo")
 	private List<Comment> comments;
 
-	//bi-directional many-to-one association to Project
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Project project;
 
+//--------------------------------------------	
+	
     public Photo() {
     }
 
@@ -53,12 +56,12 @@ public class Photo implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Timestamp getLoadDate() {
-		return this.loadDate;
+	
+	public Date getLoadDate() {
+		return loadDate;
 	}
 
-	public void setLoadDate(Timestamp loadDate) {
+	public void setLoadDate(Date loadDate) {
 		this.loadDate = loadDate;
 	}
 

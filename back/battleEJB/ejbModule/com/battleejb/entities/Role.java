@@ -24,10 +24,10 @@ public class Role implements Serializable {
 	@OneToMany(mappedBy="role")
 	private List<User> users;
 
+//------------------------------------	
+	
     public Role() {
     }
-    
-    
 
 	public Role(String name) {
 		super();

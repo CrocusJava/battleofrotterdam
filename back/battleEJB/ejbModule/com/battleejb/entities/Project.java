@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,30 +22,25 @@ public class Project implements Serializable {
 
 	private Boolean approved;
 
-	private Timestamp creationDate;
+	@Temporal( TemporalType.DATE)
+	private Date creationDate;
 
-    @Lob()
 	private String description;
 
 	private String name;
 
-	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="project")
 	private List<Comment> comments;
 
-	//bi-directional many-to-one association to Photo
 	@OneToMany(mappedBy="project")
 	private List<Photo> photos;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private User user;
 
-	//bi-directional many-to-one association to Competition
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Competition competition;
 
-	//bi-directional many-to-one association to Voice
 	@OneToMany(mappedBy="project")
 	private List<Voice> voices;
 
@@ -72,11 +67,11 @@ public class Project implements Serializable {
 		this.approved = approved;
 	}
 
-	public Timestamp getCreationDate() {
-		return this.creationDate;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setCreationDate(Timestamp creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
