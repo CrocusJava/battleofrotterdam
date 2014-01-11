@@ -20,6 +20,7 @@ public interface Constants {
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	public static final String COMMAND_INDEX = "index";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
+	public static final String COMMAND_FAQ = "faq";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -77,10 +78,15 @@ public interface Constants {
 	public static final String PARAMETER_RULES = "rules";
 	public static final String PARAMETER_INFORMATION = "information";
 	public static final String PARAMETER_TITLE = "title";
-	public static final String PARAMETER_TEXT_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
-	public static final String PARAMETER_TEXT_US_DESCRIPTION = "usdescription";
-	public static final String PARAMETER_TEXT_RULES_DESCRIPTION = "rulesdescription";
-	public static final String PARAMETER_TEXT_INFO_DESCRIPTION = "infodescription";
+	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
+	public static final String PARAMETER_US_DESCRIPTION = "usdescription";
+	public static final String PARAMETER_RULES_DESCRIPTION = "rulesdescription";
+	public static final String PARAMETER_INFO_DESCRIPTION = "infodescription";
+
+	public static final String PARAMETER_FAQ_LIST = "faqlist";
+	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
+	public static final String PARAMETER_FAQ_ANSVER = "faqansver";
+	
 	
 	
 	//Set key of value Text
