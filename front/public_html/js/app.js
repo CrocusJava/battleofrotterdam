@@ -475,7 +475,8 @@ function call_load_data_for_index_events() {
         ]
     };
 
-    $("#index_last_comments").load("/battleWeb/controller?command=index", function(data) {
+    $("#index_last_comments").load("/battleWEB/controller?command=index", function(data) {
+        data = JSON.parse(data);
         call_markup_index(index_last_events, data);
         console.log(data);
     }, "json");
@@ -490,7 +491,8 @@ function call_load_data_for_index_comments() {
         ]
     };
 
-    $("#index_last_comments").load("/battleWeb/controller?command=index", function(data) {
+    $("#index_last_comments").load("/battleWEB/controller?command=index", function(data) {
+        data = JSON.parse(data);
         call_markup_index(index_last_comments, data);
         console.log(data);
     }, "json");
