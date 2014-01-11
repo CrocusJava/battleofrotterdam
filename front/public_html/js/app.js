@@ -16,12 +16,13 @@ function call_all() {
     call_events_show_hide_login_registration();
     call_event_create_comment();
     call_activate_menu_links();
-    call_start_count_timer();
+    call_start_count_timer("2014-12-01", "2014-12-01");
 
     call_start_carousel();
 
-    call_load_data_for_index_comments();
-    call_load_data_for_index_events();
+    call_data_for_index_html();
+//    call_load_data_for_index_comments();
+//    call_load_data_for_index_events();
 
 }
 
@@ -450,10 +451,10 @@ function call_activate_menu_links() {
 }
 
 
-function call_start_count_timer() {
+function call_start_count_timer(yearly_date, monthly_date) {
     try {
-        $("#count-down-yearly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
-        $("#count-down-monthly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black', speed: 400});
+        $("#count-down-yearly").county({endDateTime: new Date(yearly_date + ' 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+        $("#count-down-monthly").county({endDateTime: new Date(monthly_date + ' 00:00:00'), reflection: false, animation: 'scroll', theme: 'black', speed: 400});
     }
     catch (e) {
 
@@ -499,7 +500,20 @@ function call_load_data_for_index_comments() {
     }, "json");
 }
 
+function call_data_for_index_html() {
+    $.post("/battleWEB/controller?command=index", function(data, status) {
+        console.log(status);
+        data = JSON.parse(data);
+        console.log(data);
+        call_start_count_timer(data.battleyearfinishdate, data.battlemonthfinishdate);
 
+    }, "json").fail(function(data) {
+        console.log("Somsing wrang", data);
+    });
+}
+//"battleyearfinishdate": "2014-12-01",
+
+//    "battlemonthfinishdate": "2014-02-01",
 function call_markup_index(markupTemplate, data) {
 
 }
