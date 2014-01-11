@@ -4,20 +4,22 @@ $(window).load(function() {
 function call_all() {
     call_grid();
     call_scroll();
-    //call_slider_sequence();
+//    call_slider_sequence();
     call_datatables();
     call_tab();
-    call_full_calendar();
+//    call_full_calendar();
     call_functional_reservations();
     call_lightbox();
     call_control_color_theme();
-    //call_lazy_load_images();
+//    call_lazy_load_images();
     call_form_validation();
     call_events_show_hide_login_registration();
     call_event_create_comment();
     call_activate_menu_links();
     call_start_count_timer();
+
     call_start_carousel();
+
     call_load_data_for_index_comments();
     call_load_data_for_index_events();
 
@@ -451,7 +453,7 @@ function call_activate_menu_links() {
 function call_start_count_timer() {
     try {
         $("#count-down-yearly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
-        $("#count-down-monthly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
+        $("#count-down-monthly").county({endDateTime: new Date('2014/12/31 00:00:00'), reflection: false, animation: 'scroll', theme: 'black', speed: 400});
     }
     catch (e) {
 

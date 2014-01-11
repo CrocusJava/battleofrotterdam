@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @LocalBean
 public class CommandUpload implements Command {
 
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
