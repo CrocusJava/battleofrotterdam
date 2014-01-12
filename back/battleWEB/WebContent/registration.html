@@ -1,183 +1,95 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bootstrap 101 Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-        <style type="text/css">
-            .navbar-header .active a.navbar-brand {
-                color:#fff;
-            }
-        </style>
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <div class="page-header">
-            <h1>Example page header <small>Subtext for header</small></h1>
-        </div>
-        <div class="navbar navbar-inverse" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">HOME</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#about">ABOUT THE BATTLE</a></li>
-                        <li><a href="account_photo.html">SUBMIT PHOTO</a></li>
-                        <li><a href="#">CURRRENT RANKINGS</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li class="active"><a href="login.html">LINKS</a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-
-                    <div class="well"><!--start .well-->
-
-                        <ul class="nav nav-pills">
-                            <li><a href="login.html">LOGIN</a></li>
-                            <li class="active"><a href="registration.html">REGISTER</a></li>
-                        </ul>
-
-                        <h4>New to the Battle of Rotterdam? Please sign up here!</h4>
-                        <form class="form-horizontal" method="POST" action="javascript:console.log('hi')" id="registrationForm">
-
-                            <div class="form-group">
-                                <label for="AccountID" class=" col-sm-2 control-label"><small class="pull-left">AccountID:</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="AccountID" name="login" placeholder="Account ID"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Password" class="control-label col-sm-2"><small class="pull-left">Password:</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="password" class="form-control input-sm" id="Password" name="password" placeholder="Password"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Re-enterPassword" class="control-label col-sm-2"><small class="pull-left">Re-enter Password</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="password" class="form-control input-sm" id="Re-enterPassword" placeholder="Re-enter Password"></div>
-                            </div>
-                            <!-- Name -->
-                            <div class="form-group">
-                                <label for="FirstName" class="control-label col-sm-2 "><small class="pull-left">First name</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="FirstName" name="firstname" placeholder="First name"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="MiddleName" class="control-label col-sm-2"><small class="pull-left">Middle name</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="MiddleName" name="middlename" placeholder="Middle name"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="LastName" class="control-label col-sm-2 "><small class="pull-left">Last name</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="LastName" name="lastname" placeholder="Last name"></div>
-                            </div>
-                            <!--End Name -->
-
-                            <!-- Address -->
-                            <div class="form-group">
-                                <label for="Street" class="control-label col-sm-2"><small class="pull-left">Street</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="Street" name="street" placeholder="Street"></div>
-                                <label for="Number" class="control-label col-sm-1"><small class="pull-left">Number</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="Number" name="housenumber" placeholder="Number"></div>
-                            </div>
+ <div class="inner-wrapper">
+                    <div class="row-fluid">
+                        <div class="span12">
 
 
-                            <div class="form-group">
-                                <label for="PostalCode" class="control-label col-sm-2  "><small class="pull-left">Postal Code</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="PostalCode" name="postcode" placeholder="Postal Code"></div>
 
-                                <label for="Town" class="control-label col-sm-1"><small class="pull-left">Town</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="text" class="form-control input-sm" id="Town" name="town" placeholder="Town"></div>
-                            </div>
-                            <!-- End Address -->
+                                <div class="singup_area with_bg">
+                                <form class="singup_form_validation" novalidate="novalidate" id="registration" method="POST" action="">
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <div class="panel">
+                                                <p class="text_center">
+                                                    <img src="img/Graphic1.png" data-src="img/Graphic1.png" alt="preview" width="100">
+                                                    <a href="#" class="btn flat btn-warning Mtop-1"><label style="margin-bottom: 0px;">Load Photo<input type="file" style="display: none;"></label></a>
 
-                            <div class="form-group">
-                                <label for="DateOfBirth" class="control-label col-sm-2"><small class="pull-left">Date of Birth</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="datetime" class="form-control input-sm" id="DateOfBirth" name="birthday"></div>
-                            </div>
+                                                </p>
+                                                <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                                                <div class="gridmasonry" style="display: block; position: relative; height: 44px;">
+                                                    <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;">
+                                                        <button type="button" class="btn btn-info btn-large input-block-level flat">Facebook Connect</button>
+                                                    </div>
+                                                    <div class="item_grid item2" style="position: absolute; left: 160px; top: 0px;">
+                                                        <button type="button" class="btn btn-success btn-large input-block-level flat">Twiiter Connect</button>
+                                                    </div>
+                                                </div>
 
-                            <div class="form-group">
-                                <label for="PhoneNumber" class="control-label col-sm-2 "><small class="pull-left">Phone number</small></label>
-                                <div class="col-sm-4">
-                                    <input type="tel" class="form-control input-sm" id="PhoneNumber" name="phone" placeholder="Phone number"></div>
-                            </div>
+                                                <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                                                <label>Email</label>
+                                                <input type="email" name="email" class="input-block-level" required="">
+                                                <label>Password</label>
+                                                <input type="password"  id="repassword" class="input-block-level" required="">
 
-                            <div class="form-group">
-                                <label for="E-mail" class="control-label col-sm-2"><small class="pull-left">E-mail</small></label>
-                                <div class="col-sm-4 ">
-                                    <input type="email" class="form-control input-sm" id="E-mail" name="email" placeholder="E-mail"></div>
-                            </div>
+                                                <label>Re-enter Password</label>
+                                                <input type="password" name="password"  class="input-block-level" required="">
 
-                            <div class="form-group">
-                                <div class="col-sm-10 col-xs-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="Agree"><small>I agree to the Terms and Conditions</small></label>
+                                                <label>Select Gender</label>
+                                                <div>
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="gender" value="male" checked="">
+                                                        Male
+                                                    </label>
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="gender" value="female">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="span6">
+                                            <div class="panel">
+                                                <label>First Name</label>
+                                                <input type="text" class="input-block-level" required="" name="firstname">
+                                                <label>Middle Name</label>
+                                                <input type="text" class="input-block-level" required="" name="middlename">
+                                                <label>Last Name</label>
+                                                <input type="text" class="input-block-level" required="" name="lastname">
+                                                <label>Date of Birth</label>
+                                                <input type="text" class="input-block-level" required="" name="birthday">
+                                                <span class="help-block">Exaple: month/day/full year </span>
+
+                                                <label>Town</label>
+                                                <input type="text" class="input-block-level" required="" name="town">
+                                                <label>Street</label>
+                                                <input type="text" class="input-block-level" required="" name="street">
+                                                <label>Number</label>
+                                                <input type="text" class="input-block-level" required="" name="housenumber">
+                                                <label>Postal Code</label>
+                                                <input type="text" class="input-block-level" required="" name="postcode">
+                                                <label>Phone</label>
+                                                <input type="text" class="input-block-level" required="" name="phone">
+                                                <span class="help-block">Example: +3(099)123 456 789</span>
+
+
+
+                                                <label><img src="img/captcha.png" alt="preview" style="margin-top: 10px"></label>
+                                                <label>Verify Code</label>
+                                                <input type="text" class="input-block-level " name="varify" required="">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="">
+                                                    <small>Aggere <a href="#">Term</a> And <a href="#">Condition</a></small>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-2 col-xs-2">
-                                    <button type="submit" class="btn btn-default btn-sm" name="submit" value="ok">Sign up</button>
-                                </div>
+                                    <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level">Sign Up</button></div>
+                                </form><!-- End Form-->
                             </div>
-                        </form>
-                    </div><!--end .well-->
 
-                </div> <!-- col-md-12 -->
 
-            </div> <!-- end row -->
+                        
 
-            <!-- footer -->
 
-            <div class="container">
-                <div class="page-header text-center" style="border:3px solid black; background-color: black;color:#fff;">
-                    <h1>Example page footer </h1>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-        </div> <!-- container -->
-
-        <div style="background-color: rgba(0,0,0,.6); width: 100%; height: 100%; position: absolute; top:0px; display: none;" id="visit_email">
-            <div style="width:400px; height: 300px; margin: 20% auto 0px;" >
-                <div class="alert alert-info fade in">
-
-                    <h5>Oh snap! You got an error!</h5>
-                    <p></p>
-                    <p>
-                        <button type="button" class="btn btn-primary">OK</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/javascript.js"></script>
-    </body>
-</html>
-
