@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `Competition` (
   `winner_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `winner_id` (`winner_id`),
-  KEY `Competition_ibfk_2` (`type_id`)
+  KEY `type_id` (`type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
