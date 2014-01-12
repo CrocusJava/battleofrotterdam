@@ -447,11 +447,21 @@ function createElements(conteiner, parent, info) {
 function call_activate_menu_links() {
     $(".main_navbar").on("click", "a", function() { // ссылки главного меню
         $(this).parent().addClass("active").siblings().removeClass("active");
-        var link = $(this).attr("href").split("/")[0];
-        var command = $(this).attr("href").split("/")[1];
-        $("#container").load(link+"?command="+command,function(data){
+        if($(this).attr("href").match("/")){
+             var link = $(this).attr("href").split("/")[0];
+        link = link.substr(1);
+        console.log(link);
+         var command = $(this).attr("href").split("/")[1];
+        var url = "/battleWEB/"+link+"?command="+command;
+       
+        console.log(url);
+        $("#content").load(url, function(data){
             console.log(data);
+            call_form_validation();
         },"json");
+        return false;
+        }
+       
        
     });
     /* ############################################################################ */
