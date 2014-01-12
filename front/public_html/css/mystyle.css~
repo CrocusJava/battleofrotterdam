@@ -39,7 +39,23 @@ input[type="text"].input-search{
 
     max-height: 20px;
     min-height: 20px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+=======
+    width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+=======
+    width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+=======
+    width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+
     margin: 0px;
     padding: 4px 9px;
 
@@ -92,7 +108,23 @@ input[type="text"].input-search-small{
 
     max-height: 15px;
     min-height: 15px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+=======
+    width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+=======
+    width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+=======
+    width: 100%;
+>>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
+
     margin: 0px;
     padding: 4px 9px;
 
