@@ -39,7 +39,7 @@ public class Competition implements Serializable {
 	private CompetitionType type;
 
 	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private User winner;
+	private User user;
 
 	@OneToMany(mappedBy="competition")
 	private List<Project> projects;
@@ -97,12 +97,12 @@ public class Competition implements Serializable {
 		this.registerDeadline = registerDeadline;
 	}
 
-	public User getWinner() {
-		return winner;
+	public User getUser() {
+		return user;
 	}
 
-	public void setWinner(User winner) {
-		this.winner = winner;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Project> getProjects() {
@@ -121,5 +121,4 @@ public class Competition implements Serializable {
 		this.type = type;
 	}
 
-	
 }
