@@ -120,13 +120,5 @@ public class Competition implements Serializable {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-
-	public CompetitionType getType() {
-		return type;
-	}
-
-	public void setType(CompetitionType type) {
-		this.type = type;
-	}
 	
 }
