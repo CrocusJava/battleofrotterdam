@@ -21,6 +21,12 @@ public interface Constants {
 	public static final String COMMAND_INDEX = "index";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
+	public static final String COMMAND_UPLOAD = "upload";
+	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
+	public static final String COMMAND_VIEWPROJECT = "viewproject";
+	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
+	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
+	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -87,7 +93,31 @@ public interface Constants {
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
 	public static final String PARAMETER_FAQ_ANSVER = "faqansver";
 	
-	
+	public static final String PARAMETER_YEAR_PROJECTS = "yearprojects";
+	public static final String PARAMETER_NAME = "name";
+	public static final String PARAMETER_RATING = "rating";
+	public static final String PARAMETER_VOTES_QUANTITY = "votesquantity";
+	public static final String PARAMETER_CREATION_DATE = "creationdate";
+	public static final String PARAMETER_LAST_PHOTO = "lastphoto";
+	public static final String PARAMETER_ID = "id";
+	public static final String PARAMETER_PATH = "path";
+	public static final String PARAMETER_DESCRIPTION = "description";
+	public static final String PARAMETER_AVATAR_PATH = "avatarpath";
+	public static final String PARAMETER_USER = "user";
+	public static final String PARAMETER_COMMENT_QUANTITY = "commentquantity";
+	public static final String PARAMETER_PHOTOS = "photos";
+	public static final String PARAMETER_PROJECT = "project";
+	public static final String PARAMETER_TYPE = "type";
+	public static final String PARAMETER_COMPETITION = "competition";
+	public static final String PARAMETER_FIRST_PHOTO = "firstphoto";
+	public static final String PARAMETER_PHOTO_QUANTITY = "photoquantity";
+	public static final String PARAMETER_PROJECT_ID = "projectid";
+	public static final String PARAMETER_FIRST_POSITION = "firstposition";
+	public static final String PARAMETER_SIZE = "size";
+	public static final String PARAMETER_COMMENTS = "comments";
+	public static final String PARAMETER_TEXT = "text";
+	public static final String PARAMETER_DATE = "date";
+		
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;

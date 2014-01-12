@@ -13,7 +13,7 @@
 }
 .county span.first
 {
-    padding-left: 12px;
+    padding-left: 20px;
     border-radius: 4px 0px 0px 4px;
     -webkit-border-radius: 4px 0px 0px 4px;
     -moz-border-radius: 4px 0px 0px 4px;
@@ -35,7 +35,7 @@
     line-height: 42px;
     position: relative;
     overflow: hidden;
-    padding-right: 41px;
+    padding-right: 20px;
 }
 
 .county-days-wrapper, .county-hours-wrapper, .county-minutes-wrapper, .county-seconds-wrapper
@@ -44,7 +44,7 @@
     position: relative !important;
     height: 42px !important;
     display: inline-block !important;
-    padding-left: 12px;
+    padding-left: 20px;
 }
 .county > span > span
 {
