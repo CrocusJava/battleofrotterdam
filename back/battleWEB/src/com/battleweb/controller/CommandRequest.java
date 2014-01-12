@@ -13,12 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import com.battleweb.controller.commands.Command;
 import com.battleweb.controller.commands.CommandAboutBattle;
 import com.battleweb.controller.commands.CommandApproveRegistration;
+import com.battleweb.controller.commands.CommandCurrentRankings;
 import com.battleweb.controller.commands.CommandFAQ;
 import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
 import com.battleweb.controller.commands.CommandRegistration;
 import com.battleweb.controller.commands.CommandUpload;
+import com.battleweb.controller.commands.CommandViewPhotoComments;
+import com.battleweb.controller.commands.CommandViewProject;
+import com.battleweb.controller.commands.CommandViewProjectComments;
+import com.battleweb.controller.commands.CommandViewProjectPhotos;
 
 /**
  * CommandRequest class is used to get appropriate Command by the String value
@@ -47,6 +52,16 @@ public class CommandRequest {
 	private CommandFAQ commandFAQ;
 	@EJB 
 	private CommandUpload commandUpload;
+	@EJB
+	private CommandCurrentRankings commandCurrentRankings;
+	@EJB
+	private CommandViewProject commandViewProject;
+	@EJB
+	private CommandViewProjectPhotos commandViewProjectPhotos;
+	@EJB
+	private CommandViewProjectComments commandViewProjectComments;
+	@EJB
+	private CommandViewPhotoComments commandviewPhotoComments;
 
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -60,6 +75,11 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
 		commands.put(Constants.COMMAND_FAQ, commandFAQ);
 		commands.put(Constants.COMMAND_UPLOAD, commandUpload);
+		commands.put(Constants.COMMAND_CURRENTRANKINGS, commandCurrentRankings);
+		commands.put(Constants.COMMAND_VIEWPROJECT, commandViewProject);
+		commands.put(Constants.COMMAND_VIEW_PROJECT_PHOTOS, commandViewProjectPhotos);
+		commands.put(Constants.COMMAND_VIEW_PROJECT_COMMENTS, commandViewProjectComments);
+		commands.put(Constants.COMMAND_VIEW_PHOTO_COMMENTS, commandviewPhotoComments);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
