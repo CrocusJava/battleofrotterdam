@@ -183,3 +183,10 @@ input[type="text"].input-search-small{
 #languages a {
     text-decoration: none;
 }
+
+#content_top h1 small{
+    color: #fff;
+    letter-spacing: 16px;
+
+}
+
