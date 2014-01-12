@@ -104,6 +104,17 @@ public class Competition implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+<<<<<<< HEAD
+=======
+	
+	public CompetitionType getType() {
+		return type;
+	}
+
+	public void setType(CompetitionType type) {
+		this.type = type;
+	}
+>>>>>>> 26e9a6d56a97bd089844de9da79916a845974bd9
 
 	public List<Project> getProjects() {
 		return this.projects;
