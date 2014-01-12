@@ -66,7 +66,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy = "winner")
+	@OneToMany(mappedBy = "user")
 	private List<Competition> competitions;
 
 	@OneToMany(mappedBy = "user")

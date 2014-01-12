@@ -93,9 +93,9 @@ CREATE TABLE IF NOT EXISTS `Competition` (
   `dateEnd` date DEFAULT NULL,
   `registerDeadline` date DEFAULT NULL,
   `type_id` bigint(20) NOT NULL,
-  `winner_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `winner_id` (`winner_id`),
+  KEY `user_id` (`user_id`),
   KEY `type_id` (`type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `Competition` (
 -- Dumping data for table `Competition`
 --
 
-INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `winner_id`) VALUES
+INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `user_id`) VALUES
 (1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-01-01', 1, NULL),
 (2, 'First Month Competition Name', 'description of First Month Competition', '2013-12-01', '2014-01-01', '2013-12-10', 2, NULL),
 (3, 'Second Month Competition Name', 'description of Second Month Competition', '2014-01-01', '2014-02-01', '2014-01-10', 2, NULL),
@@ -359,7 +359,7 @@ ALTER TABLE `Comment`
 -- Constraints for table `Competition`
 --
 ALTER TABLE `Competition`
-  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`winner_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
   ADD CONSTRAINT `Competition_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `CompetitionType` (`id`);
 
 --
