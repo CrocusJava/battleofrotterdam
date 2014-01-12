@@ -58,10 +58,10 @@ CREATE TABLE Competition(
   dateEnd DATE,
   registerDeadline DATE,
   type_id BIGINT NOT NULL,
-  winner_id BIGINT,
+  user_id BIGINT,
   PRIMARY KEY(id),
   FOREIGN KEY (type_id) REFERENCES CompetitionType(id),
-  FOREIGN KEY (winner_id) REFERENCES User(id)
+  FOREIGN KEY (user_id) REFERENCES User(id)
 )ENGINE = InnoDB CHARACTER SET=UTF8;
 
 DROP TABLE IF EXISTS Project;
