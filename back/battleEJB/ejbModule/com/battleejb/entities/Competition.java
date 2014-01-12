@@ -112,6 +112,7 @@ public class Competition implements Serializable {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
+<<<<<<< HEAD
 	
 	public CompetitionType getType() {
 		return type;
@@ -120,5 +121,7 @@ public class Competition implements Serializable {
 	public void setType(CompetitionType type) {
 		this.type = type;
 	}
+=======
+>>>>>>> 7157d788b8086431a8a5b1b2d3213f54ff80c0a4
 	
 }
