@@ -13,6 +13,8 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
+import com.battleejb.ejbbeans.CommentBean;
+import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.Photo;
@@ -33,6 +35,10 @@ public class CommandViewProject implements Command {
 	private ToolJSON toolJSON;
 	@EJB
 	private ProjectBean projectBean;
+	@EJB
+	private CommentBean commentBean;
+	@EJB
+	private PhotoBean photoBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -71,8 +77,8 @@ public class CommandViewProject implements Command {
 				.add(Constants.PARAMETER_COMPETITION, jsonCompetition)
 				.add(Constants.PARAMETER_RATING, rating)
 				.add(Constants.PARAMETER_VOTES_QUANTITY, project.getVoices().size())
-				.add(Constants.PARAMETER_COMMENT_QUANTITY, project.getComments().size())
-				.add(Constants.PARAMETER_PHOTO_QUANTITY, project.getPhotos().size());
+				.add(Constants.PARAMETER_COMMENT_QUANTITY, commentBean.getCountByProjectId(projectId))
+				.add(Constants.PARAMETER_PHOTO_QUANTITY, photoBean.getCountByProjectId(projectId));
 
 		int size = photos.size();
 		JsonObject jsonFirstPhoto = null;
