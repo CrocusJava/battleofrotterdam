@@ -21,7 +21,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC")
+	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC"),
+	@NamedQuery(name = "Comment.getCommentCountByProject", query="SELECT COUNT(c) FROM Comment AS c WHERE c.project=:project")
 })
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
