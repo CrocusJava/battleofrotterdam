@@ -22,7 +22,7 @@ public class Project implements Serializable {
 
 	private Boolean approved;
 
-	@Temporal( TemporalType.DATE)
+	@Temporal( TemporalType.TIMESTAMP)
 	private Date creationDate;
 
 	private String description;

@@ -112,6 +112,7 @@ public interface Constants {
 	public static final String PARAMETER_FIRST_PHOTO = "firstphoto";
 	public static final String PARAMETER_PHOTO_QUANTITY = "photoquantity";
 	public static final String PARAMETER_PROJECT_ID = "projectid";
+	public static final String PARAMETER_PHOTO_ID = "photoid";
 	public static final String PARAMETER_FIRST_POSITION = "firstposition";
 	public static final String PARAMETER_SIZE = "size";
 	public static final String PARAMETER_COMMENTS = "comments";
