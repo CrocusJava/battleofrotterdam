@@ -31,13 +31,13 @@ body.theme_default #top_header .main_navbar .dropdown.open {
     background: #ce4e4a;
 }
 body.theme_default #top_header.mini_menu {
-    background: #232323;
+    background: rgba(1, 56, 56, 0.24);
 }
 body.theme_default #content_top {
     background: #333333;
 }
 body.theme_default #logo_message_area {
-    background-color: #2b2c2c;
+    background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default #logo_message_area .logo {
     background: #2b2c2c;
@@ -107,7 +107,7 @@ body.theme_default #content .lobster_calendar .fc-event {
     background: #ce4e4a;
 }
 body.theme_default #footer {
-    background-color: #333333;
+    background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default #footer .link_socials a {
     background: #232323;
@@ -116,10 +116,10 @@ body.theme_default #footer .link_socials a:hover {
     background: #ce4e4a;
 }
 body.theme_default #footer .subcrible {
-    background-color: #232323;
+    background-color: rgba(1, 56, 56, 0.12);
 }
 body.theme_default #footer .footer_bottom {
-    background-color: #211d1d;
+    background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default .btn-inverse {
     background-color: #211d1d;
