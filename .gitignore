@@ -6,3 +6,6 @@ $ cat .gitignore
 build/
 External Plug-in Libraries/
 ~
+/front/BattleOfRotterdam/nbproject/private/
+/frontBattleOfRotterdam/nbproject/private/
+/front/public_html/oldProgect/
