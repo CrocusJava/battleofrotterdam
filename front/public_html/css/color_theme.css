@@ -16,10 +16,10 @@ body.theme_default #top_header {
     background-color: rgba(0, 0, 0, 0.5);
 }
 body.theme_default #top_header .main_navbar li a:hover {
-    background: #ce4e4a;
+    background: rgba(0,148,0,1);
 }
 body.theme_default #top_header .main_navbar li.active {
-    background: #ce4e4a;
+    background: rgba(0,188,0,1);
 }
 body.theme_default #top_header .main_navbar li.active a {
     color: #ffffff !important;
@@ -128,10 +128,10 @@ body.theme_default .btn-inverse:hover {
     background-color: #030000;
 }
 body.theme_default .btn-primary {
-    background-color: #ce4e4a;
+    background-color: rgba(0,188,0,1);
 }
 body.theme_default .btn-primary:hover {
-    background-color: #b0302c;
+    background-color: rgba(0,148,0,1);
 }
 /* **END Default color Theme** ==============================================*/
 /* **Default color Blue Theme** ==============================================*/
