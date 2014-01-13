@@ -25,6 +25,22 @@
     font-size: 12px;
 }
 
+.pull-right-count{
+float: left;
+margin: 0 25%;
+
+}
+
+@media (max-width: 480px){
+.hide-count {
+display:none;
+}
+
+
+
+
+}
+
 /*form.search{
     margin: 0px;
     padding-left: 5px;
