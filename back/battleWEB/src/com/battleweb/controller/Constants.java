@@ -118,7 +118,14 @@ public interface Constants {
 	public static final String PARAMETER_COMMENTS = "comments";
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_DATE = "date";
-		
+
+	public static final String PARAMETER_CONTACTS = "contacts";
+	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
+	public static final String PARAMETER_CONTACTS_ADDRESS = "contactsaddress";
+	public static final String PARAMETER_CONTACTS_EMAIL = "contactsemail";
+	public static final String PARAMETER_CONTACTS_PHONE = "contactsphone";
+	public static final String PARAMETER_CONTACTS_FAX = "contactsfax";
+	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;

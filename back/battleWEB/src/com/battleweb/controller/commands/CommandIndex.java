@@ -68,7 +68,7 @@ public class CommandIndex implements Command{
 		Competition monthCompetition = competitionBean.getCurrentCompetitionByType(monthType, currentDate);
 		
 		//get descriptions from db
-		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());//
+		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());
 		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, request.getLocale());
 		
 		//get animation url from db
@@ -135,6 +135,15 @@ public class CommandIndex implements Command{
 		}
 		JsonArray lastPhotossArray = lastPhotosArrayBuilder.build();
 		
+		//create json-objects of contacts
+		JsonObject jsonObjectContacts = Json.createObjectBuilder()
+			.add(Constants.PARAMETER_CONTACTS_INFO_INDEX, textBean.findLocaleTextByKey(Constants.TEXT_CONTACTS_INFO_ON_INDEX, request.getLocale()))
+			.add(Constants.PARAMETER_CONTACTS_ADDRESS, textBean.findLocaleTextByKey(Constants.TEXT_CONTACTS_ADDRESS, request.getLocale()))
+			.add(Constants.PARAMETER_CONTACTS_EMAIL, textBean.findLocaleTextByKey(Constants.TEXT_CONTACTS_EMAIL, request.getLocale()))
+			.add(Constants.PARAMETER_CONTACTS_PHONE, textBean.findLocaleTextByKey(Constants.TEXT_CONTACTS_PHONE, request.getLocale()))
+			.add(Constants.PARAMETER_CONTACTS_FAX, textBean.findLocaleTextByKey(Constants.TEXT_CONTACTS_FAX, request.getLocale()))
+			.add(Constants.PARAMETER_CONTACTS_SKYPE, textBean.findLocaleTextByKey(Constants.TEXT_CONTACTS_SKYPE, request.getLocale()))
+			.build();
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
@@ -146,6 +155,7 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_BATTLE_LINKS, battleLinksArray)
 				.add(Constants.PARAMETER_LAST_COMMENTS_LIST, lastCommentsArray)
 				.add(Constants.PARAMETER_LAST_PHOTOS_LIST, lastPhotossArray)
+				.add(Constants.PARAMETER_CONTACTS, jsonObjectContacts)
 				.build();
 		
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
