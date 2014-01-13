@@ -16,7 +16,7 @@
                         $(this).hasClass('county-hours-wrapper') ||
                         $(this).hasClass('county-minutes-wrapper') ||
                         $(this).hasClass('county-seconds-wrapper'))
-                    w += $(this).outerWidth();
+                    w += $(this).outerWidth()+30;
             });
 
             container.css({width: w});

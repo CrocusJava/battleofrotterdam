@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 11, 2014 at 09:24 AM
+-- Generation Time: Jan 13, 2014 at 02:48 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -72,12 +72,12 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 --
 
 INSERT INTO `Comment` (`id`, `commentText`, `commentDate`, `user_id`, `project_id`, `photo_id`) VALUES
-(1, 'Lets go!', '2014-01-01 08:00:00', 11, 1, 1),
-(2, 'Do it!', '2014-01-01 08:00:00', 11, 2, 2),
-(3, 'It will be something... :)', '2014-01-03 08:00:00', 12, 3, 3),
-(4, 'Hello!!!', '2014-01-03 08:00:00', 12, 4, 4),
-(5, 'Nice try!', '2014-01-04 08:00:00', 13, 5, 5),
-(6, 'I hope it is possible...', '2014-01-05 08:00:00', 14, 6, 6);
+(1, 'Lets go!', '2014-01-01 16:00:00', 11, 1, 1),
+(2, 'Do it!', '2014-01-01 16:00:00', 11, 2, 2),
+(3, 'It will be something... :)', '2014-01-03 16:00:00', 12, 3, 3),
+(4, 'Hello!!!', '2014-01-03 16:00:00', 12, 4, 4),
+(5, 'Nice try!', '2014-01-04 16:00:00', 13, 5, 5),
+(6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -93,9 +93,9 @@ CREATE TABLE IF NOT EXISTS `Competition` (
   `dateEnd` date DEFAULT NULL,
   `registerDeadline` date DEFAULT NULL,
   `type_id` bigint(20) NOT NULL,
-  `winner_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `winner_id` (`winner_id`),
+  KEY `user_id` (`user_id`),
   KEY `type_id` (`type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `Competition` (
 -- Dumping data for table `Competition`
 --
 
-INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `winner_id`) VALUES
+INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `user_id`) VALUES
 (1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-01-01', 1, NULL),
 (2, 'First Month Competition Name', 'description of First Month Competition', '2013-12-01', '2014-01-01', '2013-12-10', 2, NULL),
 (3, 'Second Month Competition Name', 'description of Second Month Competition', '2014-01-01', '2014-02-01', '2014-01-10', 2, NULL),
@@ -150,12 +150,12 @@ CREATE TABLE IF NOT EXISTS `Photo` (
 --
 
 INSERT INTO `Photo` (`id`, `path`, `loadDate`, `description`, `project_id`) VALUES
-(1, 'remont1.jpg', '2014-01-01 08:00:00', 'description of Rays_month_project_photo', 1),
-(2, 'remont11.jpg', '2014-01-01 08:00:00', 'description of Rays_year_project_photo', 2),
-(3, 'remont3.jpg', '2014-01-03 08:00:00', 'description of Joes month project', 3),
-(4, 'remont5.jpg', '2014-01-03 08:00:00', 'description of JoesJoes_year_project_photo', 4),
-(5, 'remont13.jpg', '2014-01-04 08:00:00', 'description of Jennys_year_project_photo', 5),
-(6, 'remont14.jpg', '2014-01-05 08:00:00', 'description of Lupes_year_project_photo', 6);
+(1, 'remont1.jpg', '2014-01-01 16:00:00', 'description of Rays_month_project_photo', 1),
+(2, 'remont11.jpg', '2014-01-01 16:00:00', 'description of Rays_year_project_photo', 2),
+(3, 'remont3.jpg', '2014-01-03 16:00:00', 'description of Joes month project', 3),
+(4, 'remont5.jpg', '2014-01-03 16:00:00', 'description of JoesJoes_year_project_photo', 4),
+(5, 'remont13.jpg', '2014-01-04 16:00:00', 'description of Jennys_year_project_photo', 5),
+(6, 'remont14.jpg', '2014-01-05 16:00:00', 'description of Lupes_year_project_photo', 6);
 
 -- --------------------------------------------------------
 
@@ -181,12 +181,12 @@ CREATE TABLE IF NOT EXISTS `Project` (
 --
 
 INSERT INTO `Project` (`id`, `name`, `description`, `creationDate`, `user_id`, `competition_id`, `approved`) VALUES
-(1, 'Rays month project', 'description of Rays month project', '2014-01-01 08:00:00', 11, 3, 1),
-(2, 'Rays year project', 'description of Rays year project', '2014-01-01 08:00:00', 11, 1, 1),
-(3, 'Joes month project', 'description of Joes month project', '2014-01-03 08:00:00', 12, 3, 1),
-(4, 'Joes year project', 'description of Joes year project', '2014-01-03 08:00:00', 12, 1, 1),
-(5, 'Jennys year project', 'description of Jennys year project', '2014-01-04 08:00:00', 13, 1, 1),
-(6, 'Lupes year project', 'description of Lupes year project', '2014-01-05 08:00:00', 14, 1, 1);
+(1, 'Rays month project', 'description of Rays month project', '2014-01-01 16:00:00', 11, 3, 1),
+(2, 'Rays year project', 'description of Rays year project', '2014-01-01 16:00:00', 11, 1, 1),
+(3, 'Joes month project', 'description of Joes month project', '2014-01-03 16:00:00', 12, 3, 1),
+(4, 'Joes year project', 'description of Joes year project', '2014-01-03 16:00:00', 12, 1, 1),
+(5, 'Jennys year project', 'description of Jennys year project', '2014-01-04 16:00:00', 13, 1, 1),
+(6, 'Lupes year project', 'description of Lupes year project', '2014-01-05 16:00:00', 14, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `Text`
@@ -256,7 +256,13 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (25, 531, 'Information about the Battle of Rotterdam ', 'Informatie over the Battle of Rotterdam'),
 (26, 541, 'About those who made it', 'Over de ontwikkelaars'),
 (27, 551, 'General Information', 'Algemene informatie'),
-(28, 550, 'On this website you can upload pictures of the renovation and you could win a cash prize!\r\nAfter you have created an account, you can upload photos and view the current position on the ranking page.\r\nShould you have any questions, please look first at the FAQ page.\r\nUnder "Links" you will find a variety of relevant websites to make your renovation a success.', 'Op deze website kunt u uw foto’s van de verbouwing insturen en maakt u kans op een geldprijs!\r\nNadat u een account aangemaakt heeft kunt u foto’s uploaden en de huidige plaats bekijken op de ranking page.\r\nMocht u nog vragen hebben kijkt u dan eerst even bij de FAQ pagina.\r\nOnder “links” vind u diverse relevante websites om uw verbouwing tot een succes te maken.');
+(28, 550, 'On this website you can upload pictures of the renovation and you could win a cash prize!\r\nAfter you have created an account, you can upload photos and view the current position on the ranking page.\r\nShould you have any questions, please look first at the FAQ page.\r\nUnder "Links" you will find a variety of relevant websites to make your renovation a success.', 'Op deze website kunt u uw foto’s van de verbouwing insturen en maakt u kans op een geldprijs!\r\nNadat u een account aangemaakt heeft kunt u foto’s uploaden en de huidige plaats bekijken op de ranking page.\r\nMocht u nog vragen hebben kijkt u dan eerst even bij de FAQ pagina.\r\nOnder “links” vind u diverse relevante websites om uw verbouwing tot een succes te maken.'),
+(29, 700, 'Some short text "about us"', 'Sommige korte tekst "over ons"'),
+(30, 710, '12345 / Some Street\r\nPortland, USA', '12345 / Sommige Straat\r\nPortland, USA'),
+(34, 720, 'mail@must.be.here ', 'mail@must.be.here'),
+(35, 730, 'phone: +1 (44) 123-45-67 ', 'telefoon: +1 (44) 123-45-67'),
+(36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
+(37, 750, 'Skype Me ', 'Skype Me');
 
 -- --------------------------------------------------------
 
@@ -359,7 +365,7 @@ ALTER TABLE `Comment`
 -- Constraints for table `Competition`
 --
 ALTER TABLE `Competition`
-  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`winner_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
   ADD CONSTRAINT `Competition_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `CompetitionType` (`id`);
 
 --

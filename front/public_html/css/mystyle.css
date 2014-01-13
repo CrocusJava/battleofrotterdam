@@ -25,6 +25,22 @@
     font-size: 12px;
 }
 
+.pull-right-count{
+float: left;
+margin: 0 25%;
+
+}
+
+@media (max-width: 480px){
+.hide-count {
+display:none;
+}
+
+
+
+
+}
+
 /*form.search{
     margin: 0px;
     padding-left: 5px;
@@ -39,23 +55,7 @@ input[type="text"].input-search{
 
     max-height: 20px;
     min-height: 20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-
     margin: 0px;
     padding: 4px 9px;
 
@@ -108,23 +108,7 @@ input[type="text"].input-search-small{
 
     max-height: 15px;
     min-height: 15px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-=======
-    width: 100%;
->>>>>>> 70abbcd204d3949592797808f2cc19bb07e65e79
-
     margin: 0px;
     padding: 4px 9px;
 
@@ -183,3 +167,11 @@ input[type="text"].input-search-small{
 #languages a {
     text-decoration: none;
 }
+
+#content_top h1 small{
+    color: #fff;
+    letter-spacing: 16px;
+
+}
+
+

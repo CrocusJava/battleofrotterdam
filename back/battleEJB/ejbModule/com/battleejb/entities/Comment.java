@@ -21,7 +21,11 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC")
+	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC"),
+	@NamedQuery(name = "Comment.findByProjectId", query="SELECT c FROM Comment AS c WHERE c.project.id=:projectId ORDER BY c.commentDate DESC"),
+	@NamedQuery(name = "Comment.findByPhotoId", query="SELECT c FROM Comment AS c WHERE c.photo.id=:photoId ORDER BY c.commentDate DESC"),
+	@NamedQuery(name = "Comment.getCountByProjectId", query="SELECT COUNT(c) FROM Comment AS c WHERE c.project.id=:projectId"),
+	@NamedQuery(name = "Comment.getCountByPhotoId", query="SELECT COUNT(c) FROM Comment AS c WHERE c.photo.id=:photoId")
 })
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +34,7 @@ public class Comment implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date commentDate;
 
 	private String commentText;
