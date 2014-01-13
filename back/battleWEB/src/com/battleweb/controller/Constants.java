@@ -143,7 +143,6 @@ public interface Constants {
 	public static final Integer TEXT_TITLE_ABOUT_US = 541;
 	public static final Integer TEXT_TITLE_INFO = 551;
 	
-	
 	public static final Integer TEXT_Q1 = 600;
 	public static final Integer TEXT_A1 = 605;
 	public static final Integer TEXT_Q2 = 610;
@@ -155,7 +154,12 @@ public interface Constants {
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
 	
-	
+	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
+	public static final Integer TEXT_CONTACTS_ADDRESS = 710;
+	public static final Integer TEXT_CONTACTS_EMAIL = 720;
+	public static final Integer TEXT_CONTACTS_PHONE = 730;
+	public static final Integer TEXT_CONTACTS_FAX = 740;
+	public static final Integer TEXT_CONTACTS_SKYPE = 750;
 
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
