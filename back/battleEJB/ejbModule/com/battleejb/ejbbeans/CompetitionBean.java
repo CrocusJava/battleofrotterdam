@@ -38,7 +38,7 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 	public Competition getCurrentCompetitionByType(CompetitionType type, Date currentDate){
 		Competition competition = null;
 		try {
-			competition = em.createNamedQuery("Competition.findCurrentYearCompetition", Competition.class)
+			competition = em.createNamedQuery("Competition.findCurrentCompetitionByType", Competition.class)
 					.setParameter("type", type)
 					.setParameter("currentDate", currentDate)
 					.getSingleResult();
