@@ -85,6 +85,8 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
 				.add(Constants.PARAMETER_COMMENT_DATE, comment.getCommentDate().toString())
 				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
+				.add(Constants.PARAMETER_PROJECT_ID, comment.getProject().getId())
+				.add(Constants.PARAMETER_PHOTO_ID, comment.getPhoto().getId())
 				.build();
 			lastCommentsArrayBuilder.add(jsonObjectComment);
 		}
@@ -101,6 +103,8 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_LOAD_DATE, photo.getLoadDate().toString())
 				.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
 				.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
+				.add(Constants.PARAMETER_PROJECT_ID, photo.getProject().getId())
+				.add(Constants.PARAMETER_PHOTO_ID, photo.getId())
 				.build();
 			lastPhotosArrayBuilder.add(jsonObjectPhoto);
 		}
