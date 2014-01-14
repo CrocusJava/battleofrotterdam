@@ -20,7 +20,7 @@ function call_all() {
 
     call_start_carousel();
 
-    call_data_for_index_html(data);
+    call_data_for_index_html();
 
 
 }
@@ -544,7 +544,7 @@ function call_load_data_for_index_comments(load_data) {
 function call_data_for_index_html() {
     $.post("/battleWEB/controller?command=index", function(respons, status) {
 
-        respons = JSON.parse(respons);
+        //respons = JSON.parse(respons);
 
         call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
         $("#battledescriptionshort").text(respons["battledescriptionshort"]);
