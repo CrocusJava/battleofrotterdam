@@ -27,6 +27,7 @@ public interface Constants {
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
 	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
+	public static final String COMMAND_FOOTER = "footer";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -107,6 +108,7 @@ public interface Constants {
 	public static final String PARAMETER_COMMENT_QUANTITY = "commentquantity";
 	public static final String PARAMETER_PHOTOS = "photos";
 	public static final String PARAMETER_PROJECT = "project";
+	public static final String PARAMETER_PROJECTS = "projects";
 	public static final String PARAMETER_TYPE = "type";
 	public static final String PARAMETER_COMPETITION = "competition";
 	public static final String PARAMETER_FIRST_PHOTO = "firstphoto";
@@ -174,6 +176,9 @@ public interface Constants {
 	public static final Integer URL_HOMEPAGE_LINK2 = 120;
 	public static final Integer URL_HOMEPAGE_LINK3 = 130;
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
+
 	
-		
+	//Set some constants
+	public static final String COMPETITION_TYPE_YEAR = "year";
+	public static final String COMPETITION_TYPE_MONTH = "month";
 }

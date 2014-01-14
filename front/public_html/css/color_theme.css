@@ -31,7 +31,7 @@ body.theme_default #top_header .main_navbar .dropdown.open {
     background: rgba(0,188,0,1);
 }
 body.theme_default #top_header.mini_menu {
-    background: rgba(1, 56, 56, 0.24);
+    background: rgba(1, 56, 56, 0.68);
 }
 body.theme_default #content_top {
     background: #333333;
@@ -40,7 +40,7 @@ body.theme_default #logo_message_area {
     background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default #logo_message_area .logo {
-    background: #2b2c2c;
+    background: rgba(0,188,0,0.6);
 }
 body.theme_default #content .box_spa {
     background: #ce4e4a;
