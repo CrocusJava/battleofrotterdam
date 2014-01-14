@@ -12,6 +12,9 @@ import java.util.Date;
  * 
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Voice.getCountByProjectId", query="SELECT COUNT(v) FROM Voice AS v WHERE v.project.id=:projectId")
+})
 public class Voice implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -108,6 +108,7 @@ public interface Constants {
 	public static final String PARAMETER_COMMENT_QUANTITY = "commentquantity";
 	public static final String PARAMETER_PHOTOS = "photos";
 	public static final String PARAMETER_PROJECT = "project";
+	public static final String PARAMETER_PROJECTS = "projects";
 	public static final String PARAMETER_TYPE = "type";
 	public static final String PARAMETER_COMPETITION = "competition";
 	public static final String PARAMETER_FIRST_PHOTO = "firstphoto";
@@ -177,5 +178,7 @@ public interface Constants {
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
 
 	
-		
+	//Set some constants
+	public static final String COMPETITION_TYPE_YEAR = "year";
+	public static final String COMPETITION_TYPE_MONTH = "month";
 }

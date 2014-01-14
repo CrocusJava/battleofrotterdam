@@ -7,12 +7,16 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Project database table.
  * 
  */
 @Entity
+@NamedQueries({ 
+	@NamedQuery(name = "Project.findOrderByRatingAndCompetitionType",
+			query = "SELECT p FROM Project AS p WHERE p.competition IN (SELECT c FROM Competition c WHERE c.type.name = :competitionType " +
+					"AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate)") //ORDER BY rating....
+})
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,35 +26,35 @@ public class Project implements Serializable {
 
 	private Boolean approved;
 
-	@Temporal( TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
 	private String description;
 
 	private String name;
 
-	@OneToMany(mappedBy="project")
+	@OneToMany(mappedBy = "project")
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy="project")
+	@OneToMany(mappedBy = "project")
 	private List<Photo> photos;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private User user;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Competition competition;
 
-	@OneToMany(mappedBy="project")
+	@OneToMany(mappedBy = "project")
 	private List<Voice> voices;
 
-//-----------------------------------	
-	
-    public Project() {
-    }
+	// -----------------------------------
 
-//-----------------------------------
-    
+	public Project() {
+	}
+
+	// -----------------------------------
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -98,7 +102,7 @@ public class Project implements Serializable {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
 	public List<Photo> getPhotos() {
 		return this.photos;
 	}
@@ -106,7 +110,7 @@ public class Project implements Serializable {
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
-	
+
 	public User getUser() {
 		return this.user;
 	}
@@ -114,7 +118,7 @@ public class Project implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public Competition getCompetition() {
 		return this.competition;
 	}
@@ -122,7 +126,7 @@ public class Project implements Serializable {
 	public void setCompetition(Competition competition) {
 		this.competition = competition;
 	}
-	
+
 	public List<Voice> getVoices() {
 		return this.voices;
 	}
@@ -130,5 +134,5 @@ public class Project implements Serializable {
 	public void setVoices(List<Voice> voices) {
 		this.voices = voices;
 	}
-	
+
 }
