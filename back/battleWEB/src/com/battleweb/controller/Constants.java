@@ -27,6 +27,7 @@ public interface Constants {
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
 	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
+	public static final String COMMAND_FOOTER = "footer";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -174,6 +175,7 @@ public interface Constants {
 	public static final Integer URL_HOMEPAGE_LINK2 = 120;
 	public static final Integer URL_HOMEPAGE_LINK3 = 130;
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
+
 	
 		
 }
