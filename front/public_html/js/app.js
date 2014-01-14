@@ -8,19 +8,21 @@ function call_all() {
     call_datatables();
     call_tab();
 //    call_full_calendar();
-    call_functional_reservations();
+//    call_functional_reservations();
     call_lightbox();
     call_control_color_theme();
 //    call_lazy_load_images();
     call_form_validation();
-    call_events_show_hide_login_registration();
+//    call_events_show_hide_login_registration();
+
     call_event_create_comment();
-    call_activate_menu_links();
+
+//    call_activate_menu_links();
 
 
     call_start_carousel();
 
-    call_data_for_index_html(data);
+    call_data_for_index_html();
 
 
 }
@@ -325,20 +327,28 @@ function AjaxRegistrationLogin(form) {
         data: config.data,
         contentType: "application/json"
     }).done(function(data) {
-        if (data.statuslogin === true && data.statusemail === true) {
-            $(".alert>h5").text(data.registrationmessage);
-            $("#visit_email").show();
-            $(".alert .btn-primary").click(function() {
-                $("#visit_email").hide();
-                window.location = "account_photo.html";
-            });
+        if (form.id === "registration") {
+            if (data.statuslogin === true && data.statusemail === true) {
+                $(".modal-body>p").text(data.registrationmessage);
+                $("#myModal").modal("show");
+                $("#myModal").on("hide", function() {
+                    window.location = "myaccount.html";
+                });
+            }
         }
-
+        if (form.id === "login") {
+            if (data.iduser) {
+                window.location = "myaccount.html";
+            }
+//"iduser": 45637932,
+//"idrole": 2,
+//"nameuser":"John"
+        }
         console.log(data);
     }).fail(function(data) {
         console.log(data, "\n faile");
     });
-    console.log(config);
+    console.log(config, form.id);
     return false;
 }
 
@@ -377,11 +387,13 @@ function call_events_show_hide_login_registration() {
 
 
 function call_event_create_comment() {
-    $(".comments").on("click", "a.reply", function() {
-        $("#f3").focus();
-        var $this = $(this);
-        $("#comments_form").data("element", $this);
-    });
+    if ($(".comments").length > 0) {
+        $(".comments").on("click", "a.reply", function() {
+            $("#f3").focus();
+            var $this = $(this);
+            $("#comments_form").data("element", $this);
+        });
+    }
 }
 
 
@@ -445,22 +457,6 @@ function createElements(conteiner, parent, info) {
 function call_activate_menu_links() {
     $(".main_navbar").on("click", "a", function() { // ссылки главного меню
         $(this).parent().addClass("active").siblings().removeClass("active");
-        if ($(this).attr("href").match("/")) {
-            var link = $(this).attr("href").split("/")[0];
-            link = link.substr(1);
-            console.log(link);
-            var command = $(this).attr("href").split("/")[1];
-            var url = "/battleWEB/" + link + "?command=" + command;
-
-            console.log(url);
-            $("#content").load(url, function(data) {
-                console.log(data);
-                call_form_validation();
-            }, "json");
-            return false;
-        }
-
-
     });
     /* ############################################################################ */
 
@@ -542,46 +538,42 @@ function call_load_data_for_index_comments(load_data) {
 
 
 function call_data_for_index_html() {
-    $.post("/battleWEB/controller?command=index", function(respons, status) {
+    if (window.location.href.match(/index.html$/)) {
 
-        respons = JSON.parse(respons);
+        $.post("/battleWEB/controller?command=index", function(respons, status) {
 
-        call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
-        $("#battledescriptionshort").text(respons["battledescriptionshort"]);
-        $("#battleanimationdescription").text(respons["battleanimationdescription"]);
-        $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
+            //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
-        var dataArray = respons["lastcommentslist"];
-        for (var i in dataArray) {
-            var dataObj = dataArray[i];
-            call_load_data_for_index_comments(dataObj);
-        }
+            call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
+            $("#battledescriptionshort").text(respons["battledescriptionshort"]);
+            $("#battleanimationdescription").text(respons["battleanimationdescription"]);
+            $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
 
-        var dataArray = respons["lastphotoslist"];
-        for (var i in dataArray) {
-            var dataObj = dataArray[i];
-            call_load_data_for_index_events(dataObj);
-        }
+            var dataArray = respons["lastcommentslist"];
+            for (var i in dataArray) {
+                var dataObj = dataArray[i];
+                call_load_data_for_index_comments(dataObj);
+            }
 
-
-        console.log("Respons data for index ====> ", status);
-    }, "json").fail(function(data) {
-        console.log("Somsing wrang", data);
-    });
+            var dataArray = respons["lastphotoslist"];
+            for (var i in dataArray) {
+                var dataObj = dataArray[i];
+                call_load_data_for_index_events(dataObj);
+            }
 
 
-
-    /*
-
-     battlelinks
-
-     */
-
-
-
-
+            console.log("Respons data for index ====> ", status);
+        }, "json").fail(function(data) {
+            console.log("Somsing wrang", data);
+        });
+    }
 
 }
+/*
+
+ battlelinks
+
+ */
 //"battleyearfinishdate": "2014-12-01",
 
 //    "battlemonthfinishdate": "2014-02-01",
