@@ -7,8 +7,10 @@ package com.battleweb.controller;
  */
 public interface Constants {
 	//Parameters for the home-page view
-	public static final Integer HOME_PAGE_COMMENTS_COUNT = 5;
-	public static final Integer HOME_PAGE_PHOTOS_COUNT = 3;
+	public static final Integer HOME_PAGE_LAST_COMMENTS_COUNT = 5;
+	public static final Integer HOME_PAGE_LAST_PHOTOS_COUNT = 3;
+	public static final Integer FOOTER_GALLERY_PHOTOS_COUNT = 12;
+	
 	
 	//Parameter for all request
 	public static final String COMMAND = "command";
@@ -128,6 +130,7 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_PHONE = "contactsphone";
 	public static final String PARAMETER_CONTACTS_FAX = "contactsfax";
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
+	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
