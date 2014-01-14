@@ -15,7 +15,7 @@ import java.util.List;
 @NamedQueries({ 
 	@NamedQuery(name = "Project.findOrderByRatingAndCompetitionType",
 			query = "SELECT p FROM Project AS p WHERE p.competition IN (SELECT c FROM Competition c WHERE c.type.name = :competitionType " +
-					"AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate)")
+					"AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate)") //ORDER BY rating....
 })
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
