@@ -68,42 +68,13 @@ public class CommandIndex implements Command{
 		Competition monthCompetition = competitionBean.getCurrentCompetitionByType(monthType, currentDate);
 		
 		//get descriptions from db
-		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());//
+		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());
 		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, request.getLocale());
 		
 		//get animation url from db
 		String animationURL = urlBean.findByKey(Constants.URL_BATTLE_ANIMATION).getName();
 		
-		//get links from db
-		URL link1 = urlBean.findByKey(Constants.URL_HOMEPAGE_LINK1);
-		URL link2 = urlBean.findByKey(Constants.URL_HOMEPAGE_LINK2);
-		URL link3 = urlBean.findByKey(Constants.URL_HOMEPAGE_LINK3);
-		URL link4 = urlBean.findByKey(Constants.URL_HOMEPAGE_LINK4);
 		
-		//create json-objects of links
-		JsonObject jsonObjectLink1 = Json.createObjectBuilder()
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_TITLE, link1.getName())
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_URL, link1.getValue())
-				.build();
-		JsonObject jsonObjectLink2 = Json.createObjectBuilder()
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_TITLE, link2.getName())
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_URL, link2.getValue())
-				.build();
-		JsonObject jsonObjectLink3 = Json.createObjectBuilder()
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_TITLE, link3.getName())
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_URL, link3.getValue())
-				.build();
-		JsonObject jsonObjectLink4 = Json.createObjectBuilder()
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_TITLE, link4.getName())
-				.add(Constants.PARAMETER_URL_HOMEPAGE_LINK_URL, link4.getValue())
-				.build();
-		
-		JsonArray battleLinksArray = Json.createArrayBuilder()
-				.add(jsonObjectLink1)
-				.add(jsonObjectLink2)
-				.add(jsonObjectLink3)
-				.add(jsonObjectLink4)
-				.build();
 		
 		//get comments from db 
 		List<Comment> lastComments = commentBean.findLast(Constants.HOME_PAGE_COMMENTS_COUNT);
@@ -136,6 +107,7 @@ public class CommandIndex implements Command{
 		JsonArray lastPhotossArray = lastPhotosArrayBuilder.build();
 		
 		
+		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
 				.add(Constants.PARAMETER_BATTLE_YEAR_FINISH_DATE,yearCompetition.getDateEnd().toString())
@@ -143,7 +115,6 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT, battleDescriptionShort)
 				.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
 				.add(Constants.PARAMETER_URL_BATTLE_ANIMATION, animationURL)
-				.add(Constants.PARAMETER_BATTLE_LINKS, battleLinksArray)
 				.add(Constants.PARAMETER_LAST_COMMENTS_LIST, lastCommentsArray)
 				.add(Constants.PARAMETER_LAST_PHOTOS_LIST, lastPhotossArray)
 				.build();

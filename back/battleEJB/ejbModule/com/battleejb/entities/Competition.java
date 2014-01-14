@@ -7,14 +7,13 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Competition database table.
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "Competition.findCurrentYearCompetition", 
-							query = "SELECT c FROM Competition c WHERE c.type = :type AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate") })
+@NamedQueries({
+		@NamedQuery(name = "Competition.findCurrentCompetitionByType", query = "SELECT c FROM Competition c WHERE c.type = :type AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate")})
 public class Competition implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,32 +21,32 @@ public class Competition implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-    @Temporal( TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 
-    @Temporal( TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date dateStart;
 
 	private String description;
 
 	private String name;
 
-    @Temporal( TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date registerDeadline;
 
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private CompetitionType type;
 
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private User user;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private User user; // WINNER!!!
 
-	@OneToMany(mappedBy="competition")
+	@OneToMany(mappedBy = "competition")
 	private List<Project> projects;
 
-//---------------------------------------	
-	
-    public Competition() {
-    }
+	// ---------------------------------------
+
+	public Competition() {
+	}
 
 	public Integer getId() {
 		return this.id;

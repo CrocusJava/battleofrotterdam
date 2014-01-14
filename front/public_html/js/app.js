@@ -16,13 +16,12 @@ function call_all() {
     call_events_show_hide_login_registration();
     call_event_create_comment();
     call_activate_menu_links();
-    call_start_count_timer("2014-12-01", "2014-12-01");
+
 
     call_start_carousel();
 
-    call_data_for_index_html();
-//    call_load_data_for_index_comments();
-//    call_load_data_for_index_events();
+    call_data_for_index_html(data);
+
 
 }
 
@@ -446,22 +445,22 @@ function createElements(conteiner, parent, info) {
 function call_activate_menu_links() {
     $(".main_navbar").on("click", "a", function() { // ссылки главного меню
         $(this).parent().addClass("active").siblings().removeClass("active");
-        if($(this).attr("href").match("/")){
-             var link = $(this).attr("href").split("/")[0];
-        link = link.substr(1);
-        console.log(link);
-         var command = $(this).attr("href").split("/")[1];
-        var url = "/battleWEB/"+link+"?command="+command;
-       
-        console.log(url);
-        $("#content").load(url, function(data){
-            console.log(data);
-            call_form_validation();
-        },"json");
-        return false;
+        if ($(this).attr("href").match("/")) {
+            var link = $(this).attr("href").split("/")[0];
+            link = link.substr(1);
+            console.log(link);
+            var command = $(this).attr("href").split("/")[1];
+            var url = "/battleWEB/" + link + "?command=" + command;
+
+            console.log(url);
+            $("#content").load(url, function(data) {
+                console.log(data);
+                call_form_validation();
+            }, "json");
+            return false;
         }
-       
-       
+
+
     });
     /* ############################################################################ */
 
@@ -494,55 +493,134 @@ function call_start_carousel() {
     $('#myCarousel').carousel();
 }
 
-function call_load_data_for_index_events() {
-    var index_last_events = {
-        name: "li", children: [
-            {name: "div", add_class: "content_post", children: [
-                    {name: "img", add_class: "pull-left img_preview", attr: {src: "img/file000995479886.jpg", alt: "preview"}},
-                    {name: "h4", bind: {"text": "text"}},
-                    {name: "p", bind: {"text": "text"}},
-                    {name: "a", add_class: "btn btn-primary btn-mini flat", bind: {"text": "text"}}
-                ]}
-        ]
-    };
+function call_load_data_for_index_events(load_data) {
+    var index_last_events_template = [
+        {tag: "li", children: [
+                {tag: "div", add_class: "content_post", children: [
+                        {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
+                        {tag: "h4", text: "competitionname"},
+                        {tag: "p", text: "photodescription"},
+                        {tag: "p", children: [
+                                {tag: "span", children: [
+                                        {tag: "i", add_class: "icon-time"},
+                                        {tag: "span", text: "loaddate"}
+                                    ]},
+                                {tag: "span", add_class: "pull-right", children: [
+                                        {tag: "i", add_class: "icon-user"},
+                                        {tag: "span", text: "userlogin"}
+                                    ]}
+                            ]},
+                        {tag: "a", add_class: "btn btn-primary btn-mini flat", text: "Read More"}
+                    ]}
+            ]
+        }];
 
-    $("#index_last_comments").load("/battleWEB/controller?command=index", function(data) {
-        data = JSON.parse(data);
-        call_markup_index(index_last_events, data);
-        console.log(data);
-    }, "json");
+    call_markup_index(index_last_events_template, $("#index_last_events"), load_data);
 }
 
-function call_load_data_for_index_comments() {
-    var index_last_comments = {
-        name: "li", add_class: "clearfix", children: [
-            {name: "img", add_class: "pull-left img_client", attr: {src: "img/c1.jpg", alt: "image"}},
-            {name: "h4", add_class: "media-heading", bind: {"text": "text"}},
-            {name: "p", bind: {"text": "text"}}
-        ]
-    };
 
-    $("#index_last_comments").load("/battleWEB/controller?command=index", function(data) {
-        data = JSON.parse(data);
-        call_markup_index(index_last_comments, data);
-        console.log(data);
-    }, "json");
+
+function call_load_data_for_index_comments(load_data) {
+    var index_last_comments_template = [
+        {tag: "li", add_class: "clearfix", children: [
+                {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}},
+                {tag: "h4", add_class: "media-heading", text: "userlogin"},
+                {tag: "p", text: "commenttext"},
+                {tag: "p", children: [
+                        {tag: "span", children: [
+                                {tag: "i", add_class: "icon-time"},
+                                {tag: "span", text: "commentdate"}
+                            ]}
+                    ]}
+            ]
+        }];
+    call_markup_index(index_last_comments_template, $("#index_last_comments"), load_data);
+
 }
+
+
+
 
 function call_data_for_index_html() {
-    $.post("/battleWEB/controller?command=index", function(data, status) {
-        console.log(status);
-        data = JSON.parse(data);
-        console.log(data);
-        call_start_count_timer(data.battleyearfinishdate, data.battlemonthfinishdate);
+    $.post("/battleWEB/controller?command=index", function(respons, status) {
 
+        respons = JSON.parse(respons);
+
+        call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
+        $("#battledescriptionshort").text(respons["battledescriptionshort"]);
+        $("#battleanimationdescription").text(respons["battleanimationdescription"]);
+        $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
+
+        var dataArray = respons["lastcommentslist"];
+        for (var i in dataArray) {
+            var dataObj = dataArray[i];
+            call_load_data_for_index_comments(dataObj);
+        }
+
+        var dataArray = respons["lastphotoslist"];
+        for (var i in dataArray) {
+            var dataObj = dataArray[i];
+            call_load_data_for_index_events(dataObj);
+        }
+
+
+        console.log("Respons data for index ====> ", status);
     }, "json").fail(function(data) {
         console.log("Somsing wrang", data);
     });
+
+
+
+    /*
+
+     battlelinks
+
+     */
+
+
+
+
+
 }
 //"battleyearfinishdate": "2014-12-01",
 
 //    "battlemonthfinishdate": "2014-02-01",
-function call_markup_index(markupTemplate, data) {
+
+function call_markup_index(markupTemplate, parentsContainer, dataObj) {
+
+    for (var j in markupTemplate) {
+
+        var templateObj = markupTemplate[j];
+        // <<<<<<<<<<================================== Создание элемента тега
+        if ("tag" in templateObj) {
+            var element = $(document.createElement(templateObj["tag"]));
+            element.appendTo(parentsContainer);
+            var new_parentsContainer = element;
+        }
+        // <<<<<<<<<<================================== Добавление класса к элементу
+        if ("add_class" in templateObj) {
+            element.addClass(templateObj["add_class"]);
+        }
+        // <<<<<<<<<<================================== Добавление атрибутов к элементу
+        if ("attr" in templateObj) {
+            var attr = templateObj["attr"];
+            for (var name_prop in attr) {
+                var value = attr[name_prop];
+                value = dataObj[value] || value;
+                element.attr(name_prop, value);
+            }
+        }
+        // <<<<<<<<<<================================== Добавление текста к элементу
+        if ("text" in templateObj) {
+            var text_key = templateObj["text"];
+            text_key = dataObj[text_key] || text_key;
+            element.text(text_key);
+        }
+        // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
+        if ("children" in templateObj) {
+            call_markup_index(templateObj["children"], new_parentsContainer, dataObj);
+        }
+
+    }
 
 }

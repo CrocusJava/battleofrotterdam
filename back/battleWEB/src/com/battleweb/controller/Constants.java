@@ -27,6 +27,7 @@ public interface Constants {
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
 	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
+	public static final String COMMAND_FOOTER = "footer";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -107,17 +108,26 @@ public interface Constants {
 	public static final String PARAMETER_COMMENT_QUANTITY = "commentquantity";
 	public static final String PARAMETER_PHOTOS = "photos";
 	public static final String PARAMETER_PROJECT = "project";
+	public static final String PARAMETER_PROJECTS = "projects";
 	public static final String PARAMETER_TYPE = "type";
 	public static final String PARAMETER_COMPETITION = "competition";
 	public static final String PARAMETER_FIRST_PHOTO = "firstphoto";
 	public static final String PARAMETER_PHOTO_QUANTITY = "photoquantity";
 	public static final String PARAMETER_PROJECT_ID = "projectid";
+	public static final String PARAMETER_PHOTO_ID = "photoid";
 	public static final String PARAMETER_FIRST_POSITION = "firstposition";
 	public static final String PARAMETER_SIZE = "size";
 	public static final String PARAMETER_COMMENTS = "comments";
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_DATE = "date";
-		
+
+	public static final String PARAMETER_CONTACTS = "contacts";
+	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
+	public static final String PARAMETER_CONTACTS_ADDRESS = "contactsaddress";
+	public static final String PARAMETER_CONTACTS_EMAIL = "contactsemail";
+	public static final String PARAMETER_CONTACTS_PHONE = "contactsphone";
+	public static final String PARAMETER_CONTACTS_FAX = "contactsfax";
+	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
@@ -142,7 +152,6 @@ public interface Constants {
 	public static final Integer TEXT_TITLE_ABOUT_US = 541;
 	public static final Integer TEXT_TITLE_INFO = 551;
 	
-	
 	public static final Integer TEXT_Q1 = 600;
 	public static final Integer TEXT_A1 = 605;
 	public static final Integer TEXT_Q2 = 610;
@@ -154,7 +163,12 @@ public interface Constants {
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
 	
-	
+	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
+	public static final Integer TEXT_CONTACTS_ADDRESS = 710;
+	public static final Integer TEXT_CONTACTS_EMAIL = 720;
+	public static final Integer TEXT_CONTACTS_PHONE = 730;
+	public static final Integer TEXT_CONTACTS_FAX = 740;
+	public static final Integer TEXT_CONTACTS_SKYPE = 750;
 
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
@@ -162,6 +176,9 @@ public interface Constants {
 	public static final Integer URL_HOMEPAGE_LINK2 = 120;
 	public static final Integer URL_HOMEPAGE_LINK3 = 130;
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
+
 	
-		
+	//Set some constants
+	public static final String COMPETITION_TYPE_YEAR = "year";
+	public static final String COMPETITION_TYPE_MONTH = "month";
 }
