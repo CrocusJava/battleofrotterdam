@@ -334,7 +334,7 @@ function AjaxRegistrationLogin(form) {
                 $(".modal-body>p").text(data.registrationmessage);
                 $("#myModal").modal("show");
                 $("#myModal").on("hide", function() {
-                    window.location = "myaccount.html";
+                    window.location = "index.html";
                 });
             }
         }
