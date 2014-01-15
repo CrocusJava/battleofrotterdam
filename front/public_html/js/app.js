@@ -24,6 +24,8 @@ function call_all() {
 
     call_data_for_index_html();
 
+    call_data_for_footer();
+
 
 }
 
@@ -299,7 +301,7 @@ function call_lightbox() {
             image: {
                 tError: 'The image could not be loaded.',
                 titleSrc: function(item) {
-                    return item.el.attr('title') + '<small>by Your name</small>';
+                    return item.el.attr('title') + '<small>By ' + item.el.attr("data-user") + '</small>';
                 }
             }
         });
@@ -499,11 +501,11 @@ function call_load_data_for_index_events(load_data) {
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
-                                        {tag: "span", add_class:"padding_comment", text: "loaddate"}
+                                        {tag: "span", add_class: "padding_comment", text: "loaddate"}
                                     ]},
                                 {tag: "span", add_class: "pull-right", children: [
                                         {tag: "i", add_class: "icon-user"},
-                                        {tag: "span", add_class:"padding_comment", text: "userlogin"}
+                                        {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
                         {tag: "a", add_class: "btn btn-primary btn-mini flat", text: "Read More"}
@@ -615,4 +617,58 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 
     }
 
+}
+
+function call_load_data_for_footer_links(load_data) {
+    var index_footer_links_template = [
+        {tag: "li", children: [
+                {tag: "a", attr: {href: "linkurl"}, text: "linktitle"}
+            ]}
+    ];
+    call_markup_index(index_footer_links_template, $("#footer_links"), load_data);
+}
+
+function call_load_data_for_footer_gallery(load_data) {
+    var index_footer_gallery_template = [
+        // <div class="item_grid item3">
+//          <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title">
+//               <div class="hover"></div>
+//               <img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview">
+//          </a>
+//      </div>
+        {tag: "div", add_class: "item_grid item3", children: [
+                {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
+                        {tag: "div", add_class: "hover"},
+                        {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
+                    ]}
+            ]}
+    ];
+    call_markup_index(index_footer_gallery_template, $("#footer_gallery"), load_data);
+}
+
+function call_data_for_footer() {
+    $.post("/battleWEB/controller?command=footer", function(respons, status) {
+
+        //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
+
+
+
+        var dataArray = respons["battlelinks"];
+        for (var i in dataArray) {
+            var dataObj = dataArray[i];
+            call_load_data_for_footer_links(dataObj);
+        }
+
+        var dataArray = respons["footergallery"];
+        for (var i in dataArray) {
+            var dataObj = dataArray[i];
+            call_load_data_for_footer_gallery(dataObj);
+        }
+        //<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
+        call_grid();
+
+        console.log("Respons data for footer ====> ", status);
+    }, "json").fail(function(data) {
+        console.log("Somsing wrang", data);
+    });
 }
