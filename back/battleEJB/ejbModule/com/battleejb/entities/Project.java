@@ -13,9 +13,14 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({ 
-	@NamedQuery(name = "Project.findOrderByRatingAndCompetitionType",
-			query = "SELECT p FROM Project AS p WHERE p.competition IN (SELECT c FROM Competition c WHERE c.type.name = :competitionType " +
-					"AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate)") //ORDER BY rating....
+
+})
+@NamedNativeQueries({
+	@NamedNativeQuery(name = "Project.findByCompetitionIdAndOrderByRating",
+			query="SELECT *,(SELECT COUNT(`level`) FROM battledb.voice AS v" +
+					" WHERE v.project_id=p.id) as r FROM battledb.project AS p WHERE " +
+					"p.competition_id = :competitionId ORDER BY r DESC LIMIT :firstPosition, :size",
+					resultClass = Project.class)
 })
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;

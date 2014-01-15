@@ -13,7 +13,9 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "Competition.findCurrentCompetitionByType", query = "SELECT c FROM Competition c WHERE c.type = :type AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate")})
+		@NamedQuery(name = "Competition.findCurrentCompetitionByType", query = "SELECT c FROM Competition c WHERE c.type = :type AND c.dateStart <= :currentDate AND c.dateEnd >= :currentDate"),
+		@NamedQuery(name = "Competition.findCurrentCompetitionByTypeName", query = "SELECT c FROM Competition c WHERE c.type.name = :type AND c.dateStart <= current_date AND c.dateEnd >= current_date")
+})
 public class Competition implements Serializable {
 	private static final long serialVersionUID = 1L;
 

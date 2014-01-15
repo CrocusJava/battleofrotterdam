@@ -47,4 +47,16 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 		}
 		return competition;
 	}
+	
+	public Competition getCurrentCompetitionByType(String type){
+		Competition competition = null;
+		try {
+			competition = em.createNamedQuery("Competition.findCurrentCompetitionByTypeName", Competition.class)
+					.setParameter("type", type)
+					.getSingleResult();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return competition;
+	}
 }
