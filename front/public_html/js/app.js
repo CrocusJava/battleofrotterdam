@@ -540,6 +540,7 @@ function call_load_data_for_index_comments(load_data) {
 
 
 function call_data_for_index_html() {
+    //<<<<<<<<<<<<=============================задачи для страницы индекс
     if (window.location.href.match(/index.html$/)) {
 
         $.post("/battleWEB/controller?command=index", function(respons, status) {
@@ -567,6 +568,19 @@ function call_data_for_index_html() {
             console.log("Respons data for index ====> ", status);
         }, "json").fail(function(data) {
             console.log("Somsing wrang", data);
+        });
+    }
+
+    //<<<<<<<<<<<<=============================задачи для страницы поска
+
+    if (window.location.href.match(/search.html$/)) {
+        var result_search = $("#result_search");
+        $("#search").on("keyup", function() {
+            var $this = $(this);
+            $(result_search).text($this.val());
+            if ($this.val().length >= 3) {
+                console.log("ajax");
+            }
         });
     }
 
