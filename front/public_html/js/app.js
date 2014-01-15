@@ -499,11 +499,11 @@ function call_load_data_for_index_events(load_data) {
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
-                                        {tag: "span", text: "loaddate"}
+                                        {tag: "span", add_class:"padding_comment", text: "loaddate"}
                                     ]},
                                 {tag: "span", add_class: "pull-right", children: [
                                         {tag: "i", add_class: "icon-user"},
-                                        {tag: "span", text: "userlogin"}
+                                        {tag: "span", add_class:"padding_comment", text: "userlogin"}
                                     ]}
                             ]},
                         {tag: "a", add_class: "btn btn-primary btn-mini flat", text: "Read More"}
