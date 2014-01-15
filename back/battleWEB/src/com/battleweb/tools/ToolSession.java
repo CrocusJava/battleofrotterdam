@@ -2,6 +2,7 @@ package com.battleweb.tools;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,5 +41,15 @@ public class ToolSession {
 	public String getUserLocalization(ServletRequest request){
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		return (String)session.getAttribute(Constants.PARAMETER_SESSION_LOCALE);
+	}
+	
+	public ServletContext getServletContext(ServletRequest request){
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		return session.getServletContext();
+	}
+	
+	public Integer getUserId(ServletRequest request){
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		return (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDUSER);
 	}
 }

@@ -21,7 +21,8 @@ public interface Constants {
 	public static final String COMMAND_INDEX = "index";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
-	public static final String COMMAND_UPLOAD = "upload";
+	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
+	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
 	public static final String COMMAND_VIEWPROJECT = "viewproject";
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
@@ -181,4 +182,8 @@ public interface Constants {
 	//Set some constants
 	public static final String COMPETITION_TYPE_YEAR = "year";
 	public static final String COMPETITION_TYPE_MONTH = "month";
+	
+	//Path
+	public static final String PATH_AVATAR = "./../photo/avatar";
+	public static final String PATH_PHOTO = "./../photo/";
 }

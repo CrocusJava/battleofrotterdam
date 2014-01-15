@@ -20,7 +20,7 @@ import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
 import com.battleweb.controller.commands.CommandRegistration;
-import com.battleweb.controller.commands.CommandUpload;
+import com.battleweb.controller.commands.CommandUploadAvatar;
 import com.battleweb.controller.commands.CommandViewPhotoComments;
 import com.battleweb.controller.commands.CommandViewProject;
 import com.battleweb.controller.commands.CommandViewProjectComments;
@@ -52,7 +52,9 @@ public class CommandRequest {
 	@EJB 
 	private CommandFAQ commandFAQ;
 	@EJB 
-	private CommandUpload commandUpload;
+	private CommandUploadAvatar commandUploadAvatar;
+	@EJB 
+	private CommandUploadAvatar commandUploadPhoto;
 	@EJB
 	private CommandCurrentRankings commandCurrentRankings;
 	@EJB
@@ -77,7 +79,8 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_INDEX, commandIndex);
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
 		commands.put(Constants.COMMAND_FAQ, commandFAQ);
-		commands.put(Constants.COMMAND_UPLOAD, commandUpload);
+		commands.put(Constants.COMMAND_UPLOAD_AVATAR, commandUploadAvatar);
+		commands.put(Constants.COMMAND_UPLOAD_PHOTO, commandUploadPhoto);
 		commands.put(Constants.COMMAND_CURRENTRANKINGS, commandCurrentRankings);
 		commands.put(Constants.COMMAND_VIEWPROJECT, commandViewProject);
 		commands.put(Constants.COMMAND_VIEW_PROJECT_PHOTOS, commandViewProjectPhotos);
