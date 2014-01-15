@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Photo.findLast", query="SELECT p FROM Photo AS p ORDER BY p.loadDate DESC"),
+	@NamedQuery(name = "Photo.findRendom", query="SELECT p FROM Photo p ORDER BY RAND()"),
 	@NamedQuery(name = "Photo.findAll", query="SELECT p FROM Photo p"),
 	@NamedQuery(name = "Photo.findByProjectId", query="SELECT p FROM Photo AS p WHERE p.project.id=:projectId ORDER BY p.loadDate DESC"),
 	@NamedQuery(name = "Photo.getCountByProjectId", query="SELECT COUNT(p) FROM Photo AS p WHERE p.project.id=:projectId"),
