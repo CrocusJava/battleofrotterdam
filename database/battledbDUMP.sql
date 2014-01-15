@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2014 at 02:48 PM
+-- Generation Time: Jan 14, 2014 at 10:07 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `Address`
@@ -46,7 +46,8 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (28, 'test100', 'test100', 'test100', '43', NULL),
 (29, '', '', '', '', NULL),
 (30, 'test100', 'test100500', 'test100500', '43', NULL),
-(31, 'test55', 'test55', 'test55', '32', NULL);
+(31, 'test55', 'test55', 'test55', '32', NULL),
+(32, 'ss', '23232', 'ss', '23s', NULL);
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,7 @@ INSERT INTO `Comment` (`id`, `commentText`, `commentDate`, `user_id`, `project_i
 (1, 'Lets go!', '2014-01-01 16:00:00', 11, 1, 1),
 (2, 'Do it!', '2014-01-01 16:00:00', 11, 2, 2),
 (3, 'It will be something... :)', '2014-01-03 16:00:00', 12, 3, 3),
-(4, 'Hello!!!', '2014-01-03 16:00:00', 12, 4, 4),
+(4, 'Hello!!!!!!!!!!!!', '2014-01-03 16:00:00', 12, 4, 4),
 (5, 'Nice try!', '2014-01-04 16:00:00', 13, 5, 5),
 (6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6);
 
@@ -150,12 +151,12 @@ CREATE TABLE IF NOT EXISTS `Photo` (
 --
 
 INSERT INTO `Photo` (`id`, `path`, `loadDate`, `description`, `project_id`) VALUES
-(1, 'remont1.jpg', '2014-01-01 16:00:00', 'description of Rays_month_project_photo', 1),
-(2, 'remont11.jpg', '2014-01-01 16:00:00', 'description of Rays_year_project_photo', 2),
-(3, 'remont3.jpg', '2014-01-03 16:00:00', 'description of Joes month project', 3),
-(4, 'remont5.jpg', '2014-01-03 16:00:00', 'description of JoesJoes_year_project_photo', 4),
-(5, 'remont13.jpg', '2014-01-04 16:00:00', 'description of Jennys_year_project_photo', 5),
-(6, 'remont14.jpg', '2014-01-05 16:00:00', 'description of Lupes_year_project_photo', 6);
+(1, 'img/remont1.jpg', '2014-01-01 16:00:00', 'description of Rays_month_project_photo', 1),
+(2, 'img/remont11.jpg', '2014-01-01 16:00:00', 'description of Rays_year_project_photo', 2),
+(3, 'img/remont3.jpg', '2014-01-03 16:00:00', 'description of Joes month project', 3),
+(4, 'img/remont5.jpg', '2014-01-03 16:00:00', 'description of JoesJoes_year_project_photo', 4),
+(5, 'img/remont13.jpg', '2014-01-04 16:00:00', 'description of Jennys_year_project_photo', 5),
+(6, 'img/remont14.jpg', '2014-01-05 16:00:00', 'description of Lupes_year_project_photo', 6);
 
 -- --------------------------------------------------------
 
@@ -284,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `URL` (
 --
 
 INSERT INTO `URL` (`id`, `keyval`, `name`, `value`) VALUES
-(1, 100, 'Name of Battle video url', 'Value of Battle video url'),
+(1, 100, '//www.youtube.com/embed/5L96q7Gg9wE?feature=p', '//www.youtube.com/embed/5L96q7Gg9wE?feature=player_detailpage'),
 (2, 110, 'Name of Link1 on Home-page', 'Value of Link1 on Home-page'),
 (3, 120, 'Name of Link2 on Home-page', 'Value of Link2 on Home-page'),
 (4, 130, 'Name of Link3 on Home-page', 'Value of Link3 on Home-page'),
@@ -315,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `User`
@@ -327,10 +328,11 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
 (5, 'test55', 'test55', 'test55', 'test55', '7e39cfce74d155294619613f42484f18', 'default', 'dsad@ukr.net', '32421', NULL, 31, 2, 1, 1, 0),
-(11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
-(12, 'Joe', '', 'Morton', 'joe_login', '1111', 'c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
-(13, 'Jenny', '', 'Flex', 'jenny_login', '1111', 'c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
-(14, 'Lupe', '', 'Lamora', 'lupe_login', '1111', 'c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1);
+(11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
+(12, 'Joe', '', 'Morton', 'joe_login', '1111', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
+(13, 'Jenny', '', 'Flex', 'jenny_login', '1111', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
+(14, 'Lupe', '', 'Lamora', 'lupe_login', '1111', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1),
+(15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0);
 
 -- --------------------------------------------------------
 

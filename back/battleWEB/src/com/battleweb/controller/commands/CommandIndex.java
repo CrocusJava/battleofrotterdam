@@ -77,7 +77,7 @@ public class CommandIndex implements Command{
 		
 		
 		//get comments from db 
-		List<Comment> lastComments = commentBean.findLast(Constants.HOME_PAGE_COMMENTS_COUNT);
+		List<Comment> lastComments = commentBean.findLast(Constants.HOME_PAGE_LAST_COMMENTS_COUNT);
 		JsonArrayBuilder lastCommentsArrayBuilder = Json.createArrayBuilder();
 		for(Comment comment:lastComments){													
 			JsonObject jsonObjectComment = Json.createObjectBuilder()
@@ -85,6 +85,8 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
 				.add(Constants.PARAMETER_COMMENT_DATE, comment.getCommentDate().toString())
 				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
+				.add(Constants.PARAMETER_PROJECT_ID, comment.getProject().getId())
+				.add(Constants.PARAMETER_PHOTO_ID, comment.getPhoto().getId())
 				.build();
 			lastCommentsArrayBuilder.add(jsonObjectComment);
 		}
@@ -92,7 +94,7 @@ public class CommandIndex implements Command{
 		
 		
 		//get photos from db 
-		List<Photo> lastPhotos = photoBean.findLast(Constants.HOME_PAGE_PHOTOS_COUNT);
+		List<Photo> lastPhotos = photoBean.findLast(Constants.HOME_PAGE_LAST_PHOTOS_COUNT);
 		JsonArrayBuilder lastPhotosArrayBuilder = Json.createArrayBuilder();
 		for(Photo photo:lastPhotos){													
 			JsonObject jsonObjectPhoto = Json.createObjectBuilder()
@@ -101,6 +103,8 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_LOAD_DATE, photo.getLoadDate().toString())
 				.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
 				.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
+				.add(Constants.PARAMETER_PROJECT_ID, photo.getProject().getId())
+				.add(Constants.PARAMETER_PHOTO_ID, photo.getId())
 				.build();
 			lastPhotosArrayBuilder.add(jsonObjectPhoto);
 		}

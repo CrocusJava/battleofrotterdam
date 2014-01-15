@@ -31,6 +31,16 @@ public class PhotoBean extends AbstractFacade<Photo> {
 				.setMaxResults(n).getResultList();
 	}
 
+	public List<Photo> findRamdom(Integer n) {
+		return em.createNamedQuery("Photo.findRendom", Photo.class)
+				.setMaxResults(n).getResultList();
+	}
+
+	public List<Photo> findAll() {
+		return em.createNamedQuery("Photo.findAll", Photo.class)
+				.getResultList();
+	}
+
 	public List<Photo> findLimitByProjectId(int projectId,
 			int firstPosition, int size) {
 		List<Photo> photos = null;
@@ -49,6 +59,17 @@ public class PhotoBean extends AbstractFacade<Photo> {
 		try {
 			count = (Long) em.createNamedQuery("Photo.getCountByProjectId")
 					.setParameter("projectId", projectId)
+					.getSingleResult();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	public long getCount(){
+		long count = 0;
+		try {
+			count = (Long) em.createNamedQuery("Photo.getCount")
 					.getSingleResult();
 		} catch (PersistenceException e) {
 			e.printStackTrace();

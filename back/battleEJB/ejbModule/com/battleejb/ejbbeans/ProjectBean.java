@@ -1,6 +1,5 @@
 package com.battleejb.ejbbeans;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -18,7 +17,7 @@ import com.battleejb.entities.Project;
 @Stateless
 @LocalBean
 public class ProjectBean extends AbstractFacade<Project> {
-	
+
 	@PersistenceContext(unitName = "persistence")
 	EntityManager em;
 
@@ -29,15 +28,19 @@ public class ProjectBean extends AbstractFacade<Project> {
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;
-	}	
-	
-	public List<Project> findLimitOrderByRatingAndCompetitionType(String competitionType, int firstPosition, int size) {
+	}
+
+	public List<Project> findLimitByCompetitionIdAndOrderByRating(
+			int competitionId, int firstPosition, int size) {
 		List<Project> projects = null;
 		try {
-			projects = em.createNamedQuery("Project.findOrderByRatingAndCompetitionType", Project.class)
-					.setParameter("competitionType", competitionType)
-					.setParameter("currentDate", new Date())
-					.setFirstResult(firstPosition).setMaxResults(size).getResultList();
+			projects = em
+					.createNamedQuery(
+							"Project.findByCompetitionIdAndOrderByRating",
+							Project.class)
+					.setParameter("competitionId", competitionId)
+					.setParameter("firstPosition", firstPosition)
+					.setParameter("size", size).getResultList();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		}

@@ -11,10 +11,10 @@ INSERT INTO Address VALUES
 
 INSERT INTO User VALUES
 (1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'path', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 0, 0, 0),
-(11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
-(12, 'Joe', '', 'Morton', 'joe_login', '1111', 'c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
-(13, 'Jenny', '', 'Flex',  'jenny_login', '1111', 'c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
-(14, 'Lupe', '', 'Lamora',  'lupe_login', '1111', 'c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1);
+(11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
+(12, 'Joe', '', 'Morton', 'joe_login', '1111', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
+(13, 'Jenny', '', 'Flex',  'jenny_login', '1111', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
+(14, 'Lupe', '', 'Lamora',  'lupe_login', '1111', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1);
 
 INSERT INTO CompetitionType VALUES
 (1, 'year'),
@@ -35,12 +35,24 @@ INSERT INTO Project VALUES
 (6, 'Lupes year project','description of Lupes year project','2014-01-05',14,1,1);
 
 INSERT INTO Photo VALUES
-(1, 'remont1.jpg','2014-01-01','description of Rays_month_project_photo',1),
-(2, 'remont11.jpg','2014-01-01','description of Rays_year_project_photo',2),
-(3, 'remont3.jpg','2014-01-03','description of Joes month project',3),
-(4, 'remont5.jpg','2014-01-03','description of JoesJoes_year_project_photo',4),
-(5, 'remont13.jpg','2014-01-04','description of Jennys_year_project_photo',5),
-(6, 'remont14.jpg','2014-01-05','description of Lupes_year_project_photo',6);
+(1, 'img/remont1.jpg','2014-01-01','description of Rays_month_project_photo',1),
+(2, 'img/remont11.jpg','2014-01-01','description of Rays_year_project_photo',2),
+(3, 'img/remont3.jpg','2014-01-03','description of Joes month project',3),
+(4, 'img/remont5.jpg','2014-01-03','description of JoesJoes_year_project_photo',4),
+(5, 'img/remont13.jpg','2014-01-04','description of Jennys_year_project_photo',5),
+(6, 'img/remont14.jpg','2014-01-05','description of Lupes_year_project_photo',6),
+(7, 'img/remont8.jpg','2014-01-06','description of Rays_month_project_photo',1),
+(8, 'img/remont12.jpg','2014-01-07','description of Rays_year_project_photo',2),
+(9, 'img/remont2.jpg','2014-01-08','description of Joes month project',3),
+(10, 'img/remont4.jpg','2014-01-09','description of JoesJoes_year_project_photo',4),
+(11, 'img/remont9.jpg','2014-01-10','description of Jennys_year_project_photo',5),
+(12, 'img/remont10.jpg','2014-01-11','description of Lupes_year_project_photo',6),
+(13, 'img/remont15.jpg','2014-01-11','description of Rays_year_project_photo',2),
+(14, 'img/remont16.jpg','2014-01-12','description of Joes month project',3),
+(15, 'img/remont17.jpg','2014-01-13','description of JoesJoes_year_project_photo',4),
+(16, 'img/remont18.jpg','2014-01-14','description of Jennys_year_project_photo',5),
+(17, 'img/remont19.gif','2014-01-15','description of Lupes_year_project_photo',6);
+
 
 INSERT INTO Comment VALUES
 (1, 'Lets go!','2014-01-01',11,1,1),

@@ -15,6 +15,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 import com.battleejb.ejbbeans.CommentBean;
+import com.battleejb.ejbbeans.CompetitionBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.ejbbeans.VoiceBean;
@@ -42,6 +43,8 @@ public class CommandCurrentRankings implements Command {
 	private CommentBean commentBean;
 	@EJB
 	private VoiceBean voiceBean;
+	@EJB
+	private CompetitionBean competitionBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -64,7 +67,7 @@ public class CommandCurrentRankings implements Command {
 	private void addToJsonObjThreeProjects(
 			JsonObjectBuilder jsonObjectResponseBuilder, String competitionType) {
 		List<Project> projects = projectBean
-				.findLimitOrderByRatingAndCompetitionType(competitionType, 0, 3);
+				.findLimitByCompetitionIdAndOrderByRating(competitionBean.getCurrentCompetitionByType(competitionType).getId(), 0, 3);
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
 
