@@ -99,7 +99,7 @@ public class CommandFooter implements Command {
 		// create list of photos for gallery in footer
 		List<Photo> photosGallery = new ArrayList<Photo>();
 		long photosCount = photoBean.getCount();
-		if (photosCount<Constants.FOOTER_GALLERY_PHOTOS_COUNT){
+		if (photosCount<=Constants.FOOTER_GALLERY_PHOTOS_COUNT){
 			photosGallery = photoBean.findAll();
 			int i  = (int) photosCount;
 			int j = 0;
@@ -108,6 +108,8 @@ public class CommandFooter implements Command {
 				i++;
 				j++;
 			}
+		}else{
+			photosGallery = photoBean.findRamdom(Constants.FOOTER_GALLERY_PHOTOS_COUNT);
 		}
 		
 		JsonArrayBuilder photosGalleryArrayBuilder = Json.createArrayBuilder();

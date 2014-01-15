@@ -31,6 +31,11 @@ public class PhotoBean extends AbstractFacade<Photo> {
 				.setMaxResults(n).getResultList();
 	}
 
+	public List<Photo> findRamdom(Integer n) {
+		return em.createNamedQuery("Photo.findRendom", Photo.class)
+				.setMaxResults(n).getResultList();
+	}
+
 	public List<Photo> findAll() {
 		return em.createNamedQuery("Photo.findAll", Photo.class)
 				.getResultList();
