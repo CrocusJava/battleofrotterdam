@@ -498,7 +498,7 @@ function call_load_data_for_index_events(load_data) {
                         {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
                         {tag: "h4", text: "competitionname"},
                         {tag: "p", text: "photodescription"},
-                        {tag: "p", children: [
+                        {tag: "p", add_class: "clear", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
                                         {tag: "span", add_class: "padding_comment", text: "loaddate"}
@@ -527,7 +527,7 @@ function call_load_data_for_index_comments(load_data) {
                 {tag: "p", children: [
                         {tag: "span", children: [
                                 {tag: "i", add_class: "icon-time"},
-                                {tag: "span", text: "commentdate"}
+                                {tag: "span", add_class: "padding_comment", text: "commentdate"}
                             ]}
                     ]}
             ]
