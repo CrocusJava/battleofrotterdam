@@ -126,6 +126,7 @@ public interface Constants {
 	public static final String PARAMETER_DATE = "date";
 	public static final String PARAMETER_VOTE_ABLE = "voteable";
 	public static final String PARAMETER_COMPETITION_ID = "competitionid";
+	public static final String PARAMETER_VOTE_RESULT = "voteresult";
 
 	public static final String PARAMETER_CONTACTS = "contacts";
 	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
