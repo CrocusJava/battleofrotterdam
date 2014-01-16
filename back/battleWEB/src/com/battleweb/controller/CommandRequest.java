@@ -21,6 +21,7 @@ import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
 import com.battleweb.controller.commands.CommandLogout;
+import com.battleweb.controller.commands.CommandProjects;
 import com.battleweb.controller.commands.CommandRegistration;
 import com.battleweb.controller.commands.CommandUploadAvatar;
 import com.battleweb.controller.commands.CommandSendComment;
@@ -80,6 +81,8 @@ public class CommandRequest {
 	private CommandSendComment commandSendComment;
 	@EJB
 	private CommandLogout commandLogout;
+	@EJB
+	private CommandProjects commandProjects;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -104,6 +107,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_VOTE, commandVote);
 		commands.put(Constants.COMMAND_SEND_COMMENT, commandSendComment);
 		commands.put(Constants.COMMAND_LOGOUT, commandLogout);
+		commands.put(Constants.COMMAND_PROJECTS, commandProjects);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
