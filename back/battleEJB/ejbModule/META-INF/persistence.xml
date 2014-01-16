@@ -18,6 +18,7 @@
 		<class>com.battleejb.entities.Voice</class>
 		<class>com.battleejb.entities.Text</class>
 		<class>com.battleejb.entities.URL</class>
+		<class>com.battleejb.entities.News</class>
 		<properties>
         <!--  <property name="hibernate.hbm2ddl.auto" value="" />
          <property name="hibernate.show_sql" value="false" />--> 
