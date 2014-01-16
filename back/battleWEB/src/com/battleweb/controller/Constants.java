@@ -30,6 +30,8 @@ public interface Constants {
 	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
 	public static final String COMMAND_FOOTER = "footer";
+	public static final String COMMAND_CREATE_PROJECT = "createproject";
+	public static final String COMMAND_VOTE = "vote";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -122,6 +124,7 @@ public interface Constants {
 	public static final String PARAMETER_COMMENTS = "comments";
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_DATE = "date";
+	public static final String PARAMETER_VOTE_ABLE = "voteable";
 
 	public static final String PARAMETER_CONTACTS = "contacts";
 	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
@@ -131,6 +134,8 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_FAX = "contactsfax";
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
+	
+	
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
