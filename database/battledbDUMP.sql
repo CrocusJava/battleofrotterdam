@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
@@ -263,7 +263,8 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (34, 720, 'mail@must.be.here ', 'mail@must.be.here'),
 (35, 730, 'phone: +1 (44) 123-45-67 ', 'telefoon: +1 (44) 123-45-67'),
 (36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
-(37, 750, 'Skype Me ', 'Skype Me');
+(37, 750, 'Skype Me ', 'Skype Me')
+(38, 800, 'Нour project is registered','Uw project is geregistreerd');
 
 -- --------------------------------------------------------
 
