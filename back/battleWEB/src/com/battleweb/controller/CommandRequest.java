@@ -21,6 +21,7 @@ import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
 import com.battleweb.controller.commands.CommandRegistration;
+import com.battleweb.controller.commands.CommandSendComment;
 import com.battleweb.controller.commands.CommandUpload;
 import com.battleweb.controller.commands.CommandViewPhotoComments;
 import com.battleweb.controller.commands.CommandViewProject;
@@ -71,6 +72,8 @@ public class CommandRequest {
 	private CommandCreateProject commandCreateProject;
 	@EJB
 	private CommandVote commandVote;
+	@EJB
+	private CommandSendComment commandSendComment;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -92,6 +95,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_FOOTER, commandFooter);
 		commands.put(Constants.COMMAND_CREATE_PROJECT, commandCreateProject);
 		commands.put(Constants.COMMAND_VOTE, commandVote);
+		commands.put(Constants.COMMAND_SEND_COMMENT, commandSendComment);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
