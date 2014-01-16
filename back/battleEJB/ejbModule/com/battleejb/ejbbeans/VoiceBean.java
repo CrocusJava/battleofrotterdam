@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import com.battleejb.entities.Project;
+import com.battleejb.entities.User;
 import com.battleejb.entities.Voice;
 
 /**
@@ -30,9 +31,9 @@ public class VoiceBean extends AbstractFacade<Voice> {
 	}
 
 	public long getCountByProject(Project project) {
-		return  getCountByProjectId(project.getId());
+		return getCountByProjectId(project.getId());
 	}
-	
+
 	public long getCountByProjectId(int projectId) {
 		long count = 0;
 		try {
@@ -43,14 +44,26 @@ public class VoiceBean extends AbstractFacade<Voice> {
 		}
 		return count;
 	}
-	
-	public long getRatingByProjectId(int projectId){
+
+	public long getRatingByProjectId(int projectId) {
 		return getCountByProjectId(projectId);
 	}
-	
-	public long getRatingByProject(Project project){
+
+	public long getRatingByProject(Project project) {
 		return getRatingByProjectId(project.getId());
 	}
-	
-	
+
+	public Voice findByProjecAndUserId(Project project, int userId) {
+		Voice voice = null;
+		try {
+			voice = em
+					.createNamedQuery("Voice.findByProjectAndUserId", Voice.class)
+					.setParameter("project", project)
+					.setParameter("userId", userId).getSingleResult();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return voice;
+	}
+
 }
