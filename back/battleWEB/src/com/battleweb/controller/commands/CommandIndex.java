@@ -1,6 +1,8 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +27,8 @@ import com.battleejb.entities.Comment;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
 import com.battleejb.entities.Photo;
-import com.battleejb.entities.URL;
 import com.battleweb.controller.Constants;
+import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolJSON;
 //import org.json.simple.JSONArray
 
@@ -54,6 +56,9 @@ public class CommandIndex implements Command{
 	@EJB
 	private PhotoBean photoBean;
 	
+	private SimpleDateFormat dateFormatTimer = new SimpleDateFormat("MM/dd/yyyy");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -66,6 +71,10 @@ public class CommandIndex implements Command{
 		
 		Competition yearCompetition = competitionBean.getCurrentCompetitionByType(yearType, currentDate);
 		Competition monthCompetition = competitionBean.getCurrentCompetitionByType(monthType, currentDate);
+		
+		Date yearCompetitionDate = yearCompetition.getDateEnd();
+		Date monthCompetitionDate = monthCompetition.getDateEnd();
+			System.out.println("********* "+dateFormatTimer.format(monthCompetitionDate));
 		
 		//get descriptions from db
 		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());
@@ -114,8 +123,8 @@ public class CommandIndex implements Command{
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
-				.add(Constants.PARAMETER_BATTLE_YEAR_FINISH_DATE,yearCompetition.getDateEnd().toString())
-				.add(Constants.PARAMETER_BATTLE_MONTH_FINISH_DATE,monthCompetition.getDateEnd().toString())
+				.add(Constants.PARAMETER_BATTLE_YEAR_FINISH_DATE,dateFormatTimer.format(yearCompetitionDate))
+				.add(Constants.PARAMETER_BATTLE_MONTH_FINISH_DATE,dateFormatTimer.format(monthCompetitionDate))
 				.add(Constants.PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT, battleDescriptionShort)
 				.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
 				.add(Constants.PARAMETER_URL_BATTLE_ANIMATION, animationURL)
