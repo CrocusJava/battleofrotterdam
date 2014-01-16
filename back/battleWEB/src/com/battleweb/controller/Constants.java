@@ -141,7 +141,10 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
 	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
-		
+	
+	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
+//	public static final String PARAMETER_YEAR = "year";
+//	public static final String PARAMETER_MONTH = "month";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
@@ -199,6 +202,9 @@ public interface Constants {
 	public static final String COMPETITION_TYPE_MONTH = "month";
 	
 	//Path
-	public static final String PATH_AVATAR = "./../photo/avatar";
-	public static final String PATH_PHOTO = "./../photo/";
+	public static final String PATH_SAVE_AVATAR = "./../photo/avatar";
+	public static final String PATH_SAVE_PHOTO = "./../photo/";
+	
+	public static final String PATH_GET_PHOTO="/photo/controller?command=getphoto&photoname=";
+	public static final String PATH_GET_AVATAR="/photo/avatar/controller?command=getphoto&photoname=";
 }
