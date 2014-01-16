@@ -1,7 +1,9 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -14,9 +16,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 
 import com.battleejb.ejbbeans.CommentBean;
-import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.entities.Comment;
-import com.battleejb.entities.Photo;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
@@ -37,6 +37,9 @@ public class CommandViewProjectComments implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		int projectId = jsonObjectRequest
@@ -63,7 +66,7 @@ public class CommandViewProjectComments implements Command {
 					.add(Constants.PARAMETER_ID, comment.getId())
 					.add(Constants.PARAMETER_TEXT, comment.getCommentText())
 					.add(Constants.PARAMETER_DATE,
-							comment.getCommentDate().toString())
+							dateFormat.format(comment.getCommentDate()))
 					.add(Constants.PARAMETER_USER, jsonUser).build();
 			jsonPhotos.add(jsonPhoto);
 		}

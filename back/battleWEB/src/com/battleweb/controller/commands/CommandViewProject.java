@@ -1,7 +1,9 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -16,6 +18,7 @@ import javax.json.JsonObjectBuilder;
 import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
+import com.battleejb.ejbbeans.VoiceBean;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
@@ -39,10 +42,15 @@ public class CommandViewProject implements Command {
 	private CommentBean commentBean;
 	@EJB
 	private PhotoBean photoBean;
+	@EJB
+	private VoiceBean voiceBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		int projectId = jsonObjectRequest
@@ -54,7 +62,7 @@ public class CommandViewProject implements Command {
 		Competition competition = project.getCompetition();
 		System.out.println(competition);
 		List<Photo> photos = project.getPhotos();
-		int rating = 0; 								//discussed!!!
+		long rating = voiceBean.getCountByProject(project); 								//discussed!!!
 
 		JsonObject jsonCompetition = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID, competition.getId())
@@ -72,13 +80,14 @@ public class CommandViewProject implements Command {
 		JsonObjectBuilder jsonObjectBuilder = Json
 				.createObjectBuilder()
 				.add(Constants.PARAMETER_NAME, project.getName())
-				.add(Constants.PARAMETER_CREATION_DATE, project.getCreationDate().toString())
+				.add(Constants.PARAMETER_CREATION_DATE, dateFormat.format(project.getCreationDate()))
 				.add(Constants.PARAMETER_DESCRIPTION, project.getDescription())
 				.add(Constants.PARAMETER_COMPETITION, jsonCompetition)
 				.add(Constants.PARAMETER_RATING, rating)
 				.add(Constants.PARAMETER_VOTES_QUANTITY, project.getVoices().size())
 				.add(Constants.PARAMETER_COMMENT_QUANTITY, commentBean.getCountByProjectId(projectId))
-				.add(Constants.PARAMETER_PHOTO_QUANTITY, photoBean.getCountByProjectId(projectId));
+				.add(Constants.PARAMETER_PHOTO_QUANTITY, photoBean.getCountByProjectId(projectId))
+				.add(Constants.PARAMETER_USER, jsonUser);
 
 		int size = photos.size();
 		JsonObject jsonFirstPhoto = null;
