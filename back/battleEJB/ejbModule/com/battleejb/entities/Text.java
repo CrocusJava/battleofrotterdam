@@ -35,9 +35,15 @@ public class Text implements Serializable {
 
 	private String valueNl;
 	
+	@OneToOne(mappedBy="text")
+	private News news;
+	
+//-----------------------------	
+	
     public Text() {
     }
-
+//-----------------------------
+    
 	public Integer getId() {
 		return id;
 	}

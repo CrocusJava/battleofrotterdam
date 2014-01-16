@@ -1,7 +1,9 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -19,7 +21,6 @@ import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
 
-
 /**
  * @author Lukashchuk Ivan
  * 
@@ -27,6 +28,7 @@ import com.battleweb.tools.ToolJSON;
 @Stateless
 @LocalBean
 public class CommandViewPhotoComments implements Command {
+	
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
@@ -36,9 +38,11 @@ public class CommandViewPhotoComments implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
+
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
-		int photoId = jsonObjectRequest
-				.getInt(Constants.PARAMETER_PHOTO_ID);
+		int photoId = jsonObjectRequest.getInt(Constants.PARAMETER_PHOTO_ID);
 		int firstPosition = jsonObjectRequest
 				.getInt(Constants.PARAMETER_FIRST_POSITION);
 		int size = jsonObjectRequest.getInt(Constants.PARAMETER_SIZE);
@@ -47,21 +51,20 @@ public class CommandViewPhotoComments implements Command {
 				firstPosition, size);
 		JsonArrayBuilder jsonPhotos = Json.createArrayBuilder();
 		for (Comment comment : comments) {
-			
+
 			User user = comment.getUser();
-			JsonObject jsonUser = Json
-					.createObjectBuilder()
+			JsonObject jsonUser = Json.createObjectBuilder()
 					.add(Constants.PARAMETER_ID, user.getId())
 					.add(Constants.PARAMETER_LOGIN, user.getLogin())
-					.add(Constants.PARAMETER_AVATAR_PATH,
-							user.getPhotoPath()).build();
-			
+					.add(Constants.PARAMETER_AVATAR_PATH, user.getPhotoPath())
+					.build();
+
 			JsonObject jsonPhoto = Json
 					.createObjectBuilder()
 					.add(Constants.PARAMETER_ID, comment.getId())
 					.add(Constants.PARAMETER_TEXT, comment.getCommentText())
 					.add(Constants.PARAMETER_DATE,
-							comment.getCommentDate().toString())
+							dateFormat.format(comment.getCommentDate()))
 					.add(Constants.PARAMETER_USER, jsonUser).build();
 			jsonPhotos.add(jsonPhoto);
 		}

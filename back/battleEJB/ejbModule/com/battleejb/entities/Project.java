@@ -16,10 +16,10 @@ import java.util.List;
 
 })
 @NamedNativeQueries({
-	@NamedNativeQuery(name = "Project.findByCompetitionIdAndOrderByRating",
+	@NamedNativeQuery(name = "Project.findApprovedByCompetitionIdAndOrderByRating",
 			query="SELECT *,(SELECT COUNT(`level`) FROM battledb.voice AS v" +
 					" WHERE v.project_id=p.id) as r FROM battledb.project AS p WHERE " +
-					"p.competition_id = :competitionId ORDER BY r DESC LIMIT :firstPosition, :size",
+					"p.competition_id = :competitionId AND p.approved=1 ORDER BY r DESC LIMIT :firstPosition, :size",
 					resultClass = Project.class)
 })
 public class Project implements Serializable {

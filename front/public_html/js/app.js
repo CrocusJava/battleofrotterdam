@@ -527,7 +527,7 @@ function call_load_data_for_index_comments(load_data) {
                 {tag: "p", children: [
                         {tag: "span", children: [
                                 {tag: "i", add_class: "icon-time"},
-                                {tag: "span", text: "commentdate"}
+                                {tag: "span", add_class: "padding_comment", text: "commentdate"}
                             ]}
                     ]}
             ]

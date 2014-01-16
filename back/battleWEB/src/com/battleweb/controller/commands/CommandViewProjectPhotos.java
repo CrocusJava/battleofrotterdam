@@ -1,7 +1,9 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -37,6 +39,9 @@ public class CommandViewProjectPhotos implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		int projectId = jsonObjectRequest
@@ -54,7 +59,7 @@ public class CommandViewProjectPhotos implements Command {
 					.add(Constants.PARAMETER_ID, photo.getId())
 					.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
 					.add(Constants.PARAMETER_DATE,
-							photo.getLoadDate().toString())
+							dateFormat.format(photo.getLoadDate()))
 					.add(Constants.PARAMETER_DESCRIPTION,
 							photo.getDescription())
 					.add(Constants.PARAMETER_COMMENT_QUANTITY,

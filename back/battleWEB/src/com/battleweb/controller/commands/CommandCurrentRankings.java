@@ -1,7 +1,9 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -45,6 +47,9 @@ public class CommandCurrentRankings implements Command {
 	private VoiceBean voiceBean;
 	@EJB
 	private CompetitionBean competitionBean;
+	
+	private SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -67,7 +72,7 @@ public class CommandCurrentRankings implements Command {
 	private void addToJsonObjThreeProjects(
 			JsonObjectBuilder jsonObjectResponseBuilder, String competitionType) {
 		List<Project> projects = projectBean
-				.findLimitByCompetitionIdAndOrderByRating(competitionBean.getCurrentCompetitionByType(competitionType).getId(), 0, 3);
+				.findLimitApprovedByCompetitionIdAndOrderByRating(competitionBean.getCurrentCompetitionByType(competitionType).getId(), 0, 3);
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
 
@@ -92,7 +97,7 @@ public class CommandCurrentRankings implements Command {
 					.add(Constants.PARAMETER_ID, project.getId())
 					.add(Constants.PARAMETER_NAME, project.getName())
 					.add(Constants.PARAMETER_CREATION_DATE,
-							project.getCreationDate().toString())
+							dateFormat.format(project.getCreationDate()))
 					.add(Constants.PARAMETER_RATING,
 							voiceBean.getRatingByProject(project))
 					.add(Constants.PARAMETER_VOTES_QUANTITY,

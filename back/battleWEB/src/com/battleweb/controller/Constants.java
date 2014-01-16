@@ -17,6 +17,7 @@ public interface Constants {
 	
 	//Set of name commands for CommandRequest
 	public static final String COMMAND_LOGIN = "login";
+	public static final String COMMAND_LOGOUT = "logout";
 	public static final String COMMAND_REGISTRATION = "registration";
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
@@ -31,6 +32,9 @@ public interface Constants {
 	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
 	public static final String COMMAND_FOOTER = "footer";
+	public static final String COMMAND_CREATE_PROJECT = "createproject";
+	public static final String COMMAND_VOTE = "vote";
+	public static final String COMMAND_SEND_COMMENT = "sendcomment";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -123,6 +127,10 @@ public interface Constants {
 	public static final String PARAMETER_COMMENTS = "comments";
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_DATE = "date";
+	public static final String PARAMETER_VOTE_ABLE = "voteable";
+	public static final String PARAMETER_COMPETITION_ID = "competitionid";
+	public static final String PARAMETER_VOTE_RESULT = "voteresult";
+	public static final String PARAMETER_COMMENT_RESULT = "commentresult";
 
 	public static final String PARAMETER_CONTACTS = "contacts";
 	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
@@ -132,6 +140,8 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_FAX = "contactsfax";
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
+	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
+		
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
@@ -173,6 +183,8 @@ public interface Constants {
 	public static final Integer TEXT_CONTACTS_PHONE = 730;
 	public static final Integer TEXT_CONTACTS_FAX = 740;
 	public static final Integer TEXT_CONTACTS_SKYPE = 750;
+	
+	public static final Integer TEXT_MESSAGE_CREATE_PROJECT = 800;
 
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;

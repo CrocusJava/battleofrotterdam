@@ -1870,7 +1870,8 @@ select {
         line-height: 35px;
     }
     #content_top .inner-wrapper .main_title small {
-        font-size: 16px;
+        font-size: 25px;
+		letter-spacing: 2px;
     }
     #content_top #sequence .animate-in .description {
         display: none !important;
@@ -1881,4 +1882,7 @@ select {
     #footer .footer_bottom p {
         text-align: left;
     }
+	
+	.no_margin{
+	display:none;}
 }
