@@ -34,6 +34,7 @@ public interface Constants {
 	public static final String COMMAND_CREATE_PROJECT = "createproject";
 	public static final String COMMAND_VOTE = "vote";
 	public static final String COMMAND_SEND_COMMENT = "sendcomment";
+	public static final String COMMAND_PROJECTS = "projects";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -85,7 +86,11 @@ public interface Constants {
 	public static final String PARAMETER_PHOTO_DESCRIPTION = "photodescription";
 	public static final String PARAMETER_LOAD_DATE = "loaddate";
 	public static final String PARAMETER_COMPETITION_NAME = "competitionname";
-
+	public static final String PARAMETER_COMPETITION_TYPE = "competitiontype";
+	public static final String PARAMETER_DATE_FROM = "datefrom";
+	public static final String PARAMETER_DATE_TO = "dateto";
+	public static final String PARAMETER_FILTER = "filter";
+	
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
 	public static final String PARAMETER_ABOUT_US = "aboutbus";
 	public static final String PARAMETER_RULES = "rules";
@@ -140,7 +145,7 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
 	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
-		
+	
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
