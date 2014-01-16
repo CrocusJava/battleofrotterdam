@@ -26,6 +26,8 @@ function call_all() {
 
     call_data_for_footer();
 
+    call_uploading_file_on_server();
+
 
 }
 
@@ -350,6 +352,9 @@ function AjaxRegistrationLogin(form) {
     }).fail(function(data) {
         console.log(data, "\n faile");
     });
+    if (window.upload_file._input.files.length > 0) {
+        window.upload_file.submit();
+    }
     console.log(config, form.id);
     return false;
 }
@@ -685,4 +690,51 @@ function call_data_for_footer() {
     }, "json").fail(function(data) {
         console.log("Somsing wrang", data);
     });
+}
+
+
+function call_uploading_file_on_server(command_value) {
+    if (window.location.href.match(/registration.html#registration$/)) {
+        var command_value = "uploadavatar";
+    }
+//  /battleWEB/controller?command=upload', //command=uploadavatar command=uploadphoto
+    window.upload_file = new AjaxUpload(command_value, {
+        action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
+        name: command_value,
+        data: {
+            'some_key1': "This data won't be sent, we will overwrite it."
+        },
+        autoSubmit: false,
+        onChange: function(file, ext) {
+            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                var reader = new FileReader();
+                $(reader).on("load", function() {
+                    var img = $("#preview_avatar");
+                    $(img).attr("src", reader.result);
+                });
+                reader.readAsDataURL(window.upload_file._input.files[0]);
+
+
+            } else {
+                //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
+                $("#warning_load_file").show();
+                $("#warning_load_file").fadeOut(5000);
+                return false;
+            }
+
+        },
+        onSubmit: function(file, ext) {
+            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+            } else {
+                //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
+                return false;
+            }
+        },
+        onComplete: function(file, response) {
+
+
+        }
+    });
+
+
 }

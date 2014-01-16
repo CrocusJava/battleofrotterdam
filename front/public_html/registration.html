@@ -115,10 +115,17 @@
                                         <div class="span6">
                                             <div class="panel">
                                                 <p class="text_center">
-                                                    <img src="img/Graphic1.png" data-src="img/Graphic1.png" alt="preview" width="100">
-                                                    <a href="#" class="btn flat btn-warning Mtop-1"><label style="margin-bottom: 0px;">Load Photo<input type="file" style="display: none;"></label></a>
-
+                                                    <img id="preview_avatar" src="img/Graphic1.png" data-src="img/Graphic1.png" alt="preview" width="100">
+                                                    <!--data-src="img/Graphic1.png"-->
+                                                    <a href="#" class="btn flat btn-warning Mtop-1" id="uploadavatar">Load Photo </a>
                                                 </p>
+
+                                                <!--start allert warning-->
+                                                <div class="alert alert-danger hide" id="warning_load_file">
+                                                    <strong>Warning!</strong> You can upload only jpg, gif, jpeg, bmp, png files.
+                                                </div>
+                                                <!--end allert warning-->
+
                                                 <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
                                                 <div class="gridmasonry" style="display: block; position: relative; height: 44px;">
                                                     <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;">
@@ -140,17 +147,6 @@
                                                 <label>Re-enter Password</label>
                                                 <input type="password" name="password"  class="input-block-level" required="">
 
-                                                <!--                                                <label>Select Gender</label>
-                                                                                                <div>
-                                                                                                    <label class="radio inline">
-                                                                                                        <input type="radio" name="gender" value="male" checked="">
-                                                                                                        Male
-                                                                                                    </label>
-                                                                                                    <label class="radio inline">
-                                                                                                        <input type="radio" name="gender" value="female">
-                                                                                                        Female
-                                                                                                    </label>
-                                                                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="span6">
@@ -177,11 +173,6 @@
                                                 <input type="text" class="input-block-level" required="" name="phone">
                                                 <span class="help-block">Example: +3(099)123 456 789</span>
 
-
-
-                                                <!--                                                <label><img src="img/captcha.png" alt="preview" style="margin-top: 10px"></label>
-                                                                                                <label>Verify Code</label>
-                                                                                                <input type="text" class="input-block-level " name="varify" required="">-->
                                                 <label class="checkbox">
                                                     <input type="checkbox" value="">
                                                     <small>Aggere <a href="#">Term</a> And <a href="#">Condition</a></small>
@@ -339,6 +330,8 @@
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
         </div>
+
+
         <!--=========================================================================-->
         <!--Load JS source-->
         <!--=========================================================================-->
@@ -380,6 +373,10 @@
         <!-- Load JS CountTime -->
         <script src="js/county.js"></script>
         <!-- End Load JS CountTime -->
+
+        <!-- Load JS AjaxUpload -->
+        <script src="js/ajaxupload.js"></script>
+        <!-- End Load JS AjaxUpload -->
 
         <!--Load JS config application-->
         <script src="js/app.js"></script>
