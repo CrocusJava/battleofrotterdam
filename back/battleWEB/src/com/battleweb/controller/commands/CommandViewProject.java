@@ -48,7 +48,7 @@ public class CommandViewProject implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat(
 				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
@@ -57,18 +57,24 @@ public class CommandViewProject implements Command {
 				.getInt(Constants.PARAMETER_PROJECT_ID);
 
 		Project project = projectBean.find(projectId);
-		
+
 		User user = project.getUser();
 		Competition competition = project.getCompetition();
 		System.out.println(competition);
 		List<Photo> photos = project.getPhotos();
-		long rating = voiceBean.getCountByProject(project); 								//discussed!!!
+		long rating = voiceBean.getCountByProject(project);
 
+		boolean voteAble = false;
+		if (voiceBean.findByProjecAndUser(project, (User) request.getSession()
+				.getAttribute(Constants.PARAMETER_SESSION_USER)) != null){
+			voteAble = true;
+		}
+		
 		JsonObject jsonCompetition = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID, competition.getId())
 				.add(Constants.PARAMETER_TYPE, competition.getType().getName())
 				.add(Constants.PARAMETER_NAME, competition.getName()).build();
-		
+
 		JsonObject jsonUser = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID, user.getId())
 				.add(Constants.PARAMETER_FIRSTNAME, user.getFirstname())
@@ -76,18 +82,23 @@ public class CommandViewProject implements Command {
 				.add(Constants.PARAMETER_LOGIN, user.getLogin())
 				.add(Constants.PARAMETER_AVATAR_PATH, user.getPhotoPath())
 				.add(Constants.PARAMETER_LASTNAME, user.getLastname()).build();
-		
+
 		JsonObjectBuilder jsonObjectBuilder = Json
 				.createObjectBuilder()
 				.add(Constants.PARAMETER_NAME, project.getName())
-				.add(Constants.PARAMETER_CREATION_DATE, dateFormat.format(project.getCreationDate()))
+				.add(Constants.PARAMETER_CREATION_DATE,
+						dateFormat.format(project.getCreationDate()))
 				.add(Constants.PARAMETER_DESCRIPTION, project.getDescription())
 				.add(Constants.PARAMETER_COMPETITION, jsonCompetition)
 				.add(Constants.PARAMETER_RATING, rating)
-				.add(Constants.PARAMETER_VOTES_QUANTITY, project.getVoices().size())
-				.add(Constants.PARAMETER_COMMENT_QUANTITY, commentBean.getCountByProjectId(projectId))
-				.add(Constants.PARAMETER_PHOTO_QUANTITY, photoBean.getCountByProjectId(projectId))
-				.add(Constants.PARAMETER_USER, jsonUser);
+				.add(Constants.PARAMETER_VOTES_QUANTITY,
+						project.getVoices().size())
+				.add(Constants.PARAMETER_COMMENT_QUANTITY,
+						commentBean.getCountByProjectId(projectId))
+				.add(Constants.PARAMETER_PHOTO_QUANTITY,
+						photoBean.getCountByProjectId(projectId))
+				.add(Constants.PARAMETER_USER, jsonUser)
+				.add(Constants.PARAMETER_VOTE_ABLE, voteAble);
 
 		int size = photos.size();
 		JsonObject jsonFirstPhoto = null;
@@ -100,7 +111,8 @@ public class CommandViewProject implements Command {
 					.add(Constants.PARAMETER_PATH, firstPhoto.getPath())
 					.add(Constants.PARAMETER_DESCRIPTION,
 							firstPhoto.getDescription()).build();
-			jsonObjectBuilder.add(Constants.PARAMETER_FIRST_PHOTO, jsonFirstPhoto);
+			jsonObjectBuilder.add(Constants.PARAMETER_FIRST_PHOTO,
+					jsonFirstPhoto);
 
 			if (size > 1) {
 				Photo lastPhoto = photos.get(size - 1);
@@ -110,7 +122,8 @@ public class CommandViewProject implements Command {
 						.add(Constants.PARAMETER_PATH, lastPhoto.getPath())
 						.add(Constants.PARAMETER_DESCRIPTION,
 								lastPhoto.getDescription()).build();
-				jsonObjectBuilder.add(Constants.PARAMETER_LAST_PHOTO, jsonLastPhoto);
+				jsonObjectBuilder.add(Constants.PARAMETER_LAST_PHOTO,
+						jsonLastPhoto);
 			}
 		}
 
