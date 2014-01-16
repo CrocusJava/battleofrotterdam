@@ -17,6 +17,7 @@ public interface Constants {
 	
 	//Set of name commands for CommandRequest
 	public static final String COMMAND_LOGIN = "login";
+	public static final String COMMAND_LOGOUT = "logout";
 	public static final String COMMAND_REGISTRATION = "registration";
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
