@@ -16,10 +16,10 @@ body.theme_default #top_header {
     background-color: rgba(0, 0, 0, 0.5);
 }
 body.theme_default #top_header .main_navbar li a:hover {
-    background: #ce4e4a;
+    background: rgba(0,148,0,1);
 }
 body.theme_default #top_header .main_navbar li.active {
-    background: #ce4e4a;
+    background: rgba(0,188,0,1);
 }
 body.theme_default #top_header .main_navbar li.active a {
     color: #ffffff !important;
@@ -28,19 +28,19 @@ body.theme_default #top_header .main_navbar a {
     color: #ffffff !important;
 }
 body.theme_default #top_header .main_navbar .dropdown.open {
-    background: #ce4e4a;
+    background: rgba(0,188,0,1);
 }
 body.theme_default #top_header.mini_menu {
-    background: #232323;
+    background: rgba(1, 56, 56, 0.68);
 }
 body.theme_default #content_top {
     background: #333333;
 }
 body.theme_default #logo_message_area {
-    background-color: #2b2c2c;
+    background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default #logo_message_area .logo {
-    background: #2b2c2c;
+    background: rgba(0,188,0,0.6);
 }
 body.theme_default #content .box_spa {
     background: #ce4e4a;
@@ -107,19 +107,19 @@ body.theme_default #content .lobster_calendar .fc-event {
     background: #ce4e4a;
 }
 body.theme_default #footer {
-    background-color: #333333;
+    background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default #footer .link_socials a {
-    background: #232323;
+    background: rgba(0,188,0,1);
 }
 body.theme_default #footer .link_socials a:hover {
-    background: #ce4e4a;
+    background: rgba(0,148,0,1);
 }
 body.theme_default #footer .subcrible {
-    background-color: #232323;
+    background-color: rgba(1, 56, 56, 0.12);
 }
 body.theme_default #footer .footer_bottom {
-    background-color: #211d1d;
+    background-color: rgba(1, 56, 56, 0.24);
 }
 body.theme_default .btn-inverse {
     background-color: #211d1d;
@@ -128,10 +128,10 @@ body.theme_default .btn-inverse:hover {
     background-color: #030000;
 }
 body.theme_default .btn-primary {
-    background-color: #ce4e4a;
+    background-color: rgba(0,188,0,1);
 }
 body.theme_default .btn-primary:hover {
-    background-color: #b0302c;
+    background-color: rgba(0,148,0,1);
 }
 /* **END Default color Theme** ==============================================*/
 /* **Default color Blue Theme** ==============================================*/
@@ -715,7 +715,7 @@ body.theme_black .flat-pagination a {
 /* **Style Border Navigation MObile** ==============================================*/
 @media (max-width: 979px) {
     body.theme_default #top_header {
-        border-bottom: 4px solid #CE4E4A;
+        border-bottom: 4px solid rgba(0,188,0,1);
     }
     body.theme_blue #top_header {
         border-bottom: 4px solid #4BAAD3;
