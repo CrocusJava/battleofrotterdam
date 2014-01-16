@@ -65,11 +65,14 @@ public class CommandViewProject implements Command {
 		long rating = voiceBean.getCountByProject(project);
 
 		boolean voteAble = false;
-		if (voiceBean.findByProjecAndUser(project, (User) request.getSession()
-				.getAttribute(Constants.PARAMETER_SESSION_USER)) != null){
+		if (voiceBean.findByProjecAndUserId(
+				project,
+				Integer.parseInt(request.getSession()
+						.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
+						.toString())) == null) {
 			voteAble = true;
 		}
-		
+
 		JsonObject jsonCompetition = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID, competition.getId())
 				.add(Constants.PARAMETER_TYPE, competition.getType().getName())

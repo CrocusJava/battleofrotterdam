@@ -53,13 +53,13 @@ public class VoiceBean extends AbstractFacade<Voice> {
 		return getRatingByProjectId(project.getId());
 	}
 
-	public Voice findByProjecAndUser(Project project, User user) {
+	public Voice findByProjecAndUserId(Project project, int userId) {
 		Voice voice = null;
 		try {
 			voice = em
-					.createNamedQuery("Voice.findByProjectAndUser", Voice.class)
+					.createNamedQuery("Voice.findByProjectAndUserId", Voice.class)
 					.setParameter("project", project)
-					.setParameter("user", user).getSingleResult();
+					.setParameter("userId", userId).getSingleResult();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		}
