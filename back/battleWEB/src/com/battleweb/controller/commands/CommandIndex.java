@@ -1,10 +1,10 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -28,7 +28,6 @@ import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
 import com.battleejb.entities.Photo;
 import com.battleweb.controller.Constants;
-import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolJSON;
 //import org.json.simple.JSONArray
 
@@ -57,7 +56,7 @@ public class CommandIndex implements Command{
 	private PhotoBean photoBean;
 	
 	private SimpleDateFormat dateFormatTimer = new SimpleDateFormat("MM/dd/yyyy");
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.ENGLISH);
 	
 	@Override
 	public String execute(HttpServletRequest request,

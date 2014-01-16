@@ -72,7 +72,7 @@ public class CommandCurrentRankings implements Command {
 	private void addToJsonObjThreeProjects(
 			JsonObjectBuilder jsonObjectResponseBuilder, String competitionType) {
 		List<Project> projects = projectBean
-				.findLimitByCompetitionIdAndOrderByRating(competitionBean.getCurrentCompetitionByType(competitionType).getId(), 0, 3);
+				.findLimitApprovedByCompetitionIdAndOrderByRating(competitionBean.getCurrentCompetitionByType(competitionType).getId(), 0, 3);
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
 
