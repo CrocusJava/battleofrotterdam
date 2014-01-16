@@ -30,13 +30,13 @@ public class ProjectBean extends AbstractFacade<Project> {
 		return em;
 	}
 
-	public List<Project> findLimitByCompetitionIdAndOrderByRating(
+	public List<Project> findLimitApprovedByCompetitionIdAndOrderByRating(
 			int competitionId, int firstPosition, int size) {
 		List<Project> projects = null;
 		try {
 			projects = em
 					.createNamedQuery(
-							"Project.findByCompetitionIdAndOrderByRating",
+							"Project.findApprovedByCompetitionIdAndOrderByRating",
 							Project.class)
 					.setParameter("competitionId", competitionId)
 					.setParameter("firstPosition", firstPosition)
