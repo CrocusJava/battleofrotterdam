@@ -595,12 +595,16 @@ function call_data_for_index_html() {
         call_data_for_faq();
     }
 
+    //<<<<<<<<<<<<=============================задачи для страницы про нас
+
+    if (window.location.href.match(/about_battle.html$/)) {
+        call_load_data_for_about_battle();
+    }
+
 }
-/*
 
- battlelinks
 
- */
+
 
 function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 
@@ -775,4 +779,25 @@ function call_data_for_faq() {
     }, "json").fail(function() {
         console.log("not loaded FAQ list");
     });
+}
+
+
+function call_load_data_for_myaccount() {
+    $.post("/battleWEB/controller?command=account", function(data) {
+        console.log(data);
+    }, "json");
+}
+
+function call_load_data_for_about_battle() {
+    $.post("/battleWEB/controller?command=aboutbattle", function(data) {
+        var template_for_about_battle = [
+            {tag: "h4", add_class: "text_center", text: "title"},
+            {tag: "p", text: "description"}
+        ];
+        call_markup_index(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
+        call_markup_index(template_for_about_battle, $("#rules "), data.rules);
+        call_markup_index(template_for_about_battle, $("#aboutus"), data.aboutus);
+        call_markup_index(template_for_about_battle, $("#information"), data.information);
+        console.log(data);
+    }, "json").fail("data for about battle not loaded");
 }
