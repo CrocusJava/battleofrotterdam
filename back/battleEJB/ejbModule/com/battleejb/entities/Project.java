@@ -140,4 +140,18 @@ public class Project implements Serializable {
 		this.voices = voices;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Project [id=");
+		builder.append(id);
+		builder.append(", approved=");
+		builder.append(approved);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append("]");
+		return builder.toString();
+	}
 }

@@ -94,8 +94,6 @@ public class CommandViewProject implements Command {
 				.add(Constants.PARAMETER_DESCRIPTION, project.getDescription())
 				.add(Constants.PARAMETER_COMPETITION, jsonCompetition)
 				.add(Constants.PARAMETER_RATING, rating)
-				.add(Constants.PARAMETER_VOTES_QUANTITY,
-						project.getVoices().size())
 				.add(Constants.PARAMETER_COMMENT_QUANTITY,
 						commentBean.getCountByProjectId(projectId))
 				.add(Constants.PARAMETER_PHOTO_QUANTITY,

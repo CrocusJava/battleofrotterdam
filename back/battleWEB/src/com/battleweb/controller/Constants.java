@@ -90,6 +90,8 @@ public interface Constants {
 	public static final String PARAMETER_DATE_FROM = "datefrom";
 	public static final String PARAMETER_DATE_TO = "dateto";
 	public static final String PARAMETER_FILTER = "filter";
+	public static final String PARAMETER_ORDER_BY = "orderby";
+	public static final String PARAMETER_SORT = "sort";
 	
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
 	public static final String PARAMETER_ABOUT_US = "aboutbus";
@@ -201,4 +203,6 @@ public interface Constants {
 	//Set some constants
 	public static final String COMPETITION_TYPE_YEAR = "year";
 	public static final String COMPETITION_TYPE_MONTH = "month";
+	public static final String SORT_TYPE_ASC = "asc";
+	public static final String SORT_TYPE_DESC = "desc";
 }
