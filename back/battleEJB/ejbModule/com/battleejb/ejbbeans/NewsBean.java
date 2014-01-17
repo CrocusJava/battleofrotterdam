@@ -1,5 +1,6 @@
 package com.battleejb.ejbbeans;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.ejb.LocalBean;
@@ -9,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import com.battleejb.entities.News;
-import com.battleejb.entities.Text;
 
 
 /**
@@ -32,24 +32,13 @@ public class NewsBean  extends AbstractFacade<News> {
 		return em;
 	}
 	
-	public News findByKey(Integer keyval) {
-		News news = null;
-		try {
-			news = em.createNamedQuery("News.findByKey", News.class)
-					.setParameter("keyval", keyval).getSingleResult();
-		} catch (PersistenceException e) {
-			// TODO LOG
-		}
-		return news;
+	public List<News> findAll(){
+		return em.createNamedQuery("News.findAll",News.class).getResultList();
 	}
 
-	public String findLocaleTextByKey(Integer keyval, Locale locale) {
-		String loc = locale.toString();
-		String queryName = "User.findEnNewsByKey";
-		if (loc.equalsIgnoreCase("nl")) {
-			queryName = "User.findNlNewsByKey";
-		}
-		return (String) em.createNamedQuery(queryName)
-				.setParameter("keyval", keyval).getSingleResult();
+	public List<News> findLast(Integer n){
+		return em.createNamedQuery("News.findAll",News.class).setMaxResults(n).getResultList();
 	}
+	
+	
 }

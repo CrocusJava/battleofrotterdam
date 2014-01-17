@@ -7,6 +7,7 @@ package com.battleweb.controller;
  */
 public interface Constants {
 	//Parameters for the home-page view
+	public static final Integer HOME_PAGE_LAST_NEWS_COUNT = 3;
 	public static final Integer HOME_PAGE_LAST_COMMENTS_COUNT = 5;
 	public static final Integer HOME_PAGE_LAST_PHOTOS_COUNT = 3;
 	public static final Integer FOOTER_GALLERY_PHOTOS_COUNT = 12;
@@ -22,6 +23,7 @@ public interface Constants {
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	public static final String COMMAND_INDEX = "index";
+	public static final String COMMAND_NEWS = "news";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
 	public static final String COMMAND_UPLOAD = "upload";
