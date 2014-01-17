@@ -78,6 +78,7 @@ public interface Constants {
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_TITLE = "linktitle";
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
 	public static final String PARAMETER_BATTLE_LINKS = "battlelinks";
+	public static final String PARAMETER_LAST_NEWS = "lastnews";
 	public static final String PARAMETER_LAST_COMMENTS_LIST = "lastcommentslist";
 	public static final String PARAMETER_USER_LOGIN = "userlogin";
 	public static final String PARAMETER_USER_PHOTOPATH = "userphotopath";
@@ -96,14 +97,11 @@ public interface Constants {
 	public static final String PARAMETER_SORT = "sort";
 	
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
-	public static final String PARAMETER_ABOUT_US = "aboutbus";
+	public static final String PARAMETER_ABOUT_US = "aboutus";
 	public static final String PARAMETER_RULES = "rules";
 	public static final String PARAMETER_INFORMATION = "information";
 	public static final String PARAMETER_TITLE = "title";
-	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
-	public static final String PARAMETER_US_DESCRIPTION = "usdescription";
-	public static final String PARAMETER_RULES_DESCRIPTION = "rulesdescription";
-	public static final String PARAMETER_INFO_DESCRIPTION = "infodescription";
+//	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
 
 	public static final String PARAMETER_FAQ_LIST = "faqlist";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
@@ -184,6 +182,14 @@ public interface Constants {
 	public static final Integer TEXT_A4 = 635;
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
+
+	public static final Integer TEXT_NEWS1 = 10;
+	public static final Integer TEXT_NEWS2 = 20;
+	public static final Integer TEXT_NEWS3 = 30;
+	public static final Integer TEXT_NEWS4 = 40;
+	public static final Integer TEXT_NEWS5 = 50;
+	public static final Integer TEXT_NEWS6 = 60;
+	public static final Integer TEXT_NEWS7 = 70;
 	
 	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
 	public static final Integer TEXT_CONTACTS_ADDRESS = 710;

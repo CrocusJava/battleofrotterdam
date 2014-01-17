@@ -26,7 +26,7 @@ function call_all() {
 
     call_data_for_footer();
 
-    call_uploading_file_on_server();
+//    call_uploading_file_on_server();
 
 
 }
@@ -546,7 +546,7 @@ function call_load_data_for_index_comments(load_data) {
 
 function call_data_for_index_html() {
     //<<<<<<<<<<<<=============================задачи для страницы индекс
-    if (window.location.href.match(/index.html$/)) {
+    if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
 
         $.post("/battleWEB/controller?command=index", function(respons, status) {
 
@@ -589,15 +589,22 @@ function call_data_for_index_html() {
         });
     }
 
+    //<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
+
+    if (window.location.href.match(/FAQ.html$/)) {
+        call_data_for_faq();
+    }
+
+    //<<<<<<<<<<<<=============================задачи для страницы про нас
+
+    if (window.location.href.match(/about_battle.html$/)) {
+        call_load_data_for_about_battle();
+    }
+
 }
-/*
 
- battlelinks
 
- */
-//"battleyearfinishdate": "2014-12-01",
 
-//    "battlemonthfinishdate": "2014-02-01",
 
 function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 
@@ -737,4 +744,60 @@ function call_uploading_file_on_server(command_value) {
     });
 
 
+}
+
+
+function call_data_for_faq() {
+    $.post("/battleWEB/controller?command=faq", function(data) {
+        var count = 0;
+        function return_faq_template_end_scope(count) {
+
+            return [
+                {tag: "div", add_class: "panel panel-defaul", children: [
+                        {tag: "div", add_class: "panel-heading", children: [
+                                {tag: "h4", add_class: "panel-title", children: [
+                                        {tag: "a", add_class: "collapsed", attr: {"data-toggle": "collapse", "data-parent": "#accordion", "href": ("#" + count)}, text: "faqquestion"}
+                                    ]}
+                            ]},
+                        {tag: "div", add_class: "panel-collapse collapse", attr: {id: count}, children: [
+                                {tag: "div", add_class: "panel-body", text: "faqansver"}
+                            ]}
+                    ]}
+            ];
+
+        }
+
+
+
+        var faqlist = data.faqlist;
+
+        for (var list in faqlist) {
+            call_markup_index(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
+            count++;
+        }
+
+    }, "json").fail(function() {
+        console.log("not loaded FAQ list");
+    });
+}
+
+
+function call_load_data_for_myaccount() {
+    $.post("/battleWEB/controller?command=account", function(data) {
+        console.log(data);
+    }, "json");
+}
+
+function call_load_data_for_about_battle() {
+    $.post("/battleWEB/controller?command=aboutbattle", function(data) {
+        var template_for_about_battle = [
+            {tag: "h4", add_class: "text_center", text: "title"},
+            {tag: "p", text: "description"}
+        ];
+        call_markup_index(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
+        call_markup_index(template_for_about_battle, $("#rules "), data.rules);
+        call_markup_index(template_for_about_battle, $("#aboutus"), data.aboutus);
+        call_markup_index(template_for_about_battle, $("#information"), data.information);
+        console.log(data);
+    }, "json").fail("data for about battle not loaded");
 }

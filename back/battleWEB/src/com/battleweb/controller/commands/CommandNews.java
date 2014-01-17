@@ -48,13 +48,23 @@ public class CommandNews implements Command{
 		List<News> lastNews = newsBean.findLast(Constants.HOME_PAGE_LAST_NEWS_COUNT);
 		
 		JsonArrayBuilder lastNewsArrayBuilder = Json.createArrayBuilder();
-		for(News news:lastNews){													
+		for(News news:lastNews){	
+			String newsText = textBean.findLocaleTextByKey(news.getKeyval(), request.getLocale());
 			JsonObject jsonObjectNews = Json.createObjectBuilder()
-				
+				.add(Constants.PARAMETER_PHOTO_PATH, news.getPhotoPath())
+				.add(Constants.PARAMETER_TEXT, newsText)
+				.add(Constants.PARAMETER_LOAD_DATE, dateFormat.format(news.getLoadDate()))
 				.build();
 			lastNewsArrayBuilder.add(jsonObjectNews);
 		}
 		JsonArray lastNewsArray = lastNewsArrayBuilder.build();
+		
+		//create final ison-object
+		JsonObject jsonObjectResponse=Json.createObjectBuilder()
+			.add(Constants.PARAMETER_LAST_NEWS,lastNewsArray)
+			.build();
+		
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 		return null;
 	}
 
