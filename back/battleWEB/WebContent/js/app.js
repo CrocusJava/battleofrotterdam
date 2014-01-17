@@ -548,6 +548,9 @@ function call_data_for_index_html() {
     //<<<<<<<<<<<<=============================задачи для страницы индекс
     if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
 
+
+        call_load_data_for_news_index();
+
         $.post("/battleWEB/controller?command=index", function(respons, status) {
 
             //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
@@ -572,11 +575,11 @@ function call_data_for_index_html() {
 
             console.log("Respons data for index ====> ", status);
         }, "json").fail(function(data) {
-            console.log("Somsing wrang", data);
+            console.log("Somsing wrang for inde post");
         });
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы поска
+    //<<<<<<<<<<<<=============================задачи для страницы поиска
 
     if (window.location.href.match(/search.html$/)) {
         var result_search = $("#result_search");
@@ -599,6 +602,12 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/about_battle.html$/)) {
         call_load_data_for_about_battle();
+    }
+
+    //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
+
+    if (window.location.href.match(/myaccount.html$/)) {
+        call_event_logout();
     }
 
 }
@@ -791,7 +800,7 @@ function call_load_data_for_myaccount() {
 function call_load_data_for_about_battle() {
     $.post("/battleWEB/controller?command=aboutbattle", function(data) {
         var template_for_about_battle = [
-            {tag: "h4", add_class: "text_center", text: "title"},
+            {tag: "h4", add_class: "font_hotel", text: "title"},
             {tag: "p", text: "description"}
         ];
         call_markup_index(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
@@ -800,4 +809,39 @@ function call_load_data_for_about_battle() {
         call_markup_index(template_for_about_battle, $("#information"), data.information);
         console.log(data);
     }, "json").fail("data for about battle not loaded");
+}
+
+function call_event_logout() {
+    $("#logout").click(function() {
+        $.post("/battleWEB/controller?command=logout");
+        window.location = "index.html";
+    });
+}
+
+function call_load_data_for_news_index() {
+    $.post("/battleWEB/controller?command=news", function(data) {
+        var template_for_news_index = [
+            {tag: "div", add_class: "span4 text_center", children: [
+                    {tag: "div", add_class: "boxfeature", children: [
+                            {tag: "div", add_class: "img_preview", children: [
+                                    {tag: "img", attr: {src: "photoPath", "data-src": "photoPath", alt: "img_preview"}},
+                                    {tag: "h4", text: "loadDate"}
+                                ]},
+                            {tag: "div", add_class: "desc", children: [
+                                    {tag: "p", text: "text"},
+                                    {tag: "p", children: [
+                                            {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                        ]}
+                                ]}
+                        ]}
+                ]}
+        ];
+        for (var i in data.news) {
+            call_markup_index(template_for_news_index, $("#news_index"), data.news[i]);
+        }
+
+
+    }, "json").fail(function() {
+        console.log("Error for load news");
+    });
 }
