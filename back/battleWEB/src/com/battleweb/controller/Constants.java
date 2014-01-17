@@ -96,14 +96,14 @@ public interface Constants {
 	public static final String PARAMETER_SORT = "sort";
 	
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
-	public static final String PARAMETER_ABOUT_US = "aboutbus";
+	public static final String PARAMETER_ABOUT_US = "aboutus";
 	public static final String PARAMETER_RULES = "rules";
 	public static final String PARAMETER_INFORMATION = "information";
 	public static final String PARAMETER_TITLE = "title";
 	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
-	public static final String PARAMETER_US_DESCRIPTION = "usdescription";
-	public static final String PARAMETER_RULES_DESCRIPTION = "rulesdescription";
-	public static final String PARAMETER_INFO_DESCRIPTION = "infodescription";
+//	public static final String PARAMETER_US_DESCRIPTION = "usdescription";
+//	public static final String PARAMETER_RULES_DESCRIPTION = "rulesdescription";
+//	public static final String PARAMETER_INFO_DESCRIPTION = "infodescription";
 
 	public static final String PARAMETER_FAQ_LIST = "faqlist";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";

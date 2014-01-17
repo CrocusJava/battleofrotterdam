@@ -38,28 +38,28 @@ public class CommandAboutBattle implements Command{
 		String battleDescriptionFull = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_FULL, request.getLocale());
 		JsonObject jsonObjectAboutBattle = Json.createObjectBuilder()
 			.add(Constants.PARAMETER_TITLE, titleBattleDescription)
-			.add(Constants.PARAMETER_BATTLE_DESCRIPTION_FULL, battleDescriptionFull)
+			.add(Constants.PARAMETER_DESCRIPTION, battleDescriptionFull)
 			.build();
 		
 		String titleAboutbUs = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_ABOUT_US, request.getLocale());
 		String aboutbUsDescription = textBean.findLocaleTextByKey(Constants.TEXT_ABOUT_US_DESCRIPTION, request.getLocale());
 		JsonObject jsonObjectAboutUs = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_TITLE, titleAboutbUs)
-				.add(Constants.PARAMETER_US_DESCRIPTION, aboutbUsDescription)
+				.add(Constants.PARAMETER_DESCRIPTION, aboutbUsDescription)
 				.build();
 
 		String titleRules = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_BATTLE_RULES, request.getLocale());
 		String rulesDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_RULES_DESCRIPTION, request.getLocale());
 		JsonObject jsonObjectRules = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_TITLE, titleRules)
-				.add(Constants.PARAMETER_RULES_DESCRIPTION, rulesDescription)
+				.add(Constants.PARAMETER_DESCRIPTION, rulesDescription)
 				.build();
 
 		String titleInformation = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_INFO, request.getLocale());
 		String informationDescription = textBean.findLocaleTextByKey(Constants.TEXT_INFO_DESCRIPTION, request.getLocale());
 		JsonObject jsonObjectInformation = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_TITLE, titleInformation)
-				.add(Constants.PARAMETER_INFO_DESCRIPTION, informationDescription)
+				.add(Constants.PARAMETER_DESCRIPTION, informationDescription)
 				.build();
 		
 		//create final ison-object

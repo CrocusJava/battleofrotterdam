@@ -50,7 +50,9 @@ public class CommandNews implements Command{
 		JsonArrayBuilder lastNewsArrayBuilder = Json.createArrayBuilder();
 		for(News news:lastNews){													
 			JsonObject jsonObjectNews = Json.createObjectBuilder()
-				
+				.add(Constants.PARAMETER_PHOTO_PATH, news.getPhotoPath())
+				.add(Constants.PARAMETER_TEXT, news.getText().getValueEn())
+				.add(Constants.PARAMETER_LOAD_DATE, dateFormat.format(news.getLoadDate()))
 				.build();
 			lastNewsArrayBuilder.add(jsonObjectNews);
 		}
