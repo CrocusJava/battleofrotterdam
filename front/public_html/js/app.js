@@ -837,7 +837,7 @@ function call_load_data_for_news_index() {
                 ]}
         ];
         for (var i in data.lastnews) {
-            call_markup_index(template_for_news_index, $("#news_index"), data.news[i]);
+            call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
         }
 
 
