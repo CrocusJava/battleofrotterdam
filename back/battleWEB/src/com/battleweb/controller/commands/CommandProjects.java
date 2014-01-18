@@ -63,9 +63,7 @@ public class CommandProjects implements Command {
 		int size = jsonObjectRequest.getInt(Constants.PARAMETER_SIZE);
 		String orderBy = jsonObjectRequest
 				.getString(Constants.PARAMETER_ORDER_BY);
-		String sort = jsonObjectRequest.getString(Constants.PARAMETER_SORT);
-		JsonObject jsonFilter = jsonObjectRequest
-				.getJsonObject(Constants.PARAMETER_FILTER);
+		String sort = "";
 		String login = null;
 		String name = null;
 		Date dateFrom = null;
@@ -76,38 +74,47 @@ public class CommandProjects implements Command {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(
 				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 		try {
-			login = jsonFilter.getString(Constants.PARAMETER_LOGIN);
+			sort = jsonObjectRequest.getString(Constants.PARAMETER_SORT);
 		} catch (NullPointerException e) {
 		}
 		try {
-			name = jsonFilter.getString(Constants.PARAMETER_NAME);
+			JsonObject jsonFilter = jsonObjectRequest
+					.getJsonObject(Constants.PARAMETER_FILTER);
+			try {
+				login = jsonFilter.getString(Constants.PARAMETER_LOGIN);
+			} catch (NullPointerException e) {
+			}
+			try {
+				name = jsonFilter.getString(Constants.PARAMETER_NAME);
+			} catch (NullPointerException e) {
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_DATE_FROM);
+				dateFrom = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				String date = jsonFilter.getString(Constants.PARAMETER_DATE_TO);
+				dateTo = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				competitionId = jsonFilter
+						.getInt(Constants.PARAMETER_COMPETITION_ID);
+			} catch (NullPointerException e) {
+			}
+			try {
+				competitionType = jsonFilter
+						.getString(Constants.PARAMETER_COMPETITION_TYPE);
+			} catch (NullPointerException e) {
+			}
 		} catch (NullPointerException e) {
 		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_DATE_FROM);
-			dateFrom = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_DATE_TO);
-			dateTo = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			competitionId = jsonFilter
-					.getInt(Constants.PARAMETER_COMPETITION_ID);
-		} catch (NullPointerException e) {
-		}
-		try {
-			competitionType = jsonFilter
-					.getString(Constants.PARAMETER_COMPETITION_TYPE);
-		} catch (NullPointerException e) {
-		}
-
 		List<Project> projects = projectBean
 				.findFilterOrderByDateOrRatingLimit(orderBy, sort, login, name,
 						dateFrom, dateTo, competitionId, competitionType,

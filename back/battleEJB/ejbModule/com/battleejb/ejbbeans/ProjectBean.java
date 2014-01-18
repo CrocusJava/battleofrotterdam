@@ -30,7 +30,6 @@ import com.battleejb.entities.User_;
 public class ProjectBean extends AbstractFacade<Project> {
 	
 	private static final String SORT_TYPE_ASC = "asc";
-	private static final String SORT_TYPE_DESC = "desc";
 	private static final String PARAMETER_DATE = "date";
 	private static final String PARAMETER_RATING = "rating";
 	
@@ -112,7 +111,7 @@ public class ProjectBean extends AbstractFacade<Project> {
 			Order order = null;
 			if (sort.equals(SORT_TYPE_ASC)) {
 				order = cb.asc(ex);
-			} else if (sort.equals(SORT_TYPE_DESC)) {
+			} else {
 				order = cb.desc(ex);
 			}
 			cq.orderBy(order);
