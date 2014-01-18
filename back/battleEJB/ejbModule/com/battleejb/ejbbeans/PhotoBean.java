@@ -76,4 +76,5 @@ public class PhotoBean extends AbstractFacade<Photo> {
 		}
 		return count;
 	}
+		
 }

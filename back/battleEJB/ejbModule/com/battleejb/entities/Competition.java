@@ -122,4 +122,25 @@ public class Competition implements Serializable {
 		this.type = type;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Competition [id=");
+		builder.append(id);
+		builder.append(", dateEnd=");
+		builder.append(dateEnd);
+		builder.append(", dateStart=");
+		builder.append(dateStart);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", registerDeadline=");
+		builder.append(registerDeadline);
+		builder.append(", type=");
+		builder.append(type);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+
 }

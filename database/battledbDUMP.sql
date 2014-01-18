@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2014 at 10:07 PM
+-- Generation Time: Jan 16, 2014 at 07:40 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `Address`
@@ -47,7 +47,10 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (29, '', '', '', '', NULL),
 (30, 'test100', 'test100500', 'test100500', '43', NULL),
 (31, 'test55', 'test55', 'test55', '32', NULL),
-(32, 'ss', '23232', 'ss', '23s', NULL);
+(32, 'ss', '23232', 'ss', '23s', NULL),
+(33, 'rotterdam', '13', 'dont know', '13', NULL),
+(34, 'mmm', '12', 'mmm', '12', NULL),
+(35, 'mmm', '12', 'mmm', '12', NULL);
 
 -- --------------------------------------------------------
 
@@ -133,6 +136,23 @@ INSERT INTO `CompetitionType` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `News`
+--
+
+CREATE TABLE IF NOT EXISTS `News` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `keyval` bigint(20) NOT NULL,
+  `photoPath` varchar(65) NOT NULL,
+  `loadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `text_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `keyval` (`keyval`),
+  KEY `text_id` (`text_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Photo`
 --
 
@@ -144,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `Photo` (
   `project_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `Photo`
@@ -156,7 +176,18 @@ INSERT INTO `Photo` (`id`, `path`, `loadDate`, `description`, `project_id`) VALU
 (3, 'img/remont3.jpg', '2014-01-03 16:00:00', 'description of Joes month project', 3),
 (4, 'img/remont5.jpg', '2014-01-03 16:00:00', 'description of JoesJoes_year_project_photo', 4),
 (5, 'img/remont13.jpg', '2014-01-04 16:00:00', 'description of Jennys_year_project_photo', 5),
-(6, 'img/remont14.jpg', '2014-01-05 16:00:00', 'description of Lupes_year_project_photo', 6);
+(6, 'img/remont14.jpg', '2014-01-05 16:00:00', 'description of Lupes_year_project_photo', 6),
+(7, 'img/remont8.jpg', '2014-01-06 08:00:00', 'description of Rays_month_project_photo', 1),
+(8, 'img/remont12.jpg', '2014-01-07 08:00:00', 'description of Rays_year_project_photo', 2),
+(9, 'img/remont2.jpg', '2014-01-08 08:00:00', 'description of Joes month project', 3),
+(10, 'img/remont4.jpg', '2014-01-09 08:00:00', 'description of JoesJoes_year_project_photo', 4),
+(11, 'img/remont9.jpg', '2014-01-10 08:00:00', 'description of Jennys_year_project_photo', 5),
+(12, 'img/remont10.jpg', '2014-01-11 08:00:00', 'description of Lupes_year_project_photo', 6),
+(13, 'img/remont15.jpg', '2014-01-11 08:00:00', 'description of Rays_year_project_photo', 2),
+(14, 'img/remont16.jpg', '2014-01-12 08:00:00', 'description of Joes month project', 3),
+(15, 'img/remont17.jpg', '2014-01-13 08:00:00', 'description of JoesJoes_year_project_photo', 4),
+(16, 'img/remont18.jpg', '2014-01-14 08:00:00', 'description of Jennys_year_project_photo', 5),
+(17, 'img/remont19.gif', '2014-01-15 08:00:00', 'description of Lupes_year_project_photo', 6);
 
 -- --------------------------------------------------------
 
@@ -223,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `Text`
@@ -264,7 +295,7 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (35, 730, 'phone: +1 (44) 123-45-67 ', 'telefoon: +1 (44) 123-45-67'),
 (36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
 (37, 750, 'Skype Me ', 'Skype Me'),
-(38, 800, 'Нour project is registered','Uw project is geregistreerd');
+(38, 800, 'Your project is registered', 'Uw project is geregistreerd');
 
 -- --------------------------------------------------------
 
@@ -317,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `User`
@@ -333,7 +364,10 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (12, 'Joe', '', 'Morton', 'joe_login', '1111', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
 (13, 'Jenny', '', 'Flex', 'jenny_login', '1111', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
 (14, 'Lupe', '', 'Lamora', 'lupe_login', '1111', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1),
-(15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0);
+(15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0),
+(16, 'O_o', 'O_O', 'o_O', 'agent008', 'c4ca4238a0b923820dcc509a6f75849b', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
+(17, 'mmm', 'mmm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', '1212-12-12', 34, 2, 1, 1, 0),
+(18, 'mmm', 'mmm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', '1212-12-12', 35, 2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -370,6 +404,12 @@ ALTER TABLE `Comment`
 ALTER TABLE `Competition`
   ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
   ADD CONSTRAINT `Competition_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `CompetitionType` (`id`);
+
+--
+-- Constraints for table `News`
+--
+ALTER TABLE `News`
+  ADD CONSTRAINT `News_ibfk_1` FOREIGN KEY (`text_id`) REFERENCES `Text` (`id`);
 
 --
 -- Constraints for table `Photo`

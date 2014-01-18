@@ -100,8 +100,6 @@ public class CommandCurrentRankings implements Command {
 							dateFormat.format(project.getCreationDate()))
 					.add(Constants.PARAMETER_RATING,
 							voiceBean.getRatingByProject(project))
-					.add(Constants.PARAMETER_VOTES_QUANTITY,
-							voiceBean.getCountByProject(project))
 					.add(Constants.PARAMETER_COMMENT_QUANTITY,
 							commentBean.getCountByProjectId(project.getId()))
 					.add(Constants.PARAMETER_USER, jsonUser)

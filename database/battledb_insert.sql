@@ -98,8 +98,14 @@ INSERT INTO Text VALUES
 (35, 730, 'phone: +1 (44) 123-45-67 ', 'telefoon: +1 (44) 123-45-67'),
 (36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
 (37, 750, 'Skype Me ', 'Skype Me'),
-(38, 800, 'Нour project is registered','Uw project is geregistreerd');
-
+(38, 800, 'Нour project is registered','Uw project is geregistreerd'),
+(39, 10, 'Battle of Rotterdam will start soon!','Battle of Rotterdam zal binnenkort beginnen!'),
+(40, 20, 'Celebration in honor of the opening of the "Battle of Rotterdam!"','Viering ter ere van de opening van de "Slag van Rotterdam!"'),
+(41, 30, 'Lets make our city more beautiful!','Laten we onze stad mooier!'),
+(42, 40, '',''),
+(43, 50, '',''),
+(44, 60, '',''),
+(45, 70, '','');
 
 INSERT INTO URL VALUES
 (1, 100, 'Name of Battle video url', 'Value of Battle video url'),
@@ -107,3 +113,8 @@ INSERT INTO URL VALUES
 (3, 120, 'Name of Link2 on Home-page', 'Value of Link2 on Home-page'),
 (4, 130, 'Name of Link3 on Home-page', 'Value of Link3 on Home-page'),
 (5, 140, 'Name of Link4 on Home-page', 'Value of Link4 on Home-page');
+
+INSERT INTO News VALUES
+(1, 10, 'img/news1.jpg','2014-01-15', 39),
+(2, 20, 'img/news2.jpg','2014-01-16', 40),
+(3, 30, 'img/news3.jpg','2014-01-17', 41);

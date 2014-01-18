@@ -7,6 +7,7 @@ package com.battleweb.controller;
  */
 public interface Constants {
 	//Parameters for the home-page view
+	public static final Integer HOME_PAGE_LAST_NEWS_COUNT = 3;
 	public static final Integer HOME_PAGE_LAST_COMMENTS_COUNT = 5;
 	public static final Integer HOME_PAGE_LAST_PHOTOS_COUNT = 3;
 	public static final Integer FOOTER_GALLERY_PHOTOS_COUNT = 12;
@@ -22,6 +23,7 @@ public interface Constants {
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	public static final String COMMAND_INDEX = "index";
+	public static final String COMMAND_NEWS = "news";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
@@ -77,6 +79,7 @@ public interface Constants {
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_TITLE = "linktitle";
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
 	public static final String PARAMETER_BATTLE_LINKS = "battlelinks";
+	public static final String PARAMETER_LAST_NEWS = "lastnews";
 	public static final String PARAMETER_LAST_COMMENTS_LIST = "lastcommentslist";
 	public static final String PARAMETER_USER_LOGIN = "userlogin";
 	public static final String PARAMETER_USER_PHOTOPATH = "userphotopath";
@@ -91,16 +94,15 @@ public interface Constants {
 	public static final String PARAMETER_DATE_FROM = "datefrom";
 	public static final String PARAMETER_DATE_TO = "dateto";
 	public static final String PARAMETER_FILTER = "filter";
+	public static final String PARAMETER_ORDER_BY = "orderby";
+	public static final String PARAMETER_SORT = "sort";
 	
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
-	public static final String PARAMETER_ABOUT_US = "aboutbus";
+	public static final String PARAMETER_ABOUT_US = "aboutus";
 	public static final String PARAMETER_RULES = "rules";
 	public static final String PARAMETER_INFORMATION = "information";
 	public static final String PARAMETER_TITLE = "title";
-	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
-	public static final String PARAMETER_US_DESCRIPTION = "usdescription";
-	public static final String PARAMETER_RULES_DESCRIPTION = "rulesdescription";
-	public static final String PARAMETER_INFO_DESCRIPTION = "infodescription";
+//	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
 
 	public static final String PARAMETER_FAQ_LIST = "faqlist";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
@@ -182,6 +184,14 @@ public interface Constants {
 	public static final Integer TEXT_A4 = 635;
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
+
+	public static final Integer TEXT_NEWS1 = 10;
+	public static final Integer TEXT_NEWS2 = 20;
+	public static final Integer TEXT_NEWS3 = 30;
+	public static final Integer TEXT_NEWS4 = 40;
+	public static final Integer TEXT_NEWS5 = 50;
+	public static final Integer TEXT_NEWS6 = 60;
+	public static final Integer TEXT_NEWS7 = 70;
 	
 	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
 	public static final Integer TEXT_CONTACTS_ADDRESS = 710;
@@ -210,4 +220,7 @@ public interface Constants {
 	
 	public static final String PATH_GET_PHOTO="/photo/controller?command=getphoto&photoname=";
 	public static final String PATH_GET_AVATAR="/photo/avatar/controller?command=getphoto&photoname=";
+	
+	public static final String SORT_TYPE_ASC = "asc";
+	public static final String SORT_TYPE_DESC = "desc";
 }
