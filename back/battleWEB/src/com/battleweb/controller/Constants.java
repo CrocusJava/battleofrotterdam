@@ -150,6 +150,7 @@ public interface Constants {
 	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
 	
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
+	public static final String PARAMETER_PHOTO_NAME="photoname";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
