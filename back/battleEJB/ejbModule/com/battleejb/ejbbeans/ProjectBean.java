@@ -15,13 +15,11 @@ import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType_;
 import com.battleejb.entities.Competition_;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.Project_;
 import com.battleejb.entities.User_;
-import com.battleweb.controller.Constants;
 
 /**
  * @author Lukashchuk Ivan
@@ -30,7 +28,12 @@ import com.battleweb.controller.Constants;
 @Stateless
 @LocalBean
 public class ProjectBean extends AbstractFacade<Project> {
-
+	
+	private static final String SORT_TYPE_ASC = "asc";
+	private static final String SORT_TYPE_DESC = "desc";
+	private static final String PARAMETER_DATE = "date";
+	private static final String PARAMETER_RATING = "rating";
+	
 	@PersistenceContext(unitName = "persistence")
 	EntityManager em;
 
@@ -100,16 +103,16 @@ public class ProjectBean extends AbstractFacade<Project> {
 
 			cq.where(predicate);
 			Expression<?> ex = null;
-			if (orderBy.equals(Constants.PARAMETER_DATE)) {
+			if (orderBy.equals(PARAMETER_DATE)) {
 				ex = p.get(Project_.creationDate);
-			} else if (orderBy.equals(Constants.PARAMETER_RATING)) {
+			} else if (orderBy.equals(PARAMETER_RATING)) {
 				ex = cb.size(p.get(Project_.voices));
 			}
 
 			Order order = null;
-			if (sort.equals(Constants.SORT_TYPE_ASC)) {
+			if (sort.equals(SORT_TYPE_ASC)) {
 				order = cb.asc(ex);
-			} else if (sort.equals(Constants.SORT_TYPE_DESC)) {
+			} else if (sort.equals(SORT_TYPE_DESC)) {
 				order = cb.desc(ex);
 			}
 			cq.orderBy(order);
