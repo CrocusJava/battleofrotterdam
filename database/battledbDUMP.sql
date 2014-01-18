@@ -138,7 +138,7 @@ INSERT INTO `CompetitionType` (`id`, `name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `Photo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `path` varchar(45) NOT NULL,
+  `path` varchar(300) NOT NULL,
   `loadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` mediumtext,
   `project_id` bigint(20) NOT NULL,
@@ -263,7 +263,7 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (34, 720, 'mail@must.be.here ', 'mail@must.be.here'),
 (35, 730, 'phone: +1 (44) 123-45-67 ', 'telefoon: +1 (44) 123-45-67'),
 (36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
-(37, 750, 'Skype Me ', 'Skype Me')
+(37, 750, 'Skype Me ', 'Skype Me'),
 (38, 800, 'Нour project is registered','Uw project is geregistreerd');
 
 -- --------------------------------------------------------
@@ -329,7 +329,7 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
 (5, 'test55', 'test55', 'test55', 'test55', '7e39cfce74d155294619613f42484f18', 'default', 'dsad@ukr.net', '32421', NULL, 31, 2, 1, 1, 0),
-(11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
+(11, 'Ray', 'O’', 'Sun', 'ray_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
 (12, 'Joe', '', 'Morton', 'joe_login', '1111', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
 (13, 'Jenny', '', 'Flex', 'jenny_login', '1111', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
 (14, 'Lupe', '', 'Lamora', 'lupe_login', '1111', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1),
