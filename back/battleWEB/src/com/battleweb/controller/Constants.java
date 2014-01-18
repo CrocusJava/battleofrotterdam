@@ -40,6 +40,7 @@ public interface Constants {
 	public static final String COMMAND_PROJECTS = "projects";
 	public static final String COMMAND_COMPETITIONS = "competitions";
 	public static final String COMMAND_GET_PHOTO = "getphoto";
+	public static final String COMMAND_EDIT_COMMENT = "editcomment";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -150,6 +151,7 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
 	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
+	public static final String PARAMETER_COMMENT_ID = "commentid";
 	
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";

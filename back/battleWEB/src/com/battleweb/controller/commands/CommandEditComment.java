@@ -30,7 +30,7 @@ import com.battleweb.tools.ToolJSON;
  */
 @Stateless
 @LocalBean
-public class CommandSendComment implements Command {
+public class CommandEditComment implements Command {
 
 	@EJB
 	private ToolJSON toolJSON;
@@ -51,37 +51,21 @@ public class CommandSendComment implements Command {
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 
-		Photo photo = null;
-		Project project = null;
+		int commentId = jsonObjectRequest
+				.getInt(Constants.PARAMETER_COMMENT_ID);
+		String commentText = jsonObjectRequest
+				.getString(Constants.PARAMETER_COMMENT_TEXT);
 
-		int projectId = jsonObjectRequest
-				.getInt(Constants.PARAMETER_PROJECT_ID);
-		project = projectBean.find(projectId);
-		try {
-			int photoId = jsonObjectRequest
-					.getInt(Constants.PARAMETER_PHOTO_ID);
-			photo = photoBean.find(photoId);
-		} catch (Exception e) {
-		}
-		
-		Comment comment = new Comment();
-		if (photo == null || photo.getProject().getId() == projectId) {
+		Comment comment = commentBean.find(commentId);
+		if (comment.getUser().getId() == request.getSession().getAttribute(
+				Constants.PARAMETER_SESSION_IDUSER)) {
+			comment.setCommentText(commentText);
+			commentBean.edit(comment);
 			
-			comment.setProject(project);
-			comment.setPhoto(photo);
-			comment.setCommentText(jsonObjectRequest
-					.getString(Constants.PARAMETER_COMMENT_TEXT));
-			comment.setCommentDate(new Date());
-			comment.setUser(userBean.find(Integer.parseInt(request.getSession()
-					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
-					.toString())));
-			
-			commentBean.create(comment);
-			
-		}else{
+		} else {
 			commentResult = false;
 		}
-		
+
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_COMMENT_ID, comment.getId())
 				.add(Constants.PARAMETER_VOTE_RESULT, commentResult).build();
