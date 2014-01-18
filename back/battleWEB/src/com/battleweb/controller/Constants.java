@@ -200,6 +200,16 @@ public interface Constants {
 	public static final Integer TEXT_A4 = 635;
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
+	public static final Integer TEXT_Q6 = 650;
+	public static final Integer TEXT_A6 = 655;
+	public static final Integer TEXT_Q7 = 660;
+	public static final Integer TEXT_A7 = 665;
+	public static final Integer TEXT_Q8 = 670;
+	public static final Integer TEXT_A8 = 675;
+	public static final Integer TEXT_Q9 = 680;
+	public static final Integer TEXT_A9 = 685;
+	public static final Integer TEXT_Q10 = 690;
+	public static final Integer TEXT_A10 = 695;
 
 	public static final Integer TEXT_NEWS1 = 10;
 	public static final Integer TEXT_NEWS2 = 20;
@@ -208,6 +218,8 @@ public interface Constants {
 	public static final Integer TEXT_NEWS5 = 50;
 	public static final Integer TEXT_NEWS6 = 60;
 	public static final Integer TEXT_NEWS7 = 70;
+	public static final Integer TEXT_NEWS8 = 80;
+	public static final Integer TEXT_NEWS9 = 90;
 	
 	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
 	public static final Integer TEXT_CONTACTS_ADDRESS = 710;
