@@ -800,7 +800,7 @@ function call_load_data_for_myaccount() {
 function call_load_data_for_about_battle() {
     $.post("/battleWEB/controller?command=aboutbattle", function(data) {
         var template_for_about_battle = [
-            {tag: "h4", add_class: "font_hotel", text: "title"},
+            {tag: "h1", add_class: "font_hotel", text: "title"},
             {tag: "p", text: "description"}
         ];
         call_markup_index(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
@@ -824,8 +824,8 @@ function call_load_data_for_news_index() {
             {tag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
-                                    {tag: "img", attr: {src: "photoPath", "data-src": "photoPath", alt: "img_preview"}},
-                                    {tag: "h4", text: "loadDate"}
+                                    {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+                                    {tag: "h4", text: "loaddate"}
                                 ]},
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
@@ -836,8 +836,8 @@ function call_load_data_for_news_index() {
                         ]}
                 ]}
         ];
-        for (var i in data.news) {
-            call_markup_index(template_for_news_index, $("#news_index"), data.news[i]);
+        for (var i in data.lastnews) {
+            call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
         }
 
 
