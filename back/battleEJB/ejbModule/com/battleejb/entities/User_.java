@@ -12,6 +12,11 @@ import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
 import com.battleejb.entities.Voice;
 
+/**
+ * 
+ * @author Lukashch Ivan
+ * 
+ */
 @StaticMetamodel(User.class)
 public class User_ {
 

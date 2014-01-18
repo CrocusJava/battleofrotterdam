@@ -6,6 +6,11 @@ import javax.persistence.metamodel.StaticMetamodel;
 
 import com.battleejb.entities.Competition;
 
+/**
+ * 
+ * @author Lukashch Ivan
+ * 
+ */
 @StaticMetamodel(CompetitionType.class)
 public class CompetitionType_ {
 

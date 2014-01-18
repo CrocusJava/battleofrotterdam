@@ -22,12 +22,11 @@ import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
 import com.battleejb.entities.CompetitionType_;
 import com.battleejb.entities.Competition_;
-import com.battleejb.entities.Project;
-import com.battleejb.entities.Project_;
 import com.battleejb.entities.User_;
 
 /**
  * @author marina
+ * @author Lukashchuk Ivan
  * 
  */
 
@@ -36,7 +35,6 @@ import com.battleejb.entities.User_;
 public class CompetitionBean extends AbstractFacade<Competition> {
 
 	private static final String SORT_TYPE_ASC = "asc";
-	private static final String SORT_TYPE_DESC = "desc";
 	private static final String ORDER_BY_START_DATE = "startdate";
 	private static final String ORDER_BY_END_DATE = "enddate";
 	private static final String ORDER_BY_REG_DEADLINE = "regdeadline";
@@ -83,7 +81,7 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 	}
 
 	public List<Competition> findFilterOrderByDateLimit(String orderBy,
-			String sort, Date startDateFrom, Date startDateTo,
+			String name, String sort, Date startDateFrom, Date startDateTo,
 			Date endDateFrom, Date endDateTo, Date regDeadlineFrom,
 			Date regDeadlineTo, Integer id, Integer winnerId, String type,
 			int firstPosition, int size) {
@@ -93,8 +91,11 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 			CriteriaQuery<Competition> cq = cb.createQuery(Competition.class);
 			Root<Competition> p = cq.from(Competition.class);
 
-			Predicate predicate = null;
-
+			Predicate predicate = cb.notEqual(p.get(Competition_.id), 0);
+			if (name != null) {
+				predicate = cb.and(predicate,
+						cb.like(p.get(Competition_.name), "%" + name + "%"));
+			}
 			if (startDateFrom != null) {
 				predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
 						p.get(Competition_.dateStart), startDateFrom));

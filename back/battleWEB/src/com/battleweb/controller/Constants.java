@@ -165,6 +165,7 @@ public interface Constants {
 	public static final String PARAMETER_START_DATE="startdate";
 	public static final String PARAMETER_END_DATE="enddate";
 	public static final String PARAMETER_REG_DEADLINE="regdeadline";	
+	public static final String PARAMETER_COMPETITIONS = "competitions";
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
