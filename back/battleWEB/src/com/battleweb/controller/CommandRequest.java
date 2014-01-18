@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.battleweb.controller.commands.Command;
 import com.battleweb.controller.commands.CommandAboutBattle;
 import com.battleweb.controller.commands.CommandApproveRegistration;
+import com.battleweb.controller.commands.CommandCompetitions;
 import com.battleweb.controller.commands.CommandCreateProject;
 import com.battleweb.controller.commands.CommandCurrentRankings;
 import com.battleweb.controller.commands.CommandFAQ;
@@ -86,6 +87,8 @@ public class CommandRequest {
 	private CommandLogout commandLogout;
 	@EJB
 	private CommandProjects commandProjects;
+	@EJB
+	private CommandCompetitions commandCompetitions;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -112,6 +115,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_SEND_COMMENT, commandSendComment);
 		commands.put(Constants.COMMAND_LOGOUT, commandLogout);
 		commands.put(Constants.COMMAND_PROJECTS, commandProjects);
+		commands.put(Constants.COMMAND_COMPETITIONS, commandCompetitions);
 	}
 
 	public Command getCommand(HttpServletRequest request) {

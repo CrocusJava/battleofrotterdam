@@ -38,6 +38,7 @@ public interface Constants {
 	public static final String COMMAND_VOTE = "vote";
 	public static final String COMMAND_SEND_COMMENT = "sendcomment";
 	public static final String COMMAND_PROJECTS = "projects";
+	public static final String COMMAND_COMPETITIONS = "competitions";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -151,6 +152,19 @@ public interface Constants {
 	
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";
+	
+	public static final String PARAMETER_SHOW_DESCRIPTION = "showdescription";
+	public static final String PARAMETER_START_DATE_FROM="startdatefrom";
+	public static final String PARAMETER_START_DATE_TO = "startdateto";
+	public static final String PARAMETER_END_DATE_FROM="enddatefrom";
+	public static final String PARAMETER_END_DATE_TO = "enddateto";
+	public static final String PARAMETER_REG_DEADLINE_FROM="regdeadlinefrom";
+	public static final String PARAMETER_REG_DEADLINE_TO="regdeadlineto";
+	public static final String PARAMETER_WINNER_ID="winnerid";
+	public static final String PARAMETER_WINNER="winner";
+	public static final String PARAMETER_START_DATE="startdate";
+	public static final String PARAMETER_END_DATE="enddate";
+	public static final String PARAMETER_REG_DEADLINE="regdeadline";	
 	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
