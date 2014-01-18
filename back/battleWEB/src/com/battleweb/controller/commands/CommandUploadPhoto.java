@@ -68,6 +68,7 @@ public class CommandUploadPhoto implements Command {
 				photo.setLoadDate(new Date());
 				photo.setProject(project);
 				photo.setPath(filePath);
+				photo.setDescription(fileNameCorrect);
 				photoBean.create(photo);
 			}
 		}
