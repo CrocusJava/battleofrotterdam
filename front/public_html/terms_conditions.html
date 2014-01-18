@@ -1,0 +1,51 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Thank you for registration</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="myModal_TC" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">TERMS AND CONDITIONS</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+PLEASE READ THE FOLLOWING TERMS AND CONDITIONS CAREFULLY BEFORE USING THIS SITE. By using this site, you signify your agreement to these Terms and Conditions. If you do not agree to these Terms and Conditions, do not use this site. TheBattleOfRotterdam may modify these Terms and Conditions at anytime.
+<br>
+Restrictions On Use of Materials
+<br>
+This site is copyright protected. Any textual or graphic material you copy, print, or download is licensed to you by Hasbro, Inc. and/or its subsidiaries ("TheBattleOfRotterdam") for your personal, non-commercial home use only, provided that you do not change or delete any copyright, trademark or other proprietary notices.
+<br>
+
+
+THE MATERIALS IN THIS SITE ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TheBattleOfRotterdam DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE CONTENT OR OTHER MATERIALS IN THIS SITE IN TERMS OF THEIR CORRECTNESS, ACCURACY, RELIABILITY, OR OTHERWISE.
+
+</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+
+
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            $(window).load(function() {
+                $("#myModal_TC").modal("show");
+                $("#myModal_TC").on("hide", function() {
+                    window.location = "registration.html";
+                });
+            });
+        </script>
+    </body>
+</html>
