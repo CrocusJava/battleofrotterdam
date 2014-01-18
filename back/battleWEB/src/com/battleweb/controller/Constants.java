@@ -39,6 +39,7 @@ public interface Constants {
 	public static final String COMMAND_SEND_COMMENT = "sendcomment";
 	public static final String COMMAND_PROJECTS = "projects";
 	public static final String COMMAND_COMPETITIONS = "competitions";
+	public static final String COMMAND_GET_PHOTO = "getphoto";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -225,7 +226,6 @@ public interface Constants {
 	public static final Integer URL_HOMEPAGE_LINK3 = 130;
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
 
-	
 	//Set some constants
 	public static final String COMPETITION_TYPE_YEAR = "year";
 	public static final String COMPETITION_TYPE_MONTH = "month";
@@ -234,8 +234,8 @@ public interface Constants {
 	public static final String PATH_SAVE_AVATAR = "./../photo/avatar";
 	public static final String PATH_SAVE_PHOTO = "./../photo/";
 	
-	public static final String PATH_GET_PHOTO="/photo/controller?command=getphoto&photoname=";
-	public static final String PATH_GET_AVATAR="/photo/avatar/controller?command=getphoto&photoname=";
+	public static final String PATH_GET_PHOTO="/controller?command=getphoto&photoname=";
+	public static final String PATH_GET_AVATAR="/controller?command=getphoto&photoname=";
 	
 	public static final String SORT_TYPE_ASC = "asc";
 	public static final String SORT_TYPE_DESC = "desc";
