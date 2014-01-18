@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2014 at 07:40 PM
+-- Generation Time: Jan 18, 2014 at 03:26 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `Address`
@@ -50,7 +50,9 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (32, 'ss', '23232', 'ss', '23s', NULL),
 (33, 'rotterdam', '13', 'dont know', '13', NULL),
 (34, 'mmm', '12', 'mmm', '12', NULL),
-(35, 'mmm', '12', 'mmm', '12', NULL);
+(35, 'mmm', '12', 'mmm', '12', NULL),
+(41, 'Ð¹Ñ?Ñ?Ð¹Ðº', '124123', 'Ð¹Ñ?Ñ?Ð¹Ðº', '1234', NULL),
+(42, 'mmm', '12', 'mmm', '12', NULL);
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,16 @@ CREATE TABLE IF NOT EXISTS `News` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`),
   KEY `text_id` (`text_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `News`
+--
+
+INSERT INTO `News` (`id`, `keyval`, `photoPath`, `loadDate`, `text_id`) VALUES
+(1, 10, 'img/news1.jpg', '2014-01-15 08:00:00', 39),
+(2, 20, 'img/news2.jpg', '2014-01-16 08:00:00', 40),
+(3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41);
 
 -- --------------------------------------------------------
 
@@ -158,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `News` (
 
 CREATE TABLE IF NOT EXISTS `Photo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `path` varchar(300) NOT NULL,
+  `path` varchar(45) NOT NULL,
   `loadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` mediumtext,
   `project_id` bigint(20) NOT NULL,
@@ -254,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `Text`
@@ -295,7 +306,14 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (35, 730, 'phone: +1 (44) 123-45-67 ', 'telefoon: +1 (44) 123-45-67'),
 (36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
 (37, 750, 'Skype Me ', 'Skype Me'),
-(38, 800, 'Your project is registered', 'Uw project is geregistreerd');
+(38, 800, 'Your project is registered', 'Uw project is geregistreerd'),
+(39, 10, 'Battle of Rotterdam will start soon!', 'Battle of Rotterdam zal binnenkort beginnen!'),
+(40, 20, 'Celebration in honor of the opening of the "Battle of Rotterdam!"', 'Viering ter ere van de opening van de "Slag van Rotterdam!"'),
+(41, 30, 'Lets make our city more beautiful!', 'Laten we onze stad mooier!'),
+(42, 40, '', ''),
+(43, 50, '', ''),
+(44, 60, '', ''),
+(45, 70, '', '');
 
 -- --------------------------------------------------------
 
@@ -348,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `User`
@@ -360,14 +378,13 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
 (5, 'test55', 'test55', 'test55', 'test55', '7e39cfce74d155294619613f42484f18', 'default', 'dsad@ukr.net', '32421', NULL, 31, 2, 1, 1, 0),
-(11, 'Ray', 'O’', 'Sun', 'ray_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
+(11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
 (12, 'Joe', '', 'Morton', 'joe_login', '1111', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
 (13, 'Jenny', '', 'Flex', 'jenny_login', '1111', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
 (14, 'Lupe', '', 'Lamora', 'lupe_login', '1111', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1),
 (15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0),
 (16, 'O_o', 'O_O', 'o_O', 'agent008', 'c4ca4238a0b923820dcc509a6f75849b', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
-(17, 'mmm', 'mmm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', '1212-12-12', 34, 2, 1, 1, 0),
-(18, 'mmm', 'mmm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', '1212-12-12', 35, 2, 1, 1, 1);
+(24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', 'df64dc2eb4a0b85091dd31eb4923eaac', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0);
 
 -- --------------------------------------------------------
 
