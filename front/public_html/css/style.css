@@ -1886,3 +1886,11 @@ select {
 	.no_margin{
 	display:none;}
 }
+.likes{
+background-color: rgba(256,0,0,0.7)!important;
+position:absolute; top:20px; left: 15px;
+}
+.comments{
+background-color: rgba(256,0,0,0.6);
+position:absolute; top:50px; left: 15px;
+}
