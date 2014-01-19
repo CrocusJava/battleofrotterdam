@@ -39,6 +39,8 @@ public interface Constants {
 	public static final String COMMAND_SEND_COMMENT = "sendcomment";
 	public static final String COMMAND_PROJECTS = "projects";
 	public static final String COMMAND_COMPETITIONS = "competitions";
+	public static final String COMMAND_GET_PHOTO = "getphoto";
+	public static final String COMMAND_EDIT_COMMENT = "editcomment";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -149,6 +151,7 @@ public interface Constants {
 	public static final String PARAMETER_CONTACTS_SKYPE = "contactsskype";
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
 	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
+	public static final String PARAMETER_COMMENT_ID = "commentid";
 	
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";
@@ -200,6 +203,16 @@ public interface Constants {
 	public static final Integer TEXT_A4 = 635;
 	public static final Integer TEXT_Q5 = 640;
 	public static final Integer TEXT_A5 = 645;
+	public static final Integer TEXT_Q6 = 650;
+	public static final Integer TEXT_A6 = 655;
+	public static final Integer TEXT_Q7 = 660;
+	public static final Integer TEXT_A7 = 665;
+	public static final Integer TEXT_Q8 = 670;
+	public static final Integer TEXT_A8 = 675;
+	public static final Integer TEXT_Q9 = 680;
+	public static final Integer TEXT_A9 = 685;
+	public static final Integer TEXT_Q10 = 690;
+	public static final Integer TEXT_A10 = 695;
 
 	public static final Integer TEXT_NEWS1 = 10;
 	public static final Integer TEXT_NEWS2 = 20;
@@ -208,6 +221,8 @@ public interface Constants {
 	public static final Integer TEXT_NEWS5 = 50;
 	public static final Integer TEXT_NEWS6 = 60;
 	public static final Integer TEXT_NEWS7 = 70;
+	public static final Integer TEXT_NEWS8 = 80;
+	public static final Integer TEXT_NEWS9 = 90;
 	
 	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
 	public static final Integer TEXT_CONTACTS_ADDRESS = 710;
@@ -225,7 +240,6 @@ public interface Constants {
 	public static final Integer URL_HOMEPAGE_LINK3 = 130;
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
 
-	
 	//Set some constants
 	public static final String COMPETITION_TYPE_YEAR = "year";
 	public static final String COMPETITION_TYPE_MONTH = "month";
@@ -234,8 +248,8 @@ public interface Constants {
 	public static final String PATH_SAVE_AVATAR = "./../photo/avatar";
 	public static final String PATH_SAVE_PHOTO = "./../photo/";
 	
-	public static final String PATH_GET_PHOTO="/photo/controller?command=getphoto&photoname=";
-	public static final String PATH_GET_AVATAR="/photo/avatar/controller?command=getphoto&photoname=";
+	public static final String PATH_GET_PHOTO="/controller?command=getphoto&photoname=";
+	public static final String PATH_GET_AVATAR="/controller?command=getphoto&photoname=";
 	
 	public static final String SORT_TYPE_ASC = "asc";
 	public static final String SORT_TYPE_DESC = "desc";

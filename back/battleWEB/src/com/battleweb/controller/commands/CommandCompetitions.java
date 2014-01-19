@@ -60,8 +60,7 @@ public class CommandCompetitions implements Command {
 		int size = jsonObjectRequest.getInt(Constants.PARAMETER_SIZE);
 		String orderBy = jsonObjectRequest
 				.getString(Constants.PARAMETER_ORDER_BY);
-		JsonObject jsonFilter = jsonObjectRequest
-				.getJsonObject(Constants.PARAMETER_FILTER);
+
 		String sort = "";
 		String name = null;
 		Date startDateFrom = null;
@@ -84,66 +83,78 @@ public class CommandCompetitions implements Command {
 		} catch (NullPointerException e) {
 		}
 		try {
-			showDescription = jsonFilter
+			showDescription = jsonObjectRequest
 					.getBoolean(Constants.PARAMETER_SHOW_DESCRIPTION);
 		} catch (NullPointerException e) {
 		}
 		try {
-			name = jsonFilter.getString(Constants.PARAMETER_NAME);
-		} catch (NullPointerException e) {
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_START_DATE_FROM);
-			startDateFrom = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_START_DATE_TO);
-			startDateTo = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_END_DATE_FROM);
-			endDateFrom = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_END_DATE_TO);
-			endDateTo = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_REG_DEADLINE_FROM);
-			regDeadlineFrom = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			String date = jsonFilter.getString(Constants.PARAMETER_REG_DEADLINE_TO);
-			regDeadlineTo = format.parse(date);
-		} catch (NullPointerException e) {
-		} catch (ParseException e) {
-			Log.error(this, e, "Can't parse date");
-		}
-		try {
-			id = jsonFilter.getInt(Constants.PARAMETER_ID);
-		} catch (NullPointerException e) {
-		}
-		try {
-			type = jsonFilter.getString(Constants.PARAMETER_TYPE);
-		} catch (NullPointerException e) {
-		}
-		try {
-			winnerId = jsonFilter.getInt(Constants.PARAMETER_WINNER_ID);
+			JsonObject jsonFilter = jsonObjectRequest
+					.getJsonObject(Constants.PARAMETER_FILTER);
+
+			try {
+				name = jsonFilter.getString(Constants.PARAMETER_NAME);
+			} catch (NullPointerException e) {
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_START_DATE_FROM);
+				startDateFrom = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_START_DATE_TO);
+				startDateTo = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_END_DATE_FROM);
+				endDateFrom = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_END_DATE_TO);
+				endDateTo = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_REG_DEADLINE_FROM);
+				regDeadlineFrom = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				String date = jsonFilter
+						.getString(Constants.PARAMETER_REG_DEADLINE_TO);
+				regDeadlineTo = format.parse(date);
+			} catch (NullPointerException e) {
+			} catch (ParseException e) {
+				Log.error(this, e, "Can't parse date");
+			}
+			try {
+				id = jsonFilter.getInt(Constants.PARAMETER_ID);
+			} catch (NullPointerException e) {
+			}
+			try {
+				type = jsonFilter.getString(Constants.PARAMETER_TYPE);
+			} catch (NullPointerException e) {
+			}
+			try {
+				winnerId = jsonFilter.getInt(Constants.PARAMETER_WINNER_ID);
+			} catch (NullPointerException e) {
+			}
 		} catch (NullPointerException e) {
 		}
 

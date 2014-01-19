@@ -68,6 +68,7 @@ public class CommandCreateProject implements Command {
 
 			JsonObject jsonObjectResponse = Json
 					.createObjectBuilder()
+					.add(Constants.PARAMETER_PROJECT_ID, project.getId())
 					.add(Constants.PARAMETER_CREATE_PROJECT_MESSAGE,
 							cteateProjectMessage).build();
 
