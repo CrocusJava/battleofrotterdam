@@ -26,7 +26,7 @@ import com.battleweb.tools.ToolSession;
  */
 @Stateless
 @LocalBean
-public class CommandApproveRegistration implements Command {
+public class CommandWasApprovedRegistration implements Command {
 
 	@EJB
 	private UserBean userBean;
@@ -42,19 +42,30 @@ public class CommandApproveRegistration implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-				
-		Integer userId = Integer.parseInt(request
-				.getParameter(Constants.PARAMETER_IDUSER));
-		String value = request.getParameter("value");
 
-		User user = userBean.find(userId);
+		String approveRegistrationMessage = textBean.findLocaleTextByKey(
+				Constants.TEXT_MESSAGE_APPROVEREGISTRATION_FALSE,
+				request.getLocale());
+		boolean allRight = false;
 
-		if (value.equals(toolMD5.generateMD5(user.getLogin()))) {
-			user.setApproveregistration(true);
-			userBean.edit(user);			
-			toolSession.addUserSession(request, user);
+		Integer userId = (Integer) request.getSession().getAttribute(
+				Constants.PARAMETER_SESSION_IDUSER);
+
+		if (userId != null) {
+			approveRegistrationMessage = textBean.findLocaleTextByKey(
+					Constants.TEXT_MESSAGE_APPROVEREGISTRATION_TRUE,
+					request.getLocale());
+			allRight = true;
 		}
-		
-		return "/thank_you_for_registering.html";
+
+		JsonObject jsonObjectResponse = Json
+				.createObjectBuilder()
+				.add(Constants.PARAMETER_APPROVE_REGISTRATION, allRight)
+				.add(Constants.PARAMETER_APPROVEREGISTRATIONMESSAGE,
+						approveRegistrationMessage).build();
+
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+
+		return null;
 	}
 }
