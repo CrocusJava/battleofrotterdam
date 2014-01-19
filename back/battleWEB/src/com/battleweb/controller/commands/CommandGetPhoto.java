@@ -45,7 +45,7 @@ public class CommandGetPhoto implements Command {
 			}
 
 		} catch (Exception e) {
-			Log.error(this, "Can't find file on server. File name - "+photoName);
+			Log.error(this, e, "Can't find file on server. File name - "+photoName);
 		} finally {
 			close(outStream);
 			close(inStream);
@@ -59,7 +59,7 @@ public class CommandGetPhoto implements Command {
 			try {
 				resource.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				Log.error(this, e, "Can't close stream.");
 			}
 		}
 	}

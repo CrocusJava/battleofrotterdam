@@ -20,6 +20,7 @@ import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
 import com.battleweb.tools.ToolUpload;
@@ -48,7 +49,7 @@ public class CommandUploadPhoto implements Command {
 
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		Log.info(this, "CommandUploadPhoto - try to load photo");
 		String filePath=null;
 		
 		/** Define user project, from session info*/
