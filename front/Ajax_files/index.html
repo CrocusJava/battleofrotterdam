@@ -12,7 +12,7 @@
 		var button = $('#butUpload > span'), interval;
 
 		new AjaxUpload(butUpload, {
-			action: 'http://localhost:8081/battleWEB/controller?command=upload',
+			action: 'http://localhost:8081/battleWEB/controller?command=upload',//command=uploadavatar command=uploadphoto
 			onSubmit : function(file, ext){
 			if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
 				button.text('Загрузка');
