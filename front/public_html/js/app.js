@@ -1,6 +1,6 @@
 $(window).load(function() {
     call_all();
-	
+
 });
 function call_all() {
     call_grid();
@@ -25,7 +25,7 @@ function call_all() {
     call_data_for_footer();
 //    call_uploading_file_on_server();
 
- //$(".trylater").click(trylater());
+    //$(".trylater").click(trylater());
 }
 
 function call_form_validation() {
@@ -920,14 +920,14 @@ function call_enabling_submit_button() {
     }
 }
 
-function trylater(){
+function trylater() {
 
-$('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
-$('body').append('<div class="popup_back"></div>');
-$('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
-$('.close_popup').click(function(){
-									$('.popup_text').remove();
-									$('.popup_back').remove();
-									})
+    $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
+    $('body').append('<div class="popup_back"></div>');
+    $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+    $('.close_popup').click(function() {
+        $('.popup_text').remove();
+        $('.popup_back').remove();
+    });
 
 }
