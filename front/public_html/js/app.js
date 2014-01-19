@@ -842,7 +842,7 @@ function call_data_load_for_competitions() {
             {firstposition: 0,
                 size: 1,
                 orderby: "startdate",
-                showdescription: false
+                showdescription: true
             });
 
     $.ajax({
@@ -858,12 +858,25 @@ function call_data_load_for_competitions() {
             for (var key in competitions[i]) {
                 var element = $(document.createElement("li"));
                 element.appendTo(conteiner);
+                var newconteiner = element;
                 element.text(key + " =========> " + competitions[i][key]);
-                console.log(key, " =========> ", competitions[i][key]);
+
+
+
+                if ({}.toString.call(competitions[i][key]) === "[object Object]") {
+                    var ulElement = $(document.createElement("ul"));
+                    ulElement.appendTo(newconteiner);
+                    var ulConteiner = ulElement;
+                    for (var value in competitions[i][key]) {
+                        var liElement = $(document.createElement("li"));
+                        liElement.appendTo(ulConteiner);
+                        liElement.text(value + " =========> " + competitions[i][key][value]);
+                    }
+                }
             }
 
         }
-    }).fail(function(error) {
+    }).fail(function() {
         console.log("Error for load for competitions.html");
     });
 }
