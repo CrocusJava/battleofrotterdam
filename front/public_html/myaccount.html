@@ -50,20 +50,20 @@
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
                         <ul class="unstyled">
-                        <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="index.html">Home</a></li>
                             <li><a href="about_battle.html">About the Battle</a></li>
-							 <li><a href="competitions.html">Competitions</a></li>
+                            <li><a href="competitions.html">Competitions</a></li>
                             <li><a href="current_rankings.html">Current Rankings</a></li>
-							 <li><a href="projets.html">Projects</a></li>
+                            <li><a href="projets.html">Projects</a></li>
                             <li><a href="FAQ.html">FAQ</a></li>
                             <li><a href="contact.html">Contact</a></li>
 
                             <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>&nbsp; Jhon Smith <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                   <!---<li><a href="#"><i class="icon-user"></i> &ensp;My Profile</a></li>
-                                    <li><a href="#"><i class="icon-inbox"></i> &ensp;My Projects</a></li>
-                                    <li class="divider"></li>--->
+                                    <!---<li><a href="#"><i class="icon-user"></i> &ensp;My Profile</a></li>
+                                     <li><a href="#"><i class="icon-inbox"></i> &ensp;My Projects</a></li>
+                                     <li class="divider"></li>--->
                                     <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
                             </li>
@@ -119,7 +119,7 @@
                             <ul class="unstyled nav nav-tabs  clearfix">
 
                                 <li class="active"><a href="#profile">MY PROFILE</a></li>
-                                <li><a href="#project">MY PROJECTS </a></li>
+                                <li  onclick="call_grid();"><a href="#project">MY PROJECTS </a></li>
 
                             </ul>
                             <div class="tab-content lobster_tab_content">
@@ -131,210 +131,192 @@
                                             <div class="span4">
                                                 <img class="img-polaroid " alt="photo" src="img/c1.jpg" style="height:200px; " />
                                                 <fieldset>
-                                                  <legend><a href="#">Edit profile picture <i class="icon-pencil"></i></a> </legend>
+                                                    <legend><a href="#">Edit profile picture <i class="icon-pencil"></i></a> </legend>
                                                 </fieldset>
-                                               <!--- <label class="btn icon-edit">
-                                                    <input id="photopath" name="photopath" type="file" style="display: none;">
-                                                </label>-->
+                                                <!--- <label class="btn icon-edit">
+                                                     <input id="photopath" name="photopath" type="file" style="display: none;">
+                                                 </label>-->
                                             </div>
 
 
                                             <div class="span8">
-											
-											 <div class="panel-group" id="accordion">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h2 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                 Basic information <i class="icon-pencil"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <fieldset>
-												
-                                                  <legend>Login or NickName </legend>
-												
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="login" name="login" type="text" disabled="">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-													 <legend>Name</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="password" name="password" type="text" disabled="" placeholder="First Name">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-													 <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="Middle Name">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-													 <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="Last Name">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-													 
-                                                </fieldset>
-												
-												 <fieldset>
-                                                    <legend>Gender</legend>
 
-                                                    <div class="radio" style="padding-left: 20px;">
-													  <label>
-														<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-													   Male
-													  </label>
-													</div>
-													<div class="radio" style="padding-left: 20px;">
-													  <label>
-														<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-														Female
-													  </label>
-													</div>
-                                                </fieldset>
-												
-												 <fieldset>
-                                                    <legend>Language</legend>
+                                                <div class="panel-group" id="accordion">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h2 class="panel-title">
+                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                                    Basic information <i class="icon-pencil"></i>
+                                                                </a>
+                                                            </h2>
+                                                        </div>
+                                                        <div id="collapseOne" class="panel-collapse collapse">
+                                                            <div class="panel-body">
+                                                                <fieldset>
 
-                                                    <div class="radio" style="padding-left: 20px;">
-													  <label>
-														<input type="radio" name="lang" id="optionsRadioslang1" value="option1" checked>
-													  <img src="img/NL.png" alt="flag"> NL
-													  </label>
-													</div>
-													<div class="radio" style="padding-left: 20px;">
-													  <label>
-														<input type="radio" name="lang" id="optionsRadioslang2" value="option2">
-														<img src="img/english.png" alt="flag"> ENG
-													  </label>
-													</div>
-                                                </fieldset>
-												 <fieldset>
-												
-												 <legend>Change password</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="password" name="password" type="text" disabled="" placeholder="Current">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-													 <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="New">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-													 <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="Confirm">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-												 </fieldset>
-												
-												
-												
-												
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h2 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                             Contact information <i class="icon-pencil"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                        
-												
-												
-                                                <fieldset>
-                                                    <legend>Phone</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="phone" name="phone" type="text" disabled="">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-                                                </fieldset>
-                                              
-                                                <fieldset>
-                                                    <legend>Address</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="town" name="town" type="text" disabled="" placeholder="region">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="srteet/house">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-                                                    
-                                                </fieldset>
+                                                                    <legend>Login or NickName </legend>
 
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="login" name="login" type="text" disabled="">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                    <legend>Name</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="password" name="password" type="text" disabled="" placeholder="First Name">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="Middle Name">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="Last Name">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
 
-                                                <fieldset>
-                                                    <legend>Email</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="email" name="email" type="text" disabled="">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-                                                </fieldset>
-												
-												<fieldset>
-                                                    <legend>Web-site</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="email" name="email" type="text" disabled="">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-                                                </fieldset>
-												<fieldset>
-                                                    <legend>Skype (links in social web, etc)</legend>
-                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                        <input class="span12" id="email" name="email" type="text" disabled="">
-                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                    </div>
-                                                </fieldset>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h2 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                               About me <i class="icon-pencil"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                     
-											<fieldset>
-                                                  
-                                                   
-                                                        <textarea rows="7" style="width:88%; margin-bottom:40px;"></textarea>
-                                                      
-                                               
-                                                </fieldset>
-                                        </div>
-                                    </div>
-                                </div>
+                                                                </fieldset>
 
+                                                                <fieldset>
+                                                                    <legend>Gender</legend>
 
+                                                                    <div class="radio" style="padding-left: 20px;">
+                                                                        <label>
+                                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                                            Male
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="radio" style="padding-left: 20px;">
+                                                                        <label>
+                                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                                            Female
+                                                                        </label>
+                                                                    </div>
+                                                                </fieldset>
 
-                               
+                                                                <fieldset>
+                                                                    <legend>Language</legend>
 
-                               
+                                                                    <div class="radio" style="padding-left: 20px;">
+                                                                        <label>
+                                                                            <input type="radio" name="lang" id="optionsRadioslang1" value="option1" checked>
+                                                                            <img src="img/NL.png" alt="flag"> NL
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="radio" style="padding-left: 20px;">
+                                                                        <label>
+                                                                            <input type="radio" name="lang" id="optionsRadioslang2" value="option2">
+                                                                            <img src="img/english.png" alt="flag"> ENG
+                                                                        </label>
+                                                                    </div>
+                                                                </fieldset>
+                                                                <fieldset>
+
+                                                                    <legend>Change password</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="password" name="password" type="text" disabled="" placeholder="Current">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="New">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="Confirm">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                </fieldset>
 
 
 
 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h2 class="panel-title">
+                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                                    Contact information <i class="icon-pencil"></i>
+                                                                </a>
+                                                            </h2>
+                                                        </div>
+                                                        <div id="collapseTwo" class="panel-collapse collapse in">
+                                                            <div class="panel-body">
 
-                            </div>
-											
-											
-											
-											
-											
-										
-												
+
+
+                                                                <fieldset>
+                                                                    <legend>Phone</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="phone" name="phone" type="text" disabled="">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                </fieldset>
+
+                                                                <fieldset>
+                                                                    <legend>Address</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="town" name="town" type="text" disabled="" placeholder="region">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="srteet/house">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+
+                                                                </fieldset>
+
+
+                                                                <fieldset>
+                                                                    <legend>Email</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="email" name="email" type="text" disabled="">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                </fieldset>
+
+                                                                <fieldset>
+                                                                    <legend>Web-site</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="email" name="email" type="text" disabled="">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                </fieldset>
+                                                                <fieldset>
+                                                                    <legend>Skype (links in social web, etc)</legend>
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="email" name="email" type="text" disabled="">
+                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h2 class="panel-title">
+                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                                    About me <i class="icon-pencil"></i>
+                                                                </a>
+                                                            </h2>
+                                                        </div>
+                                                        <div id="collapseThree" class="panel-collapse collapse">
+                                                            <div class="panel-body">
+
+                                                                <fieldset>
+
+
+                                                                    <textarea rows="7" style="width:88%; margin-bottom:40px;"></textarea>
+
+
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-											
- <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Save changes </button></div>
+
+                                            <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Save changes </button></div>
 
 
                                         </form>
@@ -343,51 +325,55 @@
 
 
                                 <div class="tab-pane" id="project">
-                                   <section id="content_myproject">
-                <div class="inner-wrapper">
-                    <div class="row-fluid">
-                        <div class="span12">
+                                    <section id="content_myproject">
+                                        <div class="inner-wrapper">
+                                            <div class="row-fluid">
+                                                <div class="span12">
 
 
-                            <!-- Start Grid Galeries -->
-                            <div class="gridmasonry grid_list_galeries" style="display: block; position: relative; height: 444px;">
-                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 0px;">
-                                    <a href="img/news1.jpg" class="image_link">
-                                        <div class="panel">
-                                            <h2>January competition</h2>
-                                            <div class="with_hover"></div>
-                                            <img src="img/news1.jpg" alt="preview">
+                                                    <!-- Start Grid Galeries -->
+                                                    <div class="gridmasonry grid_list_galeries">
+                                                        <!--style="display: block; position: relative; height: 444px;"-->
+                                                        <div class="item_grid item3" >
+                                                            <!--style="position: absolute; left: 0px; top: 0px;"-->
+                                                            <a href="img/news1.jpg" class="image_link">
+                                                                <div class="panel">
+                                                                    <h2>January competition</h2>
+                                                                    <div class="with_hover"></div>
+                                                                    <img src="img/news1.jpg" alt="preview">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="item_grid item3" >
+                                                            <!--style="position: absolute; left: 333px; top: 0px;"-->
+                                                            <a href="img/news2.jpg" class="image_link">
+                                                                <div class="panel">
+                                                                    <h2>February competition</h2>
+                                                                    <div class="with_hover"></div>
+                                                                    <img src="img/news2.jpg" alt="preview">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="item_grid item3">
+                                                            <!--style="position: absolute; left: 666px; top: 0px;"-->
+                                                            <a href="img/news3.jpg" class="image_link">
+                                                                <div class="panel">
+                                                                    <h2>2014 battle</h2>
+                                                                    <div class="with_hover"></div>
+                                                                    <img src="img/news3.jpg" alt="preview">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+
+                                                    </div><!-- End Grid Galeries -->
+
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="item_grid item3" style="position: absolute; left: 333px; top: 0px;">
-                                    <a href="img/news2.jpg" class="image_link">
-                                        <div class="panel">
-                                            <h2>February competition</h2>
-                                            <div class="with_hover"></div>
-                                            <img src="img/news2.jpg" alt="preview">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="item_grid item3" style="position: absolute; left: 666px; top: 0px;">
-                                    <a href="img/news3.jpg" class="image_link">
-                                        <div class="panel">
-                                            <h2>2014 battle</h2>
-                                            <div class="with_hover"></div>
-                                            <img src="img/news3.jpg" alt="preview">
-                                        </div>
-                                    </a>
-                                </div>
-                               
-                            </div><!-- End Grid Galeries -->
+                                    </section><!-- End section content page -->
 
-
-                        </div>
-                    </div>
-                </div>
-            </section><!-- End section content page -->
-
- <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Take part in current competition </button></div>
+                                    <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Take part in current competition </button></div>
 
 
 
