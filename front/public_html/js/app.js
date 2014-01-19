@@ -599,6 +599,11 @@ function call_data_for_index_html() {
     if (window.location.href.match(/myaccount.html$/)) {
         call_event_logout();
     }
+//<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
+
+    if (window.location.href.match(/competitions.html$/)) {
+        call_data_load_for_competitions();
+    }
 
 }
 
@@ -832,23 +837,34 @@ function call_load_data_for_news_index() {
 
 
 /*=======================Рекомендовано для передачи данных в формате JSON============================*/
+function call_data_load_for_competitions() {
+    var data = JSON.stringify(
+            {firstposition: 0,
+                size: 1,
+                orderby: "startdate",
+                showdescription: false
+            });
 
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=competitions",
+        dataType: "json",
+        contentType: "application/json",
+        data: data
+    }).done(function(respons) {
+        var competitions = respons.competitions;
+        var conteiner = $("#competitions");
+        for (var i in competitions) {
+            for (var key in competitions[i]) {
+                var element = $(document.createElement("li"));
+                element.appendTo(conteiner);
+                element.text(key + " =========> " + competitions[i][key]);
+                console.log(key, " =========> ", competitions[i][key]);
+            }
 
-var data = JSON.stringify(
-        {firstposition: 0,
-            size: 1,
-            orderby: "startdate",
-            showdescription: false
-        });
-$.ajax({
-    type: "POST",
-    url: "/battleWEB/controller?command=competitions",
-    dataType: "json",
-    contentType: "application/json",
-    data: data
-}).done(function(data) {
-    console.log(data);
-}).fail(function(data) {
-    console.log(data);
-});
+        }
+    }).fail(function(error) {
+        console.log("Error for load for competitions.html");
+    });
+}
 
