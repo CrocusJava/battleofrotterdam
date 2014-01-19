@@ -12,6 +12,9 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.log4j.Logger;
+
+import com.battleweb.logger.Log;
 
 /**
  * @author rtkachuk
@@ -20,9 +23,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 @Stateless
 @LocalBean
 public class ToolUpload {
-	
+	private final Logger LOGGER = Logger.getLogger(ToolUpload.class);
+			
 	public String uploadImage(HttpServletRequest request, String filePath, String fileName) throws ServletException{
 		String fileNameCorrect=null;
+
 		try {
 			List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 			
@@ -40,6 +45,8 @@ public class ToolUpload {
 				}
 			}
 		} catch (FileUploadException e) {
+			Log.error(this, e, "1-Can't save file on server. File name - "+fileNameCorrect);
+			LOGGER.error("2-Can't save file on server. File name - "+fileNameCorrect, e);
 			throw new ServletException("Parsing file upload failed.", e);
 		} catch (Exception e) {
 			e.printStackTrace();
