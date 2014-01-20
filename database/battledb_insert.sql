@@ -51,7 +51,9 @@ INSERT INTO Photo VALUES
 (14, 'img/remont16.jpg','2014-01-12','description of Joes month project',3),
 (15, 'img/remont17.jpg','2014-01-13','description of JoesJoes_year_project_photo',4),
 (16, 'img/remont18.jpg','2014-01-14','description of Jennys_year_project_photo',5),
-(17, 'img/remont19.gif','2014-01-15','description of Lupes_year_project_photo',6);
+(17, 'img/remont19.gif','2014-01-15','description of Lupes_year_project_photo',6),
+(18, '/controller?command=getphoto&photoname=photo114year.jpg', '2014-01-18 18:12:38', 'photo114year.jpg', 2),
+(19, '/controller?command=getphoto&photoname=photo115year.jpg', '2014-01-18 18:26:00', 'photo115year.jpg', 2);
 
 
 INSERT INTO Comment VALUES

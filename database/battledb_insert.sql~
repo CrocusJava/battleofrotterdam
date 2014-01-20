@@ -51,7 +51,9 @@ INSERT INTO Photo VALUES
 (14, 'img/remont16.jpg','2014-01-12','description of Joes month project',3),
 (15, 'img/remont17.jpg','2014-01-13','description of JoesJoes_year_project_photo',4),
 (16, 'img/remont18.jpg','2014-01-14','description of Jennys_year_project_photo',5),
-(17, 'img/remont19.gif','2014-01-15','description of Lupes_year_project_photo',6);
+(17, 'img/remont19.gif','2014-01-15','description of Lupes_year_project_photo',6),
+(18, '/controller?command=getphoto&photoname=photo114year.jpg', '2014-01-18 18:12:38', 'photo114year.jpg', 2),
+(19, '/controller?command=getphoto&photoname=photo115year.jpg', '2014-01-18 18:26:00', 'photo115year.jpg', 2);
 
 
 INSERT INTO Comment VALUES
@@ -114,7 +116,7 @@ INSERT INTO URL VALUES
 (4, 130, 'Name of Link3 on Home-page', 'Value of Link3 on Home-page'),
 (5, 140, 'Name of Link4 on Home-page', 'Value of Link4 on Home-page');
 
-INSERT INTO NEWS VALUES
-(1, 10,'2014-01-15', 'img/news1.jpg', 39),
-(2, 20,'2014-01-16', 'img/news2.jpg', 40),
-(3, 30,'2014-01-17', 'img/news3.jpg', 41),
+INSERT INTO News VALUES
+(1, 10, 'img/news1.jpg','2014-01-15', 39),
+(2, 20, 'img/news2.jpg','2014-01-16', 40),
+(3, 30, 'img/news3.jpg','2014-01-17', 41);

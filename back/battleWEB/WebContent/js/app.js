@@ -1,5 +1,6 @@
 $(window).load(function() {
     call_all();
+
 });
 function call_all() {
     call_grid();
@@ -16,19 +17,16 @@ function call_all() {
 //    call_events_show_hide_login_registration();
 
     call_event_create_comment();
-
 //    call_activate_menu_links();
 
 
     call_start_carousel();
-
     call_data_for_index_html();
-
     call_data_for_footer();
-
 //    call_uploading_file_on_server();
 
-
+    //$(".trylater").click(trylater());
+	call_trylater();
 }
 
 function call_form_validation() {
@@ -47,6 +45,11 @@ function call_form_validation() {
     }
     if ($('.login_form_validation').length > 0) {
         $('.login_form_validation').validate({
+            submitHandler: AjaxRegistrationLogin
+        });
+    }
+    if ($('#forgotpassword').length > 0) {
+        $('#forgotpassword').validate({
             submitHandler: AjaxRegistrationLogin
         });
     }
@@ -269,8 +272,6 @@ function call_scroll() {
         if ($(this).scrollTop() > 250) {
             $('#top_header').addClass('mini_menu');
             $('#back_to_top').fadeIn();
-
-
         } else {
             $('#top_header').removeClass('mini_menu');
             $('#back_to_top').fadeOut('fast');
@@ -323,6 +324,7 @@ function data_collection_forms(form) {
 }
 
 function AjaxRegistrationLogin(form) {
+    call_disabling_submit_button();
     var config = data_collection_forms(form);
     $.ajax({
         url: config.url,
@@ -344,17 +346,25 @@ function AjaxRegistrationLogin(form) {
             if (data.iduser) {
                 window.location = "myaccount.html";
             }
-//"iduser": 45637932,
-//"idrole": 2,
-//"nameuser":"John"
         }
+
+        if (form.id === "forgotpassword") {
+            if (data.newpasswordmessage) {
+                $("#newpasswordmessage").text(data.newpasswordmessage);
+            }
+        }
+
+        call_enabling_submit_button();
+
         console.log(data);
     }).fail(function(data) {
+
+        call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-    if (window.upload_file._input.files.length > 0) {
-        window.upload_file.submit();
-    }
+//    if (window.upload_file._input.files.length > 0) {
+//        window.upload_file.submit();
+//    }
     console.log(config, form.id);
     return false;
 }
@@ -452,14 +462,7 @@ function createElements(conteiner, parent, info) {
     }).appendTo(div);
 }
 
-//< article >
-//        < h5 class = "autor" > Bina Setiawan Grec < /h5>
-//        < img class = "avatar" src = "img/c2.jpg" alt = "preview" >
-//        < div class = "comment_inner" >
-//              < p > Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec pretium sagittis justo vel lobortis.Suspendisse dictum eleifend quam quis porta.Mauris sit amet magna elit.Mauris sed magna vel enim congue condimentum sit amet et augue.Duis tincidunt interdum varius.Suspendisse vel sem vitae quam < /p>
-//                  < a href = "#comment" class = "reply" > Reply < /a>
-//        < /div>
-//< /article>
+
 
 function call_activate_menu_links() {
     $(".main_navbar").on("click", "a", function() { // ссылки главного меню
@@ -517,7 +520,6 @@ function call_load_data_for_index_events(load_data) {
                     ]}
             ]
         }];
-
     call_markup_index(index_last_events_template, $("#index_last_events"), load_data);
 }
 
@@ -538,28 +540,25 @@ function call_load_data_for_index_comments(load_data) {
             ]
         }];
     call_markup_index(index_last_comments_template, $("#index_last_comments"), load_data);
-
 }
 
 
 
 
 function call_data_for_index_html() {
-    //<<<<<<<<<<<<=============================задачи для страницы индекс
+//<<<<<<<<<<<<=============================задачи для страницы индекс
     if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
 
 
         call_load_data_for_news_index();
-
         $.post("/battleWEB/controller?command=index", function(respons, status) {
 
-            //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
+//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
             $("#battleanimationdescription").text(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
-
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
                 var dataObj = dataArray[i];
@@ -579,7 +578,7 @@ function call_data_for_index_html() {
         });
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы поиска
+//<<<<<<<<<<<<=============================задачи для страницы поиска
 
     if (window.location.href.match(/search.html$/)) {
         var result_search = $("#result_search");
@@ -592,23 +591,37 @@ function call_data_for_index_html() {
         });
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
+//<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
 
     if (window.location.href.match(/FAQ.html$/)) {
         call_data_for_faq();
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы про нас
+//<<<<<<<<<<<<=============================задачи для страницы про нас
 
     if (window.location.href.match(/about_battle.html$/)) {
         call_load_data_for_about_battle();
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
+//<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
     if (window.location.href.match(/myaccount.html$/)) {
         call_event_logout();
     }
+//<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
+
+    if (window.location.href.match(/competitions.html$/)) {
+        call_data_load_for_competitions();
+    }
+
+//<<<<<<<<<<<<=============================задачи для страницы логина
+
+    if (window.location.href.match(/login.html#login$/) || window.location.href.match(/login.html$/)) {
+        call_modal_window_forgotten_password();
+    }
+
+    //<<<<<<<<<<<<=============================задачи для всех страницы
+
 
 }
 
@@ -626,11 +639,11 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             element.appendTo(parentsContainer);
             var new_parentsContainer = element;
         }
-        // <<<<<<<<<<================================== Добавление класса к элементу
+// <<<<<<<<<<================================== Добавление класса к элементу
         if ("add_class" in templateObj) {
             element.addClass(templateObj["add_class"]);
         }
-        // <<<<<<<<<<================================== Добавление атрибутов к элементу
+// <<<<<<<<<<================================== Добавление атрибутов к элементу
         if ("attr" in templateObj) {
             var attr = templateObj["attr"];
             for (var name_prop in attr) {
@@ -639,13 +652,13 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
                 element.attr(name_prop, value);
             }
         }
-        // <<<<<<<<<<================================== Добавление текста к элементу
+// <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
             text_key = dataObj[text_key] || text_key;
             element.text(text_key);
         }
-        // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
+// <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
             call_markup_index(templateObj["children"], new_parentsContainer, dataObj);
         }
@@ -665,12 +678,6 @@ function call_load_data_for_footer_links(load_data) {
 
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
-        // <div class="item_grid item3">
-//          <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title">
-//               <div class="hover"></div>
-//               <img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview">
-//          </a>
-//      </div>
         {tag: "div", add_class: "item_grid item3", children: [
                 {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
                         {tag: "div", add_class: "hover"},
@@ -684,7 +691,7 @@ function call_load_data_for_footer_gallery(load_data) {
 function call_data_for_footer() {
     $.post("/battleWEB/controller?command=footer", function(respons, status) {
 
-        //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
+//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
 
 
@@ -699,9 +706,8 @@ function call_data_for_footer() {
             var dataObj = dataArray[i];
             call_load_data_for_footer_gallery(dataObj);
         }
-        //<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
+//<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
         call_grid();
-
         console.log("Respons data for footer ====> ", status);
     }, "json").fail(function(data) {
         console.log("Somsing wrang", data);
@@ -729,10 +735,8 @@ function call_uploading_file_on_server(command_value) {
                     $(img).attr("src", reader.result);
                 });
                 reader.readAsDataURL(window.upload_file._input.files[0]);
-
-
             } else {
-                //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
+//<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
                 $("#warning_load_file").show();
                 $("#warning_load_file").fadeOut(5000);
                 return false;
@@ -742,7 +746,7 @@ function call_uploading_file_on_server(command_value) {
         onSubmit: function(file, ext) {
             if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
             } else {
-                //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
+//<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
                 return false;
             }
         },
@@ -751,8 +755,6 @@ function call_uploading_file_on_server(command_value) {
 
         }
     });
-
-
 }
 
 
@@ -773,13 +775,11 @@ function call_data_for_faq() {
                             ]}
                     ]}
             ];
-
         }
 
 
 
         var faqlist = data.faqlist;
-
         for (var list in faqlist) {
             call_markup_index(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
             count++;
@@ -844,4 +844,91 @@ function call_load_data_for_news_index() {
     }, "json").fail(function() {
         console.log("Error for load news");
     });
+}
+
+
+
+/*=======================Рекомендовано для передачи данных в формате JSON============================*/
+function call_data_load_for_competitions() {
+    var data = JSON.stringify(
+            {firstposition: 0,
+                size: 1,
+                orderby: "startdate",
+                showdescription: true
+            });
+
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=competitions",
+        dataType: "json",
+        contentType: "application/json",
+        data: data
+    }).done(function(respons) {
+        var competitions = respons.competitions;
+        var conteiner = $("#competitions");
+        for (var i in competitions) {
+            for (var key in competitions[i]) {
+                var element = $(document.createElement("li"));
+                element.appendTo(conteiner);
+                var newconteiner = element;
+                element.text(key + " =========> " + competitions[i][key]);
+
+
+
+                if ({}.toString.call(competitions[i][key]) === "[object Object]") {
+                    var ulElement = $(document.createElement("ul"));
+                    ulElement.appendTo(newconteiner);
+                    var ulConteiner = ulElement;
+                    for (var value in competitions[i][key]) {
+                        var liElement = $(document.createElement("li"));
+                        liElement.appendTo(ulConteiner);
+                        liElement.text(value + " =========> " + competitions[i][key][value]);
+                    }
+                }
+            }
+
+        }
+    }).fail(function() {
+        console.log("Error for load for competitions.html");
+    });
+}
+
+function call_modal_window_forgotten_password() {
+    $("#forgotten_password").click(function() {
+        $("#myModal").modal("show");
+    });
+
+}
+
+
+function call_disabling_submit_button() {
+    if ($("#forgotpassword button[type=submit]").length > 0) {
+        $("#forgotpassword button[type=submit]").each(function() {
+            var $this = $(this);
+            $this.addClass("disabled");
+            $this.prop("disabled", true);
+        });
+    }
+}
+
+function call_enabling_submit_button() {
+    if ($("#forgotpassword button[type=submit]").length > 0) {
+        $("#forgotpassword button[type=submit]").each(function() {
+            var $this = $(this);
+            $this.removeClass("disabled");
+            $this.prop("disabled", false);
+        });
+    }
+}
+
+function call_trylater() {
+$(".trylater").click(function(){
+    $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
+    $('body').append('<div class="popup_back"></div>');
+    $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+    $('.close_popup').click(function() {
+        $('.popup_text').remove();
+        $('.popup_back').remove();
+    });
+})
 }
