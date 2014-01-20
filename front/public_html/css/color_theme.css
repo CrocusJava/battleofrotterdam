@@ -83,10 +83,10 @@ body.theme_default #content .tags a:hover {
     background: #232323;
 }
 body.theme_default #content .comments ul li .reply {
-    color: #ce4e4a;
+    color: rgba(0,181,0,1);
 }
 body.theme_default #content .comments .comment_inner {
-    border-bottom: 1px solid #ce4e4a;
+    border-bottom: 1px solid rgba(1,56,56,0.9);
 }
 body.theme_default #content .lobster_tab li a {
     background: #232323;
