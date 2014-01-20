@@ -26,6 +26,7 @@ function call_all() {
 //    call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
+	call_trylater();
 }
 
 function call_form_validation() {
@@ -920,8 +921,8 @@ function call_enabling_submit_button() {
     }
 }
 
-function trylater() {
-
+function call_trylater() {
+$(".trylater").click(function(){
     $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
     $('body').append('<div class="popup_back"></div>');
     $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
@@ -929,5 +930,5 @@ function trylater() {
         $('.popup_text').remove();
         $('.popup_back').remove();
     });
-
+})
 }
