@@ -26,7 +26,7 @@ function call_all() {
 //    call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
-	call_trylater();
+    call_trylater();
 }
 
 function call_form_validation() {
@@ -873,8 +873,6 @@ function call_data_load_for_competitions() {
                 var newconteiner = element;
                 element.text(key + " =========> " + competitions[i][key]);
 
-
-
                 if ({}.toString.call(competitions[i][key]) === "[object Object]") {
                     var ulElement = $(document.createElement("ul"));
                     ulElement.appendTo(newconteiner);
@@ -922,13 +920,53 @@ function call_enabling_submit_button() {
 }
 
 function call_trylater() {
-$(".trylater").click(function(){
-    $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
-    $('body').append('<div class="popup_back"></div>');
-    $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
-    $('.close_popup').click(function() {
-        $('.popup_text').remove();
-        $('.popup_back').remove();
+    $(".trylater").click(function() {
+        $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
+        $('body').append('<div class="popup_back"></div>');
+        $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+        $('.close_popup').click(function() {
+            $('.popup_text').remove();
+            $('.popup_back').remove();
+        });
     });
-})
+}
+
+
+
+function call_load_data_for_current_rankings() {
+    $.post("/battleWEB/controller?command=currentrankings", function(data) {
+        console.log(data);
+        var carent_rankings_template = [
+            {nag: "div", add_class: "span4 text_center", children: [
+                    {tag: "div", add_class: "boxfeature", children: [
+                            {tag: "div", add_class: "img_preview", children: [
+                                    {tag: "img", attr: {src: "", "data-src": "", alt: "img_preview"}},
+                                    {tag: "a", attr: {href: ""}, add_class: "label flat label-success likes", text: "100 Likes"},
+                                    {tag: "a", attr: {href: ""}, add_class: "label flat label-success label_comments", text: "100 Comments"},
+                                    {tag: "h4", text: "First winner"}
+                                ]},
+                            {tag: "div", add_class: "desc", children: [
+                                    {tag: "p", text: ""},
+                                    {tag: "p", children: [
+                                            {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                        ]}
+                                ]}
+                        ]}
+                ]}
+        ];
+        var yearprojects = data["yearprojects"];
+        var monthprojects = data["monthprojects"];
+
+        for (var i in monthprojects) {
+            call_markup_index(carent_rankings_template, $("#monthly_battle_competitions"), monthprojects[i]);
+        }
+
+        for (var i in yearprojects) {
+            call_markup_index(carent_rankings_template, $("#yearly_battle_competitions"), yearprojects[i]);
+        }
+
+
+    }).fail(function() {
+        console.log("ошибка загрузки данных по current_rankings");
+    });
 }
