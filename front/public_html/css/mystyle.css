@@ -210,3 +210,43 @@ height: 2000px;
 background: rgba(1, 56, 56, 0.54);
 z-index:2000;
 }
+
+.photo_static_profile{
+
+width: 200px;
+margin: 20px auto;
+
+}
+
+.name_static_profile{
+
+font-family: 'Lobster Two', cursive;
+font-size: 38px;
+padding: 20px;
+
+}
+
+.margin_text_longname{
+margin: 10px;
+font-size: 14px;
+letter-spacing: 8px;
+}
+
+.margin_text_birthday{
+margin: 2px;
+font-size: 12px;
+font-weight: 600;
+}
+
+.margin_text{
+margin: 5px;
+font-size: 14px;
+
+}
+
+
+.margin_text_email{
+margin: 5px;
+font-size: 14px;
+font-weight: 600;
+}
