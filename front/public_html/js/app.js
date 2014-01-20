@@ -1,5 +1,6 @@
 $(window).load(function() {
     call_all();
+
 });
 function call_all() {
     call_grid();
@@ -24,7 +25,8 @@ function call_all() {
     call_data_for_footer();
 //    call_uploading_file_on_server();
 
-
+    //$(".trylater").click(trylater());
+	call_trylater();
 }
 
 function call_form_validation() {
@@ -43,6 +45,11 @@ function call_form_validation() {
     }
     if ($('.login_form_validation').length > 0) {
         $('.login_form_validation').validate({
+            submitHandler: AjaxRegistrationLogin
+        });
+    }
+    if ($('#forgotpassword').length > 0) {
+        $('#forgotpassword').validate({
             submitHandler: AjaxRegistrationLogin
         });
     }
@@ -317,6 +324,7 @@ function data_collection_forms(form) {
 }
 
 function AjaxRegistrationLogin(form) {
+    call_disabling_submit_button();
     var config = data_collection_forms(form);
     $.ajax({
         url: config.url,
@@ -338,17 +346,25 @@ function AjaxRegistrationLogin(form) {
             if (data.iduser) {
                 window.location = "myaccount.html";
             }
-//"iduser": 45637932,
-//"idrole": 2,
-//"nameuser":"John"
         }
+
+        if (form.id === "forgotpassword") {
+            if (data.newpasswordmessage) {
+                $("#newpasswordmessage").text(data.newpasswordmessage);
+            }
+        }
+
+        call_enabling_submit_button();
+
         console.log(data);
     }).fail(function(data) {
+
+        call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-    if (window.upload_file._input.files.length > 0) {
-        window.upload_file.submit();
-    }
+//    if (window.upload_file._input.files.length > 0) {
+//        window.upload_file.submit();
+//    }
     console.log(config, form.id);
     return false;
 }
@@ -446,14 +462,7 @@ function createElements(conteiner, parent, info) {
     }).appendTo(div);
 }
 
-//< article >
-//        < h5 class = "autor" > Bina Setiawan Grec < /h5>
-//        < img class = "avatar" src = "img/c2.jpg" alt = "preview" >
-//        < div class = "comment_inner" >
-//              < p > Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec pretium sagittis justo vel lobortis.Suspendisse dictum eleifend quam quis porta.Mauris sit amet magna elit.Mauris sed magna vel enim congue condimentum sit amet et augue.Duis tincidunt interdum varius.Suspendisse vel sem vitae quam < /p>
-//                  < a href = "#comment" class = "reply" > Reply < /a>
-//        < /div>
-//< /article>
+
 
 function call_activate_menu_links() {
     $(".main_navbar").on("click", "a", function() { // ссылки главного меню
@@ -605,6 +614,15 @@ function call_data_for_index_html() {
         call_data_load_for_competitions();
     }
 
+//<<<<<<<<<<<<=============================задачи для страницы логина
+
+    if (window.location.href.match(/login.html#login$/) || window.location.href.match(/login.html$/)) {
+        call_modal_window_forgotten_password();
+    }
+
+    //<<<<<<<<<<<<=============================задачи для всех страницы
+
+
 }
 
 
@@ -660,12 +678,6 @@ function call_load_data_for_footer_links(load_data) {
 
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
-        // <div class="item_grid item3">
-//          <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title">
-//               <div class="hover"></div>
-//               <img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview">
-//          </a>
-//      </div>
         {tag: "div", add_class: "item_grid item3", children: [
                 {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
                         {tag: "div", add_class: "hover"},
@@ -881,3 +893,42 @@ function call_data_load_for_competitions() {
     });
 }
 
+function call_modal_window_forgotten_password() {
+    $("#forgotten_password").click(function() {
+        $("#myModal").modal("show");
+    });
+
+}
+
+
+function call_disabling_submit_button() {
+    if ($("#forgotpassword button[type=submit]").length > 0) {
+        $("#forgotpassword button[type=submit]").each(function() {
+            var $this = $(this);
+            $this.addClass("disabled");
+            $this.prop("disabled", true);
+        });
+    }
+}
+
+function call_enabling_submit_button() {
+    if ($("#forgotpassword button[type=submit]").length > 0) {
+        $("#forgotpassword button[type=submit]").each(function() {
+            var $this = $(this);
+            $this.removeClass("disabled");
+            $this.prop("disabled", false);
+        });
+    }
+}
+
+function call_trylater() {
+$(".trylater").click(function(){
+    $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
+    $('body').append('<div class="popup_back"></div>');
+    $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+    $('.close_popup').click(function() {
+        $('.popup_text').remove();
+        $('.popup_back').remove();
+    });
+})
+}

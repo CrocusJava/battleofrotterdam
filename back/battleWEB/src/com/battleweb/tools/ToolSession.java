@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.logger.Log;
 
 /**
  * @author rtkachuk
@@ -24,6 +25,8 @@ public class ToolSession {
 		session.setAttribute(Constants.PARAMETER_SESSION_USER, user);
 		session.setAttribute(Constants.PARAMETER_SESSION_IDUSER, user.getId());
 		session.setAttribute(Constants.PARAMETER_SESSION_IDROLE, user.getRole().getId());
+		Log.info(this, "Session: "+Constants.PARAMETER_SESSION_IDUSER+"-"+user.getId());
+		Log.info(this, "Session: "+Constants.PARAMETER_SESSION_IDROLE+"-"+user.getRole().getId());
 	}
 	
 	public void removeUserSession(HttpServletRequest request, User user){

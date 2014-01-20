@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.battleweb.controller.Constants;
+import com.battleweb.logger.Log;
 
 /**
  * @author rtkachuk
@@ -29,7 +30,10 @@ public class CommandGetPhoto implements Command {
 		String photoName = request.getParameter(Constants.PARAMETER_PHOTO_NAME);
 
 		File photoFile = new File(Constants.PATH_SAVE_PHOTO + "/" + photoName);
-
+		
+		response.reset();
+	    response.setContentType("image/jpeg");
+		
 		BufferedOutputStream outStream = null;
 		FileInputStream inStream = null;
 		try {
@@ -41,6 +45,7 @@ public class CommandGetPhoto implements Command {
 			}
 
 		} catch (Exception e) {
+			Log.error(this, e, "Can't find file on server. File name - "+photoName);
 		} finally {
 			close(outStream);
 			close(inStream);
@@ -54,7 +59,7 @@ public class CommandGetPhoto implements Command {
 			try {
 				resource.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				Log.error(this, e, "Can't close stream.");
 			}
 		}
 	}

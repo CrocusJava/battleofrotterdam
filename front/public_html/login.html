@@ -112,18 +112,18 @@
 
                             <div class="login_area with_bg">
                                 <!-- Start Form Login -->
-                                <form class="login_form_validation" novalidate="novalidate" id="login">
+                                <form class="login_form_validation" novalidate="novalidate" id="login" method="POST" action="">
                                     <div class="panel">
                                         <p class="text_center">
                                             <img src="img/Graphic1.png" data-src="img/Graphic1.png" alt="preview" width="100">
                                             <a href="#" class="btn flat btn-warning Mtop-1">[ Jhon ] Continue Login</a>
                                         </p>
                                         <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
-                                        <div class="gridmasonry" style="display: block; position: relative; height: 44px;">
-                                            <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;">
+                                        <div class="gridmasonry">
+                                            <div class="item_grid item2">
                                                 <button type="button" class="btn btn-info btn-large input-block-level flat">Facebook Connect</button>
                                             </div>
-                                            <div class="item_grid item2" style="position: absolute; left: 160px; top: 0px;">
+                                            <div class="item_grid item2">
                                                 <button type="button" class="btn btn-success btn-large input-block-level flat">Twiiter Connect</button>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
                                         <input type="text" name="login" class="input-block-level" required="">
                                         <label>Password</label>
                                         <input type="password" name="password" class="input-block-level" required="">
-                                        <label><a href="#">Forgotten your password?</a></label>
+                                        <label><a href="#login" id="forgotten_password">Forgotten your password?</a></label>
                                         <button type="submit" class="btn btn-primary btn-large flat input-block-level">Log in</button>
                                     </div>
 
@@ -180,17 +180,7 @@
                             <h3 style="text-align: center;">Tips <span class="font_hotel" > & Tricks</span></h3>
                             <!--Start List Link pages-->
                             <ul id="footer_links" class="link_list_footer">
-                                <!--                                <li><a href="#">Just do it</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>-->
+
                             </ul>
                             <!--End List Link pages-->
                         </div>
@@ -199,42 +189,7 @@
                             <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
                             <!--Start List Grid Galeries img-->
                             <div id="footer_gallery" class="gridmasonry galeries_footer" style="display: block; position: relative; height: 248px;">
-                                <!--                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 0px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 0px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 0px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 62px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 62px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 62px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 124px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 124px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 124px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 186px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 186px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 186px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>-->
+
                             </div>
                             <!--End List Grid Galeries img-->
                         </div>
@@ -272,6 +227,25 @@
                     </a>
                 </div><!--End Arrow Back To TOP Page-->
             </footer><!--End Footer Section-->
+        </div>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form id="forgotpassword" novalidate="novalidate" method="POST" action="">
+                <div class="modal-header">
+                    <h4 id="myModalLabel">Please enter your email and wait for an answer</h4>
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" name="email" class="input-block-level" required=""/>
+                    <h4 id="newpasswordmessage" class="text-error"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="submit">Send</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </form>
         </div>
 
         <!--=========================================================================-->

@@ -35,6 +35,7 @@ import com.battleweb.controller.commands.CommandViewProject;
 import com.battleweb.controller.commands.CommandViewProjectComments;
 import com.battleweb.controller.commands.CommandViewProjectPhotos;
 import com.battleweb.controller.commands.CommandVote;
+import com.battleweb.controller.commands.CommandWasApprovedRegistration;
 
 /**
  * CommandRequest class is used to get appropriate Command by the String value
@@ -95,6 +96,8 @@ public class CommandRequest {
 	private CommandGetPhoto commandGetPhoto;
 	@EJB
 	private CommandEditComment commandEditComment;
+	@EJB
+	private CommandWasApprovedRegistration commandWasApprovedRegistration;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -124,6 +127,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_COMPETITIONS, commandCompetitions);
 		commands.put(Constants.COMMAND_GET_PHOTO, commandGetPhoto);
 		commands.put(Constants.COMMAND_EDIT_COMMENT, commandEditComment);
+		commands.put(Constants.COMMAND_WAS_APPROVED_REGISTRATION, commandWasApprovedRegistration);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
