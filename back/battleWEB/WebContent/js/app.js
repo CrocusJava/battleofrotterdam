@@ -16,16 +16,12 @@ function call_all() {
 //    call_events_show_hide_login_registration();
 
     call_event_create_comment();
-
 //    call_activate_menu_links();
 
 
     call_start_carousel();
-
     call_data_for_index_html();
-
     call_data_for_footer();
-
 //    call_uploading_file_on_server();
 
 
@@ -269,8 +265,6 @@ function call_scroll() {
         if ($(this).scrollTop() > 250) {
             $('#top_header').addClass('mini_menu');
             $('#back_to_top').fadeIn();
-
-
         } else {
             $('#top_header').removeClass('mini_menu');
             $('#back_to_top').fadeOut('fast');
@@ -517,7 +511,6 @@ function call_load_data_for_index_events(load_data) {
                     ]}
             ]
         }];
-
     call_markup_index(index_last_events_template, $("#index_last_events"), load_data);
 }
 
@@ -538,28 +531,25 @@ function call_load_data_for_index_comments(load_data) {
             ]
         }];
     call_markup_index(index_last_comments_template, $("#index_last_comments"), load_data);
-
 }
 
 
 
 
 function call_data_for_index_html() {
-    //<<<<<<<<<<<<=============================задачи для страницы индекс
+//<<<<<<<<<<<<=============================задачи для страницы индекс
     if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
 
 
         call_load_data_for_news_index();
-
         $.post("/battleWEB/controller?command=index", function(respons, status) {
 
-            //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
+//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
             $("#battleanimationdescription").text(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
-
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
                 var dataObj = dataArray[i];
@@ -579,7 +569,7 @@ function call_data_for_index_html() {
         });
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы поиска
+//<<<<<<<<<<<<=============================задачи для страницы поиска
 
     if (window.location.href.match(/search.html$/)) {
         var result_search = $("#result_search");
@@ -592,22 +582,27 @@ function call_data_for_index_html() {
         });
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
+//<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
 
     if (window.location.href.match(/FAQ.html$/)) {
         call_data_for_faq();
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы про нас
+//<<<<<<<<<<<<=============================задачи для страницы про нас
 
     if (window.location.href.match(/about_battle.html$/)) {
         call_load_data_for_about_battle();
     }
 
-    //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
+//<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
     if (window.location.href.match(/myaccount.html$/)) {
         call_event_logout();
+    }
+//<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
+
+    if (window.location.href.match(/competitions.html$/)) {
+        call_data_load_for_competitions();
     }
 
 }
@@ -626,11 +621,11 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             element.appendTo(parentsContainer);
             var new_parentsContainer = element;
         }
-        // <<<<<<<<<<================================== Добавление класса к элементу
+// <<<<<<<<<<================================== Добавление класса к элементу
         if ("add_class" in templateObj) {
             element.addClass(templateObj["add_class"]);
         }
-        // <<<<<<<<<<================================== Добавление атрибутов к элементу
+// <<<<<<<<<<================================== Добавление атрибутов к элементу
         if ("attr" in templateObj) {
             var attr = templateObj["attr"];
             for (var name_prop in attr) {
@@ -639,13 +634,13 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
                 element.attr(name_prop, value);
             }
         }
-        // <<<<<<<<<<================================== Добавление текста к элементу
+// <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
             text_key = dataObj[text_key] || text_key;
             element.text(text_key);
         }
-        // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
+// <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
             call_markup_index(templateObj["children"], new_parentsContainer, dataObj);
         }
@@ -684,7 +679,7 @@ function call_load_data_for_footer_gallery(load_data) {
 function call_data_for_footer() {
     $.post("/battleWEB/controller?command=footer", function(respons, status) {
 
-        //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
+//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
 
 
@@ -699,9 +694,8 @@ function call_data_for_footer() {
             var dataObj = dataArray[i];
             call_load_data_for_footer_gallery(dataObj);
         }
-        //<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
+//<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
         call_grid();
-
         console.log("Respons data for footer ====> ", status);
     }, "json").fail(function(data) {
         console.log("Somsing wrang", data);
@@ -729,10 +723,8 @@ function call_uploading_file_on_server(command_value) {
                     $(img).attr("src", reader.result);
                 });
                 reader.readAsDataURL(window.upload_file._input.files[0]);
-
-
             } else {
-                //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
+//<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
                 $("#warning_load_file").show();
                 $("#warning_load_file").fadeOut(5000);
                 return false;
@@ -742,7 +734,7 @@ function call_uploading_file_on_server(command_value) {
         onSubmit: function(file, ext) {
             if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
             } else {
-                //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
+//<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
                 return false;
             }
         },
@@ -751,8 +743,6 @@ function call_uploading_file_on_server(command_value) {
 
         }
     });
-
-
 }
 
 
@@ -773,13 +763,11 @@ function call_data_for_faq() {
                             ]}
                     ]}
             ];
-
         }
 
 
 
         var faqlist = data.faqlist;
-
         for (var list in faqlist) {
             call_markup_index(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
             count++;
@@ -845,3 +833,51 @@ function call_load_data_for_news_index() {
         console.log("Error for load news");
     });
 }
+
+
+
+/*=======================Рекомендовано для передачи данных в формате JSON============================*/
+function call_data_load_for_competitions() {
+    var data = JSON.stringify(
+            {firstposition: 0,
+                size: 1,
+                orderby: "startdate",
+                showdescription: true
+            });
+
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=competitions",
+        dataType: "json",
+        contentType: "application/json",
+        data: data
+    }).done(function(respons) {
+        var competitions = respons.competitions;
+        var conteiner = $("#competitions");
+        for (var i in competitions) {
+            for (var key in competitions[i]) {
+                var element = $(document.createElement("li"));
+                element.appendTo(conteiner);
+                var newconteiner = element;
+                element.text(key + " =========> " + competitions[i][key]);
+
+
+
+                if ({}.toString.call(competitions[i][key]) === "[object Object]") {
+                    var ulElement = $(document.createElement("ul"));
+                    ulElement.appendTo(newconteiner);
+                    var ulConteiner = ulElement;
+                    for (var value in competitions[i][key]) {
+                        var liElement = $(document.createElement("li"));
+                        liElement.appendTo(ulConteiner);
+                        liElement.text(value + " =========> " + competitions[i][key][value]);
+                    }
+                }
+            }
+
+        }
+    }).fail(function() {
+        console.log("Error for load for competitions.html");
+    });
+}
+

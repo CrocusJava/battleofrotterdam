@@ -170,7 +170,7 @@ text-decoration:none}
 
 a:hover,a:focus{
 color:#005580;
-text-decoration:underline}
+}
 
 .img-rounded{
 -webkit-border-radius:6px;
@@ -777,12 +777,12 @@ legend{
 display:block;
 width:100%;
 padding:0;
-margin-bottom:20px;
-font-size:21px;
-line-height:40px;
+
+font-size:15px;
+line-height:30px;
 color:#333;
 border:0;
-border-bottom:1px solid #e5e5e5}
+}
 
 legend small{
 font-size:15px;
