@@ -68,7 +68,7 @@ public class CommandRegistration implements Command {
 			String firstname = jsonObjectRequest
 					.getString(Constants.PARAMETER_FIRSTNAME);
 			String middlename = jsonObjectRequest
-					.getString(Constants.PARAMETER_MISSLENAME);
+					.getString(Constants.PARAMETER_MIDDLENAME);
 			String lastname = jsonObjectRequest
 					.getString(Constants.PARAMETER_LASTNAME);
 			String town = jsonObjectRequest.getString(Constants.PARAMETER_TOWN);
@@ -79,7 +79,7 @@ public class CommandRegistration implements Command {
 			String postcode = jsonObjectRequest
 					.getString(Constants.PARAMETER_POSTCODE);
 			String birthday = jsonObjectRequest
-					.getString(Constants.PARAMETER_BIRSTAY);
+					.getString(Constants.PARAMETER_BIRTHDAY);
 			String phone = jsonObjectRequest
 					.getString(Constants.PARAMETER_PHONE);
 
