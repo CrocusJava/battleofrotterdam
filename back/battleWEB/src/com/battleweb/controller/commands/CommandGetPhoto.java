@@ -79,7 +79,7 @@ public class CommandGetPhoto implements Command {
 			}
 			case Constants.PARAMETER_AVATAR_NAME: {
 				String photoName = request.getParameter(Constants.PARAMETER_AVATAR_NAME);
-				File photoFile = new File(Constants.PATH_SAVE_PHOTO + "/"+ photoName);
+				File photoFile = new File(Constants.PATH_SAVE_AVATAR + "/"+ photoName);
 				return photoFile;
 			}
 			default:
