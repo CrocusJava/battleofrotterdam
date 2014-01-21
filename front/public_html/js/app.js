@@ -620,6 +620,12 @@ function call_data_for_index_html() {
         call_modal_window_forgotten_password();
     }
 
+//<<<<<<<<<<<<=============================задачи для страницы вывода троих лидеров по годовому и месячному соревнованию
+
+    if (window.location.href.match(/current_rankings.html$/)) {
+        call_load_data_for_current_rankings();
+    }
+
     //<<<<<<<<<<<<=============================задачи для всех страницы
 
 
@@ -649,8 +655,11 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             for (var name_prop in attr) {
                 var value = attr[name_prop];
                 value = dataObj[value] || value;
+                // <<<<<<<<<<================================== Если атрибут является объектом
                 if ({}.toString.call(value) === "[object Object]") {
-
+                    // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                    var subvalue = value[templateObj["subattr"][name_prop]];
+                    element.attr(name_prop, subvalue);
                 }
                 else {
                     element.attr(name_prop, value);
@@ -661,7 +670,16 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
             text_key = dataObj[text_key] || text_key;
-            element.text(text_key);
+            // <<<<<<<<<<================================== Если текст является объектом
+            if ({}.toString.call(text_key) === "[object Object]") {
+                // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                var subvalue_text = text_key[templateObj["subattr"][text_key]];
+                element.text(subvalue_text);
+            }
+            else {
+                element.text(text_key);
+            }
+
         }
 // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
@@ -796,11 +814,7 @@ function call_data_for_faq() {
 }
 
 
-function call_load_data_for_myaccount() {
-    $.post("/battleWEB/controller?command=account", function(data) {
-        console.log(data);
-    }, "json");
-}
+
 
 function call_load_data_for_about_battle() {
     $.post("/battleWEB/controller?command=aboutbattle", function(data) {
@@ -945,13 +959,13 @@ function call_load_data_for_current_rankings() {
             {nag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
-                                    {tag: "img", attr: {src: "", "data-src": "", alt: "img_preview"}},
-                                    {tag: "a", attr: {href: ""}, add_class: "label flat label-success likes", text: "100 Likes"},
-                                    {tag: "a", attr: {href: ""}, add_class: "label flat label-success label_comments", text: "100 Comments"},
+                                    {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
+                                    {tag: "span", add_class: "label flat label-success likes", text: "100 Likes"},
+                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity"},
                                     {tag: "h4", text: "First winner"}
                                 ]},
                             {tag: "div", add_class: "desc", children: [
-                                    {tag: "p", text: ""},
+                                    {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                     {tag: "p", children: [
                                             {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
                                         ]}
@@ -975,3 +989,9 @@ function call_load_data_for_current_rankings() {
         console.log("ошибка загрузки данных по current_rankings");
     });
 }
+
+//function call_load_data_for_myaccount() {
+//    $.post("/battleWEB/controller?command=account", function(data) {
+//        console.log(data);
+//    }, "json");
+//}
