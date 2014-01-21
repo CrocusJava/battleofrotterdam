@@ -161,6 +161,7 @@ public interface Constants {
 	
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";
+	public static final String PARAMETER_AVATAR_NAME="avatarname";
 	
 	public static final String PARAMETER_SHOW_DESCRIPTION = "showdescription";
 	public static final String PARAMETER_START_DATE_FROM="startdatefrom";
@@ -263,11 +264,11 @@ public interface Constants {
 	public static final String COMPETITION_TYPE_MONTH = "month";
 	
 	//Path
-	public static final String PATH_SAVE_AVATAR = "./../photo/avatar";
-	public static final String PATH_SAVE_PHOTO = "./../photo/";
+	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
+	public static final String PATH_SAVE_PHOTO = "/usr/app/jboss/photo";
 	
-	public static final String PATH_GET_PHOTO="/controller?command=getphoto&photoname=";
-	public static final String PATH_GET_AVATAR="/controller?command=getphoto&photoname=";
+	public static final String PATH_GET_PHOTO="controller?command=getphoto&photoname=";
+	public static final String PATH_GET_AVATAR="controller?command=getphoto&avatarname=";
 	
 	public static final String SORT_TYPE_ASC = "asc";
 	public static final String SORT_TYPE_DESC = "desc";
