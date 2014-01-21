@@ -1,11 +1,7 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -18,16 +14,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
-import com.battleejb.ejbbeans.CommentBean;
-import com.battleejb.ejbbeans.CompetitionBean;
-import com.battleejb.ejbbeans.PhotoBean;
-import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.ejbbeans.UserBean;
-import com.battleejb.ejbbeans.VoiceBean;
-import com.battleejb.entities.Competition;
-import com.battleejb.entities.CompetitionType;
-import com.battleejb.entities.Photo;
-import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
@@ -76,7 +63,7 @@ public class CommandShowUsers implements Command {
 						.add(Constants.PARAMETER_MISSLENAME,
 								user.getMiddlename())
 						.add(Constants.PARAMETER_LASTNAME, user.getLastname())
-						.add(Constants.PARAMETER_STATUS, user.getCommentAble())
+						.add(Constants.PARAMETER_COMMENT_ABLE, user.getCommentAble())
 						.add(Constants.PARAMETER_ACTIVE, user.getActive())
 						.add(Constants.PARAMETER_ROLE, user.getRole().getName())
 						.build();
