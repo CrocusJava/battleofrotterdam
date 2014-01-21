@@ -55,7 +55,7 @@ public class CommandFindUser implements Command {
 						.add(Constants.PARAMETER_USER_LOGIN, user.getLogin())
 						.add(Constants.PARAMETER_EMAIL, user.getEmail())
 						.add(Constants.PARAMETER_FIRSTNAME, user.getFirstname())
-						.add(Constants.PARAMETER_MISSLENAME,
+						.add(Constants.PARAMETER_MIDDLENAME,
 								user.getMiddlename())
 						.add(Constants.PARAMETER_LASTNAME, user.getLastname())
 						.add(Constants.PARAMETER_COMMENT_ABLE, user.getCommentAble())

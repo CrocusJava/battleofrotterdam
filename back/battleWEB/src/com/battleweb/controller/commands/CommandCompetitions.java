@@ -175,7 +175,7 @@ public class CommandCompetitions implements Command {
 						.add(Constants.PARAMETER_ID, user.getId())
 						.add(Constants.PARAMETER_FIRSTNAME, user.getFirstname())
 						.add(Constants.PARAMETER_LASTNAME, user.getLastname())
-						.add(Constants.PARAMETER_MISSLENAME,
+						.add(Constants.PARAMETER_MIDDLENAME,
 								user.getMiddlename())
 						.add(Constants.PARAMETER_LOGIN, user.getLogin())
 						.add(Constants.PARAMETER_AVATAR_PATH,

@@ -51,7 +51,7 @@ public class CommandUploadPhoto implements Command {
 			HttpServletResponse response) throws ServletException, IOException {
 		Log.info(this, "CommandUploadPhoto - try to load photo");
 		String filePath=null;
-		
+		Photo photo=null;
 		/** Define user project, from session info*/
 		User user= userBean.find(toolSession.getUserId(request));
 		List<Project> projectList=user.getProjects();
@@ -65,7 +65,7 @@ public class CommandUploadPhoto implements Command {
 				/** Create photo path*/
 				filePath=Constants.PATH_GET_PHOTO+fileNameCorrect;
 				/** Save photo*/
-				Photo photo=new Photo();
+				photo=new Photo();
 				photo.setLoadDate(new Date());
 				photo.setProject(project);
 				photo.setPath(filePath);
@@ -75,6 +75,7 @@ public class CommandUploadPhoto implements Command {
 		}
 		
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
+				.add(Constants.PARAMETER_ID_PHOTO, photo.getId())
 				.add(Constants.PARAMETER_PHOTO_PATH, filePath)
 				.build();
 		

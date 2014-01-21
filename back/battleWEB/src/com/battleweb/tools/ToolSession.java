@@ -55,4 +55,8 @@ public class ToolSession {
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		return (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDUSER);
 	}
+	public User getUser(ServletRequest request){
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		return (User)session.getAttribute(Constants.PARAMETER_SESSION_USER);
+	}
 }
