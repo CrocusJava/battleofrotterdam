@@ -66,14 +66,18 @@ public class CommandViewProject implements Command {
 		long rating = voiceBean.getCountByProject(project);
 
 		boolean voteAble = false;
-		Integer userId = (Integer) request.getSession().getAttribute(
-				Constants.PARAMETER_SESSION_IDUSER);
+		Integer roleId = (Integer) request.getSession().getAttribute(
+				Constants.PARAMETER_SESSION_IDROLE);
 
-		System.out.println(project.getCompetition().getDateEnd().compareTo(new Date()));
-		if (userId != null
-				&& userId != 0
+		System.out.println(project.getCompetition().getDateEnd()
+				.compareTo(new Date()));
+		if (roleId != null
+				&& (roleId == 2 || roleId == 1)
 				&& project.getCompetition().getDateEnd().compareTo(new Date()) > 0
-				&& voiceBean.findByProjecAndUserId(project, userId) == null) {
+				&& voiceBean.findByProjecAndUserId(
+						project,
+						(Integer) request.getSession().getAttribute(
+								Constants.PARAMETER_SESSION_IDUSER)) == null) {
 			voteAble = true;
 		}
 
