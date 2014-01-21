@@ -721,6 +721,8 @@ function call_data_for_footer() {
 //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
 
+        call_load_data_for_index_footer_contacts(respons["contacts"]);
+
 
         var dataArray = respons["battlelinks"];
         for (var i in dataArray) {
@@ -992,6 +994,44 @@ function call_load_data_for_current_rankings() {
     }).fail(function() {
         console.log("ошибка загрузки данных по current_rankings");
     });
+}
+
+
+
+
+function call_load_data_for_viewproject() {
+
+    var viewproject_template = [];
+
+    var send_data = {
+        projectid: 17
+    };
+
+
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=viewproject",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(send_data)
+    }).done(function(respons) {
+        console.log(respons);
+    });
+}
+
+
+function call_load_data_for_index_footer_contacts(contacts) {
+    var index_contacts_template = [
+        {tag: "li", add_class: "location", text: "contactsaddress"},
+        {tag: "li", add_class: "phone", children: [
+                {tag: "span", text: "contactsphone"},
+                {tag: "br"},
+                {tag: "span", text: "contactsfax"}
+            ]},
+        {tag: "li", add_class: "skype", text: "contactsskype"},
+        {tag: "li", text: "contactsemail"}
+    ];
+    call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
 }
 
 //function call_load_data_for_myaccount() {
