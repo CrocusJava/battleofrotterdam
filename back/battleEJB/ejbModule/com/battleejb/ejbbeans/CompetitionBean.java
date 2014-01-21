@@ -73,6 +73,7 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 					.createNamedQuery(
 							"Competition.findCurrentCompetitionByTypeName",
 							Competition.class).setParameter("type", type)
+							.setParameter("currentDate", new Date())
 					.getSingleResult();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
