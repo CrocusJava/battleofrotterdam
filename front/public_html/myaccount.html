@@ -62,8 +62,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>&nbsp; Jhon Smith <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="static_profile.html"><i class="icon-user"></i> &ensp;My Profile</a></li>
-                                     <li><a href="single_project.html"><i class="icon-inbox"></i> &ensp;My Project</a></li>
-                                     <li class="divider"></li>
+                                    <li><a href="single_project.html"><i class="icon-inbox"></i> &ensp;My Project</a></li>
+                                    <li class="divider"></li>
                                     <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
                             </li>
@@ -127,15 +127,19 @@
                                     <h2>[Jhohn Smith]</h2>
 
                                     <div class="row-fluid">
-                                        <form action="#" method="POST" id="account">
+                                        <form method="POST" id="accountupdate" action="#" >
                                             <div class="span4">
-                                                <img class="img-polaroid " alt="photo" src="img/c1.jpg" style="height:200px; " />
+                                                <img class="img-polaroid " alt="photo" src="img/c1.jpg" style="height:200px; " id="preview_avatar" />
                                                 <fieldset>
-                                                    <legend><a href="#">Edit profile picture <i class="icon-pencil"></i></a> </legend>
+                                                    <legend><a href="#uploadavatar" id="uploadavatar">Edit profile picture <i class="icon-pencil"></i></a> </legend>
                                                 </fieldset>
-                                                <!--- <label class="btn icon-edit">
-                                                     <input id="photopath" name="photopath" type="file" style="display: none;">
-                                                 </label>-->
+
+                                                <!--start allert warning-->
+                                                <div class="alert alert-danger hide" id="warning_load_file">
+                                                    <strong>Warning!</strong> You can upload only jpg, gif, jpeg, bmp, png files.
+                                                </div>
+                                                <!--end allert warning-->
+
                                             </div>
 
 
@@ -157,7 +161,7 @@
                                                                     <legend>Login or NickName </legend>
 
                                                                     <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="login" name="login" type="text" disabled="">
+                                                                        <input class="span12" id="login" name="login" type="text">
                                                                         <button class="btn" type="button"><i class="icon-edit"></i></button>
                                                                     </div>
                                                                     <legend>Name</legend>
@@ -175,14 +179,14 @@
                                                                     </div>
 
                                                                 </fieldset>
-																	
-                                                                    <legend>Birthday </legend>
 
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="birthday" name="birthday" type="text" disabled="">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                              
+                                                                <legend>Birthday </legend>
+
+                                                                <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                    <input class="span12" id="birthday" name="birthday" type="text" disabled="">
+                                                                    <button class="btn" type="button"><i class="icon-edit"></i></button>
+                                                                </div>
+
 
                                                                 <fieldset>
                                                                     <legend>Language</legend>
@@ -254,8 +258,8 @@
                                                                         <input class="span12" id="street" name="street" type="text" disabled="" placeholder="srteet">
                                                                         <button class="btn" type="button"><i class="icon-edit"></i></button>
                                                                     </div>
-																	 <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="town" name="housenumber" type="housenumber" disabled="" placeholder="housenumber">
+                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
+                                                                        <input class="span12" id="housenumber" name="housenumber" type="text" disabled="" placeholder="housenumber">
                                                                         <button class="btn" type="button"><i class="icon-edit"></i></button>
                                                                     </div>
                                                                     <div class="input-append"  data-toggle="buttons-checkbox">
@@ -274,11 +278,11 @@
                                                                     </div>
                                                                 </fieldset>
 
-                                                              
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                                   
+
                                                 </div>
                                             </div>
 
@@ -340,19 +344,6 @@
                                     </section><!-- End section content page -->
 
                                     <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Take part in current competition </button></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 </div>
                             </div>
                             <!-- End Main Tab Settingth -->
@@ -395,19 +386,7 @@
                         <div class="span3">
                             <h3 style="text-align: center;">Tips <span class="font_hotel" > & Tricks</span></h3>
                             <!--Start List Link pages-->
-                            <ul id="footer_links" class="link_list_footer">
-                                <!--                                <li><a href="#">Just do it</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>-->
-                            </ul>
+                            <ul id="footer_links" class="link_list_footer"></ul>
                             <!--End List Link pages-->
                         </div>
 
@@ -415,42 +394,7 @@
                             <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
                             <!--Start List Grid Galeries img-->
                             <div id="footer_gallery" class="gridmasonry galeries_footer" style="display: block; position: relative; height: 248px;">
-                                <!--                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 0px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 0px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 0px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 62px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 62px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 62px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 124px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 124px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 124px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 0px; top: 186px;">
-                                                                    <a href="img/5388055503_bdfec0a3d5.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388055503_bdfec0a3d5.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 105px; top: 186px;">
-                                                                    <a href="img/5388662544_9e6441ee70.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388662544_9e6441ee70.jpg" alt="img_preview"></a>
-                                                                </div>
-                                                                <div class="item_grid item3" style="position: absolute; left: 210px; top: 186px;">
-                                                                    <a href="img/5388661724_e92356d456.jpg" title="Image Title"> <div class="hover"></div><img src="img/5388661724_e92356d456.jpg" alt="img_preview"></a>
-                                                                </div>-->
+
                             </div>
                             <!--End List Grid Galeries img-->
                         </div>
