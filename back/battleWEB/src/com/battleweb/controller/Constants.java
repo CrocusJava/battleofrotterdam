@@ -42,6 +42,10 @@ public interface Constants {
 	public static final String COMMAND_GET_PHOTO = "getphoto";
 	public static final String COMMAND_EDIT_COMMENT = "editcomment";
 	public static final String COMMAND_WAS_APPROVED_REGISTRATION = "wasapproveredgistration";
+	public static final String COMMAND_SHOW_USERS = "showusers";
+	public static final String COMMAND_FIND_USER = "finduser";
+	public static final String COMMAND_EDIT_USER_APPLY = "edituserapply";
+	public static final String COMMAND_SEND_EMAIL = "sendemail";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -172,6 +176,10 @@ public interface Constants {
 	public static final String PARAMETER_REG_DEADLINE="regdeadline";	
 	public static final String PARAMETER_COMPETITIONS = "competitions";
 	
+	public static final String PARAMETER_STATUS = "status";
+	public static final String PARAMETER_ACTIVE = "active";
+	public static final String PARAMETER_MESSAGE = "message";
+		
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
 	public static final Integer TEXT_MESSAGE_YOUR_LOGIN = 110;
