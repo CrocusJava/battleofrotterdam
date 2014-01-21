@@ -162,6 +162,7 @@ public interface Constants {
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";
 	public static final String PARAMETER_AVATAR_NAME="avatarname";
+	public static final String PARAMETER_ID_PHOTO = "idphoto";
 	
 	public static final String PARAMETER_SHOW_DESCRIPTION = "showdescription";
 	public static final String PARAMETER_START_DATE_FROM="startdatefrom";
