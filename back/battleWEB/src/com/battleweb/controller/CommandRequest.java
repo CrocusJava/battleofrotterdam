@@ -17,7 +17,9 @@ import com.battleweb.controller.commands.CommandCompetitions;
 import com.battleweb.controller.commands.CommandCreateProject;
 import com.battleweb.controller.commands.CommandCurrentRankings;
 import com.battleweb.controller.commands.CommandEditComment;
+import com.battleweb.controller.commands.CommandEditUserApply;
 import com.battleweb.controller.commands.CommandFAQ;
+import com.battleweb.controller.commands.CommandFindUser;
 import com.battleweb.controller.commands.CommandFooter;
 import com.battleweb.controller.commands.CommandForgotPassword;
 import com.battleweb.controller.commands.CommandGetPhoto;
@@ -27,6 +29,8 @@ import com.battleweb.controller.commands.CommandLogout;
 import com.battleweb.controller.commands.CommandNews;
 import com.battleweb.controller.commands.CommandProjects;
 import com.battleweb.controller.commands.CommandRegistration;
+import com.battleweb.controller.commands.CommandSendEmail;
+import com.battleweb.controller.commands.CommandShowUsers;
 import com.battleweb.controller.commands.CommandUploadAvatar;
 import com.battleweb.controller.commands.CommandSendComment;
 import com.battleweb.controller.commands.CommandUploadPhoto;
@@ -98,6 +102,14 @@ public class CommandRequest {
 	private CommandEditComment commandEditComment;
 	@EJB
 	private CommandWasApprovedRegistration commandWasApprovedRegistration;
+	@EJB
+	private CommandShowUsers commandShowUsers;
+	@EJB
+	private CommandFindUser commandFindUser;
+	@EJB
+	private CommandEditUserApply commandEditUserApply;
+	@EJB
+	private CommandSendEmail commandSendEmail;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -128,6 +140,10 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_GET_PHOTO, commandGetPhoto);
 		commands.put(Constants.COMMAND_EDIT_COMMENT, commandEditComment);
 		commands.put(Constants.COMMAND_WAS_APPROVED_REGISTRATION, commandWasApprovedRegistration);
+		commands.put(Constants.COMMAND_SHOW_USERS, commandShowUsers);
+		commands.put(Constants.COMMAND_FIND_USER, commandFindUser);
+		commands.put(Constants.COMMAND_EDIT_USER_APPLY, commandEditUserApply);
+		commands.put(Constants.COMMAND_SEND_EMAIL, commandSendEmail);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
