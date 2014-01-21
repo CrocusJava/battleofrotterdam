@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import com.battleejb.entities.CompetitionType;
+import com.battleejb.entities.Role;
 
 /**
  * @author marina
@@ -18,13 +18,13 @@ import com.battleejb.entities.CompetitionType;
 
 @Stateless
 @LocalBean
-public class CompetitionTypeBean extends AbstractFacade<CompetitionType> {
+public class RoleBean extends AbstractFacade<Role> {
 
 	@PersistenceContext(unitName = "persistence")
 	EntityManager em;
 
-	public CompetitionTypeBean() {
-		super(CompetitionType.class);
+	public RoleBean() {
+		super(Role.class);
 	}
 
 	@Override
@@ -32,16 +32,16 @@ public class CompetitionTypeBean extends AbstractFacade<CompetitionType> {
 		return em;
 	}
 
-	public CompetitionType findByName(String type) {
-		CompetitionType competitionType = null;
+	public Role findByName(String name) {
+		Role role = null;
 		try {
-			competitionType = em
-					.createNamedQuery("CompetitionType.findByName",
-							CompetitionType.class).setParameter("type", type)
+			role = em
+					.createNamedQuery("Role.findByName",
+							Role.class).setParameter("role", name)
 					.getSingleResult();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		}
-		return competitionType;
+		return role;
 	}
 }

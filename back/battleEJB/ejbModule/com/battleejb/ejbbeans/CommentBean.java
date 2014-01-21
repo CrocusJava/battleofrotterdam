@@ -76,7 +76,6 @@ public class CommentBean extends AbstractFacade<Comment> {
 	public long getCountByPhotoId(int photoId){
 		long count = 0;
 		try {
-			System.out.println(photoId);
 			count = (Long) em.createNamedQuery("Comment.getCountByPhotoId")
 					.setParameter("photoId", photoId)
 					.getSingleResult();			

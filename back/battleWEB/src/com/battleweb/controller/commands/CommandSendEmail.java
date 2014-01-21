@@ -1,11 +1,6 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -14,22 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ejb.Stateless;
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
-import com.battleejb.ejbbeans.CommentBean;
-import com.battleejb.ejbbeans.CompetitionBean;
-import com.battleejb.ejbbeans.PhotoBean;
-import com.battleejb.ejbbeans.ProjectBean;
-import com.battleejb.ejbbeans.VoiceBean;
-import com.battleejb.entities.Competition;
-import com.battleejb.entities.CompetitionType;
-import com.battleejb.entities.Photo;
-import com.battleejb.entities.Project;
+import com.battleejb.ejbbeans.TextBean;
+import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -43,22 +31,50 @@ public class CommandSendEmail implements Command {
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
-	private ProjectBean projectBean;
+	private UserBean userBean;
 	@EJB
-	private PhotoBean photoBean;
+	private ToolEmail toolEmail;
 	@EJB
-	private CommentBean commentBean;
-	@EJB
-	private VoiceBean voiceBean;
-	@EJB
-	private CompetitionBean competitionBean;
+	private TextBean textBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		//code here...
 
+		JsonObjectBuilder jsonObjectResponseBuilder = Json
+				.createObjectBuilder();
+
+		Integer roleId = (Integer) request.getSession().getAttribute(
+				Constants.PARAMETER_SESSION_IDROLE);
+		if (roleId != null && roleId == 1) {
+			boolean state = true;
+
+			JsonObject jsonObjectRequest = toolJSON
+					.getJsonObjectRequest(request);
+			Integer userId = jsonObjectRequest
+					.getInt(Constants.PARAMETER_USER_ID);
+			String subject = jsonObjectRequest
+					.getString(Constants.PARAMETER_TEXT);
+			String text = jsonObjectRequest.getString(Constants.PARAMETER_TEXT);
+
+			User user = userBean.find(userId);
+
+			toolEmail.send(subject, text, "battleofrotterdam@gmail.com",
+					user.getEmail());
+
+			jsonObjectResponseBuilder.add(Constants.PARAMETER_STATUS, state)
+					.add(Constants.PARAMETER_MESSAGE,
+							textBean.findLocaleTextByKey(
+									Constants.TEXT_MESSAGE_ADMIN_SEND_EMAIL,
+									request.getLocale()));
+		} else {
+			Log.error(this, "Command invoked not by admin");
+			jsonObjectResponseBuilder.add(Constants.PARAMETER_ERROR_MESSAGE,
+					"Command invoked not by admin");
+		}
+
+		toolJSON.setJsonObjectResponse(response,
+				jsonObjectResponseBuilder.build());
 		return null;
 
 	}

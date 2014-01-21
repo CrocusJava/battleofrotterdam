@@ -11,6 +11,7 @@ import java.util.List;
  * The persistent class for the Role database table.
  * 
  */
+@NamedQuery(name="Role.findByName",query="SELECT r FROM Role AS r WHERE r.name=:role")
 @Entity
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;

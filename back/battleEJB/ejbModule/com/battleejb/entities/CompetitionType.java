@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
  * The persistent class for the CompetitionType database table.
  * 
  */
+@NamedQuery(name="CompetitionType.findByName",query="SELECT ct FROM CompetitionType AS ct WHERE ct.name=:type")
 @Entity
 public class CompetitionType implements Serializable {
 	private static final long serialVersionUID = 1L;

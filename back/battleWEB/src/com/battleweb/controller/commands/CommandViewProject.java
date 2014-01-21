@@ -68,9 +68,7 @@ public class CommandViewProject implements Command {
 		boolean voteAble = false;
 		Integer roleId = (Integer) request.getSession().getAttribute(
 				Constants.PARAMETER_SESSION_IDROLE);
-
-		System.out.println(project.getCompetition().getDateEnd()
-				.compareTo(new Date()));
+		
 		if (roleId != null
 				&& (roleId == 2 || roleId == 1)
 				&& project.getCompetition().getDateEnd().compareTo(new Date()) > 0

@@ -183,6 +183,7 @@ public interface Constants {
 	public static final String PARAMETER_ROLE = "role";
 	public static final String PARAMETER_USERS = "users";
 	public static final String PARAMETER_ERROR_MESSAGE = "errormessage";
+	public static final String PARAMETER_USER_ID = "userid";
 		
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
@@ -246,6 +247,9 @@ public interface Constants {
 	public static final Integer TEXT_CONTACTS_SKYPE = 750;
 	
 	public static final Integer TEXT_MESSAGE_CREATE_PROJECT = 800;
+	
+	public static final Integer TEXT_MESSAGE_ADMIN_SEND_EMAIL = 1000;
+	public static final Integer TEXT_MESSAGE_ADMIN_EDIT_USER = 1010;
 
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
