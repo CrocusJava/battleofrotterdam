@@ -58,10 +58,11 @@ public class CommandUploadAvatar implements Command {
 		String fileNameCorrect=toolUpload.uploadImage(request, Constants.PATH_SAVE_AVATAR, fileName);
 		/** Create avatar path*/
 		String filePath=Constants.PATH_GET_PHOTO+fileNameCorrect;
-
+		/** Add avatar path to user*/
+		user.setPhotoPath(filePath);
 		
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
-				.add(Constants.PARAMETER_PHOTO_PATH, filePath)
+				.add(Constants.PARAMETER_AVATAR_PATH, filePath)
 				.build();
 		
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);

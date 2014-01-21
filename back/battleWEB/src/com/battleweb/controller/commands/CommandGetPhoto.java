@@ -20,7 +20,6 @@ import com.battleweb.logger.Log;
  * @author rtkachuk
  * 
  */
-
 @Stateless
 @LocalBean
 public class CommandGetPhoto implements Command {
@@ -32,7 +31,9 @@ public class CommandGetPhoto implements Command {
 		File file = getFile(request);
 		if (null==file){
 			Log.error(this, "Not exist needed parameter - File=NULL");
+			throw new IOException();
 		}
+		/**Try to find file and send it inside response*/
 		response.reset();
 		response.setContentType("image/jpeg");
 
