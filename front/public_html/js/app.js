@@ -17,13 +17,11 @@ function call_all() {
 //    call_events_show_hide_login_registration();
 
     call_event_create_comment();
-//    call_activate_menu_links();
-
 
     call_start_carousel();
     call_data_for_index_html();
     call_data_for_footer();
-//    call_uploading_file_on_server();
+    call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
     call_trylater();
@@ -362,9 +360,11 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-//    if (window.upload_file._input.files.length > 0) {
-//        window.upload_file.submit();
-//    }
+    if (window.upload_file._input) {
+        if (window.upload_file._input.files.length > 0) {
+            window.upload_file.submit();
+        }
+    }
     console.log(config, form.id);
     return false;
 }
@@ -460,28 +460,6 @@ function createElements(conteiner, parent, info) {
     a.addClass("reply").text("Reply").attr({
         "href": "#comment"
     }).appendTo(div);
-}
-
-
-
-function call_activate_menu_links() {
-    $(".main_navbar").on("click", "a", function() { // ссылки главного меню
-        $(this).parent().addClass("active").siblings().removeClass("active");
-    });
-    /* ############################################################################ */
-
-    $(".lobster_tab").on("click", "a", function() {
-        $(this).parent().addClass("active").siblings().removeClass("active");
-    });
-    /* ############################################################################ */
-
-    $(".link_acomodation").on("click", "a", function() { // ссылки боковой навигации на странице myaccount.html
-        var link = $(this).parent().addClass("active").siblings().removeClass("active").end().end().attr("href");
-        link = link.substr(1).split("/");
-        var url = "/frontBattleOfRotterdam/" + link[0] + " " + link[1];
-        $(".span9").load(url);
-        return false;
-    });
 }
 
 
@@ -609,8 +587,10 @@ function call_data_for_index_html() {
 
 //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
-    if (window.location.href.match(/myaccount.html$/)) {
+    if (window.location.href.match(/myaccount.html/)) {
         call_event_logout();
+        call_send_form_accountupdate();
+        call_load_data_for_myaccount();
     }
 //<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
 
@@ -745,10 +725,10 @@ function call_data_for_footer() {
 
 
 function call_uploading_file_on_server(command_value) {
-    if (window.location.href.match(/registration.html#registration$/)) {
+    if (window.location.href.match(/myaccount.html/)) {
         var command_value = "uploadavatar";
     }
-//  /battleWEB/controller?command=upload', //command=uploadavatar command=uploadphoto
+
     window.upload_file = new AjaxUpload(command_value, {
         action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
         name: command_value,
@@ -767,7 +747,7 @@ function call_uploading_file_on_server(command_value) {
             } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
                 $("#warning_load_file").show();
-                $("#warning_load_file").fadeOut(5000);
+                $("#warning_load_file").fadeOut(10000);
                 return false;
             }
 
@@ -780,7 +760,7 @@ function call_uploading_file_on_server(command_value) {
             }
         },
         onComplete: function(file, response) {
-
+            console.log("передача файла завершена");
 
         }
     });
@@ -1036,8 +1016,17 @@ function call_load_data_for_index_footer_contacts(contacts) {
     call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
 }
 
-//function call_load_data_for_myaccount() {
-//    $.post("/battleWEB/controller?command=account", function(data) {
-//        console.log(data);
-//    }, "json");
-//}
+
+function call_send_form_accountupdate() {
+    $("#accountupdate").on("submit", function() {
+        AjaxRegistrationLogin(this);
+        return false;
+    });
+}
+
+
+function call_load_data_for_myaccount() {
+    $.post("/battleWEB/controller?command=account", function(data) {
+        console.log(data);
+    }, "json");
+}
