@@ -649,7 +649,12 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             for (var name_prop in attr) {
                 var value = attr[name_prop];
                 value = dataObj[value] || value;
-                element.attr(name_prop, value);
+                if ({}.toString.call(value) === "[object Object]") {
+
+                }
+                else {
+                    element.attr(name_prop, value);
+                }
             }
         }
 // <<<<<<<<<<================================== Добавление текста к элементу
