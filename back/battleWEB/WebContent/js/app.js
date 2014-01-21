@@ -26,7 +26,7 @@ function call_all() {
 //    call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
-	call_trylater();
+    call_trylater();
 }
 
 function call_form_validation() {
@@ -516,7 +516,7 @@ function call_load_data_for_index_events(load_data) {
                                         {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
-                        {tag: "a", add_class: "btn btn-primary btn-mini flat", text: "Read More"}
+                        {tag: "a", attr: {href: "single_project.html"}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
                     ]}
             ]
         }];
@@ -528,13 +528,17 @@ function call_load_data_for_index_events(load_data) {
 function call_load_data_for_index_comments(load_data) {
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
-                {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}},
-                {tag: "h4", add_class: "media-heading", text: "userlogin"},
-                {tag: "p", text: "commenttext"},
-                {tag: "p", children: [
-                        {tag: "span", children: [
-                                {tag: "i", add_class: "icon-time"},
-                                {tag: "span", add_class: "padding_comment", text: "commentdate"}
+                {tag: "a", attr: {href: "static_profile.html"}, children: [
+                        {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}}
+                    ]},
+                {tag: "a", attr: {href: "single_project.html"}, children: [
+                        {tag: "h4", add_class: "media-heading", text: "userlogin"},
+                        {tag: "p", text: "commenttext"},
+                        {tag: "p", children: [
+                                {tag: "span", children: [
+                                        {tag: "i", add_class: "icon-time"},
+                                        {tag: "span", add_class: "padding_comment", text: "commentdate"}
+                                    ]}
                             ]}
                     ]}
             ]
@@ -620,6 +624,12 @@ function call_data_for_index_html() {
         call_modal_window_forgotten_password();
     }
 
+//<<<<<<<<<<<<=============================задачи для страницы вывода троих лидеров по годовому и месячному соревнованию
+
+    if (window.location.href.match(/current_rankings.html$/)) {
+        call_load_data_for_current_rankings();
+    }
+
     //<<<<<<<<<<<<=============================задачи для всех страницы
 
 
@@ -649,14 +659,31 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             for (var name_prop in attr) {
                 var value = attr[name_prop];
                 value = dataObj[value] || value;
-                element.attr(name_prop, value);
+                // <<<<<<<<<<================================== Если атрибут является объектом
+                if ({}.toString.call(value) === "[object Object]") {
+                    // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                    var subvalue = value[templateObj["subattr"][name_prop]];
+                    element.attr(name_prop, subvalue);
+                }
+                else {
+                    element.attr(name_prop, value);
+                }
             }
         }
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
             text_key = dataObj[text_key] || text_key;
-            element.text(text_key);
+            // <<<<<<<<<<================================== Если текст является объектом
+            if ({}.toString.call(text_key) === "[object Object]") {
+                // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                var subvalue_text = text_key[templateObj["subattr"][text_key]];
+                element.text(subvalue_text);
+            }
+            else {
+                element.text(text_key);
+            }
+
         }
 // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
@@ -693,6 +720,8 @@ function call_data_for_footer() {
 
 //respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
+
+        call_load_data_for_index_footer_contacts(respons["contacts"]);
 
 
         var dataArray = respons["battlelinks"];
@@ -791,11 +820,7 @@ function call_data_for_faq() {
 }
 
 
-function call_load_data_for_myaccount() {
-    $.post("/battleWEB/controller?command=account", function(data) {
-        console.log(data);
-    }, "json");
-}
+
 
 function call_load_data_for_about_battle() {
     $.post("/battleWEB/controller?command=aboutbattle", function(data) {
@@ -873,8 +898,6 @@ function call_data_load_for_competitions() {
                 var newconteiner = element;
                 element.text(key + " =========> " + competitions[i][key]);
 
-
-
                 if ({}.toString.call(competitions[i][key]) === "[object Object]") {
                     var ulElement = $(document.createElement("ul"));
                     ulElement.appendTo(newconteiner);
@@ -922,13 +945,99 @@ function call_enabling_submit_button() {
 }
 
 function call_trylater() {
-$(".trylater").click(function(){
-    $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
-    $('body').append('<div class="popup_back"></div>');
-    $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
-    $('.close_popup').click(function() {
-        $('.popup_text').remove();
-        $('.popup_back').remove();
+    $(".trylater").click(function() {
+        $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
+        $('body').append('<div class="popup_back"></div>');
+        $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+        $('.close_popup').click(function() {
+            $('.popup_text').remove();
+            $('.popup_back').remove();
+        });
     });
-})
 }
+
+
+
+function call_load_data_for_current_rankings() {
+    $.post("/battleWEB/controller?command=currentrankings", function(data) {
+        console.log(data);
+        var carent_rankings_template = [
+            {nag: "div", add_class: "span4 text_center", children: [
+                    {tag: "div", add_class: "boxfeature", children: [
+                            {tag: "div", add_class: "img_preview", children: [
+                                    {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
+                                    {tag: "span", add_class: "label flat label-success likes", text: "100 Likes"},
+                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity"},
+                                    {tag: "h4", text: "First winner"}
+                                ]},
+                            {tag: "div", add_class: "desc", children: [
+                                    {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
+                                    {tag: "p", children: [
+                                            {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                        ]}
+                                ]}
+                        ]}
+                ]}
+        ];
+        var yearprojects = data["yearprojects"];
+        var monthprojects = data["monthprojects"];
+
+        for (var i in monthprojects) {
+            call_markup_index(carent_rankings_template, $("#monthly_battle_competitions"), monthprojects[i]);
+        }
+
+        for (var i in yearprojects) {
+            call_markup_index(carent_rankings_template, $("#yearly_battle_competitions"), yearprojects[i]);
+        }
+
+
+    }).fail(function() {
+        console.log("ошибка загрузки данных по current_rankings");
+    });
+}
+
+
+
+
+function call_load_data_for_viewproject() {
+
+    var viewproject_template = [];
+
+    var send_data = {
+        projectid: 17
+    };
+
+
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=viewproject",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(send_data)
+    }).done(function(respons) {
+        console.log(respons);
+    });
+}
+
+
+function call_load_data_for_index_footer_contacts(contacts) {
+    var index_contacts_template = [
+        {tag: "li", add_class: "location", text: "contactsaddress"},
+        {tag: "li", add_class: "phone", children: [
+                {tag: "span", text: "contactsphone"},
+                {tag: "br"},
+                {tag: "span", text: "contactsfax"}
+            ]},
+        {tag: "li", add_class: "skype", children: [
+                {tag: "a", attr: {href: "skype:echo123?call"}, text: "contactsskype"}
+            ]},
+        {tag: "li", text: "contactsemail"}
+    ];
+    call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
+}
+
+//function call_load_data_for_myaccount() {
+//    $.post("/battleWEB/controller?command=account", function(data) {
+//        console.log(data);
+//    }, "json");
+//}

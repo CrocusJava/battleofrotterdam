@@ -210,3 +210,110 @@ height: 2000px;
 background: rgba(1, 56, 56, 0.54);
 z-index:2000;
 }
+
+.photo_static_profile{
+
+width: 200px;
+margin: 20px auto;
+
+}
+
+.name_static_profile{
+
+font-family: 'Lobster Two', cursive;
+font-size: 38px;
+padding: 20px;
+
+}
+
+.margin_text_longname{
+margin: 10px;
+font-size: 14px;
+letter-spacing: 8px;
+}
+
+.margin_text_birthday{
+margin: 2px;
+font-size: 12px;
+font-weight: 600;
+}
+
+.margin_text{
+margin: 5px;
+font-size: 14px;
+
+}
+
+.margin_text_email{
+margin: 5px;
+font-size: 14px;
+font-weight: 600;
+}
+
+.project_block{
+background: rgba(0,188,0,0.2);
+box-shadow: 0px 0px 16px 3px #C9C9C9; 
+padding: 2px; 
+width:95%; 
+height:300px; 
+margin: 0 auto;
+}
+
+.project_block_ava{
+width:20%; 
+margin: 0 1%; 
+float: left;  
+height:200px; 
+}
+
+.project_block_photo{
+width:23%; 
+margin: 0 1%; 
+float: left; 
+height:200px; 
+}
+
+.project_block_proj_name{
+width:75%;
+margin: 3% auto; 
+padding: 0 25px 0 25px; 
+font-family: 'Lobster Two', cursive; 
+font-size: 2em; 
+text-align: center; 
+line-height:110%; 
+}
+
+.project_block_proj{
+width:50%;  
+float: left; 
+height:200px; 
+overflow: hidden; 
+text-overflow: ellipsis; 
+}
+
+
+.project_block_proj_descr{
+width: 95%; 
+margin: 0 auto; 
+padding: 5px;  
+font-size: 1em; 
+text-align: center; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
