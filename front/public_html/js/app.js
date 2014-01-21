@@ -1029,7 +1029,7 @@ function call_load_data_for_index_footer_contacts(contacts) {
                 {tag: "span", text: "contactsfax"}
             ]},
         {tag: "li", add_class: "skype", text: "contactsskype"},
-        {tag: "li", , text: "contactsemail"}
+        {tag: "li", text: "contactsemail"}
     ];
     call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
 }
