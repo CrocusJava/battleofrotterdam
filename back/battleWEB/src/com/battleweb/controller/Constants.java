@@ -179,6 +179,9 @@ public interface Constants {
 	public static final String PARAMETER_STATUS = "status";
 	public static final String PARAMETER_ACTIVE = "active";
 	public static final String PARAMETER_MESSAGE = "message";
+	public static final String PARAMETER_ROLE = "role";
+	public static final String PARAMETER_USERS = "users";
+	public static final String PARAMETER_ERROR_MESSAGE = "errormessage";
 		
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;

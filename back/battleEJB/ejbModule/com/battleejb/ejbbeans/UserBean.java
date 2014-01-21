@@ -1,11 +1,14 @@
 package com.battleejb.ejbbeans;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.criteria.CriteriaQuery;
 
 import com.battleejb.entities.User;
 import com.battleejb.interceptors.FaultBarrierInterceptor;
@@ -41,7 +44,7 @@ public class UserBean extends AbstractFacade<User> {
 		}
 		return user;
 	}
-	
+
 	public User findByEmail(String email) {
 		User user = null;
 		try {
@@ -56,20 +59,35 @@ public class UserBean extends AbstractFacade<User> {
 	public boolean chackLoginExist(String login) {
 		long result = (Long) em.createNamedQuery("User.getCountOfUserByLogin")
 				.setParameter("login", login).getSingleResult();
-		if(result > 0){
+		if (result > 0) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
 	}
-	
+
 	public boolean chackEmailExist(String email) {
 		long result = (Long) em.createNamedQuery("User.getCountOfUserByEmail")
 				.setParameter("email", email).getSingleResult();
-		if(result > 0){
+		if (result > 0) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
+	}
+
+	public List<User> findAllLimit(Integer firstPosition, Integer size) {
+		List<User> users = null;
+		try {
+			CriteriaQuery<User> cq = em.getCriteriaBuilder().createQuery(
+					User.class);
+			cq.select(cq.from(User.class));
+			users = getEntityManager().createQuery(cq)
+					.setFirstResult(firstPosition).setMaxResults(size)
+					.getResultList();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 }
