@@ -176,6 +176,7 @@ public interface Constants {
 	public static final String PARAMETER_REG_DEADLINE="regdeadline";	
 	public static final String PARAMETER_COMPETITIONS = "competitions";
 	
+	public static final String PARAMETER_COMMENT_ABLE = "commentable";
 	public static final String PARAMETER_STATUS = "status";
 	public static final String PARAMETER_ACTIVE = "active";
 	public static final String PARAMETER_MESSAGE = "message";

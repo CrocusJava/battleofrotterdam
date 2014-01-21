@@ -24,7 +24,6 @@ import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.ejbbeans.VoiceBean;
 import com.battleejb.entities.Competition;
-import com.battleejb.entities.CompetitionType;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
@@ -138,6 +137,15 @@ public class CommandProjects implements Command {
 							competition.getType().getName())
 					.add(Constants.PARAMETER_NAME, competition.getName())
 					.build();
+			
+			Photo photo = photoBean.findLimitByProjectId(project.getId(), 0, 1)
+					.get(0);
+			JsonObject jsonLustPhoto = Json
+					.createObjectBuilder()
+					.add(Constants.PARAMETER_ID, photo.getId())
+					.add(Constants.PARAMETER_PATH, photo.getPath())
+					.add(Constants.PARAMETER_DESCRIPTION,
+							photo.getDescription()).build();
 
 			JsonObjectBuilder jsonProjectBuilder = Json
 					.createObjectBuilder()
@@ -150,7 +158,9 @@ public class CommandProjects implements Command {
 					.add(Constants.PARAMETER_COMMENT_QUANTITY,
 							commentBean.getCountByProjectId(project.getId()))
 					.add(Constants.PARAMETER_USER, jsonUser)
-					.add(Constants.PARAMETER_COMPETITION, jsonCompetition);
+					.add(Constants.PARAMETER_COMPETITION, jsonCompetition)
+					.add(Constants.PARAMETER_LAST_PHOTO, jsonLustPhoto)
+					;
 
 			jsonProjectsArrayBuilder.add(jsonProjectBuilder.build());
 		}
