@@ -2,6 +2,7 @@ package com.battleweb.controller.commands;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -65,11 +66,18 @@ public class CommandViewProject implements Command {
 		long rating = voiceBean.getCountByProject(project);
 
 		boolean voteAble = false;
-		if (voiceBean.findByProjecAndUserId(
-				project,
-				Integer.parseInt(request.getSession()
-						.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
-						.toString())) == null) {
+		Integer roleId = (Integer) request.getSession().getAttribute(
+				Constants.PARAMETER_SESSION_IDROLE);
+
+		System.out.println(project.getCompetition().getDateEnd()
+				.compareTo(new Date()));
+		if (roleId != null
+				&& (roleId == 2 || roleId == 1)
+				&& project.getCompetition().getDateEnd().compareTo(new Date()) > 0
+				&& voiceBean.findByProjecAndUserId(
+						project,
+						(Integer) request.getSession().getAttribute(
+								Constants.PARAMETER_SESSION_IDUSER)) == null) {
 			voteAble = true;
 		}
 

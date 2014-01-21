@@ -22,6 +22,7 @@ import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.CompetitionBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
+import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.ejbbeans.VoiceBean;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
@@ -43,21 +44,51 @@ public class CommandFindUser implements Command {
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
-	private ProjectBean projectBean;
-	@EJB
-	private PhotoBean photoBean;
-	@EJB
-	private CommentBean commentBean;
-	@EJB
-	private VoiceBean voiceBean;
-	@EJB
-	private CompetitionBean competitionBean;
+	private UserBean userBean;	
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		//code here...
+
+		JsonObjectBuilder jsonObjectResponseBuilder = Json
+				.createObjectBuilder();
+
+		Integer roleId = (Integer) request.getSession().getAttribute(
+				Constants.PARAMETER_SESSION_IDROLE);
+		if (roleId != null && roleId == 1) {
+
+			JsonObject jsonObjectRequest = toolJSON
+					.getJsonObjectRequest(request);
+			String login = jsonObjectRequest
+					.getString(Constants.PARAMETER_LOGIN);			
+
+			User user = userBean.checkByLogin(login);
+			
+				JsonObjectBuilder jsonUserBuilder = Json
+						.createObjectBuilder()
+						.add(Constants.PARAMETER_IDUSER, user.getId())
+						.add(Constants.PARAMETER_USER_LOGIN, user.getLogin())
+						.add(Constants.PARAMETER_EMAIL, user.getEmail())
+						.add(Constants.PARAMETER_FIRSTNAME, user.getFirstname())
+						.add(Constants.PARAMETER_MISSLENAME,
+								user.getMiddlename())
+						.add(Constants.PARAMETER_LASTNAME, user.getLastname())
+						.add(Constants.PARAMETER_STATUS, user.getCommentAble())
+						.add(Constants.PARAMETER_ACTIVE, user.getActive())
+						.add(Constants.PARAMETER_ROLE, user.getRole().getName());
+						
+			
+			jsonObjectResponseBuilder.add(Constants.PARAMETER_USER,
+					jsonUserBuilder.build());
+
+		} else {
+			Log.error(this, "Command invoked not by admin");
+			jsonObjectResponseBuilder.add(Constants.PARAMETER_ERROR_MESSAGE,
+					"Command invoked not by admin");
+		}
+
+		toolJSON.setJsonObjectResponse(response,
+				jsonObjectResponseBuilder.build());
 
 		return null;
 
