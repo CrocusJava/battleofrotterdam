@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
@@ -313,8 +313,9 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (42, 40, '', ''),
 (43, 50, '', ''),
 (44, 60, '', ''),
-(45, 70, '', '');
-
+(45, 70, '', ''),
+(46, 1000, 'e-mail sent', 'e-mail verzonden'),
+(46, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht');
 -- --------------------------------------------------------
 
 --
