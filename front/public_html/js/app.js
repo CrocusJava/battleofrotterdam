@@ -1028,7 +1028,9 @@ function call_load_data_for_index_footer_contacts(contacts) {
                 {tag: "br"},
                 {tag: "span", text: "contactsfax"}
             ]},
-        {tag: "li", add_class: "skype", text: "contactsskype"},
+        {tag: "li", add_class: "skype", children: [
+                {tag: "a", attr: {href: "skype:echo123?call"}, text: "contactsskype"}
+            ]},
         {tag: "li", text: "contactsemail"}
     ];
     call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
