@@ -504,12 +504,18 @@ function call_load_data_for_index_events(load_data) {
 
 
 function call_load_data_for_index_comments(load_data) {
+    function go_to_user_profile() {
+
+    }
+    function go_to_project() {
+        load_data.projectid;
+    }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
-                {tag: "a", attr: {href: "static_profile.html"}, children: [
+                {tag: "a", attr: {href: "static_profile.html"}, add_handler: {"click": go_to_user_profile}, children: [
                         {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}}
                     ]},
-                {tag: "a", attr: {href: "single_project.html"}, children: [
+                {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
                         {tag: "h4", add_class: "media-heading", text: "userlogin"},
                         {tag: "p", text: "commenttext"},
                         {tag: "p", children: [
@@ -541,6 +547,7 @@ function call_data_for_index_html() {
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
             $("#battleanimationdescription").text(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
+
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
                 var dataObj = dataArray[i];
