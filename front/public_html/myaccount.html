@@ -56,15 +56,12 @@
                             <li><a href="current_rankings.html">Current Rankings</a></li>
                             <li><a href="projets.html">Projects</a></li>
                             <li><a href="FAQ.html">FAQ</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-
+                            <li><a href="contact.html">Contacts</a></li>
                             <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>&nbsp; Jhon Smith <b class="caret"></b></a>
+                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">Login-Register <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="static_profile.html"><i class="icon-user"></i> &ensp;My Profile</a></li>
-                                    <li><a href="single_project.html"><i class="icon-inbox"></i> &ensp;My Project</a></li>
-                                    <li class="divider"></li>
-                                    <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
+                                    <li><a href="login.html#login">Login</a></li>
+                                    <li><a href="registration.html#registration">Register</a></li>
                                 </ul>
                             </li>
                             <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
@@ -77,7 +74,7 @@
                 <div class="bg_content_top general_bg">
                     <div class="inner-wrapper text_center">
                         <h1 class="no_margin main_title font_hotel">
-                            My account
+                            [Jhon Smith]
                         </h1>
                     </div>
                 </div>
@@ -105,259 +102,112 @@
                 </div>
                 <div class="inner-wrapper driver_space"></div>
             </section><!-- End section logo message area -->
-
-
             <!-- Start section content page -->
             <section id="content">
                 <div class="inner-wrapper">
                     <div class="row-fluid">
                         <div class="span12">
 
-                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
-
-                            <!-- Start Main Tab Settingth -->
-                            <ul class="unstyled nav nav-tabs  clearfix">
-
-                                <li class="active"><a href="#profile">MY PROFILE</a></li>
-                                <li  onclick="call_grid();"><a href="#project">MY PROJECTS </a></li>
-
-                            </ul>
-                            <div class="tab-content lobster_tab_content">
-                                <div class="tab-pane active" id="profile">
-                                    <h2>[Jhohn Smith]</h2>
-
-                                    <div class="row-fluid">
-                                        <form method="POST" id="accountupdate" action="#" >
-                                            <div class="span4">
-                                                <img class="img-polaroid " alt="photo" src="img/c1.jpg" style="height:200px; " id="preview_avatar" />
-                                                <fieldset>
-                                                    <legend><a href="#uploadavatar" id="uploadavatar">Edit profile picture <i class="icon-pencil"></i></a> </legend>
-                                                </fieldset>
-
-                                                <!--start allert warning-->
-                                                <div class="alert alert-danger hide" id="warning_load_file">
-                                                    <strong>Warning!</strong> You can upload only jpg, gif, jpeg, bmp, png files.
-                                                </div>
-                                                <!--end allert warning-->
-
-                                            </div>
 
 
-                                            <div class="span8">
+                            <div class="singup_area with_bg">
+                                <form >
+								<div style="height:15px;"></div>
+                                  <section class="project_block" style="background: rgba(0,188,0,0.2); height: 550px;" >
+                                                   <div class="photo_static_profile"> <img class="img-circle" id="preview_avatar" src="img/c1.jpg" data-src="img/c1.jpg" alt="preview" style="width:200px;"></div>
+                                                     <div class="text_center">
+													 
+													 <div class="name_static_profile font-hotel" contenteditable="true"> Jhon Smith</div>
 
-                                                <div class="panel-group" id="accordion">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h2 class="panel-title">
-                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                                    Basic information <i class="icon-pencil"></i>
-                                                                </a>
-                                                            </h2>
-                                                        </div>
-                                                        <div id="collapseOne" class="panel-collapse collapse">
-                                                            <div class="panel-body">
-                                                                <fieldset>
-
-                                                                    <legend>Login or NickName </legend>
-
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="login" name="login" type="text">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <legend>Name</legend>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="firstname" name="firstname" type="text" disabled="" placeholder="First Name">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="middlename" name="middlename" type="text" disabled="" placeholder="Middle Name">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="lastname" name="lastname" type="text" disabled="" placeholder="Last Name">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-
-                                                                </fieldset>
-
-                                                                <legend>Birthday </legend>
-
-                                                                <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                    <input class="span12" id="birthday" name="birthday" type="text" disabled="">
-                                                                    <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                </div>
+												   <div class="margin_text_longname" contenteditable="true"> <span>FirstName</span><span> MiddleName</span><span> LastName</span></div>
+												   <div class="margin_text_birthday" contenteditable="true">08 July 1988</div>
+												   <div class="margin_text" contenteditable="true"><span> Town,</span><span> Street,</span><span> HouseNumber,</span><span> Postcode</span></div>
+												   <div class="margin_text" contenteditable="true"> (808)88-080-88 </div>
+												   <div class="margin_text_email" contenteditable="true"> jhonSmith@mail.nl</div>
+												</div>
+												
+												<div style="height:35px;"></div>
+												<label class="labelforregist" style="text-align:center; font-size: 18px; color: rgba(0,188,0,1); text-decoration: blink;">Cliick textareas in this block to edit your profile(feature for registered users)</label>
+												</section>
 
 
-                                                                <fieldset>
-                                                                    <legend>Language</legend>
-
-                                                                    <div class="radio" style="padding-left: 20px;">
-                                                                        <label>
-                                                                            <input type="radio" name="lang" id="optionsRadioslang1" value="option1" checked>
-                                                                            <img src="img/NL.png" alt="flag"> NL
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="radio" style="padding-left: 20px;">
-                                                                        <label>
-                                                                            <input type="radio" name="lang" id="optionsRadioslang2" value="option2">
-                                                                            <img src="img/english.png" alt="flag"> ENG
-                                                                        </label>
-                                                                    </div>
-                                                                </fieldset>
-                                                                <fieldset>
-
-                                                                    <legend>Change password</legend>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="password" name="password" type="text" disabled="" placeholder="Current">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="newpassword" name="newpassword" type="text" disabled="" placeholder="New">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="newpassword" name="newpassword" type="text" disabled="" placeholder="Confirm">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                </fieldset>
-
-
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h2 class="panel-title">
-                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                                    Contact information <i class="icon-pencil"></i>
-                                                                </a>
-                                                            </h2>
-                                                        </div>
-                                                        <div id="collapseTwo" class="panel-collapse collapse ">
-                                                            <div class="panel-body">
-
-
-
-                                                                <fieldset>
-                                                                    <legend>Phone</legend>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="phone" name="phone" type="text" disabled="">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                </fieldset>
-
-                                                                <fieldset>
-                                                                    <legend>Address</legend>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="town" name="town" type="text" disabled="" placeholder="town">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="street" name="street" type="text" disabled="" placeholder="srteet">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="housenumber" name="housenumber" type="text" disabled="" placeholder="housenumber">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="postcode" name="postcode" type="text" disabled="" placeholder="postcode">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-
-                                                                </fieldset>
-
-
-                                                                <fieldset>
-                                                                    <legend>E-mail</legend>
-                                                                    <div class="input-append"  data-toggle="buttons-checkbox">
-                                                                        <input class="span12" id="email" name="email" type="text" disabled="">
-                                                                        <button class="btn" type="button"><i class="icon-edit"></i></button>
-                                                                    </div>
-                                                                </fieldset>
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Update account </button></div>
-
-
-                                        </form>
-                                    </div>
-                                </div>
-
-
-                                <div class="tab-pane" id="project">
-                                    <section id="content_myproject">
-                                        <div class="inner-wrapper">
-                                            <div class="row-fluid">
-                                                <div class="span12">
-
-
-                                                    <!-- Start Grid Galeries -->
-                                                    <div class="gridmasonry grid_list_galeries">
-                                                        <!--style="display: block; position: relative; height: 444px;"-->
-                                                        <div class="item_grid item3" >
-                                                            <!--style="position: absolute; left: 0px; top: 0px;"-->
-                                                            <a href="img/news1.jpg" class="image_link">
-                                                                <div class="panel">
-                                                                    <h2>January competition</h2>
-                                                                    <div class="with_hover"></div>
-                                                                    <img src="img/news1.jpg" alt="preview">
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div class="item_grid item3" >
-                                                            <!--style="position: absolute; left: 333px; top: 0px;"-->
-                                                            <a href="img/news2.jpg" class="image_link">
-                                                                <div class="panel">
-                                                                    <h2>February competition</h2>
-                                                                    <div class="with_hover"></div>
-                                                                    <img src="img/news2.jpg" alt="preview">
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div class="item_grid item3">
-                                                            <!--style="position: absolute; left: 666px; top: 0px;"-->
-                                                            <a href="img/news3.jpg" class="image_link">
-                                                                <div class="panel">
-                                                                    <h2>2014 battle</h2>
-                                                                    <div class="with_hover"></div>
-                                                                    <img src="img/news3.jpg" alt="preview">
-                                                                </div>
-                                                            </a>
-                                                        </div>
-
-                                                    </div><!-- End Grid Galeries -->
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section><!-- End section content page -->
-
-                                    <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level" style="margin-top: 35px;">Take part in current competition </button></div>
-                                </div>
+<!-- Start Break Page Style-->
+                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
+							  
+							  
+							  <section class="project_block" style="background: rgba(0,188,0,0.2);" >
+				 <div class="blog-line">
+                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                              <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
+                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+				</div>
+				
+						<div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+						</div>
+						<article div class="project_block_proj"  >
+							<div class="project_block_proj_name" > ksfogviosidh sofih v
+							</div>
+							<div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+							</div> 
+						</article>
+						<div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+						
+							<div style="float:left; width: 100%; margin: 10px auto;">
+							<div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+							</div>
+						
+							</div>
+						
+						</div>
+				</section>
+				
+				<div style="height:15px;"></div>
+				
+				  <section class="project_block" style="background: rgba(0,188,0,0.2);" >
+				 <div class="blog-line">
+                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                              <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
+                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+				</div>
+				
+						<div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+						</div>
+						<article div class="project_block_proj"  >
+							<div class="project_block_proj_name" > ksfogviosidh sofih v
+							</div>
+							<div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+							</div> 
+						</article>
+						<div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+						
+						<div style="float:left; width: 100%; margin: 10px auto;">
+							<div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+							</div>
+						
+							</div>
+						
+						
+				</section>
+							
+							
+						<input type="submit" class="btn btn-primary btn-large flat" value="Create new project" style="margin: 20px 35%;">	
+							
+							
+                                </form><!-- End Form-->
                             </div>
-                            <!-- End Main Tab Settingth -->
 
-                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+
 
 
 
                         </div>
                     </div>
                 </div>
-            </section><!-- End section content page -->
 
-            <!--Start Footer Section-->
+            </section><!-- End section content page -->
+           <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
@@ -386,7 +236,9 @@
                         <div class="span3">
                             <h3 style="text-align: center;">Tips <span class="font_hotel" > & Tricks</span></h3>
                             <!--Start List Link pages-->
-                            <ul id="footer_links" class="link_list_footer"></ul>
+                            <ul id="footer_links" class="link_list_footer">
+
+                            </ul>
                             <!--End List Link pages-->
                         </div>
 
@@ -400,18 +252,19 @@
                         </div>
                     </div>
                 </div>
-                <!--Start Sucribe Panel-->
+				<div style="height:35px;"></div>
+                <!--Start Sucribe Panel--
                 <div class="subcrible">
                     <div class="inner-wrapper">
                         <div class="row-fluid" >
                             <div class="span3"><h2> <strong>Subscribe</strong> to the <span class="font_hotel">Battle Latest News</span> </h2></div>
                             <div class="span9">
-                                <!--Start Form Subcribe-->
+                                <!--Start Form Subcribe--
                                 <form>
                                     <input type="text" name="email" class="input-block-level" placeholder="Enter Your Email">
                                     <input type="submit" name="send" value="Subcribe" class="btn flat btn-primary btn-large">
                                 </form>
-                                <!--End Form Subcribe-->
+                                <!--End Form Subcribe--
                             </div>
                         </div>
                     </div>
@@ -432,6 +285,25 @@
                     </a>
                 </div><!--End Arrow Back To TOP Page-->
             </footer><!--End Footer Section-->
+        </div>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form id="forgotpassword" novalidate="novalidate" method="POST" action="">
+                <div class="modal-header">
+                    <h4 id="myModalLabel">Please enter your email and wait for an answer</h4>
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" name="email" class="input-block-level" required=""/>
+                    <h4 id="newpasswordmessage" class="text-error"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="submit">Send</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </form>
         </div>
 
         <!--=========================================================================-->
