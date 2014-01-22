@@ -959,7 +959,7 @@ function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
         console.log(data);
         var carent_rankings_template = [
-            {nag: "div", add_class: "span4 text_center", children: [
+            {tag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
                                     {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
