@@ -109,10 +109,23 @@ INSERT INTO Text VALUES
 (43, 50, '',''),
 (44, 60, '',''),
 (45, 70, '',''),
+(60, 80, '',''),
+(61, 90, '',''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
 (47, 1010, 'Changes are made', 'Wijzigingen worden aangebracht'),
 (48, 560, 'Terms & Conditions information', 'Voorwaarden informatie'),
-(49, 561, 'Terms & Conditions', 'Algemene Voorwaarden');
+(49, 561, 'Terms & Conditions', 'Algemene Voorwaarden'),
+(50, 650, '', ''),
+(51, 655, '', ''),
+(52, 660, '', ''),
+(53, 665, '', ''),
+(54, 670, '', ''),
+(55, 675, '', ''),
+(56, 680, '', ''),
+(57, 685, '', ''),
+(58, 690, '', ''),
+(59, 695, '', '');
+
 
 INSERT INTO URL VALUES
 (1, 100, 'Name of Battle video url', 'Value of Battle video url'),

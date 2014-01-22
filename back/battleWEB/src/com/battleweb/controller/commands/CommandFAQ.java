@@ -69,6 +69,37 @@ public class CommandFAQ implements Command{
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q6, request.getLocale());
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A6, request.getLocale());
+		JsonObject jsonObjectQA6 = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_FAQ_QUESTION, question)
+				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
+				.build();
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q7, request.getLocale());
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A7, request.getLocale());
+		JsonObject jsonObjectQA7 = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_FAQ_QUESTION, question)
+				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
+				.build();
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q8, request.getLocale());
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A8, request.getLocale());
+		JsonObject jsonObjectQA8 = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_FAQ_QUESTION, question)
+				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
+				.build();
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q9, request.getLocale());
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A9, request.getLocale());
+		JsonObject jsonObjectQA9 = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_FAQ_QUESTION, question)
+				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
+				.build();
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q10, request.getLocale());
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A10, request.getLocale());
+		JsonObject jsonObjectQA10 = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_FAQ_QUESTION, question)
+				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
+				.build();
+		
 		
 		JsonArrayBuilder faqListArrayBuilder = Json.createArrayBuilder();
 		faqListArrayBuilder.add(jsonObjectQA1);
@@ -76,6 +107,11 @@ public class CommandFAQ implements Command{
 		faqListArrayBuilder.add(jsonObjectQA3);
 		faqListArrayBuilder.add(jsonObjectQA4);
 		faqListArrayBuilder.add(jsonObjectQA5);
+		faqListArrayBuilder.add(jsonObjectQA6);
+		faqListArrayBuilder.add(jsonObjectQA7);
+		faqListArrayBuilder.add(jsonObjectQA8);
+		faqListArrayBuilder.add(jsonObjectQA9);
+		faqListArrayBuilder.add(jsonObjectQA10);
 		JsonArray faqListArray = faqListArrayBuilder.build();
 		
 		

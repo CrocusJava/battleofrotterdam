@@ -27,6 +27,7 @@ public interface Constants {
 	public static final String COMMAND_NEWS = "news";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
+	public static final String COMMAND_GET_FAQ = "getfaq";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
@@ -51,6 +52,7 @@ public interface Constants {
 	public static final String COMMAND_CHANGE_PROJECT_STATUS = "changeprojectstatus";
 	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
+	
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -120,6 +122,8 @@ public interface Constants {
 	public static final String PARAMETER_TERMS_TEXT = "termstext";
 
 	public static final String PARAMETER_FAQ_LIST = "faqlist";
+	public static final String PARAMETER_FAQ_LIST_EN = "faqlisten";
+	public static final String PARAMETER_FAQ_LIST_NL = "faqlistnl";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
 	public static final String PARAMETER_FAQ_ANSVER = "faqansver";
 	

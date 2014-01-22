@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2014 at 07:28 PM
+-- Generation Time: Jan 22, 2014 at 11:02 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -282,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
 -- Dumping data for table `Text`
@@ -333,8 +333,20 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (45, 70, '', ''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
 (47, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht'),
-(48, 560, 'Terms & Conditions information', 'Voorwaarden informatie'),
-(49, 561, 'Terms & Conditions ', 'Algemene Voorwaarden');
+(48, 560, 'PLEASE READ THE FOLLOWING TERMS AND CONDITIONS CAREFULLY BEFORE USING THIS SITE. By using this site, you signify your agreement to these Terms and Conditions. If you do not agree to these Terms and Conditions, do not use this site. TheBattleOfRotterdam may modify these Terms and Conditions at anytime. \r\nRestrictions On Use of Materials \r\nThis site is copyright protected. Any textual or graphic material you copy, print, or download is licensed to you by Hasbro, Inc. and/or its subsidiaries ("TheBattleOfRotterdam") for your personal, non-commercial home use only, provided that you do not change or delete any copyright, trademark or other proprietary notices. \r\nTHE MATERIALS IN THIS SITE ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TheBattleOfRotterdam DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE CONTENT OR OTHER MATERIALS IN THIS SITE IN TERMS OF THEIR CORRECTNESS, ACCURACY, RELIABILITY, OR OTHERWISE.', 'LEES DE VOLGENDE VOORWAARDEN, VOORDAT U DEZE SITE. Door het gebruik van deze site gaat u akkoord met deze algemene voorwaarden. Indien u niet akkoord gaat met deze voorwaarden, deze site niet te gebruiken. TheBattleOfRotterdam kan deze voorwaarden op elk moment wijzigen.\r\nBeperkingen op het gebruik van materialen\r\nDeze site is auteursrechtelijk beschermd. Tekstuele of grafische materiaal dat u kopieert, wordt afdrukken of downloaden in licentie gegeven aan u door Hasbro, Inc en / of haar dochterondernemingen ("TheBattleOfRotterdam") voor uw persoonlijk, niet-commercieel thuisgebruik uitsluitend gebruik, op voorwaarde dat u niet wijzigen of verwijderen een auteursrecht, handelsmerk of andere eigendomsrechten.\r\nHET MATERIAAL OP DEZE SITE WORDEN "AS IS", ZONDER ENIGE GARANTIE OOK uitdrukkelijk noch stilzwijgend. TheBattleOfRotterdam GEEN GARANTIE OF HET GEBIED VAN HET GEBRUIK OF DE RESULTATEN VAN HET GEBRUIK VAN DE INHOUD OF ANDER MATERIAAL OP DEZE SITE IN ALGEMENE juistheid, nauwkeurigheid, betrouwbaarheid, OF ANDERS.'),
+(49, 561, 'Terms & Conditions ', 'Algemene Voorwaarden'),
+(50, 650, '', ''),
+(51, 655, '', ''),
+(52, 660, '', ''),
+(53, 665, '', ''),
+(54, 670, '', ''),
+(55, 675, '', ''),
+(56, 680, '', ''),
+(57, 685, '', ''),
+(58, 690, '', ''),
+(59, 695, '', ''),
+(60, 80, '', ''),
+(61, 90, '', '');
 
 -- --------------------------------------------------------
 
