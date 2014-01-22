@@ -46,6 +46,7 @@ public interface Constants {
 	public static final String COMMAND_FIND_USER = "finduser";
 	public static final String COMMAND_EDIT_USER_APPLY = "edituserapply";
 	public static final String COMMAND_SEND_EMAIL = "sendemail";
+	public static final String COMMAND_ACCAUNT = "accaunt";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -59,13 +60,13 @@ public interface Constants {
 	public static final String PARAMETER_IDUSER = "iduser";
 	public static final String PARAMETER_IDROLE = "idrole";
 	public static final String PARAMETER_FIRSTNAME = "firstname";
-	public static final String PARAMETER_MISSLENAME = "middlename";
+	public static final String PARAMETER_MIDDLENAME = "middlename";
 	public static final String PARAMETER_LASTNAME = "lastname";
 	public static final String PARAMETER_TOWN = "town";
 	public static final String PARAMETER_STREET = "street";
 	public static final String PARAMETER_HOUSENUMBER = "housenumber";
 	public static final String PARAMETER_POSTCODE = "postcode";
-	public static final String PARAMETER_BIRSTAY = "birthday";
+	public static final String PARAMETER_BIRTHDAY = "birthday";
 	public static final String PARAMETER_PHONE = "phone";
 	public static final String PARAMETER_EMAIL = "email";
 	public static final String PARAMETER_STATUSMAIL = "statusemail";
@@ -162,6 +163,7 @@ public interface Constants {
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";
 	public static final String PARAMETER_AVATAR_NAME="avatarname";
+	public static final String PARAMETER_ID_PHOTO = "idphoto";
 	
 	public static final String PARAMETER_SHOW_DESCRIPTION = "showdescription";
 	public static final String PARAMETER_START_DATE_FROM="startdatefrom";

@@ -87,7 +87,7 @@ public class CommandViewProject implements Command {
 		JsonObject jsonUser = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID, user.getId())
 				.add(Constants.PARAMETER_FIRSTNAME, user.getFirstname())
-				.add(Constants.PARAMETER_MISSLENAME, user.getMiddlename())
+				.add(Constants.PARAMETER_MIDDLENAME, user.getMiddlename())
 				.add(Constants.PARAMETER_LOGIN, user.getLogin())
 				.add(Constants.PARAMETER_AVATAR_PATH, user.getPhotoPath())
 				.add(Constants.PARAMETER_LASTNAME, user.getLastname()).build();

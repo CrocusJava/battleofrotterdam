@@ -57,7 +57,7 @@ public class CommandUploadAvatar implements Command {
 		String fileName="avatar"+user.getId()+".";
 		String fileNameCorrect=toolUpload.uploadImage(request, Constants.PATH_SAVE_AVATAR, fileName);
 		/** Create avatar path*/
-		String filePath=Constants.PATH_GET_PHOTO+fileNameCorrect;
+		String filePath=Constants.PATH_GET_AVATAR+fileNameCorrect;
 		/** Add avatar path to user*/
 		user.setPhotoPath(filePath);
 		
