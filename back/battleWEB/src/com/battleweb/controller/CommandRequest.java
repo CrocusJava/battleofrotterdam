@@ -34,6 +34,7 @@ import com.battleweb.controller.commands.CommandRegistration;
 import com.battleweb.controller.commands.CommandSendComment;
 import com.battleweb.controller.commands.CommandSendEmail;
 import com.battleweb.controller.commands.CommandShowUsers;
+import com.battleweb.controller.commands.CommandTerms;
 import com.battleweb.controller.commands.CommandUploadAvatar;
 import com.battleweb.controller.commands.CommandUploadPhoto;
 import com.battleweb.controller.commands.CommandViewPhotoComments;
@@ -64,6 +65,8 @@ public class CommandRequest {
 	private CommandForgotPassword commandForgotPassword;
 	@EJB 
 	private CommandIndex commandIndex;
+	@EJB 
+	private CommandTerms commandTerms;
 	@EJB 
 	private CommandNews commandNews;
 	@EJB 
@@ -126,6 +129,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_APPROVEREGISTRATION, commandApproveRegistration);
 		commands.put(Constants.COMMAND_FORGOTPASSWORD, commandForgotPassword);
 		commands.put(Constants.COMMAND_INDEX, commandIndex);
+		commands.put(Constants.COMMAND_TERMS, commandTerms);
 		commands.put(Constants.COMMAND_NEWS, commandNews);
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
 		commands.put(Constants.COMMAND_FAQ, commandFAQ);
