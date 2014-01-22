@@ -108,11 +108,9 @@ public class CommandViewProject implements Command {
 				.add(Constants.PARAMETER_VOTE_ABLE, voteAble);
 
 		int size = photos.size();
-		JsonObject jsonFirstPhoto = null;
-		JsonObject jsonLastPhoto = null;
 		if (size != 0) {
 			Photo firstPhoto = photos.get(0);
-			jsonFirstPhoto = Json
+			JsonObject jsonFirstPhoto = Json
 					.createObjectBuilder()
 					.add(Constants.PARAMETER_ID, firstPhoto.getId())
 					.add(Constants.PARAMETER_PATH, firstPhoto.getPath())
@@ -123,7 +121,7 @@ public class CommandViewProject implements Command {
 
 			if (size > 1) {
 				Photo lastPhoto = photos.get(size - 1);
-				jsonLastPhoto = Json
+				JsonObject jsonLastPhoto = Json
 						.createObjectBuilder()
 						.add(Constants.PARAMETER_ID, lastPhoto.getId())
 						.add(Constants.PARAMETER_PATH, lastPhoto.getPath())

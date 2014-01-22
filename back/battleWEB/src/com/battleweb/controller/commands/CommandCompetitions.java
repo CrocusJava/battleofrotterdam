@@ -58,9 +58,7 @@ public class CommandCompetitions implements Command {
 		int firstPosition = jsonObjectRequest
 				.getInt(Constants.PARAMETER_FIRST_POSITION);
 		int size = jsonObjectRequest.getInt(Constants.PARAMETER_SIZE);
-		String orderBy = jsonObjectRequest
-				.getString(Constants.PARAMETER_ORDER_BY);
-
+		String orderBy = Constants.ORDER_BY_START_DATE;
 		String sort = "";
 		String name = null;
 		Date startDateFrom = null;
@@ -78,6 +76,10 @@ public class CommandCompetitions implements Command {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(
 				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
+		try {
+			orderBy = jsonObjectRequest.getString(Constants.PARAMETER_ORDER_BY);
+		} catch (NullPointerException e) {
+		}
 		try {
 			sort = jsonObjectRequest.getString(Constants.PARAMETER_SORT);
 		} catch (NullPointerException e) {
