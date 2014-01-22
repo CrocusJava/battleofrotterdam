@@ -47,7 +47,7 @@ public class CommandCurrentRankings implements Command {
 	private VoiceBean voiceBean;
 	@EJB
 	private CompetitionBean competitionBean;
-	
+
 	private SimpleDateFormat dateFormat = new SimpleDateFormat(
 			"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
@@ -59,10 +59,10 @@ public class CommandCurrentRankings implements Command {
 				.createObjectBuilder();
 
 		addToJsonObjThreeProjects(jsonObjectResponseBuilder,
-				Constants.COMPETITION_TYPE_YEAR);
+				Constants.COMPETITION_TYPE_YEAR, request);
 		addToJsonObjThreeProjects(jsonObjectResponseBuilder,
-				Constants.COMPETITION_TYPE_MONTH);
-				
+				Constants.COMPETITION_TYPE_MONTH, request);
+
 		toolJSON.setJsonObjectResponse(response,
 				jsonObjectResponseBuilder.build());
 
@@ -70,9 +70,20 @@ public class CommandCurrentRankings implements Command {
 	}
 
 	private void addToJsonObjThreeProjects(
-			JsonObjectBuilder jsonObjectResponseBuilder, String competitionType) {
-		List<Project> projects = projectBean
-				.findLimitApprovedByCompetitionIdAndOrderByRating(competitionBean.getCurrentCompetitionByType(competitionType).getId(), 0, 3);
+			JsonObjectBuilder jsonObjectResponseBuilder,
+			String competitionType, HttpServletRequest request) {
+
+		List<Project> projects = null;
+		if (request.getParameter("debug") == null) {
+			projects = projectBean
+					.findLimitApprovedByCompetitionIdAndOrderByRating(
+							competitionBean.getCurrentCompetitionByType(
+									competitionType).getId(), 0, 3);
+		} else {
+			projects = projectBean
+					.findFilterOrderByDateOrRatingLimit("rating", "desc", null,
+							null, null, null, null, competitionType, 0, 3);
+		}
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
 
@@ -107,7 +118,7 @@ public class CommandCurrentRankings implements Command {
 
 			jsonProjects.add(jsonProjectBuilder.build());
 		}
-		jsonObjectResponseBuilder.add(competitionType + Constants.PARAMETER_PROJECTS,
-				jsonProjects.build());
+		jsonObjectResponseBuilder.add(competitionType
+				+ Constants.PARAMETER_PROJECTS, jsonProjects.build());
 	}
 }
