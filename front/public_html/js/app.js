@@ -662,15 +662,15 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
-            text_key = dataObj[text_key] || text_key;
+            var text_value = dataObj[text_key] || text_key;
             // <<<<<<<<<<================================== Если текст является объектом
-            if ({}.toString.call(text_key) === "[object Object]") {
+            if ({}.toString.call(text_value) === "[object Object]") {
                 // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
-                var subvalue_text = text_key[templateObj["subattr"][text_key]];
+                var subvalue_text = text_value[templateObj["subattr"][text_key]];
                 element.text(subvalue_text);
             }
             else {
-                element.text(text_key);
+                element.text(text_value);
             }
 
         }
@@ -957,14 +957,20 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-        console.log(data);
+
         var carent_rankings_template = [
             {tag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
                                     {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
-                                    {tag: "span", add_class: "label flat label-success likes", text: "100 Likes"},
-                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity"},
+                                    {tag: "span", add_class: "label flat label-success likes", children: [
+                                            {tag: "span", text: "rating"},
+                                            {tag: "span", text: " Likes"}
+                                        ]},
+                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity", children: [
+                                            {tag: "span", text: "commentquantity"},
+                                            {tag: "span", text: " Comments"}
+                                        ]},
                                     {tag: "h4", text: "First winner"}
                                 ]},
                             {tag: "div", add_class: "desc", children: [
