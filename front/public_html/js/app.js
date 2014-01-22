@@ -743,42 +743,44 @@ function call_uploading_file_on_server(command_value) {
     if (window.location.href.match(/myaccount.html/)) {
         var command_value = "uploadavatar";
     }
-
-    window.upload_file = new AjaxUpload(command_value, {
-        action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
-        name: command_value,
-        data: {
-            'some_key1': "This data won't be sent, we will overwrite it."
-        },
-        autoSubmit: false,
-        onChange: function(file, ext) {
-            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
-                var reader = new FileReader();
-                $(reader).on("load", function() {
-                    var img = $("#preview_avatar");
-                    $(img).attr("src", reader.result);
-                });
-                reader.readAsDataURL(window.upload_file._input.files[0]);
-            } else {
+    if (command_value) {
+        window.upload_file = new AjaxUpload(command_value, {
+            action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
+            name: command_value,
+            data: {
+                'some_key1': "This data won't be sent, we will overwrite it."
+            },
+            autoSubmit: false,
+            onChange: function(file, ext) {
+                if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                    var reader = new FileReader();
+                    $(reader).on("load", function() {
+                        var img = $("#preview_avatar");
+                        $(img).attr("src", reader.result);
+                    });
+                    reader.readAsDataURL(window.upload_file._input.files[0]);
+                } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                $("#warning_load_file").show();
-                $("#warning_load_file").fadeOut(10000);
-                return false;
-            }
+                    $("#warning_load_file").show();
+                    $("#warning_load_file").fadeOut(10000);
+                    return false;
+                }
 
-        },
-        onSubmit: function(file, ext) {
-            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
-            } else {
+            },
+            onSubmit: function(file, ext) {
+                if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                return false;
-            }
-        },
-        onComplete: function(file, response) {
-            console.log("передача файла завершена");
+                    return false;
+                }
+            },
+            onComplete: function(file, response) {
+                console.log("передача файла завершена");
 
-        }
-    });
+            }
+        });
+    }
+
 }
 
 
