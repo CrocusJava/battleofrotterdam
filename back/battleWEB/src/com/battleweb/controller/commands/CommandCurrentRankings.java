@@ -90,14 +90,13 @@ public class CommandCurrentRankings implements Command {
 			JsonObjectBuilder jsonLustPhotoBuilder = Json.createObjectBuilder();
 			List<Photo> photos = photoBean.findLimitByProjectId(
 					project.getId(), 0, 1);
-			if (photos.size() > 0) {
-				Photo photo = photoBean.findLimitByProjectId(project.getId(),
-						0, 1).get(0);
+			if (photos.size() > 0) {			
+				Photo photo = photos.get(0);
 				jsonLustPhotoBuilder
 						.add(Constants.PARAMETER_ID, photo.getId())
 						.add(Constants.PARAMETER_PATH, photo.getPath())
 						.add(Constants.PARAMETER_DESCRIPTION,
-								photo.getDescription()).build();
+								photo.getDescription());
 			}
 
 			JsonObjectBuilder jsonProjectBuilder = Json
