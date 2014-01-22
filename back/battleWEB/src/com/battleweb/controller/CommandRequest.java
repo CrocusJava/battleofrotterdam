@@ -16,9 +16,11 @@ import com.battleweb.controller.commands.CommandAccaunt;
 import com.battleweb.controller.commands.CommandApproveRegistration;
 import com.battleweb.controller.commands.CommandCangeProjectStatus;
 import com.battleweb.controller.commands.CommandCompetitions;
+import com.battleweb.controller.commands.CommandCreateCompetition;
 import com.battleweb.controller.commands.CommandCreateProject;
 import com.battleweb.controller.commands.CommandCurrentRankings;
 import com.battleweb.controller.commands.CommandEditComment;
+import com.battleweb.controller.commands.CommandEditCompetition;
 import com.battleweb.controller.commands.CommandEditUserApply;
 import com.battleweb.controller.commands.CommandFAQ;
 import com.battleweb.controller.commands.CommandFindUser;
@@ -119,6 +121,10 @@ public class CommandRequest {
 	private CommandAccaunt commandAccaunt;
 	@EJB
 	private CommandCangeProjectStatus commandCangeProjectStatus;
+	@EJB
+	private CommandCreateCompetition commandCreateCompetition;
+	@EJB
+	private CommandEditCompetition commandEditCompetition;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -156,6 +162,8 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_SEND_EMAIL, commandSendEmail);
 		commands.put(Constants.COMMAND_ACCAUNT, commandAccaunt);
 		commands.put(Constants.COMMAND_CHANGE_PROJECT_STATUS, commandCangeProjectStatus);
+		commands.put(Constants.COMMAND_CREATE_COMPETITON, commandCreateCompetition);
+		commands.put(Constants.COMMAND_EDIT_COMPETITON, commandEditCompetition);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
