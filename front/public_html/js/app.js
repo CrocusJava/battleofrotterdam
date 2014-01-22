@@ -360,7 +360,7 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-    if (window.upload_file._input) {
+    if (window.upload_file) {
         if (window.upload_file._input.files.length > 0) {
             window.upload_file.submit();
         }
@@ -1046,4 +1046,9 @@ function call_load_data_for_myaccount() {
     $.post("/battleWEB/controller?command=account", function(data) {
         console.log(data);
     }, "json");
+}
+
+
+function call_reading_url() {
+
 }
