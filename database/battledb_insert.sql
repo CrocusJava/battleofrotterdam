@@ -1,4 +1,4 @@
-﻿
+
 USE battledb;
 
 INSERT INTO Role  VALUES
@@ -62,7 +62,8 @@ INSERT INTO Comment VALUES
 (3, 'It will be something... :)','2014-01-03',12,3,3),
 (4, 'Hello!!!','2014-01-03',12,4,4),
 (5, 'Nice try!','2014-01-04',13,5,5),
-(6, 'I hope it is possible...','2014-01-05',14,6,6);
+(6, 'I hope it is possible...','2014-01-05',14,6,6),
+(7, 'blabla111', '2014-01-22 18:27:22', 1, 2, null);
 
 INSERT INTO Text VALUES
 (1, 100, 'Your new password will be sent to your email', 'Uw nieuwe wachtwoord zal naar uw e-mail worden verzonden'),
