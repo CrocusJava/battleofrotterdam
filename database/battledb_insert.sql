@@ -109,7 +109,7 @@ INSERT INTO Text VALUES
 (44, 60, '',''),
 (45, 70, '',''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
-(46, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht');
+(47, 1010, 'Changes are made', 'Wijzigingen worden aangebracht');
 
 INSERT INTO URL VALUES
 (1, 100, 'Name of Battle video url', 'Value of Battle video url'),
