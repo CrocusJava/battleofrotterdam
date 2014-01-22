@@ -74,16 +74,9 @@ public class CommandCurrentRankings implements Command {
 			String competitionType, HttpServletRequest request) {
 
 		List<Project> projects = null;
-		if (request.getParameter("debug") == null) {
-			projects = projectBean
-					.findLimitApprovedByCompetitionIdAndOrderByRating(
-							competitionBean.getCurrentCompetitionByType(
-									competitionType).getId(), 0, 3);
-		} else {
-			projects = projectBean.findFilterOrderByDateOrRatingLimit("rating",
-					"desc", null, null, null, null, null, competitionType, 0,
-					3, null);
-		}
+		projects = projectBean.findFilterOrderByDateOrRatingLimit("rating",
+				"desc", null, null, null, null, null, competitionType, 0, 3,
+				null);
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
 
