@@ -505,7 +505,10 @@ function call_load_data_for_index_events(load_data) {
 
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
-
+        var href = this.attr("href");
+        href = href + "?photoid=" + load_data["photoid"];
+        //this.attr("href", href);
+        window.location = href;
     }
     function go_to_project() {
         load_data.projectid;
@@ -671,6 +674,12 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
                 element.text(text_key);
             }
 
+        }
+        // <<<<<<<<<<================================== Добавление обработчика событий к элементу
+        if ("add_handler" in templateObj) {
+            for (var event in templateObj["add_handler"]) {
+                element.on(event, templateObj["add_handler"][event]);
+            }
         }
 // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {

@@ -315,7 +315,7 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (44, 60, '', ''),
 (45, 70, '', ''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
-(46, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht');
+(47, 1010, 'Changes are made', 'Wijzigingen worden aangebracht');
 -- --------------------------------------------------------
 
 --

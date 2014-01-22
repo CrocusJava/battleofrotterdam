@@ -80,9 +80,9 @@ public class CommandCurrentRankings implements Command {
 							competitionBean.getCurrentCompetitionByType(
 									competitionType).getId(), 0, 3);
 		} else {
-			projects = projectBean
-					.findFilterOrderByDateOrRatingLimit("rating", "desc", null,
-							null, null, null, null, competitionType, 0, 3);
+			projects = projectBean.findFilterOrderByDateOrRatingLimit("rating",
+					"desc", null, null, null, null, null, competitionType, 0,
+					3, null);
 		}
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
@@ -94,14 +94,18 @@ public class CommandCurrentRankings implements Command {
 					.add(Constants.PARAMETER_AVATAR_PATH, user.getPhotoPath())
 					.build();
 
-			Photo photo = photoBean.findLimitByProjectId(project.getId(), 0, 1)
-					.get(0);
-			JsonObject jsonLustPhoto = Json
-					.createObjectBuilder()
-					.add(Constants.PARAMETER_ID, photo.getId())
-					.add(Constants.PARAMETER_PATH, photo.getPath())
-					.add(Constants.PARAMETER_DESCRIPTION,
-							photo.getDescription()).build();
+			JsonObjectBuilder jsonLustPhotoBuilder = Json.createObjectBuilder();
+			List<Photo> photos = photoBean.findLimitByProjectId(
+					project.getId(), 0, 1);
+			if (photos.size() > 0) {
+				Photo photo = photoBean.findLimitByProjectId(project.getId(),
+						0, 1).get(0);
+				jsonLustPhotoBuilder
+						.add(Constants.PARAMETER_ID, photo.getId())
+						.add(Constants.PARAMETER_PATH, photo.getPath())
+						.add(Constants.PARAMETER_DESCRIPTION,
+								photo.getDescription()).build();
+			}
 
 			JsonObjectBuilder jsonProjectBuilder = Json
 					.createObjectBuilder()
@@ -114,7 +118,8 @@ public class CommandCurrentRankings implements Command {
 					.add(Constants.PARAMETER_COMMENT_QUANTITY,
 							commentBean.getCountByProjectId(project.getId()))
 					.add(Constants.PARAMETER_USER, jsonUser)
-					.add(Constants.PARAMETER_LAST_PHOTO, jsonLustPhoto);
+					.add(Constants.PARAMETER_LAST_PHOTO,
+							jsonLustPhotoBuilder.build());
 
 			jsonProjects.add(jsonProjectBuilder.build());
 		}
