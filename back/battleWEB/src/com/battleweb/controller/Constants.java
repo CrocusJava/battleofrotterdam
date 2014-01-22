@@ -32,7 +32,7 @@ public interface Constants {
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
 	public static final String COMMAND_VIEWPROJECT = "viewproject";
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
-	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
+	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphotos";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
 	public static final String COMMAND_FOOTER = "footer";
 	public static final String COMMAND_CREATE_PROJECT = "createproject";
