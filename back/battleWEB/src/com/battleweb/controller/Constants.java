@@ -23,6 +23,7 @@ public interface Constants {
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	public static final String COMMAND_INDEX = "index";
+	public static final String COMMAND_TERMS = "terms";
 	public static final String COMMAND_NEWS = "news";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
@@ -113,7 +114,8 @@ public interface Constants {
 	public static final String PARAMETER_RULES = "rules";
 	public static final String PARAMETER_INFORMATION = "information";
 	public static final String PARAMETER_TITLE = "title";
-//	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
+	public static final String PARAMETER_TERMS_TITLE = "termstitle";
+	public static final String PARAMETER_TERMS_TEXT = "termstext";
 
 	public static final String PARAMETER_FAQ_LIST = "faqlist";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
@@ -208,10 +210,12 @@ public interface Constants {
 	public static final Integer TEXT_BATTLE_DESCRIPTION_FULL = 530;
 	public static final Integer TEXT_ABOUT_US_DESCRIPTION = 540;
 	public static final Integer TEXT_INFO_DESCRIPTION = 550;
+	public static final Integer TEXT_TERMS = 560;
 	public static final Integer TEXT_TITLE_BATTLE_RULES = 521;
 	public static final Integer TEXT_TITLE_BATTLE_DESCRIPTION = 531;
 	public static final Integer TEXT_TITLE_ABOUT_US = 541;
 	public static final Integer TEXT_TITLE_INFO = 551;
+	public static final Integer TEXT_TITLE_TERMS = 561;
 	
 	public static final Integer TEXT_Q1 = 600;
 	public static final Integer TEXT_A1 = 605;
