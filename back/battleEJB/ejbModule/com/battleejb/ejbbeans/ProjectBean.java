@@ -28,11 +28,11 @@ import com.battleejb.entities.User_;
 @Stateless
 @LocalBean
 public class ProjectBean extends AbstractFacade<Project> {
-	
+
 	private static final String SORT_TYPE_ASC = "asc";
 	private static final String PARAMETER_DATE = "date";
 	private static final String PARAMETER_RATING = "rating";
-	
+
 	@PersistenceContext(unitName = "persistence")
 	EntityManager em;
 
@@ -65,17 +65,22 @@ public class ProjectBean extends AbstractFacade<Project> {
 	public List<Project> findFilterOrderByDateOrRatingLimit(String orderBy,
 			String sort, String login, String name, Date dateFrom, Date dateTo,
 			Integer competitionId, String competitionType, int firstPosition,
-			int size) {
+			int size, Boolean approved) {
 		List<Project> projects = null;
 		try {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<Project> cq = cb.createQuery(Project.class);
 			Root<Project> p = cq.from(Project.class);
-			Predicate predicate = null;
-			predicate = cb.and(cb.equal(p.get(Project_.approved), true));
+			Predicate predicate = cb.conjunction();
+			if (approved != null) {
+				predicate = cb
+						.and(predicate ,cb.equal(p.get(Project_.approved), approved));
+			}
 			if (login != null) {
-				predicate = cb.and(predicate, cb.like(p.get(Project_.user)
-						.get(User_.login), login + "%"));
+				predicate = cb.and(
+						predicate,
+						cb.like(p.get(Project_.user).get(User_.login), login
+								+ "%"));
 			}
 			if (name != null) {
 				predicate = cb.and(cb.like(p.get(Project_.name), "%" + name

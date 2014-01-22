@@ -7,20 +7,18 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Photo database table.
  * 
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Photo.findLast", query="SELECT p FROM Photo AS p WHERE p.project.approved=true ORDER BY p.loadDate DESC"),
-	@NamedQuery(name = "Photo.findRendom", query="SELECT p FROM Photo p WHERE p.project.approved=true ORDER BY RAND()"),
-	@NamedQuery(name = "Photo.findAll", query="SELECT p FROM Photo p WHERE p.project.approved=true"),
-	@NamedQuery(name = "Photo.findByProjectId", query="SELECT p FROM Photo AS p WHERE p.project.id=:projectId AND p.project.approved=true ORDER BY p.loadDate DESC"),
-	@NamedQuery(name = "Photo.getCountByProjectId", query="SELECT COUNT(p) FROM Photo AS p WHERE p.project.id=:projectId AND p.project.approved=true"),
-	@NamedQuery(name = "Photo.getCount", query="SELECT COUNT(p) FROM Photo p WHERE p.project.approved=true")
-})
+		@NamedQuery(name = "Photo.findLast", query = "SELECT p FROM Photo AS p WHERE p.project.approved=true ORDER BY p.loadDate DESC"),
+		@NamedQuery(name = "Photo.findRendom", query = "SELECT p FROM Photo p WHERE p.project.approved=true ORDER BY RAND()"),
+		@NamedQuery(name = "Photo.findAll", query = "SELECT p FROM Photo p WHERE p.project.approved=true"),
+		@NamedQuery(name = "Photo.findByProjectId", query = "SELECT p FROM Photo AS p WHERE p.project.id=:projectId AND p.project.approved=true ORDER BY p.loadDate DESC"),
+		@NamedQuery(name = "Photo.getCountByProjectId", query = "SELECT COUNT(p) FROM Photo AS p WHERE p.project.id=:projectId AND p.project.approved=true"),
+		@NamedQuery(name = "Photo.getCount", query = "SELECT COUNT(p) FROM Photo p WHERE p.project.approved=true") })
 public class Photo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -30,21 +28,21 @@ public class Photo implements Serializable {
 
 	private String description;
 
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date loadDate;
 
 	private String path;
 
-	@OneToMany(mappedBy="photo")
+	@OneToMany(mappedBy = "photo")
 	private List<Comment> comments;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Project project;
 
-//--------------------------------------------	
-	
-    public Photo() {
-    }
+	// --------------------------------------------
+
+	public Photo() {
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -61,7 +59,7 @@ public class Photo implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public Date getLoadDate() {
 		return loadDate;
 	}
@@ -85,7 +83,7 @@ public class Photo implements Serializable {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
 	public Project getProject() {
 		return this.project;
 	}
@@ -93,5 +91,20 @@ public class Photo implements Serializable {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Photo [id=");
+		builder.append(id);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", loadDate=");
+		builder.append(loadDate);
+		builder.append(", path=");
+		builder.append(path);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

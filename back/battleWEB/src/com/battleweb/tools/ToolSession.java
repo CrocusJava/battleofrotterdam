@@ -59,4 +59,12 @@ public class ToolSession {
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		return (User)session.getAttribute(Constants.PARAMETER_SESSION_USER);
 	}
+	public Integer getRoleId(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		return (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDROLE);
+	}
+	public boolean isAdmin(HttpServletRequest request){
+		Integer roleId = getRoleId(request);
+		return roleId != null && roleId == 1;
+	}
 }

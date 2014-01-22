@@ -30,6 +30,7 @@ import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolJSON;
+import com.battleweb.tools.ToolSession;
 
 /**
  * @author Lukashchuk Ivan
@@ -41,6 +42,8 @@ public class CommandProjects implements Command {
 
 	@EJB
 	private ToolJSON toolJSON;
+	@EJB
+	private ToolSession toolSession;
 	@EJB
 	private ProjectBean projectBean;
 	@EJB
@@ -56,12 +59,13 @@ public class CommandProjects implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		boolean isAdmin = toolSession.isAdmin(request);
+
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		int firstPosition = jsonObjectRequest
 				.getInt(Constants.PARAMETER_FIRST_POSITION);
 		int size = jsonObjectRequest.getInt(Constants.PARAMETER_SIZE);
-		String orderBy = jsonObjectRequest
-				.getString(Constants.PARAMETER_ORDER_BY);
+		String orderBy = Constants.PARAMETER_DATE;
 		String sort = "";
 		String login = null;
 		String name = null;
@@ -72,6 +76,10 @@ public class CommandProjects implements Command {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyy");
 		SimpleDateFormat dateFormat = new SimpleDateFormat(
 				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
+		try {
+			orderBy = jsonObjectRequest.getString(Constants.PARAMETER_ORDER_BY);
+		} catch (NullPointerException e) {
+		}
 		try {
 			sort = jsonObjectRequest.getString(Constants.PARAMETER_SORT);
 		} catch (NullPointerException e) {
@@ -114,10 +122,15 @@ public class CommandProjects implements Command {
 			}
 		} catch (NullPointerException e) {
 		}
+
+		Boolean approved = null;
+		if (!isAdmin) {
+			approved = true;
+		}
 		List<Project> projects = projectBean
 				.findFilterOrderByDateOrRatingLimit(orderBy, sort, login, name,
 						dateFrom, dateTo, competitionId, competitionType,
-						firstPosition, size);
+						firstPosition, size, approved);
 
 		JsonArrayBuilder jsonProjectsArrayBuilder = Json.createArrayBuilder();
 		for (Project project : projects) {
@@ -137,15 +150,20 @@ public class CommandProjects implements Command {
 							competition.getType().getName())
 					.add(Constants.PARAMETER_NAME, competition.getName())
 					.build();
-			
-			Photo photo = photoBean.findLimitByProjectId(project.getId(), 0, 1)
-					.get(0);
-			JsonObject jsonLustPhoto = Json
-					.createObjectBuilder()
-					.add(Constants.PARAMETER_ID, photo.getId())
-					.add(Constants.PARAMETER_PATH, photo.getPath())
-					.add(Constants.PARAMETER_DESCRIPTION,
-							photo.getDescription()).build();
+
+			JsonObjectBuilder jsonLustPhotoBuilder = Json.createObjectBuilder();
+			List<Photo> photos = photoBean.findLimitByProjectId(
+					project.getId(), 0, 1);
+			if (photos.size() > 0) {
+				Photo photo = photoBean.findLimitByProjectId(project.getId(),
+						0, 1).get(0);
+
+				jsonLustPhotoBuilder
+						.add(Constants.PARAMETER_ID, photo.getId())
+						.add(Constants.PARAMETER_PATH, photo.getPath())
+						.add(Constants.PARAMETER_DESCRIPTION,
+								photo.getDescription());
+			}
 
 			JsonObjectBuilder jsonProjectBuilder = Json
 					.createObjectBuilder()
@@ -159,8 +177,13 @@ public class CommandProjects implements Command {
 							commentBean.getCountByProjectId(project.getId()))
 					.add(Constants.PARAMETER_USER, jsonUser)
 					.add(Constants.PARAMETER_COMPETITION, jsonCompetition)
-					.add(Constants.PARAMETER_LAST_PHOTO, jsonLustPhoto)
-					;
+					.add(Constants.PARAMETER_LAST_PHOTO,
+							jsonLustPhotoBuilder.build());
+
+			if (isAdmin) {
+				jsonProjectBuilder.add(Constants.PARAMETER_APPROVED,
+						project.getApproved());
+			}
 
 			jsonProjectsArrayBuilder.add(jsonProjectBuilder.build());
 		}

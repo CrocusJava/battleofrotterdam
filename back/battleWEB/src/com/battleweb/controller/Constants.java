@@ -187,7 +187,8 @@ public interface Constants {
 	public static final String PARAMETER_USERS = "users";
 	public static final String PARAMETER_ERROR_MESSAGE = "errormessage";
 	public static final String PARAMETER_USER_ID = "userid";
-		
+	public static final String PARAMETER_APPROVED = "approved";
+			
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
 	public static final Integer TEXT_MESSAGE_YOUR_LOGIN = 110;
@@ -264,14 +265,16 @@ public interface Constants {
 	//Set some constants
 	public static final String COMPETITION_TYPE_YEAR = "year";
 	public static final String COMPETITION_TYPE_MONTH = "month";
+	public static final String SORT_TYPE_ASC = "asc";
+	public static final String SORT_TYPE_DESC = "desc";
+	public static final String ORDER_BY_START_DATE = "startdate";
+	public static final String ORDER_BY_END_DATE = "enddate";
+	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
 	
 	//Path
 	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
 	public static final String PATH_SAVE_PHOTO = "/usr/app/jboss/photo";
 	
 	public static final String PATH_GET_PHOTO="controller?command=getphoto&photoname=";
-	public static final String PATH_GET_AVATAR="controller?command=getphoto&avatarname=";
-	
-	public static final String SORT_TYPE_ASC = "asc";
-	public static final String SORT_TYPE_DESC = "desc";
+	public static final String PATH_GET_AVATAR="controller?command=getphoto&avatarname=";	
 }
