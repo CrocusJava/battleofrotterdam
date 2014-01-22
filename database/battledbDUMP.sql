@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2014 at 02:33 PM
+-- Generation Time: Jan 22, 2014 at 07:28 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Dumping data for table `Address`
@@ -61,7 +61,8 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (48, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
 (49, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
 (50, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
-(51, 'Rotterdam', '3002', 'Wilbetoord', '43', NULL);
+(51, 'Rotterdam', '3002', 'Wilbetoord', '43', NULL),
+(52, 'mmm', '12', 'mmm', '12', NULL);
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
   KEY `user_id` (`user_id`),
   KEY `project_id` (`project_id`),
   KEY `photo_id` (`photo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `Comment`
@@ -92,7 +93,8 @@ INSERT INTO `Comment` (`id`, `commentText`, `commentDate`, `user_id`, `project_i
 (3, 'It will be something... :)', '2014-01-03 16:00:00', 12, 3, 3),
 (4, 'Hello!!!!!!!!!!!!', '2014-01-03 16:00:00', 12, 4, 4),
 (5, 'Nice try!', '2014-01-04 16:00:00', 13, 5, 5),
-(6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6);
+(6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6),
+(7, 'blabla111', '2014-01-22 18:27:22', 1, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -385,14 +387,14 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `User`
 --
 
 INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `password`, `photoPath`, `email`, `phone`, `birthday`, `address_id`, `role_id`, `commentAble`, `active`, `approveregistration`) VALUES
-(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'path', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 0, 0, 0),
+(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'img/test.jpg', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 0, 0, 1),
 (2, 'test100', 'test100', 'test100', 'test100', 'f5f97c92ae39d49a4fa87d97eb3d89ff', 'default', 'rer@ukr.net', '0974324324324', NULL, 28, 2, 1, 1, 0),
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
@@ -404,15 +406,14 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0),
 (16, 'O_o', 'O_O', 'o_O', 'agent008', '59739de02f972041fbab2123eb047cf7', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
 (24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', '96263c660bc72a504fbbf673464c17de', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0),
-(25, 'mmm', 'mmm', 'mmm', 'mmm', 'f111c941a59ef9c9db528d20f71765ca', 'default', 'marinkmak@gmail.com', '12', NULL, 43, 2, 1, 1, 1),
-(26, 'm', 'm', 'm', 'm', '6f8f57715090da2632453988d9a1501b', 'default', 'makmarserg@ukr.net', '12', NULL, 44, 2, 1, 1, 1),
 (27, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 45, 2, 1, 1, 0),
 (28, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 46, 2, 1, 1, 0),
 (29, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 47, 2, 1, 1, 1),
 (30, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 48, 2, 1, 1, 0),
 (31, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 49, 2, 1, 1, 0),
 (32, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 50, 2, 1, 1, 0),
-(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1);
+(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1),
+(34, 'mmm', 'm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', NULL, 52, 2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
