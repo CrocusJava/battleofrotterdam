@@ -505,10 +505,9 @@ function call_load_data_for_index_events(load_data) {
 
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
-        var href = this.attr("href");
+        var href = $(this).attr("href");
         href = href + "?photoid=" + load_data["photoid"];
-        //this.attr("href", href);
-        window.location = href;
+        $(this).attr("href", href);
     }
     function go_to_project() {
         load_data.projectid;
