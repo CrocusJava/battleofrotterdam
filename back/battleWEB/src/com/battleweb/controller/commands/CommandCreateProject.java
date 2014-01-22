@@ -19,6 +19,7 @@ import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Project;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
+import com.battleweb.tools.ToolSession;
 
 /**
  * @author Lukashchuk Ivan
@@ -30,6 +31,8 @@ public class CommandCreateProject implements Command {
 
 	@EJB
 	private ToolJSON toolJSON;
+	@EJB
+	private ToolSession toolSession;
 	@EJB
 	private ProjectBean projectBean;
 	@EJB
@@ -43,37 +46,51 @@ public class CommandCreateProject implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
-		String name = jsonObjectRequest.getString(Constants.PARAMETER_NAME);
-		String description = jsonObjectRequest
-				.getString(Constants.PARAMETER_DESCRIPTION);
-		int competitionId = jsonObjectRequest
-				.getInt(Constants.PARAMETER_COMPETITION_ID);
+		JsonObject jsonObjectResponse = null;
 
-		Project project = new Project();
-		project.setName(name);
-		project.setDescription(description);
-		project.setCreationDate(new Date());
-		project.setCompetition(competitionBean.find(competitionId));
-		project.setUser(userBean.find(Integer.parseInt(request.getSession()
-				.getAttribute(Constants.PARAMETER_SESSION_IDUSER).toString())));
-		project.setApproved(true);
+		if (toolSession.getUser(request) != null) {
 
-		if (name != null && project.getCompetition() != null) {
+			JsonObject jsonObjectRequest = toolJSON
+					.getJsonObjectRequest(request);
+			String name = jsonObjectRequest.getString(Constants.PARAMETER_NAME);
+			String description = jsonObjectRequest
+					.getString(Constants.PARAMETER_DESCRIPTION);
+			int competitionId = jsonObjectRequest
+					.getInt(Constants.PARAMETER_COMPETITION_ID);
 
-			projectBean.create(project);
+			Project project = new Project();
+			project.setName(name);
+			project.setDescription(description);
+			project.setCreationDate(new Date());
+			project.setCompetition(competitionBean.find(competitionId));
+			project.setUser(userBean.find(Integer.parseInt(request.getSession()
+					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
+					.toString())));
+			project.setApproved(true);
 
-			String cteateProjectMessage = textBean.findLocaleTextByKey(
-					Constants.TEXT_MESSAGE_CREATE_PROJECT, request.getLocale());
+			if (name != null && project.getCompetition() != null) {
 
-			JsonObject jsonObjectResponse = Json
+				projectBean.create(project);
+
+				String cteateProjectMessage = textBean.findLocaleTextByKey(
+						Constants.TEXT_MESSAGE_CREATE_PROJECT,
+						request.getLocale());
+
+				jsonObjectResponse = Json
+						.createObjectBuilder()
+						.add(Constants.PARAMETER_PROJECT_ID, project.getId())
+						.add(Constants.PARAMETER_CREATE_PROJECT_MESSAGE,
+								cteateProjectMessage).build();
+			}
+
+		} else {
+			jsonObjectResponse = Json
 					.createObjectBuilder()
-					.add(Constants.PARAMETER_PROJECT_ID, project.getId())
-					.add(Constants.PARAMETER_CREATE_PROJECT_MESSAGE,
-							cteateProjectMessage).build();
-
-			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+					.add(Constants.PARAMETER_MESSAGE,
+							"Invocation without authorization").build();
 		}
+
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 
 		return null;
 	}

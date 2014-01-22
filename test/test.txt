@@ -22,7 +22,108 @@
 
 #---------- command=index ----------#
 
+
+
 #---------- command=forgotpassword ----------#
 {
 "email": "test5@gmail.com"		/*свой майл*/
+}
+
+#---------- command=competitions ----------#
+{
+"firstposition":0,
+"size":10,
+"orderby":"startdate/enddate/regdeadline", 
+"sort":"desc/asc",
+"showdescription":true/false,
+"filter":{
+	"id":5,	
+	"type":"year/month",
+	"name":"ssdf",
+	"startdatefrom":"dd/MM/yyy",
+	"startdateto":"dd/MM/yyy",
+	"enddatefrom":"dd/MM/yyy",
+	"enddateto":"dd/MM/yyy",
+	"regdeadlinefrom":"dd/MM/yyy",
+	"regdeadlineto":"dd/MM/yyy",
+	"winnerid":9
+	}
+}
+
+#---------- command=projects----------#
+{
+"firstposition":0,
+"size":10,
+"orderby":"date/rating",
+"sort":"desc/asc", 
+"filter":{
+	"login":"****",
+	"name":"****",
+	"datefrom":"dd/MM/yyy",
+	"dateto":"dd/MM/yyy",
+	"competitionid":4,
+	"competitiontype":"year/month"
+	}
+}
+
+#---------- command=sendcomment ----------#
+{
+"projectid":2,
+"commenttext":"blabla"
+}
+
+#---------- command=editcomment ----------#
+{
+"commentid":2,
+"commenttext":"blabla"
+}
+
+#---------- command=createproject ----------#
+{
+"name" : "***",
+"description":"***",
+"competitionid":2
+}
+
+#---------- command=currentrankings ----------#
+
+#---------- command=viewproject ----------#
+{
+"projectid":5
+}
+
+#---------- command=viewprojectcomments ----------#
+{
+"projectid":3,
+"firstposition":1,
+"size":10
+}
+
+#---------- command=viewprojectphotos ----------#
+{
+"projectid":2,
+"firstposition":1,
+"size":10
+}
+
+#---------- command=createcompetition ----------#
+{
+"name":"aaaa",
+"description":"ssssss",
+"type":"year",
+"startdate":"1/1/11",
+"enddate":"1/1/1111",
+"regdeadline":"1/1/111"
+}
+
+#---------- command=editcompetition ----------#
+{
+"id":5,
+"name":"aasssaa",
+"description":"ssssss",
+"type":"year",
+"startdate":"1/1/11",
+"enddate":"1/1/1111",
+"regdeadline":"1/1/111",
+"winnerid":3
 }
