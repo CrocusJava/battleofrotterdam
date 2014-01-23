@@ -26,7 +26,7 @@ public class ToolJSON {
 	
 	public void setJsonObjectResponse(HttpServletResponse response, JsonObject jsonObject) throws IOException{
 		
-		response.setContentType("application/json");
+		response.setContentType("application/json;charset=UTF-8");
 		JsonWriter jsonWriterResponse=Json.createWriter(response.getWriter());
 		jsonWriterResponse.writeObject(jsonObject);
 		jsonWriterResponse.close();
