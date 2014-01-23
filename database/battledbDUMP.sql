@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2014 at 11:02 PM
+-- Generation Time: Jan 23, 2014 at 01:04 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `News` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`),
   KEY `text_id` (`text_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `News`
@@ -170,7 +170,13 @@ CREATE TABLE IF NOT EXISTS `News` (
 INSERT INTO `News` (`id`, `keyval`, `photoPath`, `loadDate`, `text_id`) VALUES
 (1, 10, 'img/news1.jpg', '2014-01-15 08:00:00', 39),
 (2, 20, 'img/news2.jpg', '2014-01-16 08:00:00', 40),
-(3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41);
+(3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41),
+(4, 40, '', '0000-00-00 00:00:00', 42),
+(5, 50, '', '0000-00-00 00:00:00', 43),
+(6, 60, '', '0000-00-00 00:00:00', 44),
+(7, 70, '', '0000-00-00 00:00:00', 45),
+(8, 80, '', '0000-00-00 00:00:00', 60),
+(9, 90, '', '0000-00-00 00:00:00', 61);
 
 -- --------------------------------------------------------
 
@@ -418,14 +424,8 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0),
 (16, 'O_o', 'O_O', 'o_O', 'agent008', '59739de02f972041fbab2123eb047cf7', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
 (24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', '96263c660bc72a504fbbf673464c17de', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0),
-(27, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 45, 2, 1, 1, 0),
-(28, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 46, 2, 1, 1, 0),
 (29, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 47, 2, 1, 1, 1),
-(30, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 48, 2, 1, 1, 0),
-(31, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 49, 2, 1, 1, 0),
-(32, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 50, 2, 1, 1, 0),
-(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1),
-(34, 'mmm', 'm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', NULL, 52, 2, 1, 1, 1);
+(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
