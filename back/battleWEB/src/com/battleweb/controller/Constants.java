@@ -106,6 +106,7 @@ public interface Constants {
 	public static final String PARAMETER_FILTER = "filter";
 	public static final String PARAMETER_ORDER_BY = "orderby";
 	public static final String PARAMETER_SORT = "sort";
+	public static final String PARAMETER_COMPETITION_DESCRIPTION = "competitiondescription";
 	
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
 	public static final String PARAMETER_ABOUT_US = "aboutus";
@@ -188,7 +189,11 @@ public interface Constants {
 	public static final String PARAMETER_ERROR_MESSAGE = "errormessage";
 	public static final String PARAMETER_USER_ID = "userid";
 	public static final String PARAMETER_APPROVED = "approved";
-			
+	
+	public static final String PARAMETER_PROJECT_NAME="projectname";
+	public static final String PARAMETER_PROJECT_DESCRIPTION="projectdescription";
+	public static final String PARAMETER_PROJECT_DATE_CREATION="projectdatecteation";
+	
 	//Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
 	public static final Integer TEXT_MESSAGE_YOUR_LOGIN = 110;

@@ -12,9 +12,9 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQueries({ 
-
-})
+@NamedQueries({
+	@NamedQuery(name = "Project.findProjectsByUser", query = "SELECT p FROM Project p WHERE p.user = :user")
+	})
 @NamedNativeQueries({
 	@NamedNativeQuery(name = "Project.findApprovedByCompetitionIdAndOrderByRating",
 			query="SELECT *,(SELECT COUNT(`level`) FROM battledb.voice AS v" +
