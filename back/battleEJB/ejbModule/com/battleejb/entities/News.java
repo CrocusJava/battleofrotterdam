@@ -36,7 +36,7 @@ public class News implements Serializable {
 
 	private Integer keyval;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date loadDate;
 
 	private String photoPath;

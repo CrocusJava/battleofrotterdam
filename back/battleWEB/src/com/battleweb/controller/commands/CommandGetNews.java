@@ -44,13 +44,14 @@ public class CommandGetNews implements Command{
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		List<News> allNews = newsBean.findAll();
+		List<News> allNews = newsBean.findLast(Constants.HOME_PAGE_LAST_NEWS_COUNT);
 		
 		JsonArrayBuilder newsArrayBuilder = Json.createArrayBuilder();
 		for(News news:allNews){	
 			String newsTextEn = textBean.findLocaleTextByKey(news.getKeyval(), new Locale("en"));
 			String newsTextNl = textBean.findLocaleTextByKey(news.getKeyval(), new Locale("nl"));
 			JsonObject jsonObjectNews = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_ID,news.getId())
 				.add(Constants.PARAMETER_PHOTO_PATH, news.getPhotoPath())
 				.add(Constants.PARAMETER_TEXT_EN, newsTextEn)
 				.add(Constants.PARAMETER_TEXT_NL, newsTextNl)
