@@ -16,6 +16,7 @@ import javax.json.JsonObjectBuilder;
 import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
+import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Comment;
 import com.battleejb.entities.Photo;
@@ -45,6 +46,8 @@ public class CommandSendComment implements Command {
 	private PhotoBean photoBean;
 	@EJB
 	private CommentBean commentBean;
+	@EJB
+	private TextBean textBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -95,8 +98,12 @@ public class CommandSendComment implements Command {
 
 			} else {
 				commentResult = false;
+				jsonObjectResponseBuilder.add(Constants.PARAMETER_MESSAGE,
+						textBean.findLocaleTextByKey(
+								Constants.TEXT_MESSAGE_COMMANDABLE_FALSE,
+								request.getLocale()));
 			}
-			
+
 			jsonObjectResponseBuilder.add(Constants.PARAMETER_STATUS,
 					commentResult);
 		} else {
