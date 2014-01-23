@@ -94,7 +94,6 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_COMMENT_DATE, dateFormat.format(comment.getCommentDate()))
 				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
 				.add(Constants.PARAMETER_PROJECT_ID, comment.getProject().getId())
-				.add(Constants.PARAMETER_PHOTO_ID, comment.getPhoto().getId())
 				.build();
 			lastCommentsArrayBuilder.add(jsonObjectComment);
 		}

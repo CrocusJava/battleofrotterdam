@@ -360,7 +360,7 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-    if (window.upload_file._input) {
+    if (window.upload_file) {
         if (window.upload_file._input.files.length > 0) {
             window.upload_file.submit();
         }
@@ -505,7 +505,9 @@ function call_load_data_for_index_events(load_data) {
 
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
-
+        var href = $(this).attr("href");
+        href = href + "?photoid=" + load_data["photoid"];
+        $(this).attr("href", href);
     }
     function go_to_project() {
         load_data.projectid;
@@ -660,17 +662,23 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
-            text_key = dataObj[text_key] || text_key;
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : text_key;//var text_value = dataObj[text_key] || text_key;
             // <<<<<<<<<<================================== Если текст является объектом
-            if ({}.toString.call(text_key) === "[object Object]") {
+            if ({}.toString.call(text_value) === "[object Object]") {
                 // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
-                var subvalue_text = text_key[templateObj["subattr"][text_key]];
+                var subvalue_text = text_value[templateObj["subattr"][text_key]];
                 element.text(subvalue_text);
             }
             else {
-                element.text(text_key);
+                element.text(text_value);
             }
 
+        }
+        // <<<<<<<<<<================================== Добавление обработчика событий к элементу
+        if ("add_handler" in templateObj) {
+            for (var event in templateObj["add_handler"]) {
+                element.on(event, templateObj["add_handler"][event]);
+            }
         }
 // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
@@ -735,42 +743,44 @@ function call_uploading_file_on_server(command_value) {
     if (window.location.href.match(/myaccount.html/)) {
         var command_value = "uploadavatar";
     }
-
-    window.upload_file = new AjaxUpload(command_value, {
-        action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
-        name: command_value,
-        data: {
-            'some_key1': "This data won't be sent, we will overwrite it."
-        },
-        autoSubmit: false,
-        onChange: function(file, ext) {
-            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
-                var reader = new FileReader();
-                $(reader).on("load", function() {
-                    var img = $("#preview_avatar");
-                    $(img).attr("src", reader.result);
-                });
-                reader.readAsDataURL(window.upload_file._input.files[0]);
-            } else {
+    if (command_value) {
+        window.upload_file = new AjaxUpload(command_value, {
+            action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
+            name: command_value,
+            data: {
+                'some_key1': "This data won't be sent, we will overwrite it."
+            },
+            autoSubmit: false,
+            onChange: function(file, ext) {
+                if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                    var reader = new FileReader();
+                    $(reader).on("load", function() {
+                        var img = $("#preview_avatar");
+                        $(img).attr("src", reader.result);
+                    });
+                    reader.readAsDataURL(window.upload_file._input.files[0]);
+                } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                $("#warning_load_file").show();
-                $("#warning_load_file").fadeOut(10000);
-                return false;
-            }
+                    $("#warning_load_file").show();
+                    $("#warning_load_file").fadeOut(10000);
+                    return false;
+                }
 
-        },
-        onSubmit: function(file, ext) {
-            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
-            } else {
+            },
+            onSubmit: function(file, ext) {
+                if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                return false;
-            }
-        },
-        onComplete: function(file, response) {
-            console.log("передача файла завершена");
+                    return false;
+                }
+            },
+            onComplete: function(file, response) {
+                console.log("передача файла завершена");
 
-        }
-    });
+            }
+        });
+    }
+
 }
 
 
@@ -947,14 +957,20 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-        console.log(data);
+
         var carent_rankings_template = [
-            {nag: "div", add_class: "span4 text_center", children: [
+            {tag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
                                     {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
-                                    {tag: "span", add_class: "label flat label-success likes", text: "100 Likes"},
-                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity"},
+                                    {tag: "span", add_class: "label flat label-success likes", children: [
+                                            {tag: "span", text: "rating"},
+                                            {tag: "span", text: " Likes"}
+                                        ]},
+                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity", children: [
+                                            {tag: "span", text: "commentquantity"},
+                                            {tag: "span", text: " Comments"}
+                                        ]},
                                     {tag: "h4", text: "First winner"}
                                 ]},
                             {tag: "div", add_class: "desc", children: [
@@ -1036,4 +1052,9 @@ function call_load_data_for_myaccount() {
     $.post("/battleWEB/controller?command=account", function(data) {
         console.log(data);
     }, "json");
+}
+
+
+function call_reading_url() {
+
 }

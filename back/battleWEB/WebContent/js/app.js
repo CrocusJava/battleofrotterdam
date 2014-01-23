@@ -17,13 +17,11 @@ function call_all() {
 //    call_events_show_hide_login_registration();
 
     call_event_create_comment();
-//    call_activate_menu_links();
-
 
     call_start_carousel();
     call_data_for_index_html();
     call_data_for_footer();
-//    call_uploading_file_on_server();
+    call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
     call_trylater();
@@ -362,9 +360,11 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-//    if (window.upload_file._input.files.length > 0) {
-//        window.upload_file.submit();
-//    }
+    if (window.upload_file) {
+        if (window.upload_file._input.files.length > 0) {
+            window.upload_file.submit();
+        }
+    }
     console.log(config, form.id);
     return false;
 }
@@ -463,28 +463,6 @@ function createElements(conteiner, parent, info) {
 }
 
 
-
-function call_activate_menu_links() {
-    $(".main_navbar").on("click", "a", function() { // ссылки главного меню
-        $(this).parent().addClass("active").siblings().removeClass("active");
-    });
-    /* ############################################################################ */
-
-    $(".lobster_tab").on("click", "a", function() {
-        $(this).parent().addClass("active").siblings().removeClass("active");
-    });
-    /* ############################################################################ */
-
-    $(".link_acomodation").on("click", "a", function() { // ссылки боковой навигации на странице myaccount.html
-        var link = $(this).parent().addClass("active").siblings().removeClass("active").end().end().attr("href");
-        link = link.substr(1).split("/");
-        var url = "/frontBattleOfRotterdam/" + link[0] + " " + link[1];
-        $(".span9").load(url);
-        return false;
-    });
-}
-
-
 function call_start_count_timer(yearly_date, monthly_date) {
     try {
         $("#count-down-yearly").county({endDateTime: new Date(yearly_date + ' 00:00:00'), reflection: false, animation: 'scroll', theme: 'black'});
@@ -526,12 +504,20 @@ function call_load_data_for_index_events(load_data) {
 
 
 function call_load_data_for_index_comments(load_data) {
+    function go_to_user_profile() {
+        var href = $(this).attr("href");
+        href = href + "?photoid=" + load_data["photoid"];
+        $(this).attr("href", href);
+    }
+    function go_to_project() {
+        load_data.projectid;
+    }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
-                {tag: "a", attr: {href: "static_profile.html"}, children: [
+                {tag: "a", attr: {href: "static_profile.html"}, add_handler: {"click": go_to_user_profile}, children: [
                         {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}}
                     ]},
-                {tag: "a", attr: {href: "single_project.html"}, children: [
+                {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
                         {tag: "h4", add_class: "media-heading", text: "userlogin"},
                         {tag: "p", text: "commenttext"},
                         {tag: "p", children: [
@@ -563,6 +549,7 @@ function call_data_for_index_html() {
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
             $("#battleanimationdescription").text(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
+
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
                 var dataObj = dataArray[i];
@@ -609,8 +596,10 @@ function call_data_for_index_html() {
 
 //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
-    if (window.location.href.match(/myaccount.html$/)) {
+    if (window.location.href.match(/myaccount.html/)) {
         call_event_logout();
+        call_send_form_accountupdate();
+        call_load_data_for_myaccount();
     }
 //<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
 
@@ -685,6 +674,12 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             }
 
         }
+        // <<<<<<<<<<================================== Добавление обработчика событий к элементу
+        if ("add_handler" in templateObj) {
+            for (var event in templateObj["add_handler"]) {
+                element.on(event, templateObj["add_handler"][event]);
+            }
+        }
 // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
             call_markup_index(templateObj["children"], new_parentsContainer, dataObj);
@@ -745,45 +740,47 @@ function call_data_for_footer() {
 
 
 function call_uploading_file_on_server(command_value) {
-    if (window.location.href.match(/registration.html#registration$/)) {
+    if (window.location.href.match(/myaccount.html/)) {
         var command_value = "uploadavatar";
     }
-//  /battleWEB/controller?command=upload', //command=uploadavatar command=uploadphoto
-    window.upload_file = new AjaxUpload(command_value, {
-        action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
-        name: command_value,
-        data: {
-            'some_key1': "This data won't be sent, we will overwrite it."
-        },
-        autoSubmit: false,
-        onChange: function(file, ext) {
-            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
-                var reader = new FileReader();
-                $(reader).on("load", function() {
-                    var img = $("#preview_avatar");
-                    $(img).attr("src", reader.result);
-                });
-                reader.readAsDataURL(window.upload_file._input.files[0]);
-            } else {
+    if (command_value) {
+        window.upload_file = new AjaxUpload(command_value, {
+            action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
+            name: command_value,
+            data: {
+                'some_key1': "This data won't be sent, we will overwrite it."
+            },
+            autoSubmit: false,
+            onChange: function(file, ext) {
+                if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                    var reader = new FileReader();
+                    $(reader).on("load", function() {
+                        var img = $("#preview_avatar");
+                        $(img).attr("src", reader.result);
+                    });
+                    reader.readAsDataURL(window.upload_file._input.files[0]);
+                } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                $("#warning_load_file").show();
-                $("#warning_load_file").fadeOut(5000);
-                return false;
-            }
+                    $("#warning_load_file").show();
+                    $("#warning_load_file").fadeOut(10000);
+                    return false;
+                }
 
-        },
-        onSubmit: function(file, ext) {
-            if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
-            } else {
+            },
+            onSubmit: function(file, ext) {
+                if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
+                } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                return false;
+                    return false;
+                }
+            },
+            onComplete: function(file, response) {
+                console.log("передача файла завершена");
+
             }
-        },
-        onComplete: function(file, response) {
+        });
+    }
 
-
-        }
-    });
 }
 
 
@@ -962,7 +959,7 @@ function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
         console.log(data);
         var carent_rankings_template = [
-            {nag: "div", add_class: "span4 text_center", children: [
+            {tag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
                                     {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
@@ -1036,8 +1033,22 @@ function call_load_data_for_index_footer_contacts(contacts) {
     call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
 }
 
-//function call_load_data_for_myaccount() {
-//    $.post("/battleWEB/controller?command=account", function(data) {
-//        console.log(data);
-//    }, "json");
-//}
+
+function call_send_form_accountupdate() {
+    $("#accountupdate").on("submit", function() {
+        AjaxRegistrationLogin(this);
+        return false;
+    });
+}
+
+
+function call_load_data_for_myaccount() {
+    $.post("/battleWEB/controller?command=account", function(data) {
+        console.log(data);
+    }, "json");
+}
+
+
+function call_reading_url() {
+
+}

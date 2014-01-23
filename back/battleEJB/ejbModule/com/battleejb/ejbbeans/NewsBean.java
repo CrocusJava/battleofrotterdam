@@ -37,7 +37,7 @@ public class NewsBean  extends AbstractFacade<News> {
 	}
 
 	public List<News> findLast(Integer n){
-		return em.createNamedQuery("News.findAll",News.class).setMaxResults(n).getResultList();
+		return em.createNamedQuery("News.findLast",News.class).setMaxResults(n).getResultList();
 	}
 	
 	

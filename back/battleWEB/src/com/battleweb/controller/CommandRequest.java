@@ -14,15 +14,22 @@ import com.battleweb.controller.commands.Command;
 import com.battleweb.controller.commands.CommandAboutBattle;
 import com.battleweb.controller.commands.CommandAccaunt;
 import com.battleweb.controller.commands.CommandApproveRegistration;
+import com.battleweb.controller.commands.CommandCangeProjectStatus;
 import com.battleweb.controller.commands.CommandCompetitions;
+import com.battleweb.controller.commands.CommandCreateCompetition;
 import com.battleweb.controller.commands.CommandCreateProject;
 import com.battleweb.controller.commands.CommandCurrentRankings;
 import com.battleweb.controller.commands.CommandEditComment;
+import com.battleweb.controller.commands.CommandEditCompetition;
+import com.battleweb.controller.commands.CommandEditFAQ;
+import com.battleweb.controller.commands.CommandEditNews;
 import com.battleweb.controller.commands.CommandEditUserApply;
 import com.battleweb.controller.commands.CommandFAQ;
 import com.battleweb.controller.commands.CommandFindUser;
 import com.battleweb.controller.commands.CommandFooter;
 import com.battleweb.controller.commands.CommandForgotPassword;
+import com.battleweb.controller.commands.CommandGetFAQ;
+import com.battleweb.controller.commands.CommandGetNews;
 import com.battleweb.controller.commands.CommandGetPhoto;
 import com.battleweb.controller.commands.CommandIndex;
 import com.battleweb.controller.commands.CommandLogin;
@@ -33,6 +40,7 @@ import com.battleweb.controller.commands.CommandRegistration;
 import com.battleweb.controller.commands.CommandSendComment;
 import com.battleweb.controller.commands.CommandSendEmail;
 import com.battleweb.controller.commands.CommandShowUsers;
+import com.battleweb.controller.commands.CommandTerms;
 import com.battleweb.controller.commands.CommandUploadAvatar;
 import com.battleweb.controller.commands.CommandUploadPhoto;
 import com.battleweb.controller.commands.CommandViewPhotoComments;
@@ -64,11 +72,21 @@ public class CommandRequest {
 	@EJB 
 	private CommandIndex commandIndex;
 	@EJB 
+	private CommandTerms commandTerms;
+	@EJB 
 	private CommandNews commandNews;
 	@EJB 
 	private CommandAboutBattle commandAboutBattle;
 	@EJB 
 	private CommandFAQ commandFAQ;
+	@EJB 
+	private CommandGetFAQ commandGetFAQ;
+	@EJB 
+	private CommandEditFAQ commandEditFAQ;
+	@EJB 
+	private CommandGetNews commandGetNews;
+	@EJB 
+	private CommandEditNews commandEditNews;
 	@EJB 
 	private CommandUploadAvatar commandUploadAvatar;
 	@EJB 
@@ -113,6 +131,12 @@ public class CommandRequest {
 	private CommandSendEmail commandSendEmail;
 	@EJB
 	private CommandAccaunt commandAccaunt;
+	@EJB
+	private CommandCangeProjectStatus commandCangeProjectStatus;
+	@EJB
+	private CommandCreateCompetition commandCreateCompetition;
+	@EJB
+	private CommandEditCompetition commandEditCompetition;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -123,9 +147,14 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_APPROVEREGISTRATION, commandApproveRegistration);
 		commands.put(Constants.COMMAND_FORGOTPASSWORD, commandForgotPassword);
 		commands.put(Constants.COMMAND_INDEX, commandIndex);
+		commands.put(Constants.COMMAND_TERMS, commandTerms);
 		commands.put(Constants.COMMAND_NEWS, commandNews);
 		commands.put(Constants.COMMAND_ABOUT_BATTLE, commandAboutBattle);
 		commands.put(Constants.COMMAND_FAQ, commandFAQ);
+		commands.put(Constants.COMMAND_GET_FAQ, commandGetFAQ);
+		commands.put(Constants.COMMAND_EDIT_FAQ, commandEditFAQ);
+		commands.put(Constants.COMMAND_GET_NEWS, commandGetNews);
+		commands.put(Constants.COMMAND_EDIT_NEWS, commandEditNews);
 		commands.put(Constants.COMMAND_UPLOAD_AVATAR, commandUploadAvatar);
 		commands.put(Constants.COMMAND_UPLOAD_PHOTO, commandUploadPhoto);
 		commands.put(Constants.COMMAND_CURRENTRANKINGS, commandCurrentRankings);
@@ -148,6 +177,9 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_EDIT_USER_APPLY, commandEditUserApply);
 		commands.put(Constants.COMMAND_SEND_EMAIL, commandSendEmail);
 		commands.put(Constants.COMMAND_ACCAUNT, commandAccaunt);
+		commands.put(Constants.COMMAND_CHANGE_PROJECT_STATUS, commandCangeProjectStatus);
+		commands.put(Constants.COMMAND_CREATE_COMPETITON, commandCreateCompetition);
+		commands.put(Constants.COMMAND_EDIT_COMPETITON, commandEditCompetition);
 	}
 
 	public Command getCommand(HttpServletRequest request) {

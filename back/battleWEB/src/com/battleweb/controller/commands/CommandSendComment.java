@@ -11,18 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
+import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
-import com.battleejb.ejbbeans.VoiceBean;
 import com.battleejb.entities.Comment;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
-import com.battleejb.entities.Voice;
+import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
+import com.battleweb.tools.ToolSession;
 
 /**
  * @author Lukashchuk Ivan
@@ -35,6 +37,8 @@ public class CommandSendComment implements Command {
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
+	private ToolSession toolSession;
+	@EJB
 	private ProjectBean projectBean;
 	@EJB
 	private UserBean userBean;
@@ -42,6 +46,8 @@ public class CommandSendComment implements Command {
 	private PhotoBean photoBean;
 	@EJB
 	private CommentBean commentBean;
+	@EJB
+	private TextBean textBean;
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -49,44 +55,65 @@ public class CommandSendComment implements Command {
 
 		boolean commentResult = true;
 
-		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
+		JsonObjectBuilder jsonObjectResponseBuilder = Json
+				.createObjectBuilder();
 
-		Photo photo = null;
-		Project project = null;
+		User user = toolSession.getUser(request);
 
-		int projectId = jsonObjectRequest
-				.getInt(Constants.PARAMETER_PROJECT_ID);
-		project = projectBean.find(projectId);
-		try {
-			int photoId = jsonObjectRequest
-					.getInt(Constants.PARAMETER_PHOTO_ID);
-			photo = photoBean.find(photoId);
-		} catch (Exception e) {
+		if (user != null) {
+
+			JsonObject jsonObjectRequest = toolJSON
+					.getJsonObjectRequest(request);
+
+			Photo photo = null;
+			Project project = null;
+
+			int projectId = jsonObjectRequest
+					.getInt(Constants.PARAMETER_PROJECT_ID);
+			project = projectBean.find(projectId);
+			try {
+				int photoId = jsonObjectRequest
+						.getInt(Constants.PARAMETER_PHOTO_ID);
+				photo = photoBean.find(photoId);
+			} catch (Exception e) {
+			}
+
+			Comment comment = new Comment();
+			if ((photo == null || photo.getProject().getId() == projectId)
+					&& user.getCommentAble()) {
+
+				comment.setProject(project);
+				comment.setPhoto(photo);
+				comment.setCommentText(jsonObjectRequest
+						.getString(Constants.PARAMETER_COMMENT_TEXT));
+				comment.setCommentDate(new Date());
+				comment.setUser(userBean.find(Integer.parseInt(request
+						.getSession()
+						.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
+						.toString())));
+
+				commentBean.create(comment);
+				jsonObjectResponseBuilder.add(Constants.PARAMETER_COMMENT_ID,
+						comment.getId());
+
+			} else {
+				commentResult = false;
+				jsonObjectResponseBuilder.add(Constants.PARAMETER_MESSAGE,
+						textBean.findLocaleTextByKey(
+								Constants.TEXT_MESSAGE_COMMANDABLE_FALSE,
+								request.getLocale()));
+			}
+
+			jsonObjectResponseBuilder.add(Constants.PARAMETER_STATUS,
+					commentResult);
+		} else {
+			jsonObjectResponseBuilder = Json.createObjectBuilder().add(
+					Constants.PARAMETER_MESSAGE,
+					"Invocation without authorization");
 		}
-		
-		Comment comment = new Comment();
-		if (photo == null || photo.getProject().getId() == projectId) {
-			
-			comment.setProject(project);
-			comment.setPhoto(photo);
-			comment.setCommentText(jsonObjectRequest
-					.getString(Constants.PARAMETER_COMMENT_TEXT));
-			comment.setCommentDate(new Date());
-			comment.setUser(userBean.find(Integer.parseInt(request.getSession()
-					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
-					.toString())));
-			
-			commentBean.create(comment);
-			
-		}else{
-			commentResult = false;
-		}
-		
-		JsonObject jsonObjectResponse = Json.createObjectBuilder()
-				.add(Constants.PARAMETER_COMMENT_ID, comment.getId())
-				.add(Constants.PARAMETER_VOTE_RESULT, commentResult).build();
 
-		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+		toolJSON.setJsonObjectResponse(response,
+				jsonObjectResponseBuilder.build());
 
 		return null;
 	}

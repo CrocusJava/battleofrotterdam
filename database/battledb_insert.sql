@@ -62,7 +62,8 @@ INSERT INTO Comment VALUES
 (3, 'It will be something... :)','2014-01-03',12,3,3),
 (4, 'Hello!!!','2014-01-03',12,4,4),
 (5, 'Nice try!','2014-01-04',13,5,5),
-(6, 'I hope it is possible...','2014-01-05',14,6,6);
+(6, 'I hope it is possible...','2014-01-05',14,6,6),
+(7, 'blabla111', '2014-01-22 18:27:22', 1, 2, null);
 
 INSERT INTO Text VALUES
 (1, 100, 'Your new password will be sent to your email', 'Uw nieuwe wachtwoord zal naar uw e-mail worden verzonden'),
@@ -108,8 +109,26 @@ INSERT INTO Text VALUES
 (43, 50, '',''),
 (44, 60, '',''),
 (45, 70, '',''),
+(60, 80, '',''),
+(61, 90, '',''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
-(46, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht');
+(47, 1010, 'Changes are made', 'Wijzigingen worden aangebracht'),
+(48, 560, 'Terms & Conditions information', 'Voorwaarden informatie'),
+(49, 561, 'Terms & Conditions', 'Algemene Voorwaarden'),
+(50, 650, '', ''),
+(51, 655, '', ''),
+(52, 660, '', ''),
+(53, 665, '', ''),
+(54, 670, '', ''),
+(55, 675, '', ''),
+(56, 680, '', ''),
+(57, 685, '', ''),
+(58, 690, '', ''),
+(59, 695, '', '');
+(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration.', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie.');
+(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.');
+(64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
+
 
 INSERT INTO URL VALUES
 (1, 100, 'Name of Battle video url', 'Value of Battle video url'),
@@ -121,4 +140,10 @@ INSERT INTO URL VALUES
 INSERT INTO News VALUES
 (1, 10, 'img/news1.jpg','2014-01-15', 39),
 (2, 20, 'img/news2.jpg','2014-01-16', 40),
-(3, 30, 'img/news3.jpg','2014-01-17', 41);
+(3, 30, 'img/news3.jpg','2014-01-17', 41),
+(4, 40, '','2000-12-12', 42),
+(5, 50, '','2000-12-12', 43),
+(6, 60, '','2000-12-12', 44),
+(7, 70, '','2000-12-12', 45),
+(8, 80, '','2000-12-12', 60),
+(9, 90, '','2000-12-12', 61);

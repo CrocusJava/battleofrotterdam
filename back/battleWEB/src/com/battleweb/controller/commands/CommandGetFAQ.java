@@ -1,6 +1,7 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -17,7 +18,6 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
 
-
 /**
  * @author marina
  * 
@@ -25,81 +25,94 @@ import com.battleweb.tools.ToolJSON;
 
 @Stateless
 @LocalBean
-public class CommandFAQ implements Command{
+public class CommandGetFAQ implements Command{
 	
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
 	private TextBean textBean;
 	
-	String question;
-	String ansver;
+	private String question;
+	private String ansver;
 	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+			
+		JsonArray faqListArrayEn = getFAQListByLocale(new Locale("en"));
+		JsonArray faqListArrayNl = getFAQListByLocale(new Locale("nl"));
 		
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q1, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A1, request.getLocale());
+		//create final ison-object
+		JsonObject jsonObjectResponse=Json.createObjectBuilder()
+			.add(Constants.PARAMETER_FAQ_LIST_EN, faqListArrayEn)
+			.add(Constants.PARAMETER_FAQ_LIST_NL, faqListArrayNl)
+			.build();
+						
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+		return null;
+	}
+	
+	private JsonArray getFAQListByLocale(Locale locale){
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q1, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A1, locale);
 		JsonObject jsonObjectQA1 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q2, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A2, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q2, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A2, locale);
 		JsonObject jsonObjectQA2 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q3, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A3, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q3, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A3, locale);
 		JsonObject jsonObjectQA3 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q4, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A4, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q4, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A4, locale);
 		JsonObject jsonObjectQA4 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q5, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A5, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q5, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A5, locale);
 		JsonObject jsonObjectQA5 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q6, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A6, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q6, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A6, locale);
 		JsonObject jsonObjectQA6 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q7, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A7, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q7, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A7, locale);
 		JsonObject jsonObjectQA7 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q8, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A8, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q8, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A8, locale);
 		JsonObject jsonObjectQA8 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q9, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A9, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q9, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A9, locale);
 		JsonObject jsonObjectQA9 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		question = textBean.findLocaleTextByKey(Constants.TEXT_Q10, request.getLocale());
-		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A10, request.getLocale());
+		question = textBean.findLocaleTextByKey(Constants.TEXT_Q10, locale);
+		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A10, locale);
 		JsonObject jsonObjectQA10 = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_FAQ_QUESTION, question)
 				.add(Constants.PARAMETER_FAQ_ANSVER, ansver)
 				.build();
-		
 		
 		JsonArrayBuilder faqListArrayBuilder = Json.createArrayBuilder();
 		faqListArrayBuilder.add(jsonObjectQA1);
@@ -114,14 +127,6 @@ public class CommandFAQ implements Command{
 		faqListArrayBuilder.add(jsonObjectQA10);
 		JsonArray faqListArray = faqListArrayBuilder.build();
 		
-		
-		//create final ison-object
-		JsonObject jsonObjectResponse=Json.createObjectBuilder()
-			.add(Constants.PARAMETER_FAQ_LIST, faqListArray)
-			.build();
-						
-		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
-		return null;
+		return faqListArray;
 	}
-
 }

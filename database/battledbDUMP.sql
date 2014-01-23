@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2014 at 03:26 PM
+-- Generation Time: Jan 23, 2014 at 02:42 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Dumping data for table `Address`
@@ -52,7 +52,17 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (34, 'mmm', '12', 'mmm', '12', NULL),
 (35, 'mmm', '12', 'mmm', '12', NULL),
 (41, 'Ð¹Ñ?Ñ?Ð¹Ðº', '124123', 'Ð¹Ñ?Ñ?Ð¹Ðº', '1234', NULL),
-(42, 'mmm', '12', 'mmm', '12', NULL);
+(42, 'mmm', '12', 'mmm', '12', NULL),
+(43, 'mmm', '12', 'mmm', '12', NULL),
+(44, 'm', '12', 'm', '12', NULL),
+(45, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
+(46, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
+(47, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
+(48, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
+(49, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
+(50, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
+(51, 'Rotterdam', '3002', 'Wilbetoord', '43', NULL),
+(52, 'mmm', '12', 'mmm', '12', NULL);
 
 -- --------------------------------------------------------
 
@@ -71,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
   KEY `user_id` (`user_id`),
   KEY `project_id` (`project_id`),
   KEY `photo_id` (`photo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `Comment`
@@ -83,7 +93,8 @@ INSERT INTO `Comment` (`id`, `commentText`, `commentDate`, `user_id`, `project_i
 (3, 'It will be something... :)', '2014-01-03 16:00:00', 12, 3, 3),
 (4, 'Hello!!!!!!!!!!!!', '2014-01-03 16:00:00', 12, 4, 4),
 (5, 'Nice try!', '2014-01-04 16:00:00', 13, 5, 5),
-(6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6);
+(6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6),
+(7, 'blabla111', '2014-01-22 18:27:22', 1, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -110,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `Competition` (
 --
 
 INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `user_id`) VALUES
-(1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-01-01', 1, NULL),
+(1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-11-01', 1, NULL),
 (2, 'First Month Competition Name', 'description of First Month Competition', '2013-12-01', '2014-01-01', '2013-12-10', 2, NULL),
 (3, 'Second Month Competition Name', 'description of Second Month Competition', '2014-01-01', '2014-02-01', '2014-01-10', 2, NULL),
 (4, 'Third Month Competition Name', 'description of Third Month Competition', '2014-02-01', '2014-03-01', '2014-02-10', 2, NULL);
@@ -150,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `News` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`),
   KEY `text_id` (`text_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `News`
@@ -159,7 +170,13 @@ CREATE TABLE IF NOT EXISTS `News` (
 INSERT INTO `News` (`id`, `keyval`, `photoPath`, `loadDate`, `text_id`) VALUES
 (1, 10, 'img/news1.jpg', '2014-01-15 08:00:00', 39),
 (2, 20, 'img/news2.jpg', '2014-01-16 08:00:00', 40),
-(3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41);
+(3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41),
+(4, 40, '', '2000-12-12 08:00:00', 42),
+(5, 50, '', '2000-12-12 08:00:00', 43),
+(6, 60, '', '2000-12-12 08:00:00', 44),
+(7, 70, '', '2000-12-12 08:00:00', 45),
+(8, 80, '', '2000-12-12 08:00:00', 60),
+(9, 90, '', '2000-12-12 08:00:00', 61);
 
 -- --------------------------------------------------------
 
@@ -175,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `Photo` (
   `project_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `Photo`
@@ -198,7 +215,13 @@ INSERT INTO `Photo` (`id`, `path`, `loadDate`, `description`, `project_id`) VALU
 (14, 'img/remont16.jpg', '2014-01-12 08:00:00', 'description of Joes month project', 3),
 (15, 'img/remont17.jpg', '2014-01-13 08:00:00', 'description of JoesJoes_year_project_photo', 4),
 (16, 'img/remont18.jpg', '2014-01-14 08:00:00', 'description of Jennys_year_project_photo', 5),
-(17, 'img/remont19.gif', '2014-01-15 08:00:00', 'description of Lupes_year_project_photo', 6);
+(17, 'img/remont19.gif', '2014-01-15 08:00:00', 'description of Lupes_year_project_photo', 6),
+(18, 'controller?command=getphoto&photoname=photo114year.jpg', '2014-01-18 18:12:38', 'photo114year.jpg', 2),
+(19, 'controller?command=getphoto&photoname=photo115year.jpg', '2014-01-18 18:26:00', 'photo115year.jpg', 2),
+(21, 'controller?command=getphoto&photoname=photo117year.jpg', '2014-01-19 21:34:45', 'photo117year.jpg', 2),
+(22, 'controller?command=getphoto&photoname=photo117year.jpg', '2014-01-19 21:44:39', 'photo117year.jpg', 2),
+(23, 'controller?command=getphoto&photoname=photo118year.jpg', '2014-01-19 21:45:15', 'photo118year.jpg', 2),
+(24, 'controller?command=getphoto&photoname=photo119year.jpg', '2014-01-19 21:45:42', 'photo119year.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -265,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 --
 -- Dumping data for table `Text`
@@ -315,7 +338,25 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (44, 60, '', ''),
 (45, 70, '', ''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
-(46, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht');
+(47, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht'),
+(48, 560, 'PLEASE READ THE FOLLOWING TERMS AND CONDITIONS CAREFULLY BEFORE USING THIS SITE. By using this site, you signify your agreement to these Terms and Conditions. If you do not agree to these Terms and Conditions, do not use this site. TheBattleOfRotterdam may modify these Terms and Conditions at anytime. \r\nRestrictions On Use of Materials \r\nThis site is copyright protected. Any textual or graphic material you copy, print, or download is licensed to you by Hasbro, Inc. and/or its subsidiaries ("TheBattleOfRotterdam") for your personal, non-commercial home use only, provided that you do not change or delete any copyright, trademark or other proprietary notices. \r\nTHE MATERIALS IN THIS SITE ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TheBattleOfRotterdam DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE CONTENT OR OTHER MATERIALS IN THIS SITE IN TERMS OF THEIR CORRECTNESS, ACCURACY, RELIABILITY, OR OTHERWISE.', 'LEES DE VOLGENDE VOORWAARDEN, VOORDAT U DEZE SITE. Door het gebruik van deze site gaat u akkoord met deze algemene voorwaarden. Indien u niet akkoord gaat met deze voorwaarden, deze site niet te gebruiken. TheBattleOfRotterdam kan deze voorwaarden op elk moment wijzigen.\r\nBeperkingen op het gebruik van materialen\r\nDeze site is auteursrechtelijk beschermd. Tekstuele of grafische materiaal dat u kopieert, wordt afdrukken of downloaden in licentie gegeven aan u door Hasbro, Inc en / of haar dochterondernemingen ("TheBattleOfRotterdam") voor uw persoonlijk, niet-commercieel thuisgebruik uitsluitend gebruik, op voorwaarde dat u niet wijzigen of verwijderen een auteursrecht, handelsmerk of andere eigendomsrechten.\r\nHET MATERIAAL OP DEZE SITE WORDEN "AS IS", ZONDER ENIGE GARANTIE OOK uitdrukkelijk noch stilzwijgend. TheBattleOfRotterdam GEEN GARANTIE OF HET GEBIED VAN HET GEBRUIK OF DE RESULTATEN VAN HET GEBRUIK VAN DE INHOUD OF ANDER MATERIAAL OP DEZE SITE IN ALGEMENE juistheid, nauwkeurigheid, betrouwbaarheid, OF ANDERS.'),
+(49, 561, 'Terms & Conditions ', 'Algemene Voorwaarden'),
+(50, 650, '', ''),
+(51, 655, '', ''),
+(52, 660, '', ''),
+(53, 665, '', ''),
+(54, 670, '', ''),
+(55, 675, '', ''),
+(56, 680, '', ''),
+(57, 685, '', ''),
+(58, 690, '', ''),
+(59, 695, '', ''),
+(60, 80, '', ''),
+(61, 90, '', ''),
+(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie'),
+(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie'),
+(64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
+
 -- --------------------------------------------------------
 
 --
@@ -337,10 +378,10 @@ CREATE TABLE IF NOT EXISTS `URL` (
 
 INSERT INTO `URL` (`id`, `keyval`, `name`, `value`) VALUES
 (1, 100, '//www.youtube.com/embed/5L96q7Gg9wE?feature=p', '//www.youtube.com/embed/5L96q7Gg9wE?feature=player_detailpage'),
-(2, 110, 'Name of Link1 on Home-page', 'Value of Link1 on Home-page'),
-(3, 120, 'Name of Link2 on Home-page', 'Value of Link2 on Home-page'),
-(4, 130, 'Name of Link3 on Home-page', 'Value of Link3 on Home-page'),
-(5, 140, 'Name of Link4 on Home-page', 'Value of Link4 on Home-page');
+(2, 110, 'Municipality of Rotterdam', 'http://www.rotterdam.nl/gemeenterotterdam'),
+(3, 120, 'BIONIC University', 'http://tech.bionic-university.com/en/about_bionic_university/'),
+(4, 130, 'Neighborhoods', 'Value of Link3 on Home-page'),
+(5, 140, 'Test your own house', 'Value of Link4 on Home-page');
 
 -- --------------------------------------------------------
 
@@ -367,14 +408,14 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `User`
 --
 
 INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `password`, `photoPath`, `email`, `phone`, `birthday`, `address_id`, `role_id`, `commentAble`, `active`, `approveregistration`) VALUES
-(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'path', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 0, 0, 0),
+(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'img/test.jpg', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 0, 0, 1),
 (2, 'test100', 'test100', 'test100', 'test100', 'f5f97c92ae39d49a4fa87d97eb3d89ff', 'default', 'rer@ukr.net', '0974324324324', NULL, 28, 2, 1, 1, 0),
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
@@ -384,8 +425,10 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (13, 'Jenny', '', 'Flex', 'jenny_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
 (14, 'Lupe', '', 'Lamora', 'lupe_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1),
 (15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0),
-(16, 'O_o', 'O_O', 'o_O', 'agent008', 'c4ca4238a0b923820dcc509a6f75849b', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
-(24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', 'df64dc2eb4a0b85091dd31eb4923eaac', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0);
+(16, 'O_o', 'O_O', 'o_O', 'agent008', '59739de02f972041fbab2123eb047cf7', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
+(24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', '96263c660bc72a504fbbf673464c17de', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0),
+(29, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 47, 2, 1, 1, 1),
+(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -402,7 +445,17 @@ CREATE TABLE IF NOT EXISTS `Voice` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `Voice`
+--
+
+INSERT INTO `Voice` (`id`, `level`, `voiceDate`, `user_id`, `project_id`) VALUES
+(1, 1, '2014-01-20 22:13:53', 1, 1),
+(2, 1, '2014-01-20 22:15:00', 2, 2),
+(3, 1, '2014-01-20 22:20:23', 2, 3),
+(4, 1, '2014-01-20 22:23:53', 2, 1);
 
 --
 -- Constraints for dumped tables

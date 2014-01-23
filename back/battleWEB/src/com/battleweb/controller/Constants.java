@@ -23,15 +23,20 @@ public interface Constants {
 	public static final String COMMAND_FORGOTPASSWORD = "forgotpassword";
 	public static final String COMMAND_APPROVEREGISTRATION = "approveregistration";
 	public static final String COMMAND_INDEX = "index";
+	public static final String COMMAND_TERMS = "terms";
 	public static final String COMMAND_NEWS = "news";
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
+	public static final String COMMAND_GET_FAQ = "getfaq";
+	public static final String COMMAND_EDIT_FAQ = "editfaq";
+	public static final String COMMAND_GET_NEWS = "getnews";
+	public static final String COMMAND_EDIT_NEWS = "editnews";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
 	public static final String COMMAND_VIEWPROJECT = "viewproject";
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
-	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphoros";
+	public static final String COMMAND_VIEW_PROJECT_PHOTOS = "viewprojectphotos";
 	public static final String COMMAND_VIEW_PHOTO_COMMENTS = "viewphotocomments";
 	public static final String COMMAND_FOOTER = "footer";
 	public static final String COMMAND_CREATE_PROJECT = "createproject";
@@ -47,6 +52,10 @@ public interface Constants {
 	public static final String COMMAND_EDIT_USER_APPLY = "edituserapply";
 	public static final String COMMAND_SEND_EMAIL = "sendemail";
 	public static final String COMMAND_ACCAUNT = "accaunt";
+	public static final String COMMAND_CHANGE_PROJECT_STATUS = "changeprojectstatus";
+	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
+	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
+	
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -90,6 +99,7 @@ public interface Constants {
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
 	public static final String PARAMETER_BATTLE_LINKS = "battlelinks";
 	public static final String PARAMETER_LAST_NEWS = "lastnews";
+	public static final String PARAMETER_NEWS = "news";
 	public static final String PARAMETER_LAST_COMMENTS_LIST = "lastcommentslist";
 	public static final String PARAMETER_USER_LOGIN = "userlogin";
 	public static final String PARAMETER_USER_PHOTOPATH = "userphotopath";
@@ -113,9 +123,12 @@ public interface Constants {
 	public static final String PARAMETER_RULES = "rules";
 	public static final String PARAMETER_INFORMATION = "information";
 	public static final String PARAMETER_TITLE = "title";
-//	public static final String PARAMETER_BATTLE_DESCRIPTION_FULL = "battledescriptionfull";
+	public static final String PARAMETER_TERMS_TITLE = "termstitle";
+	public static final String PARAMETER_TERMS_TEXT = "termstext";
 
 	public static final String PARAMETER_FAQ_LIST = "faqlist";
+	public static final String PARAMETER_FAQ_LIST_EN = "faqlisten";
+	public static final String PARAMETER_FAQ_LIST_NL = "faqlistnl";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
 	public static final String PARAMETER_FAQ_ANSVER = "faqansver";
 	
@@ -144,6 +157,8 @@ public interface Constants {
 	public static final String PARAMETER_SIZE = "size";
 	public static final String PARAMETER_COMMENTS = "comments";
 	public static final String PARAMETER_TEXT = "text";
+	public static final String PARAMETER_TEXT_EN = "texten";
+	public static final String PARAMETER_TEXT_NL = "textnl";
 	public static final String PARAMETER_DATE = "date";
 	public static final String PARAMETER_VOTE_ABLE = "voteable";
 	public static final String PARAMETER_COMPETITION_ID = "competitionid";
@@ -212,10 +227,12 @@ public interface Constants {
 	public static final Integer TEXT_BATTLE_DESCRIPTION_FULL = 530;
 	public static final Integer TEXT_ABOUT_US_DESCRIPTION = 540;
 	public static final Integer TEXT_INFO_DESCRIPTION = 550;
+	public static final Integer TEXT_TERMS = 560;
 	public static final Integer TEXT_TITLE_BATTLE_RULES = 521;
 	public static final Integer TEXT_TITLE_BATTLE_DESCRIPTION = 531;
 	public static final Integer TEXT_TITLE_ABOUT_US = 541;
 	public static final Integer TEXT_TITLE_INFO = 551;
+	public static final Integer TEXT_TITLE_TERMS = 561;
 	
 	public static final Integer TEXT_Q1 = 600;
 	public static final Integer TEXT_A1 = 605;
@@ -259,7 +276,11 @@ public interface Constants {
 	
 	public static final Integer TEXT_MESSAGE_ADMIN_SEND_EMAIL = 1000;
 	public static final Integer TEXT_MESSAGE_ADMIN_EDIT_USER = 1010;
-
+	
+	public static final Integer TEXT_MESSAGE_ACTOVE_FALSE = 1110;
+	public static final Integer TEXT_MESSAGE_COMMANDABLE_FALSE = 1100;
+	public static final Integer TEXT_MESSAGE_WRONG_LOGIN_OR_PASSWORD = 1120;
+	
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
 	public static final Integer URL_HOMEPAGE_LINK1 = 110;

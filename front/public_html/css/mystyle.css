@@ -302,11 +302,29 @@ text-align: center;
 
 
 
+.star1{
+position:absolute;
+top: 10px;
+left: 5px;
+width: 165px !important;
 
+}
 
+.star2{
+position:absolute;
+top: 10px;
+left: 5px;
+width: 125px !important;
 
+}
 
+.star3{
+position:absolute;
+top: 10px;
+left: 5px;
+width: 105px !important;
 
+}
 
 
 

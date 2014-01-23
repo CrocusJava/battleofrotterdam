@@ -1,7 +1,6 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -16,11 +15,7 @@ import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.ejbbeans.UserBean;
-import com.battleejb.ejbbeans.VoiceBean;
 import com.battleejb.entities.Comment;
-import com.battleejb.entities.Photo;
-import com.battleejb.entities.Project;
-import com.battleejb.entities.Voice;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
 
@@ -68,7 +63,7 @@ public class CommandEditComment implements Command {
 
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_COMMENT_ID, comment.getId())
-				.add(Constants.PARAMETER_VOTE_RESULT, commentResult).build();
+				.add(Constants.PARAMETER_STATUS, commentResult).build();
 
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 
