@@ -16,7 +16,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
+import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
@@ -38,7 +40,8 @@ public class CommandAccaunt implements Command {
 	private ToolSession toolSession;
 	@EJB
 	private ProjectBean projectBean;
-	
+	@EJB
+	private PhotoBean photoBean;
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -85,6 +88,10 @@ public class CommandAccaunt implements Command {
 					.add(Constants.PARAMETER_COMPETITION_ID, project.getCompetition().getId())
 					.add(Constants.PARAMETER_COMPETITION_NAME, project.getCompetition().getName())
 					.add(Constants.PARAMETER_COMPETITION_DESCRIPTION, project.getCompetition().getDescription())
+					.add(Constants.PARAMETER_COMPETITION_DESCRIPTION, project.getCompetition().getDescription())
+					.add(Constants.PARAMETER_COMPETITION_TYPE_ID, project.getCompetition().getType().getId())
+					.add(Constants.PARAMETER_COMPETITION_TYPE_NAME, project.getCompetition().getType().getName())
+					.add(Constants.PARAMETER_PHOTOS, getPhotos(project))
 					.build();
 			jsonArrayBuilderProject.add(jsonObjectResponse);
 		}
@@ -93,6 +100,23 @@ public class CommandAccaunt implements Command {
 		return jsonArrayProject;
 	}
 	
+	public JsonArray getPhotos(Project project){
+		JsonArrayBuilder jsonArrayBuilderPhoto=Json.createArrayBuilder(); 
+		
+		List<Photo> listPhotos=photoBean.findPhotosByProject(project);
+		
+		for (Photo photo : listPhotos) {
+			JsonObject jsonObjectResponse=Json.createObjectBuilder()
+					.add(Constants.PARAMETER_PHOTO_ID, photo.getId())
+					.add(Constants.PARAMETER_PHOTO_DESCRIPTION, photo.getDescription())
+					.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
+					.build();
+			jsonArrayBuilderPhoto.add(jsonObjectResponse);
+		}
+		
+		JsonArray jsonArrayPhoto=jsonArrayBuilderPhoto.build();
+		return jsonArrayPhoto;
+	}
 	
 	private String getDateStringShort(Date date){
 		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyy");

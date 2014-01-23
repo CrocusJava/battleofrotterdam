@@ -117,7 +117,8 @@ public interface Constants {
 	public static final String PARAMETER_ORDER_BY = "orderby";
 	public static final String PARAMETER_SORT = "sort";
 	public static final String PARAMETER_COMPETITION_DESCRIPTION = "competitiondescription";
-	
+	public static final String PARAMETER_COMPETITION_TYPE_ID = "competitiontypeid";
+	public static final String PARAMETER_COMPETITION_TYPE_NAME = "competitiontypename";
 	public static final String PARAMETER_ABOUT_BATTLE = "aboutbattle";
 	public static final String PARAMETER_ABOUT_US = "aboutus";
 	public static final String PARAMETER_RULES = "rules";

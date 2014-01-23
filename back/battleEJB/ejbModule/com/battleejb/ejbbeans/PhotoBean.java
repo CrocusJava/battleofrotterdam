@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import com.battleejb.entities.Photo;
+import com.battleejb.entities.Project;
+import com.battleejb.entities.User;
 
 @Stateless
 @LocalBean
@@ -76,5 +78,15 @@ public class PhotoBean extends AbstractFacade<Photo> {
 		}
 		return count;
 	}
-		
+	
+	public List<Photo> findPhotosByProject(Project project){
+		List<Photo> listPhotos=null;
+		 try {
+			 listPhotos=em.createNamedQuery("Photo.findPhotosByProject", Photo.class)
+				.setParameter("project", project).getResultList();
+		 } catch (PersistenceException e) {
+             /* LOG */
+		 }
+     return listPhotos;
+	}
 }
