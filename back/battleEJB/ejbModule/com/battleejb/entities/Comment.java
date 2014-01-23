@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Comment.findLast", query="SELECT c FROM Comment AS c ORDER BY c.commentDate DESC"),
-	@NamedQuery(name = "Comment.findByProjectId", query="SELECT c FROM Comment AS c WHERE c.project.id=:projectId ORDER BY c.commentDate DESC"),
-	@NamedQuery(name = "Comment.findByPhotoId", query="SELECT c FROM Comment AS c WHERE c.photo.id=:photoId ORDER BY c.commentDate DESC"),
+	@NamedQuery(name = "Comment.findActiveByProjectId", query="SELECT c FROM Comment AS c WHERE c.project.id=:projectId AND c.user.active=true ORDER BY c.commentDate DESC"),
+	@NamedQuery(name = "Comment.findActiveByPhotoId", query="SELECT c FROM Comment AS c WHERE c.photo.id=:photoId AND c.user.active=true ORDER BY c.commentDate DESC"),
 	@NamedQuery(name = "Comment.getCountByProjectId", query="SELECT COUNT(c) FROM Comment AS c WHERE c.project.id=:projectId"),
 	@NamedQuery(name = "Comment.getCountByPhotoId", query="SELECT COUNT(c) FROM Comment AS c WHERE c.photo.id=:photoId")
 })

@@ -71,7 +71,7 @@ public class ProjectBean extends AbstractFacade<Project> {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<Project> cq = cb.createQuery(Project.class);
 			Root<Project> p = cq.from(Project.class);
-			Predicate predicate = cb.conjunction();
+			Predicate predicate = cb.and(cb.equal(p.get(Project_.user).get(User_.active), true));
 			if (approved != null) {
 				predicate = cb
 						.and(predicate ,cb.equal(p.get(Project_.approved), approved));

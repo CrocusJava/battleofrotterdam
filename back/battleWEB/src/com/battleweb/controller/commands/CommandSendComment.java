@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 import com.battleejb.ejbbeans.CommentBean;
 import com.battleejb.ejbbeans.PhotoBean;
@@ -19,6 +20,7 @@ import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Comment;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
+import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
@@ -50,9 +52,12 @@ public class CommandSendComment implements Command {
 
 		boolean commentResult = true;
 
-		JsonObject jsonObjectResponse;
+		JsonObjectBuilder jsonObjectResponseBuilder = Json
+				.createObjectBuilder();
 
-		if (toolSession.getUser(request) != null) {
+		User user = toolSession.getUser(request);
+
+		if (user != null) {
 
 			JsonObject jsonObjectRequest = toolJSON
 					.getJsonObjectRequest(request);
@@ -71,7 +76,8 @@ public class CommandSendComment implements Command {
 			}
 
 			Comment comment = new Comment();
-			if (photo == null || photo.getProject().getId() == projectId) {
+			if ((photo == null || photo.getProject().getId() == projectId)
+					&& user.getCommentAble()) {
 
 				comment.setProject(project);
 				comment.setPhoto(photo);
@@ -84,22 +90,23 @@ public class CommandSendComment implements Command {
 						.toString())));
 
 				commentBean.create(comment);
+				jsonObjectResponseBuilder.add(Constants.PARAMETER_COMMENT_ID,
+						comment.getId());
 
 			} else {
 				commentResult = false;
 			}
-
-			jsonObjectResponse = Json.createObjectBuilder()
-					.add(Constants.PARAMETER_COMMENT_ID, comment.getId())
-					.add(Constants.PARAMETER_STATUS, commentResult).build();
+			
+			jsonObjectResponseBuilder.add(Constants.PARAMETER_STATUS,
+					commentResult);
 		} else {
-			jsonObjectResponse = Json
-					.createObjectBuilder()
-					.add(Constants.PARAMETER_MESSAGE,
-							"Invocation without authorization").build();
+			jsonObjectResponseBuilder = Json.createObjectBuilder().add(
+					Constants.PARAMETER_MESSAGE,
+					"Invocation without authorization");
 		}
 
-		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+		toolJSON.setJsonObjectResponse(response,
+				jsonObjectResponseBuilder.build());
 
 		return null;
 	}
