@@ -29,6 +29,8 @@ public interface Constants {
 	public static final String COMMAND_FAQ = "faq";
 	public static final String COMMAND_GET_FAQ = "getfaq";
 	public static final String COMMAND_EDIT_FAQ = "editfaq";
+	public static final String COMMAND_GET_NEWS = "getnews";
+	public static final String COMMAND_EDIT_NEWS = "editnews";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
@@ -97,6 +99,7 @@ public interface Constants {
 	public static final String PARAMETER_URL_HOMEPAGE_LINK_URL = "linkurl";
 	public static final String PARAMETER_BATTLE_LINKS = "battlelinks";
 	public static final String PARAMETER_LAST_NEWS = "lastnews";
+	public static final String PARAMETER_NEWS = "news";
 	public static final String PARAMETER_LAST_COMMENTS_LIST = "lastcommentslist";
 	public static final String PARAMETER_USER_LOGIN = "userlogin";
 	public static final String PARAMETER_USER_PHOTOPATH = "userphotopath";
@@ -153,6 +156,8 @@ public interface Constants {
 	public static final String PARAMETER_SIZE = "size";
 	public static final String PARAMETER_COMMENTS = "comments";
 	public static final String PARAMETER_TEXT = "text";
+	public static final String PARAMETER_TEXT_EN = "texten";
+	public static final String PARAMETER_TEXT_NL = "textnl";
 	public static final String PARAMETER_DATE = "date";
 	public static final String PARAMETER_VOTE_ABLE = "voteable";
 	public static final String PARAMETER_COMPETITION_ID = "competitionid";

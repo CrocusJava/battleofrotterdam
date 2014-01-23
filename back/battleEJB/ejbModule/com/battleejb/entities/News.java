@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 
 @NamedQueries({
-	 @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n "),
+	 @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n ORDER BY n.loadDate DESC"),
 	 @NamedQuery(name = "News.findLast", query = "SELECT n FROM News n ORDER BY n.loadDate DESC")
 })
 public class News implements Serializable {
