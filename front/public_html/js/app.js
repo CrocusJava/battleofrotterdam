@@ -1081,13 +1081,13 @@ function call_cookie_navigator() {
         switch (resolve) {
             case "projectid":
                 if ($.cookie("projectid")) {
-                    var projectid = $.cookie("projectid");
+                    var projectid = $.cookie("projectid", Number);
                     call_load_data_for_viewproject(projectid);
                 }
                 break;
             case "userlogin":
                 if ($.cookie("userlogin")) {
-                    var projectid = $.cookie("userlogin");
+                    var userlogin = $.cookie("userlogin");
 
                 }
                 break;
