@@ -44,10 +44,10 @@ public class Project implements Serializable {
 	@OneToMany(mappedBy = "project")
 	private List<Photo> photos;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Competition competition;
 
 	@OneToMany(mappedBy = "project")

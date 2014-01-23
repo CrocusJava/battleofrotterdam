@@ -61,8 +61,8 @@ public class CommandAccaunt implements Command {
 					.add(Constants.PARAMETER_STREET, user.getAddress().getStreet())
 					.add(Constants.PARAMETER_HOUSENUMBER, user.getAddress().getHouseNumber())
 					.add(Constants.PARAMETER_POSTCODE, user.getAddress().getPostcode())
+					.add(Constants.PARAMETER_PROJECTS, getProjects(user))
 					.build();
-			//TODO Add array projects
 			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 			
 		} else {
