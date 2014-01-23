@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 
 @NamedQueries({
-	 @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n "),
+	 @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n ORDER BY n.loadDate DESC"),
 	 @NamedQuery(name = "News.findLast", query = "SELECT n FROM News n ORDER BY n.loadDate DESC")
 })
 public class News implements Serializable {
@@ -36,7 +36,7 @@ public class News implements Serializable {
 
 	private Integer keyval;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date loadDate;
 
 	private String photoPath;

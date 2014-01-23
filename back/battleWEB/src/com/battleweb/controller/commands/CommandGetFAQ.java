@@ -32,8 +32,8 @@ public class CommandGetFAQ implements Command{
 	@EJB
 	private TextBean textBean;
 	
-	String question;
-	String ansver;
+	private String question;
+	private String ansver;
 	
 	@Override
 	public String execute(HttpServletRequest request,

@@ -39,7 +39,7 @@ public class CommentBean extends AbstractFacade<Comment> {
 			int firstPosition, int size) {
 		List<Comment> photos = null;
 		try {
-			photos = em.createNamedQuery("Comment.findByProjectId", Comment.class)
+			photos = em.createNamedQuery("Comment.findActiveByProjectId", Comment.class)
 					.setParameter("projectId", projectId)
 					.setFirstResult(firstPosition).setMaxResults(size).getResultList();
 		} catch (PersistenceException e) {
@@ -52,7 +52,7 @@ public class CommentBean extends AbstractFacade<Comment> {
 			int firstPosition, int size) {
 		List<Comment> photos = null;
 		try {
-			photos = em.createNamedQuery("Comment.findByPhotoId", Comment.class)
+			photos = em.createNamedQuery("Comment.findActiveByPhotoId", Comment.class)
 					.setParameter("photoId", photoId)
 					.setFirstResult(firstPosition).setMaxResults(size).getResultList();
 		} catch (PersistenceException e) {

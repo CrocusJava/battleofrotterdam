@@ -1,4 +1,4 @@
-
+﻿
 USE battledb;
 
 INSERT INTO Role  VALUES
@@ -125,6 +125,9 @@ INSERT INTO Text VALUES
 (57, 685, '', ''),
 (58, 690, '', ''),
 (59, 695, '', '');
+(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration.', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie.');
+(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.');
+(64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
 
 
 INSERT INTO URL VALUES
@@ -137,4 +140,10 @@ INSERT INTO URL VALUES
 INSERT INTO News VALUES
 (1, 10, 'img/news1.jpg','2014-01-15', 39),
 (2, 20, 'img/news2.jpg','2014-01-16', 40),
-(3, 30, 'img/news3.jpg','2014-01-17', 41);
+(3, 30, 'img/news3.jpg','2014-01-17', 41),
+(4, 40, '','2000-12-12', 42),
+(5, 50, '','2000-12-12', 43),
+(6, 60, '','2000-12-12', 44),
+(7, 70, '','2000-12-12', 45),
+(8, 80, '','2000-12-12', 60),
+(9, 90, '','2000-12-12', 61);
