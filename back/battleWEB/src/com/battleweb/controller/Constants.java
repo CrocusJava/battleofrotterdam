@@ -28,6 +28,7 @@ public interface Constants {
 	public static final String COMMAND_ABOUT_BATTLE = "aboutbattle";
 	public static final String COMMAND_FAQ = "faq";
 	public static final String COMMAND_GET_FAQ = "getfaq";
+	public static final String COMMAND_EDIT_FAQ = "editfaq";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
