@@ -271,7 +271,11 @@ public interface Constants {
 	
 	public static final Integer TEXT_MESSAGE_ADMIN_SEND_EMAIL = 1000;
 	public static final Integer TEXT_MESSAGE_ADMIN_EDIT_USER = 1010;
-
+	
+	public static final Integer TEXT_MESSAGE_ACTOVE_FALSE = 1110;
+	public static final Integer TEXT_MESSAGE_COMMANDABLE_FALSE = 1100;
+	public static final Integer TEXT_MESSAGE_WRONG_LOGIN_OR_PASSWORD = 1120;
+	
 	//Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
 	public static final Integer URL_HOMEPAGE_LINK1 = 110;
