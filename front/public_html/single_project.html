@@ -57,7 +57,7 @@
                             <li><a href="projets.html">Projects</a></li>
                             <li><a href="FAQ.html">FAQ</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">Login-Register <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="login.html#login">Login</a></li>
@@ -118,10 +118,10 @@
                         <div class="span12">
                             <!-- Start section Blog Line details -->
                             <div class="blog-line">
-                                <a href="#"><i class="icon-calendar"></i> January 09 / 2013</a>
-                                <span> <a href="#"> <i class="icon-user"></i> 133 Likes</a></span>
+                                <a href="#"><i class="icon-calendar"></i><span id="creationdate"> January 09 / 2013</span></a>
+                                <span> <a href="#"> <i class="icon-user"></i><span id="rating">123</span> Likes</a></span>
                                 <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
-                                <a href="#" ><i class="icon-comments"></i> 12 Comments</a>
+                                <a href="#" ><i class="icon-comments"></i><span id="commentquantity">12</span> Comments</a>
                                 <div style="margin: 20px 0 0px 0;"> <a href="#" class="trylater"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
                                 <!-- <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:150px; margin: 0px 10px 0px 10px; float: left;"> <span style="position:relative; float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:18px; font-family: 'Lobster Two', cursive; padding:15px; margin-top: 50px;">[Jhohn Smith]</span>
@@ -130,9 +130,9 @@
 
 
                             <div class="text_center" style=" clear:both; ">
-                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;">New life of my room</h1>
+                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;" id="name">New life of my room</h1>
 
-                                <p id="battledescriptionshort">Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm shLorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm shLorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
+                                <p id="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm shLorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm shLorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                 </p>
                             </div>
                             <!-- Start Break Page Style-->
@@ -444,6 +444,10 @@
         <!--load js cookie #[optional]-->
         <script src="js/jquery.cookie.js"></script>
         <!--end load js cookie-->
+
+        <!--load js session #[optional]-->
+        <script src="js/jquery.session.js"></script>
+        <!--end load js session-->
 
         <!-- Load JS CountTime -->
         <script src="js/county.js"></script>

@@ -19,8 +19,13 @@ function call_all() {
     call_event_create_comment();
 
     call_start_carousel();
+
     call_data_for_index_html();
+
+    call_cookie_navigator();
+
     call_data_for_footer();
+
     call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
@@ -478,6 +483,14 @@ function call_start_carousel() {
 }
 
 function call_load_data_for_index_events(load_data) {
+    function go_to_project() {
+        var href = $(this).attr("href");
+        href = href + "#projectid";
+        $(this).attr("href", href);
+
+        $.cookie("projectid", load_data["projectid"]);
+    }
+
     var index_last_events_template = [
         {tag: "li", children: [
                 {tag: "div", add_class: "content_post", children: [
@@ -494,7 +507,7 @@ function call_load_data_for_index_events(load_data) {
                                         {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
-                        {tag: "a", attr: {href: "single_project.html"}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
+                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
                     ]}
             ]
         }];
@@ -506,11 +519,17 @@ function call_load_data_for_index_events(load_data) {
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
         var href = $(this).attr("href");
-        href = href + "?photoid=" + load_data["photoid"];
+        href = href + "#userlogin";
         $(this).attr("href", href);
+
+        $.cookie("userlogin", load_data["userlogin"]);
     }
     function go_to_project() {
-        load_data.projectid;
+        var href = $(this).attr("href");
+        href = href + "#projectid";
+        $(this).attr("href", href);
+
+        $.cookie("projectid", load_data["projectid"]);
     }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
@@ -1055,6 +1074,74 @@ function call_load_data_for_myaccount() {
 }
 
 
-function call_reading_url() {
+function call_cookie_navigator() {
+    if (window.location.hash.length > 1) {
+        var resolve = window.location.hash.substr(1);
+
+        switch (resolve) {
+            case "projectid":
+                if ($.cookie("projectid")) {
+                    var projectid = $.cookie("projectid");
+                    call_load_data_for_viewproject(projectid);
+                }
+                break;
+            case "userlogin":
+                if ($.cookie("userlogin")) {
+                    var projectid = $.cookie("userlogin");
+
+                }
+                break;
+        }
+
+    }
+
 
 }
+
+function call_load_data_for_viewproject(projectid) {
+    var data = {projectid: projectid};
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=viewproject";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        call_create_markup_for_viewproject(respons);
+    }).fail(function() {
+        console.log("error onload command=viewproject ");
+    });
+}
+
+
+
+
+
+function call_create_markup_for_viewproject(respons) {
+    $("#name").text(respons["name"]);
+    $("#creationdate").text(respons["creationdate"]);
+    $("#description").text(respons["description"]);
+    $("#rating").text(respons["rating"]);
+    $("#commentquantity").text(respons["commentquantity"]);
+}
+
+
+
+
+
+
+//	“name” : “***”,
+//		“creationdate”: “***”
+//		“description” : “***”,
+//
+//
+//
+//“footergallery”:[{
+//					"photoid": *,
+//					"photopath": "***",
+//					"projectid": *,
+//	    		    	"projectname": "***",
+//				   	 "userlogin": "***"
+//			          	},
