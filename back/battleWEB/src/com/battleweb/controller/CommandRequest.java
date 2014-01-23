@@ -22,6 +22,7 @@ import com.battleweb.controller.commands.CommandCurrentRankings;
 import com.battleweb.controller.commands.CommandEditComment;
 import com.battleweb.controller.commands.CommandEditCompetition;
 import com.battleweb.controller.commands.CommandEditFAQ;
+import com.battleweb.controller.commands.CommandEditNews;
 import com.battleweb.controller.commands.CommandEditUserApply;
 import com.battleweb.controller.commands.CommandFAQ;
 import com.battleweb.controller.commands.CommandFindUser;
@@ -84,6 +85,8 @@ public class CommandRequest {
 	private CommandEditFAQ commandEditFAQ;
 	@EJB 
 	private CommandGetNews commandGetNews;
+	@EJB 
+	private CommandEditNews commandEditNews;
 	@EJB 
 	private CommandUploadAvatar commandUploadAvatar;
 	@EJB 
@@ -151,6 +154,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_GET_FAQ, commandGetFAQ);
 		commands.put(Constants.COMMAND_EDIT_FAQ, commandEditFAQ);
 		commands.put(Constants.COMMAND_GET_NEWS, commandGetNews);
+		commands.put(Constants.COMMAND_EDIT_NEWS, commandEditNews);
 		commands.put(Constants.COMMAND_UPLOAD_AVATAR, commandUploadAvatar);
 		commands.put(Constants.COMMAND_UPLOAD_PHOTO, commandUploadPhoto);
 		commands.put(Constants.COMMAND_CURRENTRANKINGS, commandCurrentRankings);

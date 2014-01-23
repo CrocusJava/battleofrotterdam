@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2014 at 01:04 PM
+-- Generation Time: Jan 23, 2014 at 02:42 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -171,12 +171,12 @@ INSERT INTO `News` (`id`, `keyval`, `photoPath`, `loadDate`, `text_id`) VALUES
 (1, 10, 'img/news1.jpg', '2014-01-15 08:00:00', 39),
 (2, 20, 'img/news2.jpg', '2014-01-16 08:00:00', 40),
 (3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41),
-(4, 40, '', '0000-00-00 00:00:00', 42),
-(5, 50, '', '0000-00-00 00:00:00', 43),
-(6, 60, '', '0000-00-00 00:00:00', 44),
-(7, 70, '', '0000-00-00 00:00:00', 45),
-(8, 80, '', '0000-00-00 00:00:00', 60),
-(9, 90, '', '0000-00-00 00:00:00', 61);
+(4, 40, '', '2000-12-12 08:00:00', 42),
+(5, 50, '', '2000-12-12 08:00:00', 43),
+(6, 60, '', '2000-12-12 08:00:00', 44),
+(7, 70, '', '2000-12-12 08:00:00', 45),
+(8, 80, '', '2000-12-12 08:00:00', 60),
+(9, 90, '', '2000-12-12 08:00:00', 61);
 
 -- --------------------------------------------------------
 
@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 --
 -- Dumping data for table `Text`
@@ -352,9 +352,9 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (58, 690, '', ''),
 (59, 695, '', ''),
 (60, 80, '', ''),
-(61, 90, '', '');
-(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration.', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie.');
-(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.');
+(61, 90, '', ''),
+(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie'),
+(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie'),
 (64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
 
 -- --------------------------------------------------------
