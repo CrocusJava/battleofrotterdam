@@ -53,17 +53,25 @@ public class ToolSession {
 	
 	public Integer getUserId(ServletRequest request){
 		HttpSession session = ((HttpServletRequest)request).getSession();
-		return (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDUSER);
+		Integer userId = (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDUSER);
+		if(userId == null){
+			return 0;
+		}
+		return userId;
 	}
 	public User getUser(ServletRequest request){
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		return (User)session.getAttribute(Constants.PARAMETER_SESSION_USER);
 	}
-	public Integer getRoleId(HttpServletRequest request){
-		HttpSession session = request.getSession();
-		return (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDROLE);
+	public Integer getRoleId(ServletRequest request){
+		HttpSession session = ((HttpServletRequest) request).getSession();
+		Integer roleId = (Integer)session.getAttribute(Constants.PARAMETER_SESSION_IDROLE);
+		if(roleId == null){
+			return 0;
+		}
+		return roleId;
 	}
-	public boolean isAdmin(HttpServletRequest request){
+	public boolean isAdmin(ServletRequest request){
 		Integer roleId = getRoleId(request);
 		return roleId != null && roleId == 1;
 	}

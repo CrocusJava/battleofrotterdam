@@ -19,6 +19,7 @@ import com.battleejb.entities.CompetitionType_;
 import com.battleejb.entities.Competition_;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.Project_;
+import com.battleejb.entities.Search;
 import com.battleejb.entities.User;
 import com.battleejb.entities.User_;
 
@@ -72,10 +73,11 @@ public class ProjectBean extends AbstractFacade<Project> {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<Project> cq = cb.createQuery(Project.class);
 			Root<Project> p = cq.from(Project.class);
-			Predicate predicate = cb.and(cb.equal(p.get(Project_.user).get(User_.active), true));
+			Predicate predicate = cb.and(cb.equal(
+					p.get(Project_.user).get(User_.active), true));
 			if (approved != null) {
-				predicate = cb
-						.and(predicate ,cb.equal(p.get(Project_.approved), approved));
+				predicate = cb.and(predicate,
+						cb.equal(p.get(Project_.approved), approved));
 			}
 			if (login != null) {
 				predicate = cb.and(
@@ -129,15 +131,17 @@ public class ProjectBean extends AbstractFacade<Project> {
 		}
 		return projects;
 	}
-	
-	public List<Project> findProjectsByUser(User user){
-		List<Project> listProjects=null;
-		 try {
-			 listProjects=em.createNamedQuery("Project.findProjectsByUser", Project.class)
-				.setParameter("user", user).getResultList();
-		 } catch (PersistenceException e) {
-             /* LOG */
-		 }
-     return listProjects;
-	}
+
+	public List<Project> findProjectsByUser(User user) {
+		List<Project> listProjects = null;
+		try {
+			listProjects = em
+					.createNamedQuery("Project.findProjectsByUser",
+							Project.class).setParameter("user", user)
+					.getResultList();
+		} catch (PersistenceException e) {
+			/* LOG */
+		}
+		return listProjects;
+	}	
 }

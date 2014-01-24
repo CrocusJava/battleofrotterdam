@@ -36,6 +36,7 @@ public interface Constants {
 	public static final String COMMAND_CREATE_NEWS = "createnews";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
+	public static final String COMMAND_UPLOAD_PHOTO_NEWS = "uploadphotonews";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";
 	public static final String COMMAND_VIEWPROJECT = "viewproject";
 	public static final String COMMAND_VIEW_PROJECT_COMMENTS = "viewprojectcomments";
@@ -58,7 +59,7 @@ public interface Constants {
 	public static final String COMMAND_CHANGE_PROJECT_STATUS = "changeprojectstatus";
 	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
-	
+	public static final String COMMAND_SEARCH = "search";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -184,6 +185,7 @@ public interface Constants {
 	
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
 	public static final String PARAMETER_PHOTO_NAME="photoname";
+	public static final String PARAMETER_PHOTO_NEWS_NAME="photonewsname";
 	public static final String PARAMETER_AVATAR_NAME="avatarname";
 	public static final String PARAMETER_ID_PHOTO = "idphoto";
 	
@@ -304,9 +306,11 @@ public interface Constants {
 	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
 	
 	//Path
+	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";
 	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
 	public static final String PATH_SAVE_PHOTO = "/usr/app/jboss/photo";
 	
 	public static final String PATH_GET_PHOTO="controller?command=getphoto&photoname=";
-	public static final String PATH_GET_AVATAR="controller?command=getphoto&avatarname=";	
+	public static final String PATH_GET_AVATAR="controller?command=getphoto&avatarname=";
+	public static final String PATH_GET_PHOTO_NEWS="controller?command=getphoto&photonewsname=";	
 }
