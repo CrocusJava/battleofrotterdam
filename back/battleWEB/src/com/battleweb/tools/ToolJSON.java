@@ -29,7 +29,7 @@ public class ToolJSON {
 		response.setContentType("application/json;charset=UTF-8");
 		JsonWriter jsonWriterResponse=Json.createWriter(response.getWriter());
 		jsonWriterResponse.writeObject(jsonObject);
-		jsonWriterResponse.close();
+//		jsonWriterResponse.close();         so it is necessary
 	}
 	
 }
