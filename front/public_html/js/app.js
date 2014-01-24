@@ -900,12 +900,20 @@ function call_load_data_for_news_index() {
 
 /*=======================Рекомендовано для передачи данных в формате JSON============================*/
 function call_data_load_for_competitions() {
-    var data = JSON.stringify(
+    var year = JSON.stringify(
             {
                 firstposition: 0,
                 size: 1,
                 filter: {
                     type: "year"  //year / month // 2 запрос а разрыми параметрами type
+                }
+            });
+    var month = JSON.stringify(
+            {
+                firstposition: 0,
+                size: 1,
+                filter: {
+                    type: "month"  //year / month // 2 запрос а разрыми параметрами type
                 }
             });
 
@@ -914,30 +922,31 @@ function call_data_load_for_competitions() {
         url: "/battleWEB/controller?command=competitions",
         dataType: "json",
         contentType: "application/json",
-        data: data
-    }).done(function(respons) {
-        var competitions = respons.competitions;
-        var conteiner = $("#competitions");
-        for (var i in competitions) {
-            for (var key in competitions[i]) {
-                var element = $(document.createElement("li"));
-                element.appendTo(conteiner);
-                var newconteiner = element;
-                element.text(key + " =========> " + competitions[i][key]);
+        data: year
+    }).done(function(year) {
+        year = year.competitions[0];
+        $("#yearly_battle_competitions_name").text(year["name"]);
+        $("#yearly_battle_competitions_startdate").text(year["startdate"]);
+        $("#yearly_battle_competitions_enddate").text(year["enddate"]);
+        $("#yearly_battle_competitions_description").text(year["description"]);
 
-                if ({}.toString.call(competitions[i][key]) === "[object Object]") {
-                    var ulElement = $(document.createElement("ul"));
-                    ulElement.appendTo(newconteiner);
-                    var ulConteiner = ulElement;
-                    for (var value in competitions[i][key]) {
-                        var liElement = $(document.createElement("li"));
-                        liElement.appendTo(ulConteiner);
-                        liElement.text(value + " =========> " + competitions[i][key][value]);
-                    }
-                }
-            }
+    }).fail(function() {
+        console.log("Error for load for competitions.html");
+    });
 
-        }
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=competitions",
+        dataType: "json",
+        contentType: "application/json",
+        data: month
+    }).done(function(month) {
+        month = month.competitions[0];
+        $("#monthly_battle_competitions_name").text(month["name"]);
+        $("#monthly_battle_competitions_startdate").text(month["startdate"]);
+        $("#monthly_battle_competitions_enddate").text(month["enddate"]);
+        $("#monthly_battle_competitions_description").text(month["description"]);
+
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
