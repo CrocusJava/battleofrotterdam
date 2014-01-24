@@ -47,6 +47,7 @@ import com.battleweb.controller.commands.CommandShowUsers;
 import com.battleweb.controller.commands.CommandTerms;
 import com.battleweb.controller.commands.CommandUploadAvatar;
 import com.battleweb.controller.commands.CommandUploadPhoto;
+import com.battleweb.controller.commands.CommandUploadPhotoNews;
 import com.battleweb.controller.commands.CommandViewPhotoComments;
 import com.battleweb.controller.commands.CommandViewProject;
 import com.battleweb.controller.commands.CommandViewProjectComments;
@@ -149,6 +150,8 @@ public class CommandRequest {
 	private CommandEditCompetition commandEditCompetition;
 	@EJB
 	private CommandSearch commandSearch;
+	@EJB
+	private CommandUploadPhotoNews commandUploadPhotoNews;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -196,6 +199,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_CREATE_COMPETITON, commandCreateCompetition);
 		commands.put(Constants.COMMAND_EDIT_COMPETITON, commandEditCompetition);
 		commands.put(Constants.COMMAND_SEARCH, commandSearch);
+		commands.put(Constants.COMMAND_UPLOAD_PHOTO_NEWS, commandUploadPhotoNews);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
