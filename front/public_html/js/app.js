@@ -681,7 +681,7 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
-            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : text_key;//var text_value = dataObj[text_key] || text_key;
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : dataObj[text_key] === "" ? "  " : text_key;//var text_value = dataObj[text_key] || text_key;
             // <<<<<<<<<<================================== Если текст является объектом
             if ({}.toString.call(text_value) === "[object Object]") {
                 // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
