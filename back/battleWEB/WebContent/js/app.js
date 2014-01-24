@@ -347,7 +347,15 @@ function AjaxRegistrationLogin(form) {
         }
         if (form.id === "login") {
             if (data.iduser) {
+                $.cookie("login", true);
                 window.location = "myaccount.html";
+            }
+            else {
+                $.cookie("login", false);
+                $("#sorry").text("Sorry, no guessing. Try again.");
+                $("input").focus(function() {
+                    $("#sorry").text("");
+                });
             }
         }
 
@@ -361,7 +369,11 @@ function AjaxRegistrationLogin(form) {
 
         console.log(data);
     }).fail(function(data) {
-
+        $.cookie("login", false);
+        $("#sorry").text("Sorry, no guessing. Try again.");
+        $("input").focus(function() {
+            $("#sorry").text("");
+        });
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
@@ -488,7 +500,7 @@ function call_load_data_for_index_events(load_data) {
         href = href + "#projectid";
         $(this).attr("href", href);
 
-        $.cookie("projectid", load_data["projectid"]);
+        $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
 
     var index_last_events_template = [
@@ -681,7 +693,7 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
-            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : text_key;//var text_value = dataObj[text_key] || text_key;
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : dataObj[text_key] === "" ? "  " : text_key;//var text_value = dataObj[text_key] || text_key;
             // <<<<<<<<<<================================== Если текст является объектом
             if ({}.toString.call(text_value) === "[object Object]") {
                 // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
@@ -855,6 +867,7 @@ function call_load_data_for_about_battle() {
 function call_event_logout() {
     $("#logout").click(function() {
         $.post("/battleWEB/controller?command=logout");
+        $.cookie("login", false);
         window.location = "index.html";
     });
 }
@@ -891,11 +904,21 @@ function call_load_data_for_news_index() {
 
 /*=======================Рекомендовано для передачи данных в формате JSON============================*/
 function call_data_load_for_competitions() {
-    var data = JSON.stringify(
-            {firstposition: 0,
+    var year = JSON.stringify(
+            {
+                firstposition: 0,
                 size: 1,
-                orderby: "startdate",
-                showdescription: true
+                filter: {
+                    type: "year"  //year / month // 2 запрос а разрыми параметрами type
+                }
+            });
+    var month = JSON.stringify(
+            {
+                firstposition: 0,
+                size: 1,
+                filter: {
+                    type: "month"  //year / month // 2 запрос а разрыми параметрами type
+                }
             });
 
     $.ajax({
@@ -903,30 +926,31 @@ function call_data_load_for_competitions() {
         url: "/battleWEB/controller?command=competitions",
         dataType: "json",
         contentType: "application/json",
-        data: data
-    }).done(function(respons) {
-        var competitions = respons.competitions;
-        var conteiner = $("#competitions");
-        for (var i in competitions) {
-            for (var key in competitions[i]) {
-                var element = $(document.createElement("li"));
-                element.appendTo(conteiner);
-                var newconteiner = element;
-                element.text(key + " =========> " + competitions[i][key]);
+        data: year
+    }).done(function(year) {
+        year = year.competitions[0];
+        $("#yearly_battle_competitions_name").text(year["name"]);
+        $("#yearly_battle_competitions_startdate").text(year["startdate"]);
+        $("#yearly_battle_competitions_enddate").text(year["enddate"]);
+        $("#yearly_battle_competitions_description").text(year["description"]);
 
-                if ({}.toString.call(competitions[i][key]) === "[object Object]") {
-                    var ulElement = $(document.createElement("ul"));
-                    ulElement.appendTo(newconteiner);
-                    var ulConteiner = ulElement;
-                    for (var value in competitions[i][key]) {
-                        var liElement = $(document.createElement("li"));
-                        liElement.appendTo(ulConteiner);
-                        liElement.text(value + " =========> " + competitions[i][key][value]);
-                    }
-                }
-            }
+    }).fail(function() {
+        console.log("Error for load for competitions.html");
+    });
 
-        }
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=competitions",
+        dataType: "json",
+        contentType: "application/json",
+        data: month
+    }).done(function(month) {
+        month = month.competitions[0];
+        $("#monthly_battle_competitions_name").text(month["name"]);
+        $("#monthly_battle_competitions_startdate").text(month["startdate"]);
+        $("#monthly_battle_competitions_enddate").text(month["enddate"]);
+        $("#monthly_battle_competitions_description").text(month["description"]);
+
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1113,6 +1137,15 @@ function call_cookie_navigator() {
                 break;
         }
 
+    }
+
+    if ($.cookie("login")) {
+        $("#dropdown_login_no").hide();
+        $("#dropdown_login_yes").show();
+    }
+    else {
+        $("#dropdown_login_yes").hide();
+        $("#dropdown_login_no").show();
     }
 
 
