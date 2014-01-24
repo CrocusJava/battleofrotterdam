@@ -1139,7 +1139,7 @@ function call_cookie_navigator() {
 
     }
 
-    if ($.cookie("login")) {
+    if ($.cookie("login") === "true") {
         $("#dropdown_login_no").hide();
         $("#dropdown_login_yes").show();
     }
