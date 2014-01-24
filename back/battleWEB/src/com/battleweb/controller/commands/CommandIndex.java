@@ -73,7 +73,6 @@ public class CommandIndex implements Command{
 		
 		Date yearCompetitionDate = yearCompetition.getDateEnd();
 		Date monthCompetitionDate = monthCompetition.getDateEnd();
-			System.out.println("********* "+dateFormatTimer.format(monthCompetitionDate));
 		
 		//get descriptions from db
 		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());

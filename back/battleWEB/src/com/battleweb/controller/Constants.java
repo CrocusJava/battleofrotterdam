@@ -31,6 +31,8 @@ public interface Constants {
 	public static final String COMMAND_EDIT_FAQ = "editfaq";
 	public static final String COMMAND_GET_NEWS = "getnews";
 	public static final String COMMAND_EDIT_NEWS = "editnews";
+	public static final String COMMAND_GET_HOME = "gethome";
+	public static final String COMMAND_EDIT_HOME = "edithome";
 	public static final String COMMAND_CREATE_NEWS = "createnews";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
@@ -161,6 +163,8 @@ public interface Constants {
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_TEXT_EN = "texten";
 	public static final String PARAMETER_TEXT_NL = "textnl";
+	public static final String PARAMETER_EN = "en";
+	public static final String PARAMETER_NL = "nl";
 	public static final String PARAMETER_DATE = "date";
 	public static final String PARAMETER_VOTE_ABLE = "voteable";
 	public static final String PARAMETER_COMPETITION_ID = "competitionid";
