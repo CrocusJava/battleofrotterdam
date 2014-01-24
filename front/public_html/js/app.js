@@ -1,6 +1,5 @@
 $(window).load(function() {
     call_all();
-
 });
 function call_all() {
     call_grid();
@@ -17,17 +16,11 @@ function call_all() {
 //    call_events_show_hide_login_registration();
 
     call_event_create_comment();
-
     call_start_carousel();
-
     call_data_for_index_html();
-
     call_cookie_navigator();
-
     call_data_for_footer();
-
     call_uploading_file_on_server();
-
     //$(".trylater").click(trylater());
     call_trylater();
 }
@@ -366,7 +359,6 @@ function AjaxRegistrationLogin(form) {
         }
 
         call_enabling_submit_button();
-
         console.log(data);
     }).fail(function(data) {
         $.cookie("login", false);
@@ -499,7 +491,6 @@ function call_load_data_for_index_events(load_data) {
         var href = $(this).attr("href");
         href = href + "#projectid";
         $(this).attr("href", href);
-
         $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
 
@@ -533,14 +524,12 @@ function call_load_data_for_index_comments(load_data) {
         var href = $(this).attr("href");
         href = href + "#userlogin";
         $(this).attr("href", href);
-
         $.cookie("userlogin", load_data["userlogin"], {expires: 100});
     }
     function go_to_project() {
         var href = $(this).attr("href");
         href = href + "#projectid";
         $(this).attr("href", href);
-
         $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
     var index_last_comments_template = [
@@ -580,7 +569,6 @@ function call_data_for_index_html() {
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
             $("#battleanimationdescription").text(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
-
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
                 var dataObj = dataArray[i];
@@ -650,7 +638,7 @@ function call_data_for_index_html() {
         call_load_data_for_current_rankings();
     }
 
-    //<<<<<<<<<<<<=============================задачи для всех страницы
+//<<<<<<<<<<<<=============================задачи для всех страницы
 
 
 }
@@ -681,7 +669,7 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
                 value = dataObj[value] || value;
                 // <<<<<<<<<<================================== Если атрибут является объектом
                 if ({}.toString.call(value) === "[object Object]") {
-                    // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+// <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
                     var subvalue = value[templateObj["subattr"][name_prop]];
                     element.attr(name_prop, subvalue);
                 }
@@ -693,10 +681,10 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
-            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : dataObj[text_key] === "" ? "  " : text_key;//var text_value = dataObj[text_key] || text_key;
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : dataObj[text_key] === "" ? "  " : text_key; //var text_value = dataObj[text_key] || text_key;
             // <<<<<<<<<<================================== Если текст является объектом
             if ({}.toString.call(text_value) === "[object Object]") {
-                // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+// <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
                 var subvalue_text = text_value[templateObj["subattr"][text_key]];
                 element.text(subvalue_text);
             }
@@ -705,7 +693,7 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
             }
 
         }
-        // <<<<<<<<<<================================== Добавление обработчика событий к элементу
+// <<<<<<<<<<================================== Добавление обработчика событий к элементу
         if ("add_handler" in templateObj) {
             for (var event in templateObj["add_handler"]) {
                 element.on(event, templateObj["add_handler"][event]);
@@ -748,8 +736,6 @@ function call_data_for_footer() {
 
 
         call_load_data_for_index_footer_contacts(respons["contacts"]);
-
-
         var dataArray = respons["battlelinks"];
         for (var i in dataArray) {
             var dataObj = dataArray[i];
@@ -807,7 +793,6 @@ function call_uploading_file_on_server(command_value) {
             },
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
-
             }
         });
     }
@@ -920,7 +905,6 @@ function call_data_load_for_competitions() {
                     type: "month"  //year / month // 2 запрос а разрыми параметрами type
                 }
             });
-
     $.ajax({
         type: "POST",
         url: "/battleWEB/controller?command=competitions",
@@ -933,11 +917,9 @@ function call_data_load_for_competitions() {
         $("#yearly_battle_competitions_startdate").text(year["startdate"]);
         $("#yearly_battle_competitions_enddate").text(year["enddate"]);
         $("#yearly_battle_competitions_description").text(year["description"]);
-
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
-
     $.ajax({
         type: "POST",
         url: "/battleWEB/controller?command=competitions",
@@ -950,7 +932,6 @@ function call_data_load_for_competitions() {
         $("#monthly_battle_competitions_startdate").text(month["startdate"]);
         $("#monthly_battle_competitions_enddate").text(month["enddate"]);
         $("#monthly_battle_competitions_description").text(month["description"]);
-
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -960,7 +941,6 @@ function call_modal_window_forgotten_password() {
     $("#forgotten_password").click(function() {
         $("#myModal").modal("show");
     });
-
 }
 
 
@@ -1045,7 +1025,6 @@ function call_load_data_for_current_rankings() {
 
         var yearprojects = data["yearprojects"];
         var monthprojects = data["monthprojects"];
-
         for (var i in monthprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, "z"), $("#monthly_battle_competitions"), monthprojects[i]);
@@ -1068,12 +1047,9 @@ function call_load_data_for_current_rankings() {
 function call_load_data_for_viewproject() {
 
     var viewproject_template = [];
-
     var send_data = {
         projectid: 17
     };
-
-
     $.ajax({
         type: "POST",
         url: "/battleWEB/controller?command=viewproject",
@@ -1121,7 +1097,6 @@ function call_load_data_for_myaccount() {
 function call_cookie_navigator() {
     if (window.location.hash.length > 1) {
         var resolve = window.location.hash.substr(1);
-
         switch (resolve) {
             case "projectid":
                 if ($.cookie("projectid")) {
@@ -1132,7 +1107,6 @@ function call_cookie_navigator() {
             case "userlogin":
                 if ($.cookie("userlogin")) {
                     var userlogin = $.cookie("userlogin");
-
                 }
                 break;
         }
@@ -1179,6 +1153,78 @@ function call_create_markup_for_viewproject(respons) {
     $("#rating").text(respons["rating"]);
     $("#commentquantity").text(respons["commentquantity"]);
 }
+
+
+
+
+
+function call_load_data_for_projets_page() {
+    var template_projets_page = [
+        {tag: "section", add_class: "project_block", children: [
+                {tag: "div", add_class: "blog-line", children: [
+                        {tag: "a", attr: {href: "#"}, children: [
+                                {tag: "i", add_class: "icon-user"},
+                                {tag: "span", text: "user", subattr: {"user": "login"}}
+                            ]},
+                        {tag: "span", children: [
+                                {tag: "a", attr: {href: "#"}, children: [
+                                        {tag: "i", add_class: "icon-ok"},
+                                        {tag: "span", text: "rating"},
+                                        {tag: "span", text: " Likes"}
+                                    ]}
+                            ]},
+                        {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
+                                {tag: "i", add_class: "icon-comments"},
+                                {tag: "span", text: "commentquantity"},
+                                {tag: "span", text: " Comments"}
+                            ]}
+                    ]},
+                {tag: "div", add_class: "project_block_ava", children: [
+                        {tag: "img", attr: {src: "user", style: "width:200px;"}, subattr: {"src": "avatarpath"}, add_class: "img-circle"}
+                    ]},
+                {tag: "article", add_class: "project_block_proj", children: [
+                        {tag: "div", add_class: "project_block_proj_name", text: "name"},
+                        {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
+                    ]},
+                {tag: "div", add_class: "project_block_photo", children: [
+                        {tag: "img", attr: {src: "lastphoto", style: "width:200px;"}, subattr: {"src": "path"}, add_clas: "img-polaroid"},
+                        {tag: "div", attr: {style: "float:left; width: 100%; margin: 10px auto;"}, children: [
+                                {tag: "div", attr: {style: "font-size: 12px; padding: 5px; float: right;"}, add_class: "btn btn-primary btn-large flat", children: [
+                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "Read more"}
+                                    ]}
+                            ]}
+                    ]}
+            ]},
+        {tag: "div", attr: {"style": "height:35px;"}}
+
+    ];
+    var url = "/battleWEB/controller?command=projects";
+    var data = JSON.stringify({
+        firstposition: 0,
+        size: 10,
+        orderby: "date",
+        sort: "desc"
+    });
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+
+        call_create_markup_for_projects(respons);
+    }).fail(function() {
+        console.log("error onload command = projects ");
+    });
+
+    function call_create_markup_for_projects(respons) {
+        for (var project in respons.projects) {
+            call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons.projects[project]);
+        }
+    }
+}
+
 
 
 
