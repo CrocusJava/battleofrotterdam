@@ -347,9 +347,11 @@ function AjaxRegistrationLogin(form) {
         }
         if (form.id === "login") {
             if (data.iduser) {
+                $.cookie("login", true);
                 window.location = "myaccount.html";
             }
             else {
+                $.cookie("login", false);
                 $("#sorry").text("Sorry, no guessing. Try again.");
                 $("input").focus(function() {
                     $("#sorry").text("");
@@ -367,6 +369,7 @@ function AjaxRegistrationLogin(form) {
 
         console.log(data);
     }).fail(function(data) {
+        $.cookie("login", false);
         $("#sorry").text("Sorry, no guessing. Try again.");
         $("input").focus(function() {
             $("#sorry").text("");
@@ -497,7 +500,7 @@ function call_load_data_for_index_events(load_data) {
         href = href + "#projectid";
         $(this).attr("href", href);
 
-        $.cookie("projectid", load_data["projectid"]);
+        $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
 
     var index_last_events_template = [
@@ -864,6 +867,7 @@ function call_load_data_for_about_battle() {
 function call_event_logout() {
     $("#logout").click(function() {
         $.post("/battleWEB/controller?command=logout");
+        $.cookie("login", false);
         window.location = "index.html";
     });
 }
@@ -1133,6 +1137,15 @@ function call_cookie_navigator() {
                 break;
         }
 
+    }
+
+    if ($.cookie("login")) {
+        $("#dropdown_login_no").hide();
+        $("#dropdown_login_yes").show();
+    }
+    else {
+        $("#dropdown_login_yes").hide();
+        $("#dropdown_login_no").show();
     }
 
 
