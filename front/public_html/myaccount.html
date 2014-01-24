@@ -200,7 +200,7 @@
                                     </section>
 
 
-                                    <input type="submit" class="btn btn-primary btn-large flat" value="Create new project" style="margin: 20px 35%;">
+                                    <div class="btn btn-primary btn-large flat createproj" style="margin: 20px 35%;">Create new project</div>
 
 
                                 </form><!-- End Form-->
@@ -215,7 +215,39 @@
                 </div>
 
             </section><!-- End section content page -->
-            <!--Start Footer Section-->
+          
+<div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Wellcome to creating new project</h3>
+            </div>
+            <div class="modal-body">
+				  <label>Chose the Competition:</label>
+									<div class="radio">
+											<label>
+										<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+										Monthly competition
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+										<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+										Yearly competition
+									  </label>
+									</div>
+                  
+				  <label>Enter project name:</label>
+                                        <input type="text" name="project" class="input-block-level" required="">
+                                       
+            </div>
+            <div class="modal-footer">
+                <button class="btn create" data-dismiss="modal" aria-hidden="true">Create</button>
+            </div>
+        </div>
+
+
+
+		  <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
@@ -368,7 +400,15 @@
         <!--Load JS config application-->
         <script src="js/app.js"></script>
         <!--end JS config application-->
-
+ 
+ <script type="text/javascript">
+            $(".createproj").click(function() {
+                $("#myModal_CP").modal("show");
+                $(".create").click(function() {
+                    window.location = "single_project.html";
+                });
+            });
+        </script>
 
     </body>
 </html>
