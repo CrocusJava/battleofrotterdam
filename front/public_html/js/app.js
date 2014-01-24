@@ -638,6 +638,12 @@ function call_data_for_index_html() {
         call_load_data_for_current_rankings();
     }
 
+//<<<<<<<<<<<<=============================задачи для страницы вывода всех проектов 
+
+    if (window.location.href.match(/projets.html$/)) {
+        call_load_data_for_projets_page();
+    }
+
 //<<<<<<<<<<<<=============================задачи для всех страницы
 
 
