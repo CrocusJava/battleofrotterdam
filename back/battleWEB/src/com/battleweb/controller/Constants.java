@@ -58,7 +58,7 @@ public interface Constants {
 	public static final String COMMAND_CHANGE_PROJECT_STATUS = "changeprojectstatus";
 	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
-	
+	public static final String COMMAND_SEARCH = "search";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
