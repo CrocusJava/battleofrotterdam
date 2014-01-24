@@ -26,8 +26,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	 @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n ORDER BY n.loadDate DESC"),
 	 @NamedQuery(name = "News.findLast", query = "SELECT n FROM News n ORDER BY n.loadDate DESC"),
-	 @NamedQuery(name = "News.findOlder", query = "SELECT n FROM News n WHERE n.loadDate=(SELECT MIN(n.loadDate) FROM n)")
-	 //@NamedQuery(name = "News.findOlder", query = "SELECT n FROM News n ORDER BY n.loadDate ASC")
+	 //@NamedQuery(name = "News.findOlder", query = "SELECT n FROM News n WHERE n.loadDate=(SELECT MIN(n.loadDate) FROM n)")
+	 @NamedQuery(name = "News.findOlder", query = "SELECT n FROM News n ORDER BY n.loadDate ASC")
 })
 public class News implements Serializable {
 	private static final long serialVersionUID = 1L;

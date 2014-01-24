@@ -39,8 +39,7 @@ public class CommandCreateNews implements Command{
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		//replaces the older news by created
-		News news = newsBean.findOlder();
-		System.out.println("*****************"+news);
+		News news = newsBean.findOlder().get(0);
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		Integer keyval = news.getKeyval();
 		Text text = textBean.findByKey(keyval);

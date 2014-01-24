@@ -19,8 +19,13 @@ function call_all() {
     call_event_create_comment();
 
     call_start_carousel();
+
     call_data_for_index_html();
+
+    call_cookie_navigator();
+
     call_data_for_footer();
+
     call_uploading_file_on_server();
 
     //$(".trylater").click(trylater());
@@ -478,6 +483,14 @@ function call_start_carousel() {
 }
 
 function call_load_data_for_index_events(load_data) {
+    function go_to_project() {
+        var href = $(this).attr("href");
+        href = href + "#projectid";
+        $(this).attr("href", href);
+
+        $.cookie("projectid", load_data["projectid"]);
+    }
+
     var index_last_events_template = [
         {tag: "li", children: [
                 {tag: "div", add_class: "content_post", children: [
@@ -494,7 +507,7 @@ function call_load_data_for_index_events(load_data) {
                                         {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
-                        {tag: "a", attr: {href: "single_project.html"}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
+                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
                     ]}
             ]
         }];
@@ -506,11 +519,17 @@ function call_load_data_for_index_events(load_data) {
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
         var href = $(this).attr("href");
-        href = href + "?photoid=" + load_data["photoid"];
+        href = href + "#userlogin";
         $(this).attr("href", href);
+
+        $.cookie("userlogin", load_data["userlogin"], {expires: 100});
     }
     function go_to_project() {
-        load_data.projectid;
+        var href = $(this).attr("href");
+        href = href + "#projectid";
+        $(this).attr("href", href);
+
+        $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
@@ -662,15 +681,15 @@ function call_markup_index(markupTemplate, parentsContainer, dataObj) {
 // <<<<<<<<<<================================== Добавление текста к элементу
         if ("text" in templateObj) {
             var text_key = templateObj["text"];
-            text_key = dataObj[text_key] || text_key;
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : text_key;//var text_value = dataObj[text_key] || text_key;
             // <<<<<<<<<<================================== Если текст является объектом
-            if ({}.toString.call(text_key) === "[object Object]") {
+            if ({}.toString.call(text_value) === "[object Object]") {
                 // <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
-                var subvalue_text = text_key[templateObj["subattr"][text_key]];
+                var subvalue_text = text_value[templateObj["subattr"][text_key]];
                 element.text(subvalue_text);
             }
             else {
-                element.text(text_key);
+                element.text(text_value);
             }
 
         }
@@ -957,34 +976,60 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-        console.log(data);
-        var carent_rankings_template = [
-            {tag: "div", add_class: "span4 text_center", children: [
-                    {tag: "div", add_class: "boxfeature", children: [
-                            {tag: "div", add_class: "img_preview", children: [
-                                    {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
-                                    {tag: "span", add_class: "label flat label-success likes", text: "100 Likes"},
-                                    {tag: "span", add_class: "label flat label-success label_comments", text: "commentquantity"},
-                                    {tag: "h4", text: "First winner"}
-                                ]},
-                            {tag: "div", add_class: "desc", children: [
-                                    {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
-                                    {tag: "p", children: [
-                                            {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
-                                        ]}
-                                ]}
-                        ]}
-                ]}
-        ];
+        /* <div class="span4 text_center">
+         <div class="boxfeature_">
+         <div class="img_preview_">
+         <img src="img/remont8.jpg" data-src="lobster/images/morguefile/file9401274960472.jpg" alt="img_preview">
+         <a href="" class="label flat label-success likes" >100 Likes</a>
+         <a href="" class="label flat label-success label_comments" >10 Comments</a>
+         <img src="img/z.png" class="star1">
+         </div>
+         <div class="desc">
+         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+         <p><a class="btn btn-primary flat btn-large">Read More</a></p>
+         </div>
+         </div>
+         </div>*/
+        var count = 0;
+        function return_carent_rankings_template(count, img) {
+
+            return [
+                {tag: "div", add_class: "span4 text_center", children: [
+                        {tag: "div", add_class: "boxfeature_", children: [
+                                {tag: "div", add_class: "img_preview_", children: [
+                                        {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
+                                        {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
+                                                {tag: "span", text: "rating"},
+                                                {tag: "span", text: " Likes"}
+                                            ]},
+                                        {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
+                                                {tag: "span", text: "commentquantity"},
+                                                {tag: "span", text: " Comments"}
+                                            ]},
+                                        {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
+                                    ]},
+                                {tag: "div", add_class: "desc", children: [
+                                        {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
+                                        {tag: "p", children: [
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                            ]}
+                                    ]}
+                            ]}
+                    ]}
+            ];
+        }
+
         var yearprojects = data["yearprojects"];
         var monthprojects = data["monthprojects"];
 
         for (var i in monthprojects) {
-            call_markup_index(carent_rankings_template, $("#monthly_battle_competitions"), monthprojects[i]);
+            ++count;
+            call_markup_index(return_carent_rankings_template(count, "z"), $("#monthly_battle_competitions"), monthprojects[i]);
         }
-
+        count = 0;
         for (var i in yearprojects) {
-            call_markup_index(carent_rankings_template, $("#yearly_battle_competitions"), yearprojects[i]);
+            ++count;
+            call_markup_index(return_carent_rankings_template(count, (count + "" + count)), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
@@ -1049,6 +1094,74 @@ function call_load_data_for_myaccount() {
 }
 
 
-function call_reading_url() {
+function call_cookie_navigator() {
+    if (window.location.hash.length > 1) {
+        var resolve = window.location.hash.substr(1);
+
+        switch (resolve) {
+            case "projectid":
+                if ($.cookie("projectid")) {
+                    var projectid = parseInt($.cookie("projectid"));
+                    call_load_data_for_viewproject(projectid);
+                }
+                break;
+            case "userlogin":
+                if ($.cookie("userlogin")) {
+                    var userlogin = $.cookie("userlogin");
+
+                }
+                break;
+        }
+
+    }
+
 
 }
+
+function call_load_data_for_viewproject(projectid) {
+    var data = {projectid: projectid};
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=viewproject";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        call_create_markup_for_viewproject(respons);
+    }).fail(function() {
+        console.log("error onload command=viewproject ");
+    });
+}
+
+
+
+
+
+function call_create_markup_for_viewproject(respons) {
+    $("#name").text(respons["name"]);
+    $("#creationdate").text(respons["creationdate"]);
+    $("#description").text(respons["description"]);
+    $("#rating").text(respons["rating"]);
+    $("#commentquantity").text(respons["commentquantity"]);
+}
+
+
+
+
+
+
+//	“name” : “***”,
+//		“creationdate”: “***”
+//		“description” : “***”,
+//
+//
+//
+//“footergallery”:[{
+//					"photoid": *,
+//					"photopath": "***",
+//					"projectid": *,
+//	    		    	"projectname": "***",
+//				   	 "userlogin": "***"
+//			          	},
