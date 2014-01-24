@@ -349,6 +349,12 @@ function AjaxRegistrationLogin(form) {
             if (data.iduser) {
                 window.location = "myaccount.html";
             }
+            else {
+                $("#sorry").text("Sorry, no guessing. Try again.");
+                $("input").focus(function() {
+                    $("#sorry").text("");
+                });
+            }
         }
 
         if (form.id === "forgotpassword") {
@@ -361,7 +367,10 @@ function AjaxRegistrationLogin(form) {
 
         console.log(data);
     }).fail(function(data) {
-
+        $("#sorry").text("Sorry, no guessing. Try again.");
+        $("input").focus(function() {
+            $("#sorry").text("");
+        });
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
@@ -892,10 +901,12 @@ function call_load_data_for_news_index() {
 /*=======================Рекомендовано для передачи данных в формате JSON============================*/
 function call_data_load_for_competitions() {
     var data = JSON.stringify(
-            {firstposition: 0,
+            {
+                firstposition: 0,
                 size: 1,
-                orderby: "startdate",
-                showdescription: true
+                filter: {
+                    type: "year"  //year / month // 2 запрос а разрыми параметрами type
+                }
             });
 
     $.ajax({
