@@ -610,17 +610,42 @@ Start Content Section
     -o-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
 }
+#content .boxfeature_ {
+   
+    background: #ddd;
+    border: 1px solid transparent;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
+#content .boxfeature_ .desc {
+    position: relative;
+    z-index: 2;
+    padding: 10px;
+}
 #content .boxfeature .desc {
     position: relative;
     z-index: 2;
     padding: 10px;
 }
+
 #content .boxfeature .img_preview {
     width: 100%;
     min-height: 200px;
     overflow: hidden;
     position: relative;
 }
+#content .boxfeature_ .img_preview_ {
+    width: 100%;
+    min-height: 200px;
+  
+    position: relative;
+}
+
+
 #content .boxfeature .img_preview img {
     width: 100%;
     transition: all 0.3s ease 0s;
@@ -629,6 +654,16 @@ Start Content Section
     -o-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
 }
+
+#content .boxfeature_ .img_preview_ img {
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
 #content .boxfeature .img_preview h4 {
     position: absolute;
     bottom: 0;
@@ -642,14 +677,44 @@ Start Content Section
     -o-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
 }
+
+#content .boxfeature_ .img_preview_ h4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    color: white;
+    padding: 5px;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+}
+
 #content .boxfeature:hover {
+    border: 1px solid #A6A6A6;
+}
+
+#content .boxfeature_:hover {
     border: 1px solid #A6A6A6;
 }
 #content .boxfeature:hover .img_preview h4 {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.8);
 }
+#content .boxfeature_:hover .img_preview_ h4 {
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
 #content .boxfeature:hover .img_preview img {
+    transform: scale(1.08);
+    -webkit-transform: scale(1.08);
+    -moz-transform: scale(1.08);
+    -o-transform: scale(1.08);
+    -ms-transform: scale(1.08);
+}
+#content .boxfeature_:hover .img_preview_ img {
     transform: scale(1.08);
     -webkit-transform: scale(1.08);
     -moz-transform: scale(1.08);
@@ -1888,9 +1953,9 @@ select {
 }
 .likes{
 background-color: rgba(256,0,0,0.7)!important;
-position:absolute; top:20px; left: 15px;
+position:absolute; bottom:40px; left: 15px;
 }
 .label_comments{
 background-color: rgba(256,0,0,0.6);
-position:absolute; top:50px; left: 15px;
+position:absolute; bottom:10px; left: 15px;
 }

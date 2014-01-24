@@ -72,7 +72,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user")
 	private List<Project> projects;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Address address;
 
 	@ManyToOne(fetch = FetchType.EAGER)

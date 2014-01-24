@@ -19,6 +19,7 @@ import java.util.List;
 		@NamedQuery(name = "Photo.findByProjectId", query = "SELECT p FROM Photo AS p WHERE p.project.id=:projectId AND p.project.approved=true ORDER BY p.loadDate DESC"),
 		@NamedQuery(name = "Photo.getCountByProjectId", query = "SELECT COUNT(p) FROM Photo AS p WHERE p.project.id=:projectId AND p.project.approved=true"),
 		@NamedQuery(name = "Photo.getCount", query = "SELECT COUNT(p) FROM Photo p WHERE p.project.approved=true") })
+		@NamedQuery(name = "Photo.findPhotosByProject", query = "SELECT p FROM Photo p WHERE project = :project")
 public class Photo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +37,7 @@ public class Photo implements Serializable {
 	@OneToMany(mappedBy = "photo")
 	private List<Comment> comments;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Project project;
 
 	// --------------------------------------------
