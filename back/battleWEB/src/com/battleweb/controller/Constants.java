@@ -31,6 +31,7 @@ public interface Constants {
 	public static final String COMMAND_EDIT_FAQ = "editfaq";
 	public static final String COMMAND_GET_NEWS = "getnews";
 	public static final String COMMAND_EDIT_NEWS = "editnews";
+	public static final String COMMAND_CREATE_NEWS = "createnews";
 	public static final String COMMAND_UPLOAD_AVATAR = "uploadavatar";
 	public static final String COMMAND_UPLOAD_PHOTO = "uploadphoto";
 	public static final String COMMAND_CURRENTRANKINGS = "currentrankings";

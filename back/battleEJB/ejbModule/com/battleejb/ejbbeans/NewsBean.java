@@ -39,6 +39,16 @@ public class NewsBean  extends AbstractFacade<News> {
 	public List<News> findLast(Integer n){
 		return em.createNamedQuery("News.findLast",News.class).setMaxResults(n).getResultList();
 	}
+
+	public News findOlder(){
+		News news = null;
+		try{
+			news = em.createNamedQuery("News.findOlder",News.class).getSingleResult();
+		}catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return news;
+	}
 	
 	
 }
