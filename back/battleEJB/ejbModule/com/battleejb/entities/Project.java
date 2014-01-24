@@ -12,9 +12,9 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQueries({ 
-
-})
+@NamedQueries({
+	@NamedQuery(name = "Project.findProjectsByUser", query = "SELECT p FROM Project p WHERE p.user = :user")
+	})
 @NamedNativeQueries({
 	@NamedNativeQuery(name = "Project.findApprovedByCompetitionIdAndOrderByRating",
 			query="SELECT *,(SELECT COUNT(`level`) FROM battledb.voice AS v" +
@@ -44,10 +44,10 @@ public class Project implements Serializable {
 	@OneToMany(mappedBy = "project")
 	private List<Photo> photos;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Competition competition;
 
 	@OneToMany(mappedBy = "project")

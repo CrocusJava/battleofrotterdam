@@ -19,6 +19,7 @@ import com.battleejb.entities.CompetitionType_;
 import com.battleejb.entities.Competition_;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.Project_;
+import com.battleejb.entities.User;
 import com.battleejb.entities.User_;
 
 /**
@@ -128,5 +129,15 @@ public class ProjectBean extends AbstractFacade<Project> {
 		}
 		return projects;
 	}
-
+	
+	public List<Project> findProjectsByUser(User user){
+		List<Project> listProjects=null;
+		 try {
+			 listProjects=em.createNamedQuery("Project.findProjectsByUser", Project.class)
+				.setParameter("user", user).getResultList();
+		 } catch (PersistenceException e) {
+             /* LOG */
+		 }
+     return listProjects;
+	}
 }
