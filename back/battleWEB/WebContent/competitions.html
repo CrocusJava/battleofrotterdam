@@ -58,11 +58,18 @@
                             <li><a href="projets.html">Projects</a></li>
                             <li><a href="FAQ.html">FAQ</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li class="dropdown">
+                            <li class="dropdown" style="display: none;" id="dropdown_login_no">
                                 <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">Login-Register <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="login.html#login">Login</a></li>
                                     <li><a href="registration.html#registration">Register</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="display: none;" id="dropdown_login_yes">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>&nbsp; Jhon Smith <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
                             </li>
                             <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
@@ -113,22 +120,19 @@
 
 
 
-                            <ul id="competitions" class="unstyled">
-
-                            </ul>
 
                             <div class="gridmasonry grid_list_blog" style="display: block; position: relative; height: 886px;">
-                                <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;">
+                                <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;" id="monthly_battle_competitions">
                                     <div class="panel">
                                         <h1 class="font-hotel">
-                                            <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; ">  Monthly competition
+                                            <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "><span id="monthly_battle_competitions_name">  Monthly competition</span>
                                         </h1>
-                                        <div style="margin: 20px 0 0px 0;"> <a href="#" class="trylater"> <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Start date: January 15, 2014 <i class="icon-ok"></i></div>
-                                                <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Finish date: February 15, 2014 <i class="icon-ok"></i></div>
+                                        <div style="margin: 20px 0 0px 0;"> <a href="#" class="trylater"> <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Start date:  <span id="monthly_battle_competitions_startdate">January 15, 2014 </span><i class="icon-ok"></i></div>
+                                                <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Finish date: <span id="monthly_battle_competitions_enddate"> February 15, 2014 </span><i class="icon-ok"></i></div>
                                             </a></div>
 
                                         <div class="divater" style="clear:both;"><div class="line"></div><span><img src="img/deviter.png" alt="" style="padding-bottom: 0px;"></span></div>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
+                                        <p id="monthly_battle_competitions_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
@@ -143,17 +147,17 @@
 
                                     </div>
                                 </div>
-                                <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;">
+                                <div class="item_grid item2" style="position: absolute; left: 0px; top: 0px;" id="yearly_battle_competitions">
                                     <div class="panel">
                                         <h1 class="font-hotel">
-                                            <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; ">  Yearly competition
+                                            <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "><span id="yearly_battle_competitions_name">  Yearly competition</span>
                                         </h1>
-                                        <div style="margin: 20px 0 0px 0;"> <a href="#" class="trylater"> <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Start date: January 15, 2014 <i class="icon-ok"></i></div>
-                                                <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Finish date: January 15, 2015 <i class="icon-ok"></i></div>
+                                        <div style="margin: 20px 0 0px 0;"> <a href="#" class="trylater"> <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Start date: <span id="yearly_battle_competitions_startdate"> January 15, 2014 </span><i class="icon-ok"></i></div>
+                                                <div  style="float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Finish date: <span id="yearly_battle_competitions_enddate">January 15, 2015 </span><i class="icon-ok"></i></div>
                                             </a></div>
 
                                         <div class="divater" style="clear:both;"><div class="line"></div><span><img src="img/deviter.png" alt="" style="padding-bottom: 0px;"></span></div>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
+                                        <p id="yearly_battle_competitions_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.dj styj stymk stym  stym   stym s  styjk m dghm tghm  ghmshm sghm sh
