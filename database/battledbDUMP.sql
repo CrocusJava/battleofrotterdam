@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2014 at 02:42 PM
+-- Generation Time: Jan 25, 2014 at 10:31 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `Address`
@@ -62,7 +62,9 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (49, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
 (50, 'Rotterdam', '3021', 'Nieuwe Binnenweg', '295A', NULL),
 (51, 'Rotterdam', '3002', 'Wilbetoord', '43', NULL),
-(52, 'mmm', '12', 'mmm', '12', NULL);
+(52, 'mmm', '12', 'mmm', '12', NULL),
+(53, 'Naaldwijk', '123', 'Koraal 43', '1', NULL),
+(54, 'mmm', '12', 'mmm', '12', NULL);
 
 -- --------------------------------------------------------
 
@@ -80,8 +82,9 @@ CREATE TABLE IF NOT EXISTS `Comment` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `project_id` (`project_id`),
-  KEY `photo_id` (`photo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+  KEY `photo_id` (`photo_id`),
+  FULLTEXT KEY `commentText` (`commentText`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `Comment`
@@ -113,15 +116,16 @@ CREATE TABLE IF NOT EXISTS `Competition` (
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `type_id` (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  KEY `type_id` (`type_id`),
+  FULLTEXT KEY `name` (`name`,`description`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `Competition`
 --
 
 INSERT INTO `Competition` (`id`, `name`, `description`, `dateStart`, `dateEnd`, `registerDeadline`, `type_id`, `user_id`) VALUES
-(1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-11-01', 1, NULL),
+(1, 'Year Competition Name', 'description of Year Competition', '2013-12-01', '2014-12-01', '2014-01-01', 1, NULL),
 (2, 'First Month Competition Name', 'description of First Month Competition', '2013-12-01', '2014-01-01', '2013-12-10', 2, NULL),
 (3, 'Second Month Competition Name', 'description of Second Month Competition', '2014-01-01', '2014-02-01', '2014-01-10', 2, NULL),
 (4, 'Third Month Competition Name', 'description of Third Month Competition', '2014-02-01', '2014-03-01', '2014-02-10', 2, NULL);
@@ -191,8 +195,9 @@ CREATE TABLE IF NOT EXISTS `Photo` (
   `description` mediumtext,
   `project_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `project_id` (`project_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+  KEY `project_id` (`project_id`),
+  FULLTEXT KEY `description` (`description`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `Photo`
@@ -239,8 +244,9 @@ CREATE TABLE IF NOT EXISTS `Project` (
   `approved` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `competition_id` (`competition_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  KEY `competition_id` (`competition_id`),
+  FULLTEXT KEY `name` (`name`,`description`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `Project`
@@ -287,8 +293,9 @@ CREATE TABLE IF NOT EXISTS `Text` (
   `valueEn` longtext NOT NULL,
   `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `keyval` (`keyval`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
+  UNIQUE KEY `keyval` (`keyval`),
+  FULLTEXT KEY `valueEn` (`valueEn`,`valueNl`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
 
 --
 -- Dumping data for table `Text`
@@ -355,7 +362,10 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (61, 90, '', ''),
 (62, 1100, 'Your opportunity to comment on disabled. Please contact the administration', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie'),
 (63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie'),
-(64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
+(64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord'),
+(65, 220, 'Account is not updated. Mail exist. Please enter your correct mail!', 'Account is niet bijgewerkt. Mail bestaan​​. Vul je e-mail!'),
+(66, 230, 'Account is not updated. Incorrect password. Please enter your correct password!', 'Account is niet bijgewerkt. Onjuist wachtwoord. Vul je wachtwoord in!'),
+(67, 240, 'Account was successfully updated.', 'Account is bijgewerkt.');
 
 -- --------------------------------------------------------
 
@@ -408,14 +418,14 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `User`
 --
 
 INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `password`, `photoPath`, `email`, `phone`, `birthday`, `address_id`, `role_id`, `commentAble`, `active`, `approveregistration`) VALUES
-(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'img/test.jpg', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 0, 0, 1),
+(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'img/test.jpg', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 1, 1, 1),
 (2, 'test100', 'test100', 'test100', 'test100', 'f5f97c92ae39d49a4fa87d97eb3d89ff', 'default', 'rer@ukr.net', '0974324324324', NULL, 28, 2, 1, 1, 0),
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
@@ -428,7 +438,9 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (16, 'O_o', 'O_O', 'o_O', 'agent008', '59739de02f972041fbab2123eb047cf7', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
 (24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', '96263c660bc72a504fbbf673464c17de', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0),
 (29, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 47, 2, 1, 1, 1),
-(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1);
+(33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1),
+(35, 'Max', 'van', 'Dop', 'maxvandop', '25f9e794323b453885f5181f1b624d0b', 'default', 'maxvandop@hotmail.com', '123', '1997-02-01', 53, 2, 1, 1, 1),
+(36, 'mmm', 'mmm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', '1212-12-12', 54, 2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -456,58 +468,6 @@ INSERT INTO `Voice` (`id`, `level`, `voiceDate`, `user_id`, `project_id`) VALUES
 (2, 1, '2014-01-20 22:15:00', 2, 2),
 (3, 1, '2014-01-20 22:20:23', 2, 3),
 (4, 1, '2014-01-20 22:23:53', 2, 1);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `Comment`
---
-ALTER TABLE `Comment`
-  ADD CONSTRAINT `Comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
-  ADD CONSTRAINT `Comment_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `Project` (`id`),
-  ADD CONSTRAINT `Comment_ibfk_3` FOREIGN KEY (`photo_id`) REFERENCES `Photo` (`id`);
-
---
--- Constraints for table `Competition`
---
-ALTER TABLE `Competition`
-  ADD CONSTRAINT `Competition_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
-  ADD CONSTRAINT `Competition_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `CompetitionType` (`id`);
-
---
--- Constraints for table `News`
---
-ALTER TABLE `News`
-  ADD CONSTRAINT `News_ibfk_1` FOREIGN KEY (`text_id`) REFERENCES `Text` (`id`);
-
---
--- Constraints for table `Photo`
---
-ALTER TABLE `Photo`
-  ADD CONSTRAINT `Photo_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `Project` (`id`);
-
---
--- Constraints for table `Project`
---
-ALTER TABLE `Project`
-  ADD CONSTRAINT `Project_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
-  ADD CONSTRAINT `Project_ibfk_2` FOREIGN KEY (`competition_id`) REFERENCES `Competition` (`id`);
-
---
--- Constraints for table `User`
---
-ALTER TABLE `User`
-  ADD CONSTRAINT `User_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`),
-  ADD CONSTRAINT `User_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `Address` (`id`);
-
---
--- Constraints for table `Voice`
---
-ALTER TABLE `Voice`
-  ADD CONSTRAINT `Voice_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
-  ADD CONSTRAINT `Voice_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `Project` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
