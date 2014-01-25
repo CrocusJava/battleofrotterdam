@@ -638,7 +638,7 @@ function call_data_for_index_html() {
         call_load_data_for_current_rankings();
     }
 
-//<<<<<<<<<<<<=============================задачи для страницы вывода всех проектов 
+//<<<<<<<<<<<<=============================задачи для страницы вывода всех проектов
 
     if (window.location.href.match(/projets.html$/)) {
         call_load_data_for_projets_page();
@@ -1096,6 +1096,7 @@ function call_send_form_accountupdate() {
 function call_load_data_for_myaccount() {
     $.post("/battleWEB/controller?command=account", function(data) {
         console.log(data);
+        $.cookie("name", data["login"]);
     }, "json");
 }
 
@@ -1120,8 +1121,11 @@ function call_cookie_navigator() {
     }
 
     if ($.cookie("login") === "true") {
+        var login_name = $.cookie("name");
+        $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
         $("#dropdown_login_yes").show();
+
     }
     else {
         $("#dropdown_login_yes").hide();
