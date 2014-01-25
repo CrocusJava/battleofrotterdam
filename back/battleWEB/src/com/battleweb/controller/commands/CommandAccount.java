@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
+import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
@@ -32,7 +33,7 @@ import com.battleweb.tools.ToolSession;
  */
 @Stateless
 @LocalBean
-public class CommandAccaunt implements Command {
+public class CommandAccount implements Command {
 
 	@EJB
 	private ToolJSON toolJSON;
@@ -42,12 +43,21 @@ public class CommandAccaunt implements Command {
 	private ProjectBean projectBean;
 	@EJB
 	private PhotoBean photoBean;
+	@EJB
+	private UserBean userBean;
 	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		User user=toolSession.getUser(request);
+		
+		if (null==user){
+			JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
+			int userId = jsonObjectRequest.getInt(Constants.PARAMETER_IDUSER);
+			user=userBean.find(userId);
+		}
+		
 		if (null!=user){
 			Log.debug(this, "Get all information about user");
 			
@@ -103,7 +113,7 @@ public class CommandAccaunt implements Command {
 	public JsonArray getPhotos(Project project){
 		JsonArrayBuilder jsonArrayBuilderPhoto=Json.createArrayBuilder(); 
 		
-		List<Photo> listPhotos=photoBean.findPhotosByProject(project);
+		List<Photo> listPhotos=photoBean.findLast(1);
 		
 		for (Photo photo : listPhotos) {
 			JsonObject jsonObjectResponse=Json.createObjectBuilder()

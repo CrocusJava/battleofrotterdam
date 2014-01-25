@@ -60,6 +60,8 @@ public class CommandUploadPhoto implements Command {
 				String competitionName=project.getCompetition().getType().getName();
 				int countPhotos=project.getPhotos().size();
 				/** Create new name of photo*/
+				
+				//TODO "_"
 				String fileName="photo"+user.getId()+(countPhotos+1)+competitionName+".";
 				String fileNameCorrect=toolUpload.uploadImage(request, Constants.PATH_SAVE_PHOTO, fileName);
 				/** Create photo path*/

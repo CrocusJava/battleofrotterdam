@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.battleweb.controller.commands.Command;
 import com.battleweb.controller.commands.CommandAboutBattle;
-import com.battleweb.controller.commands.CommandAccaunt;
+import com.battleweb.controller.commands.CommandAccount;
 import com.battleweb.controller.commands.CommandApproveRegistration;
 import com.battleweb.controller.commands.CommandCangeProjectStatus;
 import com.battleweb.controller.commands.CommandCompetitions;
@@ -141,7 +141,7 @@ public class CommandRequest {
 	@EJB
 	private CommandSendEmail commandSendEmail;
 	@EJB
-	private CommandAccaunt commandAccaunt;
+	private CommandAccount commandAccount;
 	@EJB
 	private CommandCangeProjectStatus commandCangeProjectStatus;
 	@EJB
@@ -194,7 +194,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_FIND_USER, commandFindUser);
 		commands.put(Constants.COMMAND_EDIT_USER_APPLY, commandEditUserApply);
 		commands.put(Constants.COMMAND_SEND_EMAIL, commandSendEmail);
-		commands.put(Constants.COMMAND_ACCAUNT, commandAccaunt);
+		commands.put(Constants.COMMAND_ACCOUNT, commandAccount);
 		commands.put(Constants.COMMAND_CHANGE_PROJECT_STATUS, commandCangeProjectStatus);
 		commands.put(Constants.COMMAND_CREATE_COMPETITON, commandCreateCompetition);
 		commands.put(Constants.COMMAND_EDIT_COMPETITON, commandEditCompetition);
