@@ -59,7 +59,6 @@ public class CommandSearch implements Command {
 		Integer size = jsonObjectRequest.getInt(Constants.PARAMETER_SIZE);
 
 		List<Search> results = searchBean.search(text, forstPosition, size);
-
 		JsonArrayBuilder jsonSearchArrayBuilder = Json.createArrayBuilder();
 		if (results != null) {
 			for (Search result : results) {

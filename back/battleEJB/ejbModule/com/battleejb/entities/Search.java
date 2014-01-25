@@ -12,19 +12,19 @@ import javax.persistence.NamedNativeQuery;
  * 
  */
 @NamedNativeQuery(name = "Search.search", query = "SELECT 'project' AS type, id, name, description, MATCH(p.description, p.name) AGAINST(:text IN BOOLEAN MODE) as score "
-		+ "FROM battledb.project AS p WHERE MATCH(p.description, p.name) AGAINST(:text IN BOOLEAN MODE) "
+		+ "FROM battledb.Project AS p WHERE MATCH(p.description, p.name) AGAINST(:text IN BOOLEAN MODE) "
 		+ "UNION "
 		+ "SELECT 'competiton' AS type, id, name, description, MATCH(c.description, c.name) AGAINST(:text IN BOOLEAN MODE) as score "
-		+ "FROM battledb.competition AS c WHERE MATCH(c.description, c.name) AGAINST(:text IN BOOLEAN MODE) "
+		+ "FROM battledb.Competition AS c WHERE MATCH(c.description, c.name) AGAINST(:text IN BOOLEAN MODE) "
 		+ "UNION "
 		+ "SELECT 'photo' AS type, id,'', description, MATCH(ph.description) AGAINST(:text IN BOOLEAN MODE) as score "
-		+ "FROM battledb.photo AS ph WHERE MATCH(ph.description) AGAINST(:text IN BOOLEAN MODE) "
+		+ "FROM battledb.Photo AS ph WHERE MATCH(ph.description) AGAINST(:text IN BOOLEAN MODE) "
 		+ "UNION "
 		+ "SELECT 'comment' AS type, id,'', commentText as description, MATCH(co.commentText) AGAINST(:text IN BOOLEAN MODE) as score "
-		+ "FROM battledb.`comment` AS co WHERE MATCH(co.commentText) AGAINST(:text IN BOOLEAN MODE) "
+		+ "FROM battledb.`Comment` AS co WHERE MATCH(co.commentText) AGAINST(:text IN BOOLEAN MODE) "
 		+ "UNION "
 		+ "SELECT 'news' AS type, n.id, t.valueEn , t.valueNl, MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) as score "
-		+ "FROM battledb.`news` AS n CROSS JOIN battledb.`text` AS t WHERE n.text_id=t.id AND MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) "
+		+ "FROM battledb.`News` AS n CROSS JOIN battledb.`Text` AS t WHERE n.text_id=t.id AND MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) "
 		+ "ORDER BY score DESC", resultClass = Search.class)
 @Entity
 public class Search implements Serializable {
