@@ -66,9 +66,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown" style="display: none;" id="dropdown_login_yes">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>&nbsp; Jhon Smith <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><span id="login_name"></span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
+                                    <li id="myaccount"><a href="myaccount.html"><i class="icon-off"></i>My Account</a></li>
                                     <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
                             </li>
@@ -116,152 +117,152 @@
             <!-- Start section content page -->
             <section id="content">
                 <div class="inner-wrapper">
-                    <section class="project_block" style="background: rgba(0,188,0,0.2);" >
-                        <div class="blog-line">
-                            <a href="#"><i class="icon-user"></i> Jhon Smith</a>
-                            <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
-                            <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
-                            <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
-                        </div>
+                    <!--                    <section class="project_block" style="background: rgba(0,188,0,0.2);" >
+                                            <div class="blog-line">
+                                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                                                -  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>--
+                                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+                                            </div>
 
-                        <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
-                        </div>
-                        <article div class="project_block_proj"  >
-                            <div class="project_block_proj_name" > ksfogviosidh sofih v
-                            </div>
-                            <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
-                            </div>
-                        </article>
-                        <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+                                            <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+                                            </div>
+                                            <article div class="project_block_proj"  >
+                                                <div class="project_block_proj_name" > ksfogviosidh sofih v
+                                                </div>
+                                                <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                </div>
+                                            </article>
+                                            <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
 
-                            <div style="float:left; width: 100%; margin: 10px auto;">
-                                <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
-                                </div>
+                                                <div style="float:left; width: 100%; margin: 10px auto;">
+                                                    <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+                                                    </div>
 
-                            </div>
+                                                </div>
 
-                        </div>
-                    </section>
+                                            </div>
+                                        </section>
 
-                    <div style="height:35px;"></div>
+                                        <div style="height:35px;"></div>
 
-                    <section class="project_block" style="background: rgba(0,188,188,0.2);" >
-                        <div class="blog-line">
-                            <a href="#"><i class="icon-user"></i> Jhon Smith</a>
-                            <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
-                            <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
-                            <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
-                        </div>
+                                        <section class="project_block" style="background: rgba(0,188,188,0.2);" >
+                                            <div class="blog-line">
+                                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                                                -  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>--
+                                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+                                            </div>
 
-                        <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
-                        </div>
-                        <article div class="project_block_proj"  >
-                            <div class="project_block_proj_name" > ksfogviosidh sofih v
-                            </div>
-                            <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
-                            </div>
-                        </article>
-                        <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
-                            <div style="float:left; width: 100%; margin: 10px auto;">
-                                <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
-                                </div>
+                                            <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+                                            </div>
+                                            <article div class="project_block_proj"  >
+                                                <div class="project_block_proj_name" > ksfogviosidh sofih v
+                                                </div>
+                                                <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                </div>
+                                            </article>
+                                            <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+                                                <div style="float:left; width: 100%; margin: 10px auto;">
+                                                    <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+                                                    </div>
 
-                            </div>
+                                                </div>
 
-                        </div>
-                    </section>
+                                            </div>
+                                        </section>
 
-                    <div style="height:35px;"></div>
+                                        <div style="height:35px;"></div>
 
-                    <section class="project_block" style="background: rgba(188,0,188,0.2); ">
-                        <div class="blog-line">
-                            <a href="#"><i class="icon-user"></i> Jhon Smith</a>
-                            <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
-                            <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
-                            <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
-                        </div>
+                                        <section class="project_block" style="background: rgba(188,0,188,0.2); ">
+                                            <div class="blog-line">
+                                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                                                -  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>--
+                                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+                                            </div>
 
-                        <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
-                        </div>
-                        <article div class="project_block_proj"  >
-                            <div class="project_block_proj_name" > ksfogviosidh sofih v
-                            </div>
-                            <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
-                            </div>
-                        </article>
-                        <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+                                            <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+                                            </div>
+                                            <article div class="project_block_proj"  >
+                                                <div class="project_block_proj_name" > ksfogviosidh sofih v
+                                                </div>
+                                                <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                </div>
+                                            </article>
+                                            <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
 
-                            <div style="float:left; width: 100%; margin: 10px auto;">
-                                <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
-                                </div>
+                                                <div style="float:left; width: 100%; margin: 10px auto;">
+                                                    <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+                                                    </div>
 
-                            </div>
+                                                </div>
 
-                        </div>
-                    </section>
+                                            </div>
+                                        </section>
 
-                    <div style="height:35px;"></div>
+                                        <div style="height:35px;"></div>
 
-                    <section class="project_block" style="background: rgba(21,11,161,0.2);" >
-                        <div class="blog-line">
-                            <a href="#"><i class="icon-user"></i> Jhon Smith</a>
-                            <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
-                            <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
-                            <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
-                        </div>
+                                        <section class="project_block" style="background: rgba(21,11,161,0.2);" >
+                                            <div class="blog-line">
+                                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                                                -  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>--
+                                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+                                            </div>
 
-                        <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
-                        </div>
-                        <article div class="project_block_proj"  >
-                            <div class="project_block_proj_name" > ksfogviosidh sofih v
-                            </div>
-                            <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
-                            </div>
-                        </article>
-                        <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+                                            <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+                                            </div>
+                                            <article div class="project_block_proj"  >
+                                                <div class="project_block_proj_name" > ksfogviosidh sofih v
+                                                </div>
+                                                <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                </div>
+                                            </article>
+                                            <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
 
-                            <div style="float:left; width: 100%; margin: 10px auto;">
-                                <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
-                                </div>
+                                                <div style="float:left; width: 100%; margin: 10px auto;">
+                                                    <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+                                                    </div>
 
-                            </div>
-
-
-                        </div>
-                    </section>
-
-                    <div style="height:35px;"></div>
-
-                    <section class="project_block" style="background: rgba(12,33,76,0.2);">
-                        <div class="blog-line">
-                            <a href="#"><i class="icon-user"></i> Jhon Smith</a>
-                            <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
-                            <!---  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>---->
-                            <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
-                        </div>
-
-                        <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
-                        </div>
-                        <article div class="project_block_proj"  >
-                            <div class="project_block_proj_name" > ksfogviosidh sofih v
-                            </div>
-                            <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
-                            </div>
-                        </article>
-                        <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
-
-                            <div style="float:left; width: 100%; margin: 10px auto;">
-                                <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
-                                </div>
-
-                            </div>
+                                                </div>
 
 
+                                            </div>
+                                        </section>
 
-                        </div>
-                        <div style="height:35px;"></div>
-                    </section>
+                                        <div style="height:35px;"></div>
 
+                                        <section class="project_block" style="background: rgba(12,33,76,0.2);">
+                                            <div class="blog-line">
+                                                <a href="#"><i class="icon-user"></i> Jhon Smith</a>
+                                                <span> <a href="#"> <i class="icon-ok"></i> 133 Likes</a></span>
+                                                -  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a>--
+                                                <a href="#" class="trylater"><i class="icon-comments"></i> 12 Comments</a>
+                                            </div>
+
+                                            <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:200px;">
+                                            </div>
+                                            <article div class="project_block_proj"  >
+                                                <div class="project_block_proj_name" > ksfogviosidh sofih v
+                                                </div>
+                                                <div class="project_block_proj_descr" > Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                </div>
+                                            </article>
+                                            <div class="project_block_photo" ><img src="img/remont1.jpg" class="img-polaroid" style="width:200px;">
+
+                                                <div style="float:left; width: 100%; margin: 10px auto;">
+                                                    <div class="btn btn-primary btn-large flat" style=" font-size: 12px; padding: 5px; float: right;"> <a href="single_project.html" style="color:#fff;">Read more</a>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </div>
+                                            <div style="height:35px;"></div>
+                                        </section>
+                    -->
 
 
 

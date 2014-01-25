@@ -66,9 +66,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown" style="display: none;" id="dropdown_login_yes">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>&nbsp; Jhon Smith <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><span id="login_name"></span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
+                                    <li id="myaccount"><a href="myaccount.html"><i class="icon-off"></i>My Account</a></li>
                                     <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
                             </li>
@@ -140,7 +141,7 @@
                                         <div  style="margin: 10px auto; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px;  text-align: center;">Winner`s prize: 100000 </div>
 
 
-                                        <p><a href="#" class="btn btn-primary flat"> Create a project <i class="icon-angle-right"></i></a>
+                                        <p><span class="btn btn-primary flat createproj"> Create a project <i class="icon-angle-right"></i></span>
                                         </p>
 
 
@@ -165,7 +166,7 @@
                                         <div  style="margin: 10px auto; color:#fff; background: rgba(0,188,0,0.6); font-size:23px; font-family: 'Lobster Two', cursive; padding:13px;  text-align: center;">Winner`s prize: 880000 </div>
 
 
-                                        <p><a href="#" class="btn btn-primary flat"> Create a project <i class="icon-angle-right"></i></a>
+                                        <p><span class="btn btn-primary flat createproj"> Create a project <i class="icon-angle-right"></i></span>
                                         </p>
 
 
@@ -190,7 +191,34 @@
 
 
 
+            <div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Wellcome to creating new project</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Chose the Competition:</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            Monthly competition
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            Yearly competition
+                        </label>
+                    </div>
 
+                    <label>Enter project name:</label>
+                    <input type="text" name="project" class="input-block-level" required="">
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn create" data-dismiss="modal" aria-hidden="true">Create</button>
+                </div>
+            </div>
 
 
 
@@ -326,6 +354,14 @@
         <script src="js/app.js"></script>
         <!--end JS config application-->
 
+        <script type="text/javascript">
+            $(".createproj").click(function() {
+                $("#myModal_CP").modal("show");
+                $(".create").click(function() {
+                    window.location = "single_project.html";
+                });
+            });
+        </script>
 
     </body>
 </html>
