@@ -24,6 +24,7 @@ import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
+import com.battleweb.tools.ToolSession;
 
 /**
  * @author rtkachuk
@@ -32,13 +33,42 @@ import com.battleweb.tools.ToolMD5;
 @Stateless
 @LocalBean
 public class CommandUpdateAccaunt implements Command {
-
+	@EJB
+	UserBean userBean;
+	@EJB
+	private ToolJSON toolJSON;
+	@EJB
+	private ToolSession toolSession;
+	@EJB
+	private TextBean textBean;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		/** Define user, from session info*/
+		User user= userBean.find(toolSession.getUserId(request));
+		
+		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
+		
+		/** Check exist email in database*/
+		String email=jsonObjectRequest.getString(Constants.PARAMETER_EMAIL);
+		
+		if (!user.getEmail().equals(email)){
+			boolean statusMail=userBean.chackEmailExist(email);
+			if (!statusMail){
+//				makeResponse(request, );
+			}
+		}
 
-		//TODO
+		
 		
 		return null;
+	}
+	
+	private void makeResponse(HttpServletRequest request){
+//		Locale locale = request.getLocale();
+//		String registrationMessage = textBean.findLocaleTextByKey(
+//				Constants.TEXT_MESSAGE_, locale);
 	}
 }

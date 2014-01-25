@@ -49,15 +49,15 @@ public class CommandAccount implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		User user=toolSession.getUser(request);
-		
-		if (null==user){
-			JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
-			int userId = jsonObjectRequest.getInt(Constants.PARAMETER_IDUSER);
+		User user=null;
+		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
+		int userId = jsonObjectRequest.getInt(Constants.PARAMETER_IDUSER);
+		if (userId!=0){
 			user=userBean.find(userId);
+		} else{
+			user=toolSession.getUser(request);
 		}
-		
+			
 		if (null!=user){
 			Log.debug(this, "Get all information about user");
 			

@@ -27,6 +27,9 @@ public class CommandGetPhoto implements Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		/** Added work with small photo*/
+		
+		
 		/**Get file with image*/
 		File file = getFile(request);
 		if (null==file){
