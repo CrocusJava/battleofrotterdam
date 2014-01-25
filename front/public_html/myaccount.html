@@ -132,21 +132,22 @@
                             <div class="singup_area with_bg">
                                 <form >
 								
-								<div class=" btn btn-primary btn-large flat" style=" font-size: 18px; padding: 5px 25px; float: right; margin: 15px 25px;">  Edit profile <i class="icon-pencil"></i>
+								<div id="button_edit_profile" class=" btn btn-primary btn-large flat" >  Edit profile <i class="icon-pencil"></i>
                                                 </div>
 								
                                     <div style="height:15px;"></div>
                                     <section  style="background: #fff; height: auto;" >
                                         <div class="photo_static_profile"> <img class="img-polaroid" id="preview_avatar" src="img/c1.jpg" data-src="img/c1.jpg" alt="preview" style="width:200px;"></div>
+										
                                         <div class="text_center">
-
-                                            <div class="name_static_profile font-hotel" contenteditable="true"> Jhon Smith</div>
-
-                                            <div class="margin_text_longname" contenteditable="true"> <span>FirstName</span><span> MiddleName</span><span> LastName</span></div>
-                                            <div class="margin_text_birthday" contenteditable="true">08 July 1988</div>
-                                            <div class="margin_text" contenteditable="true"><span> Town,</span><span> Street,</span><span> HouseNumber,</span><span> Postcode</span></div>
-                                            <div class="margin_text" contenteditable="true"> (808)88-080-88 </div>
-                                            <div class="margin_text_email" contenteditable="true"> jhonSmith@mail.nl</div>
+											<a href="#" class="margin_text unvisiblin"  ><i class="icon-cloud-upload"></i> Upload photo </a>
+										
+                                            <div id="name_static_profile" class="name_static_profile font-hotel"> Jhon Smith</div>
+										
+                                            <div id="longname" class="margin_text_longname" > <span id="FirstName">FirstName</span><span id="MiddletName"> MiddleName</span><span id="LastName"> LastName</span></div>
+                                            <div id="adress"class="margin_text" ><span id="town"> Town,</span><span id="street"> Street,</span><span id="housenumber"> HouseNumber,</span><span id="postcode"> Postcode</span></div>
+                                            <div id="telephone" class="margin_text" > (808)88-080-88 </div>
+                                            <div id="mail" class="margin_text_email" > jhonSmith@mail.nl</div>
                                         </div>
 										
                                         <div style="height:35px;"></div>
@@ -426,6 +427,22 @@
                 });
             });
         </script>
+	
+	<script>
+
+	
+	
+$("#button_edit_profile").click(function(){
+$("#button_edit_profile").text("Update profile");
+$(".unvisiblin").removeClass("unvisiblin");
+$("#name_static_profile, #longname, #adress, #telephone, #mail").removeClass().addClass("editable").attr('contenteditable','true');
+$("#name_static_profile").focus();
+
+})
+
+
+</script>
+		
 
     </body>
 </html>
