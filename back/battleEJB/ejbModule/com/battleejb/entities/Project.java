@@ -13,18 +13,13 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Project.findProjectsByUser", query = "SELECT p FROM Project p WHERE p.user = :user"),
-//	@NamedQuery(name = "Project.search1", query = "SELECT p FROM Project p WHERE (MATCH(`description`, `name`) AGAINST(?),:text)")
+	@NamedQuery(name = "Project.findProjectsByUser", query = "SELECT p FROM Project p WHERE p.user = :user")
 	})
 @NamedNativeQueries({
 	@NamedNativeQuery(name = "Project.findApprovedByCompetitionIdAndOrderByRating",
-			query="SELECT *,(SELECT COUNT(`level`) FROM battledb.voice AS v" +
-					" WHERE v.project_id=p.id) as r FROM battledb.project AS p WHERE " +
+			query="SELECT *,(SELECT COUNT(`level`) FROM battledb.Voice AS v" +
+					" WHERE v.project_id=p.id) as r FROM battledb.Project AS p WHERE " +
 					"p.competition_id = :competitionId AND p.approved=1 ORDER BY r DESC LIMIT :firstPosition, :size",
-					resultClass = Project.class),
-	@NamedNativeQuery(name = "Project.search",
-			query="SELECT * FROM battledb.project AS p" +
-					" WHERE MATCH(p.description, p.name) AGAINST(:text IN BOOLEAN MODE)",
 					resultClass = Project.class)
 })
 public class Project implements Serializable {
