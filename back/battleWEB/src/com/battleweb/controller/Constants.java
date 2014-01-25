@@ -70,6 +70,7 @@ public interface Constants {
 	//Set of name parameters JSON objects
 	public static final String PARAMETER_LOGIN = "login";
 	public static final String PARAMETER_PASSWORD = "password";
+	public static final String PARAMETER_PASSWORD_NEW = "passwordnew";
 	public static final String PARAMETER_IDUSER = "iduser";
 	public static final String PARAMETER_IDROLE = "idrole";
 	public static final String PARAMETER_FIRSTNAME = "firstname";
@@ -225,10 +226,11 @@ public interface Constants {
 	
 	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
 	public static final Integer TEXT_MESSAGE_REGISTRATION_MAIL = 210;
-	
+	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_MAIL_EXIST_IN_DB = 220;
+	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_NO_CORRECT_PASSWORD= 230;
+	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_SUCCESS= 240;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
-	
 	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
 	public static final Integer TEXT_BATTLE_ANIMATION_DESCRIPTION = 510;
 	public static final Integer TEXT_BATTLE_RULES_DESCRIPTION = 520;
