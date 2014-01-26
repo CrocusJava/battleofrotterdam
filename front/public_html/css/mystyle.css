@@ -347,7 +347,14 @@ text-align: left;
 
 }
 
+.caption_profile{
 
+font-family: 'Lobster Two', cursive;
+font-size: 38px;
+padding: 10px;
+margin: 20px auto;
+text-align: center;
+}
 
 
 
