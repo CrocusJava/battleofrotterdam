@@ -486,10 +486,11 @@ function call_start_carousel() {
     $('#myCarousel').carousel();
 }
 
+
 function call_load_data_for_index_events(load_data) {
     function go_to_project() {
         var href = $(this).attr("href");
-        href = href + "#projectid";
+        href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
         $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
@@ -557,13 +558,11 @@ function call_load_data_for_index_comments(load_data) {
 
 function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы индекс
-    if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
+    if (window.location.href.match(/index.html/) || window.location.href.match(/battleWEB\/$/)) {
 
 
         call_load_data_for_news_index();
         $.post("/battleWEB/controller?command=index", function(respons, status) {
-
-//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
@@ -581,9 +580,7 @@ function call_data_for_index_html() {
                 call_load_data_for_index_events(dataObj);
             }
 
-
-            console.log("Respons data for index ====> ", status);
-        }, "json").fail(function(data) {
+        }, "json").fail(function() {
             console.log("Somsing wrang for inde post");
         });
     }
