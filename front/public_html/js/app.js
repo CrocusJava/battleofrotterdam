@@ -1085,7 +1085,6 @@ function call_load_data_for_myaccount(id) {
         contentType: "application/json",
         data: JSON.stringify(send_data)
     }).done(function(respons) {
-        console.log(respons);
         $.session.set("name", respons["login"]);
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
         $("#name_static_profile").text(respons["login"]);
