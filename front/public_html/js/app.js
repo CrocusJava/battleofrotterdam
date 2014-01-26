@@ -1200,7 +1200,7 @@ function call_load_data_for_projets_page() {
                         {tag: "img", attr: {src: "lastphoto", style: "width:200px;"}, subattr: {"src": "path"}, add_clas: "img-polaroid"},
                         {tag: "div", attr: {style: "float:left; width: 100%; margin: 10px auto;"}, children: [
                                 {tag: "div", attr: {style: "font-size: 12px; padding: 5px; float: right;"}, add_class: "btn btn-primary btn-large flat", children: [
-                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "Read more"}
+                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
                                     ]}
                             ]}
                     ]}
