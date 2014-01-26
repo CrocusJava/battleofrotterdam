@@ -1204,9 +1204,9 @@ function call_create_markup_for_viewprojectcomments(respons) {
             " <article>" +
             " <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
             "<img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
-            " <div class=comment_inner>" +
+            " <div class=comment_inner style=display:block;>" +
             "<p>" + respons["text"] + "</p>" +
-            "<p style=color:rgba(0, 181, 0,1);>" +
+            "<p style='color:rgba(0, 181, 0,1);'>" +
             "<i class=icon-time></i>" +
             "<span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
             "</div>" +
