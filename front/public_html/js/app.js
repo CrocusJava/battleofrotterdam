@@ -616,7 +616,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
     if (window.location.href.match(/myaccount.html/)) {
-        call_event_logout();
+
         call_send_form_accountupdate();
         call_load_data_for_myaccount();
     }
@@ -1125,6 +1125,7 @@ function call_cookie_navigator() {
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
         $("#dropdown_login_yes").show();
+        call_event_logout();
 
     }
     else {
@@ -1198,7 +1199,7 @@ function call_load_data_for_projets_page() {
                     ]},
                 {tag: "div", add_class: "project_block_photo", children: [
                         {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_clas: "img-polaroid photo_proj"},
-                        {tag: "div", add_class:"viewtheproj", children: [
+                        {tag: "div", add_class: "viewtheproj", children: [
                                 {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
                                         {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
                                     ]}
