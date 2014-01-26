@@ -158,7 +158,7 @@
                                     <!-- Start Break Page Style-->
                                     <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
-                                    <div class="caption_profile"> My projects</div>
+									<div class="caption_profile"> My projects</div>
                                     <section class="project_block" style="background: rgba(0,188,0,0.2);" >
                                         <div class="blog-line">
                                             <a href="#"><i class="icon-user"></i> Jhon Smith</a>
@@ -428,8 +428,13 @@
             });
         </script>
 
-        <script>
-
+	
+	
+$("#button_edit_profile").click(function(){
+$("#button_edit_profile").text("Update profile");
+$(".unvisiblin").removeClass("unvisiblin");
+$(" #longname, #adress, #telephone, #mail").removeClass().addClass("editable").attr('contenteditable','true');
+$("#longname").focus();
 
 
             $("#button_edit_profile").click(function() {
