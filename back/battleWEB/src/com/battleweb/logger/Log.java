@@ -12,9 +12,9 @@ import org.apache.log4j.xml.DOMConfigurator;
  */
 public class Log {
 	
-	static{
-		DOMConfigurator.configure("conf/log4j.xml");
-	}
+//	static{
+//		DOMConfigurator.configure("conf/log4j.xml");
+//	}
 	
 	public enum MessageType {
 		DEBUG, INFO, WARN, ERROR

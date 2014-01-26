@@ -67,12 +67,15 @@ public class CommandUpdateAccaunt implements Command {
 		
 		/** Compare password*/
 		String password=jsonObjectRequest.getString(Constants.PARAMETER_PASSWORD);
-		if (!user.getPassword().equals(toolMD5.generateMD5(password))){
-				makeResponse(request, response, Constants.TEXT_MESSAGE_UPDATE_ACCOUNT_NO_CORRECT_PASSWORD);
-				Log.debug(this, "Account is not updated. Incorrect password.");
-				return null;
-		}else {
-			password=toolMD5.generateMD5(jsonObjectRequest.getString(Constants.PARAMETER_PASSWORD_NEW));
+		if (!password.equals("")){
+			if (!user.getPassword().equals(toolMD5.generateMD5(password))){
+					makeResponse(request, response, Constants.TEXT_MESSAGE_UPDATE_ACCOUNT_NO_CORRECT_PASSWORD);
+					Log.debug(this, "Account is not updated. Incorrect password.");
+					return null;
+			}else {
+				password=toolMD5.generateMD5(jsonObjectRequest.getString(Constants.PARAMETER_PASSWORD_NEW));
+				user.setPassword(password);
+			}
 		}
 //		String login = jsonObjectRequest.getString(Constants.PARAMETER_LOGIN);
 		String firstName = jsonObjectRequest.getString(Constants.PARAMETER_FIRSTNAME);
@@ -90,13 +93,13 @@ public class CommandUpdateAccaunt implements Command {
 		user.setLastname(lastName);
 		user.setBirthday(birthday);
 		user.setPhone(phone);
-		user.setPassword(password);
 		user.setEmail(email);
 		user.getAddress().setTown(town);
 		user.getAddress().setStreet(street);
 		user.getAddress().setHouseNumber(houseNumber);
 		user.getAddress().setPostcode(postcode);
 		
+		userBean.edit(user);
 		makeResponse(request, response, Constants.TEXT_MESSAGE_UPDATE_ACCOUNT_SUCCESS);
 		Log.debug(this, "Account success updated.");
 		
