@@ -1033,12 +1033,12 @@ function call_load_data_for_current_rankings() {
         var monthprojects = data["monthprojects"];
         for (var i in monthprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, "z"), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, (count + "" + count)), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
