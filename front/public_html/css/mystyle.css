@@ -326,6 +326,14 @@ left: -13px;
 width: 105px !important;
 
 }
+.compet_panel{
+
+margin: 2px 0px;
+border: 1px solid #DDD;
+font-size: 13px;
+padding: 10px;
+}
+
 
 #button_edit_profile{
 font-size: 18px; 
