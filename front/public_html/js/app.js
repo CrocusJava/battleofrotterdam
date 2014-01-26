@@ -1190,7 +1190,7 @@ function call_load_data_for_viewprojectcomments(projectid) {
         contentType: "application/json"
     }).done(function(respons) {
         for (var comment in respons["comments"]) {
-            call_create_markup_for_viewprojectcomments(comment);
+            call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
         }
 
     }).fail(function() {
