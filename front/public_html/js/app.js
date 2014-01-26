@@ -1112,6 +1112,7 @@ function call_cookie_navigator() {
                 if (parametrs[1]) {
                     var projectid = parseInt(parametrs[1]);
                     call_load_data_for_viewproject(projectid);
+                    call_load_data_for_viewprojectcomments(projectid);
                 }
                 break;
             case "userlogin":
@@ -1173,7 +1174,43 @@ function call_create_markup_for_viewproject(respons) {
 
 }
 
+function call_load_data_for_viewprojectcomments(projectid) {
+    var data = {projectid: projectid};
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=viewprojectcomments";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        for (var comment in respons["comments"]) {
+            call_create_markup_for_viewprojectcomments(comment);
+        }
 
+    }).fail(function() {
+        console.log("error onload command=viewprojectcomments ");
+    });
+}
+
+function call_create_markup_for_viewprojectcomments(respons) {
+    var template_for_viewprojectcomments = "<li>" +
+            " <!-- Comment Entry -->" +
+            " <article>" +
+            " <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
+            "<img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
+            " <div class=comment_inner>" +
+            "<p>" + respons["text"] + "</p>" +
+            "<p style=color:rgba(0, 181, 0,1);>" +
+            "<i class=icon-time></i>" +
+            "<span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
+            "</div>" +
+            "</article>" +
+            "</li>";
+
+    $(template_for_viewprojectcomments).appendTo("#main_conteiner_comments");
+}
 
 
 
