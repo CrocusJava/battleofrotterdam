@@ -1106,7 +1106,7 @@ function call_load_data_for_myaccount(id) {
 function call_cookie_navigator() {
     if (window.location.hash.length > 1) {
         var parametrs = window.location.hash.substr(1);
-        parametrs = split("=");
+        parametrs = parametrs.split("=");
         switch (parametrs[0]) {
             case "projectid":
                 if (parametrs[1]) {
