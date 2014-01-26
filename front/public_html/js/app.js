@@ -538,8 +538,8 @@ function call_load_data_for_index_comments(load_data) {
                 {tag: "a", attr: {href: "static_profile.html"}, add_handler: {"click": go_to_user_profile}, children: [
                         {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}}
                     ]},
+                {tag: "h4", add_class: "media-heading", text: "userlogin"},
                 {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
-                        {tag: "h4", add_class: "media-heading", text: "userlogin"},
                         {tag: "p", text: "commenttext"},
                         {tag: "p", children: [
                                 {tag: "span", children: [
