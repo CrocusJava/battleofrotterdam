@@ -245,7 +245,7 @@ font-size: 14px;
 }
 
 .margin_text_email{
-margin: 5px;
+margin: 25px;
 font-size: 14px;
 font-weight: 600;
 }
@@ -327,8 +327,25 @@ width: 105px !important;
 
 }
 
+#button_edit_profile{
+font-size: 18px; 
+padding: 5px 25px; 
+float: right; 
+margin: 15px 25px;"
 
+}
+.unvisiblin{
+display: none; }
 
+.editable{
+background-color: rgba(0,181,0,0.1);
+font-size: 18px;
+padding: 10px;
+width: 85%;
+margin: 5px 25px;
+text-align: left;
+
+}
 
 
 
