@@ -486,10 +486,11 @@ function call_start_carousel() {
     $('#myCarousel').carousel();
 }
 
+
 function call_load_data_for_index_events(load_data) {
     function go_to_project() {
         var href = $(this).attr("href");
-        href = href + "#projectid";
+        href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
         $.cookie("projectid", load_data["projectid"], {expires: 100});
     }
@@ -537,8 +538,8 @@ function call_load_data_for_index_comments(load_data) {
                 {tag: "a", attr: {href: "static_profile.html"}, add_handler: {"click": go_to_user_profile}, children: [
                         {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}}
                     ]},
+                {tag: "h4", add_class: "media-heading", text: "userlogin"},
                 {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
-                        {tag: "h4", add_class: "media-heading", text: "userlogin"},
                         {tag: "p", text: "commenttext"},
                         {tag: "p", children: [
                                 {tag: "span", children: [
@@ -557,13 +558,11 @@ function call_load_data_for_index_comments(load_data) {
 
 function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы индекс
-    if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
+    if (window.location.href.match(/index.html/) || window.location.href.match(/battleWEB\/$/)) {
 
 
         call_load_data_for_news_index();
         $.post("/battleWEB/controller?command=index", function(respons, status) {
-
-//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
@@ -581,9 +580,7 @@ function call_data_for_index_html() {
                 call_load_data_for_index_events(dataObj);
             }
 
-
-            console.log("Respons data for index ====> ", status);
-        }, "json").fail(function(data) {
+        }, "json").fail(function() {
             console.log("Somsing wrang for inde post");
         });
     }
@@ -616,7 +613,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
     if (window.location.href.match(/myaccount.html/)) {
-        call_event_logout();
+
         call_send_form_accountupdate();
         call_load_data_for_myaccount();
     }
@@ -1125,6 +1122,7 @@ function call_cookie_navigator() {
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
         $("#dropdown_login_yes").show();
+        call_event_logout();
 
     }
     else {
@@ -1198,7 +1196,7 @@ function call_load_data_for_projets_page() {
                     ]},
                 {tag: "div", add_class: "project_block_photo", children: [
                         {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_clas: "img-polaroid photo_proj"},
-                        {tag: "div", add_class:"viewtheproj", children: [
+                        {tag: "div", add_class: "viewtheproj", children: [
                                 {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
                                         {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
                                     ]}
