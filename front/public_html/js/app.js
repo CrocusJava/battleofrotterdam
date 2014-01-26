@@ -855,7 +855,7 @@ function call_load_data_for_about_battle() {
 function call_event_logout() {
     $("#logout").click(function() {
         $.post("/battleWEB/controller?command=logout");
-        $.cookie("login", false);
+        $.session.set("login", false);
         window.location = "index.html";
     });
 }
