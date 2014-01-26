@@ -340,7 +340,7 @@ function AjaxRegistrationLogin(form) {
         }
         if (form.id === "login") {
             if (data.iduser) {
-                $.cookie("login", true);
+                $.session.set("login", true);
                 window.location = "myaccount.html";
             }
             else {
@@ -492,7 +492,7 @@ function call_load_data_for_index_events(load_data) {
         var href = $(this).attr("href");
         href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
-        $.cookie("projectid", load_data["projectid"], {expires: 100});
+
     }
 
     var index_last_events_template = [
@@ -523,15 +523,15 @@ function call_load_data_for_index_events(load_data) {
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
         var href = $(this).attr("href");
-        href = href + "#userlogin";
+        href = href + "#userlogin=" + load_data["userlogin"];
         $(this).attr("href", href);
-        $.cookie("userlogin", load_data["userlogin"], {expires: 100});
+
     }
     function go_to_project() {
         var href = $(this).attr("href");
-        href = href + "#projectid";
+        href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
-        $.cookie("projectid", load_data["projectid"], {expires: 100});
+
     }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
@@ -983,20 +983,7 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-        /* <div class="span4 text_center">
-         <div class="boxfeature_">
-         <div class="img_preview_">
-         <img src="img/remont8.jpg" data-src="lobster/images/morguefile/file9401274960472.jpg" alt="img_preview">
-         <a href="" class="label flat label-success likes" >100 Likes</a>
-         <a href="" class="label flat label-success label_comments" >10 Comments</a>
-         <img src="img/z.png" class="star1">
-         </div>
-         <div class="desc">
-         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-         <p><a class="btn btn-primary flat btn-large">Read More</a></p>
-         </div>
-         </div>
-         </div>*/
+
         var count = 0;
         function return_carent_rankings_template(count, img) {
 
@@ -1050,9 +1037,7 @@ function call_load_data_for_current_rankings() {
 function call_load_data_for_viewproject() {
 
     var viewproject_template = [];
-    var send_data = {
-        projectid: 17
-    };
+    var send_data = {projectid: 17};
     $.ajax({
         type: "POST",
         url: "/battleWEB/controller?command=viewproject",
@@ -1090,35 +1075,57 @@ function call_send_form_accountupdate() {
 }
 
 
-function call_load_data_for_myaccount() {
-    $.post("/battleWEB/controller?command=account", function(data) {
-        console.log(data);
-        $.cookie("name", data["login"]);
-    }, "json");
+function call_load_data_for_myaccount(id) {
+
+    var send_data = {iduser: (id ? id : 0)};
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=account",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(send_data)
+    }).done(function(respons) {
+        console.log(respons);
+        $.session.set("name", respons["login"]);
+        $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
+        $("#name_static_profile").text(respons["login"]);
+        $("#FirstName").text(respons["firstname"] + " ");
+        $("#MiddletName").text(respons["middlename"] + " ");
+        $("#LastName").text(respons["lastname"]);
+        $("#birthday").text(respons["birthday"]);
+        $("#town").text(respons["town"] + ", ");
+        $("#street").text(respons["street"] + ", ");
+        $("#housenumber").text(respons["housenumber"] + ", ");
+        $("#postcode").text(respons["postcode"]);
+        $("#telephone").text(respons["phone"]);
+        $("#mail").text(respons["email"]);
+    });
+
 }
 
 
 function call_cookie_navigator() {
     if (window.location.hash.length > 1) {
-        var resolve = window.location.hash.substr(1);
-        switch (resolve) {
+        var parametrs = window.location.hash.substr(1);
+        parametrs = split("=");
+        switch (parametrs[0]) {
             case "projectid":
-                if ($.cookie("projectid")) {
-                    var projectid = parseInt($.cookie("projectid"));
+                if (parametrs[1]) {
+                    var projectid = parametrs[1];
                     call_load_data_for_viewproject(projectid);
                 }
                 break;
             case "userlogin":
-                if ($.cookie("userlogin")) {
-                    var userlogin = $.cookie("userlogin");
+                if (parametrs[1]) {
+                    var userlogin = parametrs[1];
                 }
                 break;
         }
 
     }
 
-    if ($.cookie("login") === "true") {
-        var login_name = $.cookie("name");
+    if ($.session.get("login") === "true") {
+        var login_name = $.session.get("name");
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
         $("#dropdown_login_yes").show();
