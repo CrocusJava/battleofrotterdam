@@ -1190,16 +1190,16 @@ function call_load_data_for_projets_page() {
                             ]}
                     ]},
                 {tag: "div", add_class: "project_block_ava", children: [
-                        {tag: "img", attr: {src: "user", style: "width:200px;"}, subattr: {"src": "avatarpath"}, add_class: "img-circle"}
+                        {tag: "img", attr: {src: "user"}, subattr: {"src": "avatarpath"}, add_class: "img-circle ava_proj"}
                     ]},
                 {tag: "article", add_class: "project_block_proj", children: [
                         {tag: "div", add_class: "project_block_proj_name", text: "name"},
                         {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
                     ]},
                 {tag: "div", add_class: "project_block_photo", children: [
-                        {tag: "img", attr: {src: "lastphoto", style: "width:200px;"}, subattr: {"src": "path"}, add_clas: "img-polaroid"},
-                        {tag: "div", attr: {style: "float:left; width: 100%; margin: 10px auto;"}, children: [
-                                {tag: "div", attr: {style: "font-size: 12px; padding: 5px; float: right;"}, add_class: "btn btn-primary btn-large flat", children: [
+                        {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_clas: "img-polaroid photo_proj"},
+                        {tag: "div", add_class:"viewtheproj", children: [
+                                {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
                                         {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
                                     ]}
                             ]}
