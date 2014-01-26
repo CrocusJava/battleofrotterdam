@@ -1,6 +1,7 @@
 package com.battleweb.controller.commands;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +80,7 @@ public class CommandAccount implements Command {
 			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 			
 		} else {
-			Log.debug(this, "User is not exist in session");
+			Log.debug(this, "User not exist");
 		}
 		return null;
 	}
@@ -113,7 +114,7 @@ public class CommandAccount implements Command {
 	public JsonArray getPhotos(Project project){
 		JsonArrayBuilder jsonArrayBuilderPhoto=Json.createArrayBuilder(); 
 		
-		List<Photo> listPhotos=photoBean.findLast(1);
+		List<Photo> listPhotos=photoBean.findLastByProject(1, project);
 		
 		for (Photo photo : listPhotos) {
 			JsonObject jsonObjectResponse=Json.createObjectBuilder()
@@ -129,14 +130,20 @@ public class CommandAccount implements Command {
 	}
 	
 	private String getDateStringShort(Date date){
-		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyy");
-		String dateString=format.format(date);
-		return dateString;
+		if (null!=date){
+			SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyy");
+			String dateString=format.format(date);
+			return dateString;
+		}
+		return "";
 	}
 	
 	private String getDateStringLong(Date date){
-		SimpleDateFormat format=new SimpleDateFormat("dd MMMM yyyy HH:mm");
-		String dateString=format.format(date);
-		return dateString;
+		if (null!=date){
+			SimpleDateFormat format=new SimpleDateFormat("dd MMMM yyyy HH:mm");
+			String dateString=format.format(date);
+			return dateString;
+		}
+		return "";
 	}
 }
