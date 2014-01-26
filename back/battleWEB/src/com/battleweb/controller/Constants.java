@@ -56,6 +56,7 @@ public interface Constants {
 	public static final String COMMAND_EDIT_USER_APPLY = "edituserapply";
 	public static final String COMMAND_SEND_EMAIL = "sendemail";
 	public static final String COMMAND_ACCOUNT = "account";
+	public static final String COMMAND_UPDATE_ACCOUNT = "updateaccount";
 	public static final String COMMAND_CHANGE_PROJECT_STATUS = "changeprojectstatus";
 	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
