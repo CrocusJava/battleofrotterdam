@@ -1110,7 +1110,7 @@ function call_cookie_navigator() {
         switch (parametrs[0]) {
             case "projectid":
                 if (parametrs[1]) {
-                    var projectid = parametrs[1];
+                    var projectid = parseInt(parametrs[1]);
                     call_load_data_for_viewproject(projectid);
                 }
                 break;
