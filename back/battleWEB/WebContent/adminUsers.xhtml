@@ -1,20 +1,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
 	<h:form>
-		<br/>
-		<h:outputLink value="administration.xhtml" >
+		<br />
+		<h:outputLink value="administration.xhtml">
 			Administration Menu
-		</h:outputLink>		
-		<br/><hr/>
-		<h2>Edit Users</h2> 
+		</h:outputLink>
+		<br />
+		<hr />
+		<h2>Edit Users</h2>
+
+		<p:dataTable var="user" value="#{usersBean.dataModel}"
+			paginator="true" rows="10" rowsPerPageTemplate="10,25,50,100,250"
+			lazy="true">
+
+			<p:column headerText="Login" filterBy="#{user.login}">
+				<h:outputText value="#{user.login}" />
+			</p:column>
+
+			<p:column headerText="Name">
+				<h:outputText
+					value="#{user.firstname} #{user.middlename} #{user.lastname}" />
+			</p:column>
+
+			<p:column headerText="Role">
+				<h:outputText value="#{user.role.name}" />
+			</p:column>
+
+			<p:column headerText="Comment Able">
+				<h:panelGroup id="buttonCA">
+					<p:commandButton action="#{usersBean.changeCommandAble(user)}" value="Block"
+						update="buttonCA" rendered="#{user.commentAble}" />
+					<p:commandButton action="#{usersBean.changeCommandAble(user)}"
+						value="Unblock" update="buttonCA" rendered="#{!user.commentAble}" />
+				</h:panelGroup>
+			</p:column>
+
+			<p:column headerText="Active">
+				<h:panelGroup id="buttonA">
+					<p:commandButton action="#{usersBean.changeActive(user)}"
+						value="Deactivate" update="buttonA" rendered="#{user.active}" />
+					<p:commandButton action="#{usersBean.changeActive(user)}"
+						value="Activate" update="buttonA" rendered="#{!user.active}" />
+				</h:panelGroup>
+			</p:column>
+
+		</p:dataTable>
+
 	</h:form>
 </h:body>
 </html>

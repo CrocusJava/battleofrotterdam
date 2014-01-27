@@ -27,6 +27,8 @@ import com.battleejb.entities.Comment;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login"),
+	@NamedQuery(name = "User.findByLoginPattern", query = "SELECT u FROM User u WHERE u.login LIKE :login"),
+	@NamedQuery(name = "User.getCountByLoginPattern", query = "SELECT COUNT(u) FROM User u WHERE u.login LIKE :login"),
 	@NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
 	@NamedQuery(name = "User.getCountOfUserByLogin", query = "SELECT COUNT(u) FROM User u WHERE u.login=:login"),
 	@NamedQuery(name = "User.getCountOfUserByEmail", query = "SELECT COUNT(u) FROM User u WHERE u.email=:email")

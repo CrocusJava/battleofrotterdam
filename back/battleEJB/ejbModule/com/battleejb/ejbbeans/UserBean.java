@@ -90,4 +90,38 @@ public class UserBean extends AbstractFacade<User> {
 		}
 		return users;
 	}
+
+	public List<User> findByLoginLimit(String login, Integer firstPosition,
+			Integer size) {
+		List<User> users = null;
+		if (login != null) {
+			login += "%";
+		} else {
+			login = "%";
+		}
+		try {
+			users = em.createNamedQuery("User.findByLoginPattern", User.class)
+					.setParameter("login", login).setFirstResult(firstPosition)
+					.setMaxResults(size).getResultList();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public long getCountByLogin(String login) {
+		long count = 0;
+		if (login != null) {
+			login += "%";
+		} else {
+			login = "%";
+		}
+		try {
+			count = (Long) em.createNamedQuery("User.getCountByLoginPattern")
+					.setParameter("login", login).getSingleResult();
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 }
