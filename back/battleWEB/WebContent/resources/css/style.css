@@ -3,3 +3,12 @@ body {
     background-image: url('../img/body_bg.png');
     background-color: #dcdbda;
 }
+
+.input_text_size{
+	width:40%;
+	height:150px;
+}
+.input_url_size{
+	width:40%;
+	height:50px;
+}

@@ -340,7 +340,7 @@ function AjaxRegistrationLogin(form) {
         }
         if (form.id === "login") {
             if (data.iduser) {
-                $.cookie("login", true);
+                $.session.set("login", true);
                 window.location = "myaccount.html";
             }
             else {
@@ -486,12 +486,13 @@ function call_start_carousel() {
     $('#myCarousel').carousel();
 }
 
+
 function call_load_data_for_index_events(load_data) {
     function go_to_project() {
         var href = $(this).attr("href");
-        href = href + "#projectid";
+        href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
-        $.cookie("projectid", load_data["projectid"], {expires: 100});
+
     }
 
     var index_last_events_template = [
@@ -522,23 +523,23 @@ function call_load_data_for_index_events(load_data) {
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
         var href = $(this).attr("href");
-        href = href + "#userlogin";
+        href = href + "#userlogin=" + load_data["userlogin"];
         $(this).attr("href", href);
-        $.cookie("userlogin", load_data["userlogin"], {expires: 100});
+
     }
     function go_to_project() {
         var href = $(this).attr("href");
-        href = href + "#projectid";
+        href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
-        $.cookie("projectid", load_data["projectid"], {expires: 100});
+
     }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
                 {tag: "a", attr: {href: "static_profile.html"}, add_handler: {"click": go_to_user_profile}, children: [
                         {tag: "img", add_class: "pull-left img_client", attr: {src: "userphotopath", alt: "image"}}
                     ]},
+                {tag: "h4", add_class: "media-heading", text: "userlogin"},
                 {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
-                        {tag: "h4", add_class: "media-heading", text: "userlogin"},
                         {tag: "p", text: "commenttext"},
                         {tag: "p", children: [
                                 {tag: "span", children: [
@@ -557,13 +558,11 @@ function call_load_data_for_index_comments(load_data) {
 
 function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы индекс
-    if (window.location.href.match(/index.html$/) || window.location.href.match(/battleWEB\/$/)) {
+    if (window.location.href.match(/index.html/) || window.location.href.match(/battleWEB\/$/)) {
 
 
         call_load_data_for_news_index();
         $.post("/battleWEB/controller?command=index", function(respons, status) {
-
-//respons = JSON.parse(respons); в ответе приходит готовый объэкт, парсить не нужно
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
             $("#battledescriptionshort").text(respons["battledescriptionshort"]);
@@ -581,9 +580,7 @@ function call_data_for_index_html() {
                 call_load_data_for_index_events(dataObj);
             }
 
-
-            console.log("Respons data for index ====> ", status);
-        }, "json").fail(function(data) {
+        }, "json").fail(function() {
             console.log("Somsing wrang for inde post");
         });
     }
@@ -616,7 +613,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы мой акаунт
 
     if (window.location.href.match(/myaccount.html/)) {
-        call_event_logout();
+
         call_send_form_accountupdate();
         call_load_data_for_myaccount();
     }
@@ -858,7 +855,7 @@ function call_load_data_for_about_battle() {
 function call_event_logout() {
     $("#logout").click(function() {
         $.post("/battleWEB/controller?command=logout");
-        $.cookie("login", false);
+        $.session.set("login", false);
         window.location = "index.html";
     });
 }
@@ -986,20 +983,7 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-        /* <div class="span4 text_center">
-         <div class="boxfeature_">
-         <div class="img_preview_">
-         <img src="img/remont8.jpg" data-src="lobster/images/morguefile/file9401274960472.jpg" alt="img_preview">
-         <a href="" class="label flat label-success likes" >100 Likes</a>
-         <a href="" class="label flat label-success label_comments" >10 Comments</a>
-         <img src="img/z.png" class="star1">
-         </div>
-         <div class="desc">
-         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-         <p><a class="btn btn-primary flat btn-large">Read More</a></p>
-         </div>
-         </div>
-         </div>*/
+
         var count = 0;
         function return_carent_rankings_template(count, img) {
 
@@ -1033,12 +1017,12 @@ function call_load_data_for_current_rankings() {
         var monthprojects = data["monthprojects"];
         for (var i in monthprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, "z"), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, (count + "" + count)), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
@@ -1053,9 +1037,7 @@ function call_load_data_for_current_rankings() {
 function call_load_data_for_viewproject() {
 
     var viewproject_template = [];
-    var send_data = {
-        projectid: 17
-    };
+    var send_data = {projectid: 17};
     $.ajax({
         type: "POST",
         url: "/battleWEB/controller?command=viewproject",
@@ -1093,38 +1075,61 @@ function call_send_form_accountupdate() {
 }
 
 
-function call_load_data_for_myaccount() {
-    $.post("/battleWEB/controller?command=account", function(data) {
-        console.log(data);
-        $.cookie("name", data["login"]);
-    }, "json");
+function call_load_data_for_myaccount(id) {
+
+    var send_data = {iduser: (id ? id : 0)};
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=account",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(send_data)
+    }).done(function(respons) {
+        $.session.set("name", respons["login"]);
+        $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
+        $("#name_static_profile").text(respons["login"]);
+        $("#FirstName").text(respons["firstname"] + " ");
+        $("#MiddletName").text(respons["middlename"] + " ");
+        $("#LastName").text(respons["lastname"]);
+        $("#birthday").text(respons["birthday"]);
+        $("#town").text(respons["town"] + ", ");
+        $("#street").text(respons["street"] + ", ");
+        $("#housenumber").text(respons["housenumber"] + ", ");
+        $("#postcode").text(respons["postcode"]);
+        $("#telephone").text(respons["phone"]);
+        $("#mail").text(respons["email"]);
+    });
+
 }
 
 
 function call_cookie_navigator() {
     if (window.location.hash.length > 1) {
-        var resolve = window.location.hash.substr(1);
-        switch (resolve) {
+        var parametrs = window.location.hash.substr(1);
+        parametrs = parametrs.split("=");
+        switch (parametrs[0]) {
             case "projectid":
-                if ($.cookie("projectid")) {
-                    var projectid = parseInt($.cookie("projectid"));
+                if (parametrs[1]) {
+                    var projectid = parseInt(parametrs[1]);
                     call_load_data_for_viewproject(projectid);
+                    call_load_data_for_viewprojectcomments(projectid);
                 }
                 break;
             case "userlogin":
-                if ($.cookie("userlogin")) {
-                    var userlogin = $.cookie("userlogin");
+                if (parametrs[1]) {
+                    var userlogin = parametrs[1];
                 }
                 break;
         }
 
     }
 
-    if ($.cookie("login") === "true") {
-        var login_name = $.cookie("name");
+    if ($.session.get("login") === "true") {
+        var login_name = $.session.get("name");
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
         $("#dropdown_login_yes").show();
+        call_event_logout();
 
     }
     else {
@@ -1162,9 +1167,54 @@ function call_create_markup_for_viewproject(respons) {
     $("#description").text(respons["description"]);
     $("#rating").text(respons["rating"]);
     $("#commentquantity").text(respons["commentquantity"]);
+    $("#firstphoto_path").attr("src", respons["firstphoto"]["path"]);
+    $("#firstphoto_description").text(respons["firstphoto"]["description"]);
+    $("#lastphoto_path").attr("src", respons["lastphoto"]["path"]);
+    $("#lastphoto_description").text(respons["lastphoto"]["description"]);
+
 }
 
+function call_load_data_for_viewprojectcomments(projectid) {
+    var data = {
+        projectid: projectid,
+        firstposition: 1,
+        size: 10
+    };
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=viewprojectcomments";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        for (var comment in respons["comments"]) {
+            call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
+        }
 
+    }).fail(function() {
+        console.log("error onload command=viewprojectcomments ");
+    });
+}
+
+function call_create_markup_for_viewprojectcomments(respons) {
+    var template_for_viewprojectcomments = "<li>" +
+            " <!-- Comment Entry -->" +
+            " <article>" +
+            " <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
+            "<img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
+            " <div class=comment_inner style=display:block;>" +
+            "<p>" + respons["text"] + "</p>" +
+            "<p style='color:rgba(0, 181, 0,1);'>" +
+            "<i class=icon-time></i>" +
+            "<span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
+            "</div>" +
+            "</article>" +
+            "</li>";
+
+    $(template_for_viewprojectcomments).appendTo("#main_conteiner_comments");
+}
 
 
 
@@ -1190,17 +1240,17 @@ function call_load_data_for_projets_page() {
                             ]}
                     ]},
                 {tag: "div", add_class: "project_block_ava", children: [
-                        {tag: "img", attr: {src: "user", style: "width:200px;"}, subattr: {"src": "avatarpath"}, add_class: "img-circle"}
+                        {tag: "img", attr: {src: "user"}, subattr: {"src": "avatarpath"}, add_class: "img-circle ava_proj"}
                     ]},
                 {tag: "article", add_class: "project_block_proj", children: [
                         {tag: "div", add_class: "project_block_proj_name", text: "name"},
                         {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
                     ]},
                 {tag: "div", add_class: "project_block_photo", children: [
-                        {tag: "img", attr: {src: "lastphoto", style: "width:200px;"}, subattr: {"src": "path"}, add_clas: "img-polaroid"},
-                        {tag: "div", attr: {style: "float:left; width: 100%; margin: 10px auto;"}, children: [
-                                {tag: "div", attr: {style: "font-size: 12px; padding: 5px; float: right;"}, add_class: "btn btn-primary btn-large flat", children: [
-                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "Read more"}
+                        {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_clas: "img-polaroid photo_proj"},
+                        {tag: "div", add_class: "viewtheproj", children: [
+                                {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
+                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
                                     ]}
                             ]}
                     ]}
