@@ -1,20 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
 	<h:form>
-		<br/>
-		<h:outputLink value="administration.xhtml" >
+		<br />
+		<h:outputLink value="administration.xhtml">
 			Administration Menu
-		</h:outputLink>		
-		<br/><hr/>
-		<h2>Edit Projects</h2> 
+		</h:outputLink>
+		<br />
+		<hr />
+		<h2>Edit Projects</h2>
+
+		<p:dataTable var="project" value="#{projectsBean.dataModel}"
+			paginator="true" currentPageReportTemplate="true" rows="10"
+			rowsPerPageTemplate="10,25,50,100,250" lazy="true">
+
+			<p:column headerText="Name" filterBy="#{project.name}">
+				<h:outputText value="#{project.name}" />
+			</p:column>
+
+			<p:column headerText="User" filterBy="login">
+				<h:outputText value="#{project.user.login}" />
+			</p:column>
+
+			<p:column headerText="Creation Date">
+				<h:outputText value="#{project.creationDate}" />
+			</p:column>
+			
+			<p:column headerText="CompetitionType">
+				<h:outputText value="#{project.competition.type.name}" />
+			</p:column>
+		
+			<p:column headerText="Approved">
+				<h:panelGroup id="buttonA">
+					<h:outputText value="Approved " rendered="#{project.approved}" />
+					<p:commandButton action="#{projectsBean.changeApprove(project)}"
+						value="Unapprove" update="buttonA" rendered="#{project.approved}" />
+					<h:outputText value="Not approved " rendered="#{!project.approved}" />
+					<p:commandButton action="#{projectsBean.changeApprove(project)}"
+						value="Approve" update="buttonA" rendered="#{!project.approved}" />
+				</h:panelGroup>
+			</p:column>
+
+		</p:dataTable>
+
 	</h:form>
+
 </h:body>
 </html>

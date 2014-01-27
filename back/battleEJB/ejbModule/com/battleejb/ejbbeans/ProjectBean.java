@@ -19,7 +19,6 @@ import com.battleejb.entities.CompetitionType_;
 import com.battleejb.entities.Competition_;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.Project_;
-import com.battleejb.entities.Search;
 import com.battleejb.entities.User;
 import com.battleejb.entities.User_;
 
@@ -73,41 +72,8 @@ public class ProjectBean extends AbstractFacade<Project> {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<Project> cq = cb.createQuery(Project.class);
 			Root<Project> p = cq.from(Project.class);
-			Predicate predicate = cb.and(cb.equal(
-					p.get(Project_.user).get(User_.active), true));
-			if (approved != null) {
-				predicate = cb.and(predicate,
-						cb.equal(p.get(Project_.approved), approved));
-			}
-			if (login != null) {
-				predicate = cb.and(
-						predicate,
-						cb.like(p.get(Project_.user).get(User_.login), login
-								+ "%"));
-			}
-			if (name != null) {
-				predicate = cb.and(cb.like(p.get(Project_.name), "%" + name
-						+ "%"));
-			}
-			if (dateFrom != null) {
-				predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
-						p.get(Project_.creationDate), dateFrom));
-			}
-			if (dateTo != null) {
-				predicate = cb.and(predicate, cb.lessThanOrEqualTo(
-						p.get(Project_.creationDate), dateTo));
-			}
-			if (competitionId != null) {
-				predicate = cb.and(predicate, cb.equal(
-						p.get(Project_.competition).get(Competition_.id),
-						competitionId));
-			}
-			if (competitionType != null) {
-				predicate = cb.and(predicate, cb.equal(
-						p.get(Project_.competition).get(Competition_.type)
-								.get(CompetitionType_.name), competitionType));
-			}
-
+			Predicate predicate = filter(orderBy, sort, login, name, dateFrom, dateTo,
+					competitionId, competitionType, approved, cb, p);
 			cq.where(predicate);
 			Expression<?> ex = null;
 			if (orderBy.equals(PARAMETER_DATE)) {
@@ -132,6 +98,66 @@ public class ProjectBean extends AbstractFacade<Project> {
 		return projects;
 	}
 
+	public long findCountFilterOrderByDateOrRatingLimit(String orderBy,
+			String sort, String login, String name, Date dateFrom, Date dateTo,
+			Integer competitionId, String competitionType, int firstPosition,
+			int size, Boolean approved) {
+		Long count = null;
+		try {
+			CriteriaBuilder cb = em.getCriteriaBuilder();
+			CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+			Root<Project> p = cq.from(Project.class);
+			cq.select(cb.count(p));
+			Predicate predicate = filter(orderBy, sort, login, name, dateFrom, dateTo, competitionId,
+					competitionType, approved, cb, p);
+			cq.where(predicate);
+			count = em.createQuery(cq).getSingleResult();
+
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	private Predicate filter(String orderBy, String sort, String login, String name,
+			Date dateFrom, Date dateTo, Integer competitionId,
+			String competitionType, Boolean approved, CriteriaBuilder cb,
+			Root<Project> p) {
+		Predicate predicate = cb.and(cb.equal(
+				p.get(Project_.user).get(User_.active), true));
+		if (approved != null) {
+			predicate = cb.and(predicate,
+					cb.equal(p.get(Project_.approved), approved));
+		}
+		if (login != null) {
+			predicate = cb
+					.and(predicate, cb.like(
+							p.get(Project_.user).get(User_.login), login + "%"));
+		}
+		if (name != null) {
+			predicate = cb.and(cb.like(p.get(Project_.name), "%" + name + "%"));
+		}
+		if (dateFrom != null) {
+			predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
+					p.get(Project_.creationDate), dateFrom));
+		}
+		if (dateTo != null) {
+			predicate = cb.and(predicate,
+					cb.lessThanOrEqualTo(p.get(Project_.creationDate), dateTo));
+		}
+		if (competitionId != null) {
+			predicate = cb.and(predicate, cb.equal(p.get(Project_.competition)
+					.get(Competition_.id), competitionId));
+		}
+		if (competitionType != null) {
+			predicate = cb.and(
+					predicate,
+					cb.equal(p.get(Project_.competition).get(Competition_.type)
+							.get(CompetitionType_.name), competitionType));
+		}
+		return predicate;
+	}
+
 	public List<Project> findProjectsByUser(User user) {
 		List<Project> listProjects = null;
 		try {
@@ -143,5 +169,5 @@ public class ProjectBean extends AbstractFacade<Project> {
 			/* LOG */
 		}
 		return listProjects;
-	}	
+	}
 }
