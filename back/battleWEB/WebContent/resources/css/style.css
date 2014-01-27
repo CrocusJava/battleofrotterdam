@@ -8,6 +8,10 @@ a{
 	font-size: large
 }
 
+h4{
+	font-size: large;
+}
+
 .input_text_size{
 	width: 40%;
 	height: 150px;
