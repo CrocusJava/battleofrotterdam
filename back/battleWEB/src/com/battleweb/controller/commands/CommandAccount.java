@@ -96,6 +96,8 @@ public class CommandAccount implements Command {
 					.add(Constants.PARAMETER_PROJECT_NAME, project.getName())
 					.add(Constants.PARAMETER_PROJECT_DESCRIPTION, project.getDescription())
 					.add(Constants.PARAMETER_PROJECT_DATE_CREATION, getDateStringLong(project.getCreationDate()))
+					.add(Constants.PARAMETER_COMMENTS_COUNT, project.getComments().size())
+					.add(Constants.PARAMETER_VOICES_COUNT, project.getVoices().size())
 					.add(Constants.PARAMETER_COMPETITION_ID, project.getCompetition().getId())
 					.add(Constants.PARAMETER_COMPETITION_NAME, project.getCompetition().getName())
 					.add(Constants.PARAMETER_COMPETITION_DESCRIPTION, project.getCompetition().getDescription())

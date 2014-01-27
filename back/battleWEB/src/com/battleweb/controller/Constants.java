@@ -163,6 +163,7 @@ public interface Constants {
 	public static final String PARAMETER_FIRST_POSITION = "firstposition";
 	public static final String PARAMETER_SIZE = "size";
 	public static final String PARAMETER_COMMENTS = "comments";
+	public static final String PARAMETER_COMMENTS_COUNT = "commentscount";
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_TEXT_EN = "texten";
 	public static final String PARAMETER_TEXT_NL = "textnl";
@@ -173,7 +174,8 @@ public interface Constants {
 	public static final String PARAMETER_COMPETITION_ID = "competitionid";
 	public static final String PARAMETER_VOTE_RESULT = "voteresult";
 	public static final String PARAMETER_COMMENT_RESULT = "commentresult";
-
+	public static final String PARAMETER_VOICES_COUNT = "voicescount";
+	
 	public static final String PARAMETER_CONTACTS = "contacts";
 	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
 	public static final String PARAMETER_CONTACTS_ADDRESS = "contactsaddress";
