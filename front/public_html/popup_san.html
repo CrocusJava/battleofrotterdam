@@ -1,0 +1,95 @@
+ <div id="fullPicA" style="display:none; position:fixed; top:20px; left:0px;  z-index:9999; width:100%;">
+        <table class="iboxFullPic" border="0" cellpadding="0" cellspacing="0" align="center" style="border:solid 2px #666666; background-color:#dddddd;">
+            <tbody><tr>
+                <td valign="bottom" colspan="3" style="height:10px;"> 
+                     <div style="height:10px; position:relative;">
+                         <div style="position:absolute; bottom:0px; right:-25px; text-align:right; padding:5px; padding-top:0px; padding-bottom:0px; padding-top:-5px; margin-bottom:0px; font-size:14px; color:#aaaaaa;   margin-right:50px; ">
+                        <span class="ibutsOpacity iboxFullPic" onclick="close_pop_up('#fullPicA');" style="cursor:pointer; position:relative; z-index:10; border:solid 2px #666666; background-color:#666666; font-size:16px; padding-left:10px; padding-right:10px; color:#ffffff;">X</span>
+                    </div>
+                    </div>     
+                       
+                </td>
+            </tr>
+            <tr>
+                
+                <td valign="middle" style="background-color:#dddddd; max-width:15px;">
+                    <div style="width:15px; position:relative;">
+                        <div class="ibutsOpacity iboxFullPic" onclick="goToPrevPic();" style="position:absolute; right:13px; cursor:pointer; position:relative; z-index:10; border:solid 2px #666666; background-color:#666666; font-size:16px; padding:10px; padding-top:25px; padding-bottom:25px; padding-right:20px; text-align:center; font-weight:bold;  color:#ffffff;">
+                      &lt;
+                     </div>
+                   </div>
+                </td>
+                        <td style="background-color:#666666;">
+                     <div style="position:relative;">
+                      <img class="iboxFullPic" id="ifullimg" style="position:relative; max-width:1024px; max-height:600px; border:solid 2px #666666; z-index:9999;">  
+                     </div>
+                 </td>
+                <td valign="middle" style="background-color:#dddddd; max-width:15px;">
+                    <div style="width:15px; position:relative;">
+                      <div class="ibutsOpacity iboxFullPic" onclick="goToNextPic();" style="position:absolute; left:-5px; cursor:pointer; position:relative; z-index:10; border:solid 2px #666666; background-color:#666666; font-size:16px; padding:10px; padding-top:25px; padding-bottom:25px; padding-right:20px; text-align:center; font-weight:bold;  color:#ffffff;">
+                      &gt;
+                      </div>
+                     </div>   
+                </td>
+            </tr>
+                    <tr>
+                <td valign="middle" colspan="3"> 
+                    <div style="height:10px;">
+                    </div>
+                </td>
+            </tr>
+          
+        </tbody></table>
+    </div>
+ 
+ 
+ function open_pop_up(box) {
+    //$("#overlay").fadeIn(700);
+     $('#container').fadeTo( 2000 , 0.1);
+      $(box).fadeIn(700);
+ $(box).css('position','fixed');
+        // alert($(window).height());
+        //$(box).css('top', $(window).scrollTop() + ($(window).height() / 2) - ($(box).css('height')/2)  + 'px'); 
+        // $(box).css('left', ($(window).width() - this.width()) / 2+$(window).scrollLeft() - 10 + 'px');
+ $(box).fadeIn(700);
+}
+ 
+function close_pop_up(box) {
+ $(box).fadeOut(700);
+    $('#container').fadeTo(2000, 1);
+    //$("#overlay").delay(700).fadeOut(700);
+}
+    var iFullPicNow = 0;
+ 
+    function goToPrevPic(){
+        //alert(iFullPicNow); 
+        //alert(($('#iCaruselContent:visible img').length-1));
+        if((($('#iCaruselContent:visible img').length-1)>=iFullPicNow)&&(iFullPicNow > 0)){
+          
+            // $('#fullPicA').css('top', $(window).scrollTop() + ($(window).height() / 2) - ($('#fullPicA').css('height')/2)  + 'px');
+          $('#ifullimg').fadeTo(300, 0.4); 
+            //alert($('#iCaruselContent:visible img').eq(iFullPicNow).attr('src'));  
+            
+            //$('#fullPicA').css('top', $(window).scrollTop() + ($(window).height() / 2) - ($('#fullPicA').css('height')/2)  + 'px');
+           setTimeout("$('#ifullimg').attr('src', $('#iCaruselContent:visible img').eq((iFullPicNow-1)).attr('src'));  $('#ifullimg').fadeTo(300, 1);  iFullPicNow--;", 300);
+           
+        }else{
+             
+        }
+    }
+    
+    function goToNextPic(){
+        //alert(iFullPicNow);
+        
+       if(($('#iCaruselContent:visible img').length-1)>iFullPicNow){
+           $('#ifullimg').fadeTo(300, 0.4); 
+            //alert($('#iCaruselContent:visible img').eq(iFullPicNow).attr('src'));  
+            
+            //$('#fullPicA').css('top', $(window).scrollTop() + ($(window).height() / 2) - ($('#fullPicA').css('height')/2)  + 'px');
+           setTimeout("$('#ifullimg').attr('src', $('#iCaruselContent:visible img').eq((iFullPicNow+1)).attr('src')); $('#ifullimg').fadeTo(300, 1); iFullPicNow++;", 300);
+
+            
+        }else{
+             
+        }  
+    }
