@@ -41,7 +41,11 @@ public class ProjectsBean {
 					Map<String, String> filters) {			
 				Date dateFrom = null;
 				Date dateTo = null;
-				String sort = "desc";
+				String sort = "asc";
+				System.out.println(sortOrder);
+				if (sortOrder.equals(sortOrder.DESCENDING)){
+					sort = "desc";
+				}
 				String orderBy = "date";
 				Integer competitionId = null;
 				setRowCount((int) projectBean
