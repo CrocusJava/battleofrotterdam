@@ -26,19 +26,19 @@ function call_all() {
 }
 
 function call_form_validation() {
-    if ($('#account').length > 0) {
-        $('#account').validate({
-            rules: {
-                birthday: {
-                    date: true
-                },
-                postcode: {
-                    number: true
-                }
-            },
-            submitHandler: AjaxRegistrationLogin
-        });
-    }
+//    if ($('#account').length > 0) {
+//        $('#account').validate({
+//            rules: {
+//                birthday: {
+//                    date: true
+//                },
+//                postcode: {
+//                    number: true
+//                }
+//            },
+//            submitHandler: AjaxRegistrationLogin
+//        });
+//    }
     if ($('.login_form_validation').length > 0) {
         $('.login_form_validation').validate({
             submitHandler: AjaxRegistrationLogin
@@ -1098,8 +1098,34 @@ function call_load_data_for_myaccount(id) {
         $("#postcode").text(respons["postcode"]);
         $("#telephone").text(respons["phone"]);
         $("#mail").text(respons["email"]);
+        for (var project in respons["projects"]) {
+            call_create_murkup_for_account_projects(respons["projects"][project], respons);
+        }
+
     });
 
+}
+
+function call_create_murkup_for_account_projects(project, respons) {
+    var template_for_project = '<section class="project_block" >' +
+            '<div class="blog-line">' +
+            '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
+            '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
+            '<a href="#" class="trylater"><i class="icon-comments"></i><span>' + "" + '</span> Comments</a>' +
+            '</div>' +
+            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
+            '</div>' +
+            '<article  class="project_block_proj"  >' +
+            '<div class="project_block_proj_name" >' + project["projectname"] + '</div>'
+    '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
+            '</article>' +
+            '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
+            '<div class="viewtheproj">' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid="' + project["projectid"] + ' style="color:#fff;">View the project</a>' +
+            '</div>' +
+            '</div>' +
+            '</section>' + '<div style="height:15px;"></div>';
+    $(template_for_project).appendTo("#account_projects");
 }
 
 
