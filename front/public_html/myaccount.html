@@ -441,7 +441,7 @@
                     $("#adress, #telephone, #birthday").removeClass("editable").addClass("margin_text").attr('contenteditable', 'false');
                     $("#mail").removeClass("editable").addClass("margin_text_email").attr('contenteditable', 'false');
                     $("#uploadavatar").addClass("unvisiblin");
-                    if (window.upload_file) {
+                    if (window.upload_file && window.upload_file._input) {
                         if (window.upload_file._input.files.length > 0) {
                             window.upload_file.submit();
                         }
