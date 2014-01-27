@@ -30,37 +30,37 @@ public class ProjectsBean {
 
 	private LazyDataModel<Project> dataModel;
 
-	@PostConstruct
-	private void init() {
-		dataModel = new LazyDataModel<Project>() {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public List<Project> load(int first, int pageSize,
-					String sortField, SortOrder sortOrder,
-					Map<String, String> filters) {			
-				Date dateFrom = null;
-				Date dateTo = null;
-				String sort = "asc";
-				if (sortOrder.equals(sortOrder.DESCENDING)){
-					sort = "desc";
-				}
-				String orderBy = "date";
-				Integer competitionId = null;
-				setRowCount((int) projectBean
-						.findCountFilterOrderByDateOrRatingLimit(orderBy,
-								sort, filters.get("login"), filters.get("name"),
-								dateFrom, dateTo, competitionId,
-								filters.get("competitionId"), null));
-				
-				return projectBean.findFilterOrderByDateOrRatingLimit(orderBy,
-						sort, filters.get("login"), filters.get("name"),
-						dateFrom, dateTo, competitionId,
-						filters.get("competitionId"), first, pageSize, null);
-			}
-		};
-	}
+//	@PostConstruct
+//	private void init() {
+//		dataModel = new LazyDataModel<Project>() {
+//
+//			private static final long serialVersionUID = 1L;
+//
+//			@Override
+//			public List<Project> load(int first, int pageSize,
+//					String sortField, SortOrder sortOrder,
+//					Map<String, String> filters) {			
+//				Date dateFrom = null;
+//				Date dateTo = null;
+//				String sort = "asc";
+//				if (sortOrder.equals(sortOrder.DESCENDING)){
+//					sort = "desc";
+//				}
+//				String orderBy = "date";
+//				Integer competitionId = null;
+//				setRowCount((int) projectBean
+//						.findCountFilterOrderByDateOrRatingLimit(orderBy,
+//								sort, filters.get("login"), filters.get("name"),
+//								dateFrom, dateTo, competitionId,
+//								filters.get("competitionId"), null));
+//				
+//				return projectBean.findFilterOrderByDateOrRatingLimit(orderBy,
+//						sort, filters.get("login"), filters.get("name"),
+//						dateFrom, dateTo, competitionId,
+//						filters.get("competitionId"), first, pageSize, null);
+//			}
+//		};
+//	}
 
 	public void changeApprove(Project project){
 		project.setApproved(!project.getApproved());

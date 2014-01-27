@@ -308,6 +308,9 @@ public interface Constants {
 	public static final String ORDER_BY_END_DATE = "enddate";
 	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
 	
+	//Localization
+//	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
+	
 	//Path
 	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";
 	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
