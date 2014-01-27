@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
@@ -40,12 +41,9 @@
 		<br />
 		<br />
 		
-		<h:commandButton class="" value="Apply" action="#{home.apply()}" >
-					<f:ajax execute="@form" render="@form" />
-		</h:commandButton>
-		<h:commandButton class="" value="Cancel" action="#{home.cancel()}" >
-					<f:ajax execute="" render="@form" />
-		</h:commandButton>
+		<p:commandButton action="#{home.apply()}" value="Apply" update="@form" />
+		<p:commandButton action="#{home.cancel()}" value="Cancel" update="@form" />
+		
 	</h:form>
 </h:body>
 </html>

@@ -5,10 +5,12 @@ body {
 }
 
 .input_text_size{
-	width:40%;
-	height:150px;
+	width: 40%;
+	height: 150px;
+	font-size: medium
 }
 .input_url_size{
-	width:40%;
-	height:50px;
+	width: 40%;
+	height: 50px;
+	font-size: large
 }
