@@ -369,11 +369,7 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-    if (window.upload_file) {
-        if (window.upload_file._input.files.length > 0) {
-            window.upload_file.submit();
-        }
-    }
+
     console.log(config, form.id);
     return false;
 }
@@ -614,7 +610,6 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/myaccount.html/)) {
 
-        call_send_form_accountupdate();
         call_load_data_for_myaccount();
     }
 //<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
@@ -1067,14 +1062,6 @@ function call_load_data_for_index_footer_contacts(contacts) {
 }
 
 
-function call_send_form_accountupdate() {
-    $("#accountupdate").on("submit", function() {
-        AjaxRegistrationLogin(this);
-        return false;
-    });
-}
-
-
 function call_load_data_for_myaccount(id) {
 
     var send_data = {iduser: (id ? id : 0)};
@@ -1104,6 +1091,37 @@ function call_load_data_for_myaccount(id) {
 
     });
 
+}
+
+function call_upload_data_for_updateaccaunt() {
+    var uploadData = {};
+    uploadData.login = $("#name_static_profile").text();
+    uploadData.firstname = $("#FirstName").text();
+    uploadData.middlename = $("#MiddletName").text();
+    uploadData.lastname = $("#LastName").text();
+    uploadData.birthday = $("#birthday").text();
+    uploadData.phone = $("#telephone").text();
+    uploadData.email = $("#mail").text();
+    uploadData.town = $("#town").text();
+    uploadData.street = $("#street").text();
+    uploadData.housenumber = $("#housenumber").text();
+    uploadData.postcode = $("#postcode").text();
+    uploadData.password = "";
+    uploadData.passwordnew = "";
+
+    uploadData = JSON.stringify(uploadData);
+
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=updateaccaunt",
+        dataType: "json",
+        contentType: "application/json",
+        data: uploadData
+    }).done(function(data) {
+        console.log(data.message);
+    }).fail(function() {
+        console.log("Problemi s obnovleniem dannih");
+    });
 }
 
 function call_create_murkup_for_account_projects(project, respons) {

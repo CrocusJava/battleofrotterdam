@@ -435,11 +435,25 @@
 
 
             $("#button_edit_profile").click(function() {
-                $("#button_edit_profile").text("Update profile");
-                $(".unvisiblin").removeClass("unvisiblin");
-                $(" #longname, #adress, #telephone, #mail, #birthday").removeClass().addClass("editable").attr('contenteditable', 'true');
-                $("#longname").focus();
-
+                if ($(this).text() === "Update profile") {
+                    $(this).html("  Edit profile <i class='icon-pencil'></i>");
+                    $(" #longname").removeClass("editable").addClass("margin_text_longname").attr('contenteditable', 'false');
+                    $("#adress, #telephone, #birthday").removeClass("editable").addClass("margin_text").attr('contenteditable', 'false');
+                    $("#mail").removeClass("editable").addClass("margin_text_email").attr('contenteditable', 'false');
+                    $("#uploadavatar").addClass("unvisiblin");
+                    if (window.upload_file) {
+                        if (window.upload_file._input.files.length > 0) {
+                            window.upload_file.submit();
+                        }
+                    }
+                    call_upload_data_for_updateaccaunt();
+                }
+                else {
+                    $("#button_edit_profile").text("Update profile");
+                    $(".unvisiblin").removeClass("unvisiblin");
+                    $(" #longname, #adress, #telephone, #mail, #birthday").removeClass().addClass("editable").attr('contenteditable', 'true');
+                    $("#longname").focus();
+                }
             });
 
 
