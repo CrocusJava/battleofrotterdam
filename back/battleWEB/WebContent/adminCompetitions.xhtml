@@ -1,22 +1,109 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:form>
-		<br/>
-		<h:outputLink value="administration.xhtml" >
+	<h:form id="form">
+		<br />
+		<h:outputLink value="administration.xhtml">
 			Administration Menu
 		</h:outputLink>
-		
-		<br/><hr/>
-		<h2>Edit Competitions</h2> 
-		
+
+		<br />
+		<hr />
+		<h2>Edit Competitions</h2>
+
+		<p:dataTable var="competition" value="#{competitionsBean.dataModel}"
+			paginator="true" currentPageReportTemplate="true" rows="10"
+			rowsPerPageTemplate="10,25,50" lazy="true">
+
+			<p:column headerText="Name" filterBy="name">
+				<h:outputText value="#{competition.name}" />
+			</p:column>
+
+			<p:column headerText="Type">
+				<h:outputText value="#{competition.type.name}" />
+			</p:column>
+
+			<p:column headerText="Start date" sortBy="startdate">
+				<h:outputText value="#{competition.dateStart}" />
+			</p:column>
+
+			<p:column headerText="Registration deadline" sortBy="regdeadline">
+				<h:outputText value="#{competition.registerDeadline}" />
+			</p:column>
+
+			<p:column headerText="End date" sortBy="enddate">
+				<h:outputText value="#{competition.dateEnd}" />
+			</p:column>
+
+			<p:column headerText="Winner">
+				<h:outputText value="#{competition.user.login}" />
+			</p:column>
+
+			<p:column style="width:4%">
+				<p:commandButton id="selectButton"
+					update=":form:display" oncomplete="PF('compDialog').show()"
+					icon="ui-icon-search" title="View">
+					<f:setPropertyActionListener value="#{competition}"
+						target="#{competitionsBean.competition}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:dialog header="Edit competition" widgetVar="compDialog"
+			resizable="false" id="compDlg" showEffect="fade" hideEffect="fade"
+			modal="true">
+			<h:panelGroup id="display">
+				<h:panelGrid columns="2">
+					<h:outputText value="Competition name " />
+					<h:inputText value="#{competitionsBean.competition.name}" size="50" />
+
+					<h:outputLabel value="Start date" />
+					<p:calendar value="#{competitionsBean.competition.dateStart}"
+						yearRange="c-30:c+30" minHour="1900" maxHour="2013"
+						pattern="dd/MM/yyyy" navigator="true" id="cal1" />
+
+					<h:outputLabel value="Registration deadline " />
+					<p:calendar
+						value="#{competitionsBean.competition.registerDeadline}"
+						yearRange="c-30:c+30" minHour="1900" maxHour="2013"
+						pattern="dd/MM/yyyy" navigator="true" id="cal2" />
+
+					<h:outputText value="End date " />
+					<p:calendar value="#{competitionsBean.competition.dateEnd}"
+						yearRange="c-30:c+30" minHour="1900" maxHour="2013"
+						pattern="dd/MM/yyyy" navigator="true" id="cal3" />
+
+					<h:outputText value="Type " />
+					<h:panelGroup>
+					#{competition.type}
+					<p:selectOneRadio id="type"
+							value="aaaa}">
+							<f:selectItem itemLabel="Year" itemValue="1" />
+							<f:selectItem itemLabel="Month" itemValue="2" />
+						</p:selectOneRadio>
+					</h:panelGroup>
+
+				</h:panelGrid>
+
+				<h:outputText value="Description " />
+				<br />
+
+				<p:editor id="editor"
+					value="#{competitionsBean.competition.description}" width="600" />
+					
+					<h:commandButton action="#{competitionsBean.edit()}" value="Submit" />
+			</h:panelGroup>
+		</p:dialog>
+
 	</h:form>
 </h:body>
 </html>

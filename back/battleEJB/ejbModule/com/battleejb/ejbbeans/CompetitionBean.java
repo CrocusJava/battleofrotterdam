@@ -92,50 +92,9 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 			CriteriaQuery<Competition> cq = cb.createQuery(Competition.class);
 			Root<Competition> p = cq.from(Competition.class);
 
-			Predicate predicate = cb.notEqual(p.get(Competition_.id), 0);
-			if (name != null) {
-				predicate = cb.and(predicate,
-						cb.like(p.get(Competition_.name), "%" + name + "%"));
-			}
-			if (startDateFrom != null) {
-				predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
-						p.get(Competition_.dateStart), startDateFrom));
-			}
-			if (startDateTo != null) {
-				predicate = cb.and(predicate, cb.lessThanOrEqualTo(
-						p.get(Competition_.dateStart), startDateTo));
-			}
-			if (endDateFrom != null) {
-				predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
-						p.get(Competition_.dateEnd), endDateFrom));
-			}
-			if (endDateTo != null) {
-				predicate = cb.and(predicate, cb.lessThanOrEqualTo(
-						p.get(Competition_.dateEnd), endDateTo));
-			}
-			if (regDeadlineFrom != null) {
-				predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
-						p.get(Competition_.registerDeadline), regDeadlineFrom));
-			}
-			if (regDeadlineTo != null) {
-				predicate = cb.and(predicate, cb.lessThanOrEqualTo(
-						p.get(Competition_.registerDeadline), regDeadlineTo));
-			}
-			if (id != null) {
-				predicate = cb.and(predicate,
-						cb.equal(p.get(Competition_.id), id));
-			}
-			if (type != null) {
-				predicate = cb.and(
-						predicate,
-						cb.equal(
-								p.get(Competition_.type).get(
-										CompetitionType_.name), type));
-			}
-			if (winnerId != null) {
-				predicate = cb.and(predicate, cb.equal(p.get(Competition_.user)
-						.get(User_.id), winnerId));
-			}
+			Predicate predicate = filter(name, startDateFrom, startDateTo,
+					endDateFrom, endDateTo, regDeadlineFrom, regDeadlineTo, id,
+					winnerId, type, cb, p);
 			if (predicate != null) {
 				cq.where(predicate);
 			}
@@ -163,5 +122,82 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 			e.printStackTrace();
 		}
 		return competitions;
+	}
+
+	public long findCountFilterOrderByDateLimit(String orderBy,
+			String name, String sort, Date startDateFrom, Date startDateTo,
+			Date endDateFrom, Date endDateTo, Date regDeadlineFrom,
+			Date regDeadlineTo, Integer id, Integer winnerId, String type
+			) {
+		Long count = null;
+		try {
+			CriteriaBuilder cb = em.getCriteriaBuilder();
+			CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+			Root<Competition> p = cq.from(Competition.class);
+			cq.select(cb.count(p));
+			Predicate predicate = filter(name, startDateFrom, startDateTo,
+					endDateFrom, endDateTo, regDeadlineFrom, regDeadlineTo, id,
+					winnerId, type, cb, p);
+			if (predicate != null) {
+				cq.where(predicate);
+			}
+
+			count = em.createQuery(cq).getSingleResult();
+
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	private Predicate filter(String name, Date startDateFrom, Date startDateTo,
+			Date endDateFrom, Date endDateTo, Date regDeadlineFrom,
+			Date regDeadlineTo, Integer id, Integer winnerId, String type,
+			CriteriaBuilder cb, Root<Competition> p) {
+		Predicate predicate = cb.notEqual(p.get(Competition_.id), 0);
+		if (name != null) {
+			predicate = cb.and(predicate,
+					cb.like(p.get(Competition_.name), "%" + name + "%"));
+		}
+		if (startDateFrom != null) {
+			predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
+					p.get(Competition_.dateStart), startDateFrom));
+		}
+		if (startDateTo != null) {
+			predicate = cb.and(predicate, cb.lessThanOrEqualTo(
+					p.get(Competition_.dateStart), startDateTo));
+		}
+		if (endDateFrom != null) {
+			predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
+					p.get(Competition_.dateEnd), endDateFrom));
+		}
+		if (endDateTo != null) {
+			predicate = cb.and(predicate, cb.lessThanOrEqualTo(
+					p.get(Competition_.dateEnd), endDateTo));
+		}
+		if (regDeadlineFrom != null) {
+			predicate = cb.and(predicate, cb.greaterThanOrEqualTo(
+					p.get(Competition_.registerDeadline), regDeadlineFrom));
+		}
+		if (regDeadlineTo != null) {
+			predicate = cb.and(predicate, cb.lessThanOrEqualTo(
+					p.get(Competition_.registerDeadline), regDeadlineTo));
+		}
+		if (id != null) {
+			predicate = cb.and(predicate,
+					cb.equal(p.get(Competition_.id), id));
+		}
+		if (type != null) {
+			predicate = cb.and(
+					predicate,
+					cb.equal(
+							p.get(Competition_.type).get(
+									CompetitionType_.name), type));
+		}
+		if (winnerId != null) {
+			predicate = cb.and(predicate, cb.equal(p.get(Competition_.user)
+					.get(User_.id), winnerId));
+		}
+		return predicate;
 	}
 }

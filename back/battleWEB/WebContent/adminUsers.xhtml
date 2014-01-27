@@ -32,13 +32,15 @@
 			</p:column>
 
 			<p:column headerText="Role">
-				<h:outputText value="#{user.role.name}" />
+				<h:outputText value="#{user.role.name}"/>
 			</p:column>
 
 			<p:column headerText="Comment Able">
 				<h:panelGroup id="buttonCA">
-					<p:commandButton action="#{usersBean.changeCommandAble(user)}" value="Block"
-						update="buttonCA" rendered="#{user.commentAble}" />
+					<h:outputText value="Able " rendered="#{user.commentAble}" />
+					<p:commandButton action="#{usersBean.changeCommandAble(user)}"
+						value="Block" update="buttonCA" rendered="#{user.commentAble}" />
+					<h:outputText value="Not able " rendered="#{!user.commentAble}" />
 					<p:commandButton action="#{usersBean.changeCommandAble(user)}"
 						value="Unblock" update="buttonCA" rendered="#{!user.commentAble}" />
 				</h:panelGroup>
@@ -46,8 +48,10 @@
 
 			<p:column headerText="Active">
 				<h:panelGroup id="buttonA">
+					<h:outputText value="Active " rendered="#{user.active}" />
 					<p:commandButton action="#{usersBean.changeActive(user)}"
 						value="Deactivate" update="buttonA" rendered="#{user.active}" />
+					<h:outputText value="Not active " rendered="#{!user.active}" />
 					<p:commandButton action="#{usersBean.changeActive(user)}"
 						value="Activate" update="buttonA" rendered="#{!user.active}" />
 				</h:panelGroup>
