@@ -100,8 +100,7 @@ public class ProjectBean extends AbstractFacade<Project> {
 
 	public long findCountFilterOrderByDateOrRatingLimit(String orderBy,
 			String sort, String login, String name, Date dateFrom, Date dateTo,
-			Integer competitionId, String competitionType, int firstPosition,
-			int size, Boolean approved) {
+			Integer competitionId, String competitionType, Boolean approved) {
 		Long count = null;
 		try {
 			CriteriaBuilder cb = em.getCriteriaBuilder();

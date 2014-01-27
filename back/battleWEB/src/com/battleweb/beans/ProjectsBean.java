@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.LazyDataModel;
@@ -21,7 +22,7 @@ import com.battleejb.entities.Project;
  * 
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ProjectsBean {
 
 	@EJB
@@ -42,7 +43,6 @@ public class ProjectsBean {
 				Date dateFrom = null;
 				Date dateTo = null;
 				String sort = "asc";
-				System.out.println(sortOrder);
 				if (sortOrder.equals(sortOrder.DESCENDING)){
 					sort = "desc";
 				}
@@ -52,7 +52,7 @@ public class ProjectsBean {
 						.findCountFilterOrderByDateOrRatingLimit(orderBy,
 								sort, filters.get("login"), filters.get("name"),
 								dateFrom, dateTo, competitionId,
-								filters.get("competitionId"), first, pageSize, null));
+								filters.get("competitionId"), null));
 				
 				return projectBean.findFilterOrderByDateOrRatingLimit(orderBy,
 						sort, filters.get("login"), filters.get("name"),
