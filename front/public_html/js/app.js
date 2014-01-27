@@ -1109,6 +1109,7 @@ function call_load_data_for_myaccount(id) {
 function call_create_murkup_for_account_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
             '<div class="blog-line">' +
+            '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
             '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
             '<a href="#" class="trylater"><i class="icon-comments"></i><span>' + "" + '</span> Comments</a>' +
@@ -1116,8 +1117,8 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
             '<article  class="project_block_proj"  >' +
-            '<div class="project_block_proj_name" >' + project["projectname"] + '</div>'
-    '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
+            '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
+            '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
             '<div class="viewtheproj">' +
