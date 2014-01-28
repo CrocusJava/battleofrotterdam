@@ -1192,7 +1192,7 @@ function call_upload_data_for_updateaccaunt() {
 
     $.ajax({
         type: "POST",
-        url: "/battleWEB/controller?command=updateaccaunt",
+        url: "/battleWEB/controller?command=updateaccount",
         dataType: "json",
         contentType: "application/json",
         data: uploadData
