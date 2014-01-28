@@ -345,7 +345,7 @@ function AjaxRegistrationLogin(form) {
             }
             else {
                 $.cookie("login", false);
-                $("#sorry").text("Sorry, no guessing. Try again.");
+                $("#sorry").text(data.message);
                 $("input").focus(function() {
                     $("#sorry").text("");
                 });
