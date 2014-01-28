@@ -9,7 +9,7 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="form">
 		<br />
 		<h:outputLink value="administration.xhtml">
 			Administration Menu
@@ -22,8 +22,20 @@
 			paginator="true" rows="10" rowsPerPageTemplate="10,25,50,100,250"
 			lazy="true">
 
+			<p:column>
+				<p:commandButton id="btn"
+					action="#{usersBean.changeCommandAble(user)}"
+					icon="ui-icon-comment" title="Send email" update=":form:display"
+					oncomplete="PF('emailDialog').show()">
+					<f:setPropertyActionListener value="#{user}"
+						target="#{usersBean.selectedUser}" />
+				</p:commandButton>
+			</p:column>
+
 			<p:column headerText="Login" filterBy="#{user.login}">
-				<h:outputText value="#{user.login}" />
+				<h:outputLink value="static_profile.html#userlogin=#{user.login}">
+					<h:outputText value="#{user.login}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column headerText="Name">
@@ -32,7 +44,18 @@
 			</p:column>
 
 			<p:column headerText="Role">
-				<h:outputText value="#{user.role.name}"/>
+				<h:panelGroup id="buttonR">
+					<h:outputText value="User "
+						rendered="#{user.role.name.equals('user')}" />
+					<p:commandButton action="#{usersBean.changeRole(user)}"
+						value="Make admin" update="buttonR"
+						rendered="#{user.role.name.equals('user')}" />
+					<h:outputText value="Admin "
+						rendered="#{user.role.name.equals('admin')}" />
+					<p:commandButton action="#{usersBean.changeRole(user)}"
+						value="Make user" update="buttonR"
+						rendered="#{user.role.name.equals('admin')}" />
+				</h:panelGroup>
 			</p:column>
 
 			<p:column headerText="Comment Able">
@@ -58,6 +81,22 @@
 			</p:column>
 
 		</p:dataTable>
+
+		<p:dialog header="Email" widgetVar="emailDialog" resizable="false"
+			id="emailDlg" showEffect="fade" hideEffect="fade" modal="true">
+			<h:panelGroup id="display">
+				<h:outputText
+					value="Email to #{usersBean.selectedUser.login}: #{usersBean.selectedUser.email}" />
+				<h:panelGrid columns="2">
+					<h:outputText value="Subject " />
+					<h:inputText value="#{usersBean.subject}" size="50" />
+				</h:panelGrid>
+				<br />
+				<p:editor id="editor" value="#{usersBean.text}" width="600" />
+
+				<h:commandButton action="#{usersBean.sendEmail()}" value="Submit" />
+			</h:panelGroup>
+		</p:dialog>
 
 	</h:form>
 </h:body>

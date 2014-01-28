@@ -35,10 +35,10 @@ public class Competition implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date registerDeadline;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private CompetitionType type;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User user; // WINNER!!!
 
 	@OneToMany(mappedBy = "competition")

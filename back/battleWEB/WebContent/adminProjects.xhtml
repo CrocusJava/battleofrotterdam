@@ -23,21 +23,25 @@
 			rowsPerPageTemplate="10,25,50,100,250" lazy="true">
 
 			<p:column headerText="Name" filterBy="#{project.name}">
-				<h:outputText value="#{project.name}" />
+				<h:outputLink value="single_project.html#projectid=#{project.id}">
+					<h:outputText value="#{project.name}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column headerText="User" filterBy="login">
-				<h:outputText value="#{project.user.login}" />
+				<h:outputLink value="static_profile.html#userlogin=#{project.user.login}">
+					<h:outputText value="#{project.user.login}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column headerText="Creation Date" sortBy="date">
 				<h:outputText value="#{project.creationDate}" />
 			</p:column>
-			
+
 			<p:column headerText="CompetitionType">
 				<h:outputText value="#{project.competition.type.name}" />
 			</p:column>
-		
+
 			<p:column headerText="Approved">
 				<h:panelGroup id="buttonA">
 					<h:outputText value="Approved " rendered="#{project.approved}" />
