@@ -61,6 +61,7 @@ public interface Constants {
 	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
 	public static final String COMMAND_SEARCH = "search";
+	public static final String COMMAND_LOCALE = "locale";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -163,6 +164,7 @@ public interface Constants {
 	public static final String PARAMETER_FIRST_POSITION = "firstposition";
 	public static final String PARAMETER_SIZE = "size";
 	public static final String PARAMETER_COMMENTS = "comments";
+	public static final String PARAMETER_COMMENTS_COUNT = "commentscount";
 	public static final String PARAMETER_TEXT = "text";
 	public static final String PARAMETER_TEXT_EN = "texten";
 	public static final String PARAMETER_TEXT_NL = "textnl";
@@ -173,7 +175,8 @@ public interface Constants {
 	public static final String PARAMETER_COMPETITION_ID = "competitionid";
 	public static final String PARAMETER_VOTE_RESULT = "voteresult";
 	public static final String PARAMETER_COMMENT_RESULT = "commentresult";
-
+	public static final String PARAMETER_VOICES_COUNT = "voicescount";
+	
 	public static final String PARAMETER_CONTACTS = "contacts";
 	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
 	public static final String PARAMETER_CONTACTS_ADDRESS = "contactsaddress";
@@ -307,6 +310,11 @@ public interface Constants {
 	public static final String ORDER_BY_START_DATE = "startdate";
 	public static final String ORDER_BY_END_DATE = "enddate";
 	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
+	
+	//Localization
+	public static final String PARAMETER_LOCALE = "locale";
+	public static final String PARAMETER_LOCALE_EN = "en";
+	public static final String PARAMETER_LOCALE_NL = "nl";
 	
 	//Path
 	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";
