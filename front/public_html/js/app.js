@@ -54,6 +54,11 @@ function call_form_validation() {
             submitHandler: AjaxSendComment
         });
     }
+    if ($('#search').length > 0) {
+        $('#search').validate({
+            submitHandler: AjaxSendSearch
+        });
+    }
     if ($('.singup_form_validation').length > 0) {
         $('.singup_form_validation').validate({
             rules: {
@@ -318,6 +323,11 @@ function data_collection_forms(form) {
     if (form.id === "sendcomment") {
         collection.data["projectid"] = window.projectId;
     }
+    if (form.id === "search") {
+        collection.data["firstposition"] = 0;
+        collection.data["size"] = 10;
+    }
+
     collection.data = JSON.stringify(collection.data);
     return collection;
 }
@@ -600,14 +610,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы поиска
 
     if (window.location.href.match(/search.html$/)) {
-        var result_search = $("#result_search");
-        $("#search").on("keyup", function() {
-            var $this = $(this);
-            $(result_search).text($this.val());
-            if ($this.val().length >= 3) {
-                console.log("ajax");
-            }
-        });
+//пока задач нет но появлятся
     }
 
 //<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
@@ -1431,7 +1434,30 @@ function call_load_data_for_projets_page() {
 }
 
 
+function AjaxSendSearch(form) {
+    var config = data_collection_forms(form);
+    $.ajax({
+        url: config.url,
+        type: "POST",
+        dataType: "json",
+        data: config.data,
+        contentType: "application/json"
+    }).done(function(data) {
+        var resalt = JSON.stringify(data);
+        var result_search = $("#result_search");
+        $(result_search).text(resalt);
+        console.log(data);
+    }).fail(function(error) {
+        console.log(error);
+    });
+    console.log(JSON.parse(config.data));
 
+    return false;
+
+
+
+
+}
 
 
 
@@ -1451,6 +1477,18 @@ function call_load_data_for_projets_page() {
 //			          	},
 // создание проекта, загрузку фото и коммнтарии + голосование
 //[20:50:43] Marina: + Ваня: отправка юзеру e-mail из админки
+/*
+ * search
+ {
+ "text":"***",
+ "firstposition":0,
+ "size":10
+ }
+
+ */
+
+
+
 
 
 
