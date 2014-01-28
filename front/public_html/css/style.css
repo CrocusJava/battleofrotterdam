@@ -167,7 +167,6 @@ Start Content TOP
 ================================*/
 #content_top {
     position: relative;
-	overflow: visible !important;
 }
 #content_top .inner-wrapper {
     min-height: 300px;
@@ -176,7 +175,7 @@ Start Content TOP
 #content_top .bg_content_top {
     background-repeat: no-repeat;
     background-position: top center;
-    background-attachment: fixed;
+
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
