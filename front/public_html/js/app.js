@@ -868,92 +868,92 @@ function call_load_data_for_news_index() {
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
                                             {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More"
-											//, bind: {popup_news:click}
-											}
+                                                        //, bind: {popup_news:click}
+                                            }
                                         ]}
                                 ]}
                         ]}
                 ]}
         ];
-		
-		
-		/*=======================мой код для попапа============================
-		var template_for_news_index_popup = [
-            {tag: "div", add_class: "popvis text_center", children: [
-                    {tag: "div", add_class: "boxfeature", children: [
-                            {tag: "div", add_class: "img_preview", children: [
-									{tag:"i", add_class:"icon-remove close_popup_news"},
-                                    {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
-                                    {tag: "h4", text: "loaddate"}
-                                ]},
-                            {tag: "div", add_class: "desc_news desc", children: [
-                                    {tag: "p", text: "text"},
-                                    
-                                ]}
-                        ]}
-                ]},
-			{tag: "div", add_class:"popup_back_news"}
-        ];
-		
-		function popup_news(){
-		 call_markup_index(template_for_news_index_popup, $("#news_index"), data.lastnews[i]);
-		}
-				
-			/*=======================конец моего кода для попапа============================*/
-			
-			
-			
-			
+
+
+        /*=======================мой код для попапа============================
+         var template_for_news_index_popup = [
+         {tag: "div", add_class: "popvis text_center", children: [
+         {tag: "div", add_class: "boxfeature", children: [
+         {tag: "div", add_class: "img_preview", children: [
+         {tag:"i", add_class:"icon-remove close_popup_news"},
+         {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+         {tag: "h4", text: "loaddate"}
+         ]},
+         {tag: "div", add_class: "desc_news desc", children: [
+         {tag: "p", text: "text"},
+
+         ]}
+         ]}
+         ]},
+         {tag: "div", add_class:"popup_back_news"}
+         ];
+
+         function popup_news(){
+         call_markup_index(template_for_news_index_popup, $("#news_index"), data.lastnews[i]);
+         }
+
+         /*=======================конец моего кода для попапа============================*/
+
+
+
+
         for (var i in data.lastnews) {
             call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
-			/*=======================мой код для попапа============================*/
-	/*=			<section class='popup'>
-							
-								  <div class="popvis text_center">
-                                    <div class="boxfeature">
-                                        <div class="img_preview">
-										<i class="icon-remove close_popup_news" > </i> 
-                                            <img src="img/remont11.jpg" data-src="img/remont11.jpg" alt="img_preview">
-                                          
-                                        </div>
-                                        <div class="desc_news desc" >
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-											</p>
-                                           
-                                        </div>
-                                    </div>
-                                </div>
-								<div class="popup_back_news">
-								
-								
-								
-								
-								</section>==
-			
-			
-			
-			
-			var template_for_news_index_popup = [
-            {tag: "div", add_class: "popvis text_center", children: [
-                    {tag: "div", add_class: "boxfeature", children: [
-                            {tag: "div", add_class: "img_preview", children: [
-									{tag:"i", add_class:"icon-remove close_popup_news"},
-                                    {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
-                                    {tag: "h4", text: "loaddate"}
-                                ]},
-                            {tag: "div", add_class: "desc_news desc", children: [
-                                    {tag: "p", text: "text"},
-                                    
-                                ]}
-                        ]}
-                ]},
-			{tag: "div", add_class:"popup_back_news"}
-        ];
-			
-			
-			
-			/*=======================конец моего кода для попапа============================*/
+            /*=======================мой код для попапа============================*/
+            /*=			<section class='popup'>
+
+             <div class="popvis text_center">
+             <div class="boxfeature">
+             <div class="img_preview">
+             <i class="icon-remove close_popup_news" > </i>
+             <img src="img/remont11.jpg" data-src="img/remont11.jpg" alt="img_preview">
+
+             </div>
+             <div class="desc_news desc" >
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+             </p>
+
+             </div>
+             </div>
+             </div>
+             <div class="popup_back_news">
+
+
+
+
+             </section>==
+
+
+
+
+             var template_for_news_index_popup = [
+             {tag: "div", add_class: "popvis text_center", children: [
+             {tag: "div", add_class: "boxfeature", children: [
+             {tag: "div", add_class: "img_preview", children: [
+             {tag:"i", add_class:"icon-remove close_popup_news"},
+             {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+             {tag: "h4", text: "loaddate"}
+             ]},
+             {tag: "div", add_class: "desc_news desc", children: [
+             {tag: "p", text: "text"},
+
+             ]}
+             ]}
+             ]},
+             {tag: "div", add_class:"popup_back_news"}
+             ];
+
+
+
+             /*=======================конец моего кода для попапа============================*/
         }
 
 
@@ -1042,7 +1042,7 @@ function call_enabling_submit_button() {
 }
 
 function call_trylater() {
-		 $(".trylater").click(function() {
+    $(".trylater").click(function() {
         $('body').append('<div class="popup_text">Try Later. Thank YOU for understanding and patience</div>');
         $('body').append('<div class="popup_back"></div>');
         $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
@@ -1154,13 +1154,13 @@ function call_load_data_for_myaccount(id) {
         $.session.set("name", respons["login"]);
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
         $("#name_static_profile").text(respons["login"]);
-        $("#FirstName").text(respons["firstname"] + " ");
-        $("#MiddletName").text(respons["middlename"] + " ");
+        $("#FirstName").text(respons["firstname"]);
+        $("#MiddletName").text(respons["middlename"]);
         $("#LastName").text(respons["lastname"]);
         $("#birthday").text(respons["birthday"]);
-        $("#town").text(respons["town"] + ", ");
-        $("#street").text(respons["street"] + ", ");
-        $("#housenumber").text(respons["housenumber"] + ", ");
+        $("#town").text(respons["town"]);
+        $("#street").text(respons["street"]);
+        $("#housenumber").text(respons["housenumber"]);
         $("#postcode").text(respons["postcode"]);
         $("#telephone").text(respons["phone"]);
         $("#mail").text(respons["email"]);
