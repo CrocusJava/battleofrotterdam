@@ -19,6 +19,10 @@
 		<hr />
 		<h2>Edit Competitions</h2>
 
+		<p:commandButton partialSubmit="true"
+			action="#{competitionsBean.newCompetition()}" value="New competition">
+			<p:ajax event="dialogReturn" update=":form" />
+		</p:commandButton>
 		<p:dataTable var="competition" value="#{competitionsBean.dataModel}"
 			paginator="true" currentPageReportTemplate="true" rows="10"
 			rowsPerPageTemplate="10,25,50" lazy="true">
@@ -44,7 +48,10 @@
 			</p:column>
 
 			<p:column headerText="Winner">
-				<h:outputText value="#{competition.user.login}" />
+				<h:outputLink
+					value="static_profile.html#userlogin=#{competition.user.login}">
+					<h:outputText value="#{competition.user.login}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column style="width:4%">
@@ -84,7 +91,7 @@
 
 					<h:outputText value="Type " />
 					<h:panelGroup>
-					<p:selectOneRadio id="type"
+						<p:selectOneRadio id="type"
 							value="#{competitionsBean.competition.type}"
 							converter="#{competitionsBean}">
 							<f:selectItems var="type" itemLabel="#{type.name}"

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGroup id="display">
+			<h:panelGrid columns="2">
+				<h:outputText value="Competition name " />
+				<h:inputText required="true"
+					value="#{competitionsBean.newCompetition.name}" size="50" />
+
+				<h:outputLabel value="Start date" />
+				<p:calendar required="true"
+					value="#{competitionsBean.newCompetition.dateStart}"
+					yearRange="c-30:c+30" minHour="1900" maxHour="2013"
+					pattern="dd/MM/yyyy" navigator="true" id="cal1" />
+
+				<h:outputLabel value="Registration deadline " />
+				<p:calendar
+					value="#{competitionsBean.newCompetition.registerDeadline}"
+					yearRange="c-30:c+30" minHour="1900" maxHour="2013"
+					pattern="dd/MM/yyyy" navigator="true" id="cal2" />
+
+				<h:outputText value="End date " />
+				<p:calendar value="#{competitionsBean.newCompetition.dateEnd}"
+					yearRange="c-30:c+30" minHour="1900" maxHour="2013"
+					pattern="dd/MM/yyyy" navigator="true" id="cal3" />
+
+				<h:outputText value="Type " />
+				<h:panelGroup>
+					<p:selectOneRadio id="type" required="true"
+						value="#{competitionsBean.newCompetition.type}"
+						converter="#{competitionsBean}">
+						<f:selectItems var="type" itemLabel="#{type.name}"
+							value="#{competitionsBean.competitionTypes}" />
+
+					</p:selectOneRadio>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+			<h:outputText value="Description " />
+			<br />
+
+			<p:editor id="editor"
+				value="#{competitionsBean.newCompetition.description}" width="600" />
+
+			<p:commandButton action="#{competitionsBean.create()}" value="Create" />
+		</h:panelGroup>
+
+	</h:form>
+</h:body>
+</html>

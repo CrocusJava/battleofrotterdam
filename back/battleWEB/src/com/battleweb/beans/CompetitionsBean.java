@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -40,6 +41,8 @@ public class CompetitionsBean implements Converter{
 	private LazyDataModel<Competition> dataModel;
 
 	private Competition competition = new Competition();
+	
+	private Competition newCompetition = new Competition();
 	
 	private List<CompetitionType> competitionTypes;
 	
@@ -88,9 +91,21 @@ public class CompetitionsBean implements Converter{
 		competitionTypes.add(competitionTypeBean.findByName("year"));
 		competitionTypes.add(competitionTypeBean.findByName("month"));
 	}
+	
+	public void create(){
+		newCompetition.setType(competitionTypeBean.find(newCompetition.getType().getId()));
+		Competition competition = new Competition();
+		competition.setName(newCompetition.getName());
+		competition.setDateStart(newCompetition.getDateStart());
+		competition.setDateEnd(newCompetition.getDateEnd());
+		competition.setRegisterDeadline(newCompetition.getRegisterDeadline());
+		competition.setType(newCompetition.getType());
+		competition.setDescription(newCompetition.getDescription());
+		competitionBean.create(competition);
+		RequestContext.getCurrentInstance().closeDialog(null);
+	}
 		
 	public void edit(){
-		System.out.println(competition);
 		competitionBean.edit(competition);
 	}
 	
@@ -110,8 +125,11 @@ public class CompetitionsBean implements Converter{
 		this.competition = competition;
 	}
 	
+	public void newCompetition(){
+		newCompetition = new Competition();
+		RequestContext.getCurrentInstance().openDialog("adminCreateCompetition");
+	}
 	
-
 	public List<CompetitionType> getCompetitionTypes() {
 		return competitionTypes;
 	}
@@ -130,6 +148,14 @@ public class CompetitionsBean implements Converter{
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {
 		return ((CompetitionType) value).getName();
+	}
+
+	public Competition getNewCompetition() {
+		return newCompetition;
+	}
+
+	public void setNewCompetition(Competition newCompetition) {
+		this.newCompetition = newCompetition;
 	}
 
 }
