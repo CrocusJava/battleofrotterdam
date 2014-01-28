@@ -32,8 +32,8 @@
 			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a1.valueEn}" characterEncoding="utf-8" />
 			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a1.valueNl}" characterEncoding="utf-8" />
 			<br />
-			<p:commandButton action="#{faq.apply(1)}" value="Apply" update="@form" />
-			<p:commandButton action="#{faq.cancel(1)}" value="Cancel" update="@form" />
+			<p:commandButton action="#{faq.apply(1)}" value="Apply" update="@form" onclick="@this"/>
+			<p:commandButton action="#{faq.cancel(1)}" value="Cancel" update="@form" onclick="@this"/>
 			<hr />
 		</h:panelGroup>
 		
@@ -49,8 +49,8 @@
 			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a2.valueEn}" characterEncoding="utf-8" />
 			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a2.valueNl}" characterEncoding="utf-8" />
 			<br />
-			<p:commandButton action="#{faq.apply(2)}" value="Apply" update="@form" />
-			<p:commandButton action="#{faq.cancel(2)}" value="Cancel" update="@form" />
+			<p:commandButton action="#{faq.apply(2)}" value="Apply" update="@form" onclick="@this"/>
+			<p:commandButton action="#{faq.cancel(2)}" value="Cancel" update="@form" onclick="@this"/>
 			<hr />
 		</h:panelGroup>
 		

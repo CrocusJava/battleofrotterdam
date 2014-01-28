@@ -38,6 +38,11 @@ public class Text implements Serializable {
 	@OneToOne(mappedBy="text")
 	private News news;
 	
+	@Transient
+	private Long num;
+	@Transient
+	private Boolean viewOnEdit;
+	
 //-----------------------------	
 	
     public Text() {
@@ -74,6 +79,34 @@ public class Text implements Serializable {
 
 	public void setValueNl(String valueNl) {
 		this.valueNl = valueNl;
+	}
+
+	public News getNews() {
+		return news;
+	}
+
+	public void setNews(News news) {
+		this.news = news;
+	}
+
+	public Long getNum() {
+		return num;
+	}
+
+	public void setNum(Long num) {
+		this.num = num;
+	}
+
+	public Boolean getViewOnEdit() {
+		return viewOnEdit;
+	}
+
+	public void setViewOnEdit(Boolean viewOnEdit) {
+		this.viewOnEdit = viewOnEdit;
+	}
+
+	public void setKeyval(Integer keyval) {
+		this.keyval = keyval;
 	}
 	
 }

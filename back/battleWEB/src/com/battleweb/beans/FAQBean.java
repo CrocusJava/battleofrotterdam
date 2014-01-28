@@ -57,51 +57,61 @@ public class FAQBean {
 		case (1): {
 			textBean.edit(text_a1);
 			textBean.edit(text_q1);
+			qaView1=false;
 			break;
 		}
 		case (2): {
 			textBean.edit(text_a2);
 			textBean.edit(text_q2);
+			qaView2=false;
 			break;
 		}
 		case (3): {
 			textBean.edit(text_a3);
 			textBean.edit(text_q3);
+			qaView3=false;
 			break;
 		}
 		case (4): {
 			textBean.edit(text_a4);
 			textBean.edit(text_q4);
+			qaView4=false;
 			break;
 		}
 		case (5): {
 			textBean.edit(text_a5);
 			textBean.edit(text_q5);
+			qaView5=false;
 			break;
 		}
 		case (6): {
 			textBean.edit(text_a6);
 			textBean.edit(text_q6);
+			qaView6=false;
 			break;
 		}
 		case (7): {
 			textBean.edit(text_a7);
 			textBean.edit(text_q7);
+			qaView7=false;
 			break;
 		}
 		case (8): {
 			textBean.edit(text_a8);
 			textBean.edit(text_q8);
+			qaView8=false;
 			break;
 		}
 		case (9): {
 			textBean.edit(text_a9);
 			textBean.edit(text_q9);
+			qaView9=false;
 			break;
 		}
 		case (10): {
 			textBean.edit(text_a10);
 			textBean.edit(text_q10);
+			qaView10=false;
 			break;
 		}
 		}
