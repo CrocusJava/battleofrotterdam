@@ -5,16 +5,179 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
+	<title>Edit FAQ</title>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:form>
+	
 		<br/>
 		<h:outputLink value="administration.xhtml" >
 			Administration Menu
 		</h:outputLink>		
 		<br/><hr/>
 		<h2>Edit FAQ</h2> 
+	<h:form>
+		
+		<h:commandLink value="QA1" action="#{faq.changeView(1)}" >
+			<f:ajax execute="@this" render="@form" />
+		</h:commandLink>
+		<br />
+		<h:panelGroup id="pg1" rendered="#{faq.qaView1}">
+			<h4>Question1 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q1.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q1.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer1 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a1.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a1.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA2" action="#{faq.changeView(2)}" >
+			<f:ajax execute="@this" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg2" rendered="#{faq.qaView2}">
+			<h4>Question2 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q2.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q2.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer2 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a2.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a2.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA3" action="#{faq.changeView(3)}" >
+			<f:ajax execute="@this" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg3" rendered="#{faq.qaView3}">
+			<h4>Question3 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q3.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q3.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer3 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a3.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a3.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA4" action="#{faq.changeView(4)}" >
+			<f:ajax execute="@this" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg4" rendered="#{faq.qaView4}">
+			<h4>Question4 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q4.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q4.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer4 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a4.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a4.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA5" action="#{faq.changeView(5)}" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg5" rendered="#{faq.qaView5}">
+			<h4>Question5 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q5.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q5.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer5 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a5.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a5.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA6" action="#{faq.changeView(6)}" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg6" rendered="#{faq.qaView6}">
+			<h4>Question6 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q6.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q6.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer6 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a6.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a6.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA7" action="#{faq.changeView(7)}" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg7" rendered="#{faq.qaView7}">
+			<h4>Question7 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q7.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q7.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer7 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a7.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a7.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA8" action="#{faq.changeView(8)}" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg8" rendered="#{faq.qaView8}">
+			<h4>Question8 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q8.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q8.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer8 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a8.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a8.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA9" action="#{faq.changeView(9)}" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg9" rendered="#{faq.qaView9}">
+			<h4>Question9 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q9.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q9.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer9 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a9.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a9.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
+		
+		<h:commandLink value="QA10" action="#{faq.changeView(10)}" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink><br />
+		<h:panelGroup id="pg10" rendered="#{faq.qaView10}">
+			<h4>Question10 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q10.valueEn}" characterEncoding="utf-8"/>
+			<h:inputTextarea class="input_qa_size" value="#{faq.text_q10.valueNl}" characterEncoding="utf-8"/>
+			<br />	
+			<h4>Answer10 (en / nl):</h4>
+			<br />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a10.valueEn}" characterEncoding="utf-8" />
+			<h:inputTextarea class="input_qa_size"  value="#{faq.text_a10.valueNl}" characterEncoding="utf-8" />
+			<br />
+		</h:panelGroup>
 		
 	</h:form>
 </h:body>

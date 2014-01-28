@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.battleejb.ejbbeans.TextBean;
-import com.battleejb.ejbbeans.URLBean;
 import com.battleejb.entities.Text;
 import com.battleweb.controller.Constants;
 
@@ -23,25 +22,25 @@ public class AboutBattleBean {
 
 	@EJB
 	private TextBean textBean;
-	@EJB
-	private URLBean urlBean;
+//	@EJB
+//	private URLBean urlBean;
 	
-	String battleTitleEn; 
-	String battleTextEn; 
-	String battleTitleNl; 
-	String battleTextNl; 
-	String aboutUsTitleEn; 
-	String aboutUsTextEn; 
-	String aboutUsTitleNl; 
-	String aboutUsTextNl; 
-	String rulesTitleEn; 
-	String rulesTextEn; 
-	String rulesTitleNl; 
-	String rulesTextNl; 
-	String infoTitleEn; 
-	String infoTextEn; 
-	String infoTitleNl; 
-	String infoTextNl; 
+	private String battleTitleEn; 
+	private String battleTextEn; 
+	private String battleTitleNl; 
+	private String battleTextNl; 
+	private String aboutUsTitleEn; 
+	private String aboutUsTextEn; 
+	private String aboutUsTitleNl; 
+	private String aboutUsTextNl; 
+	private String rulesTitleEn; 
+	private String rulesTextEn; 
+	private String rulesTitleNl; 
+	private String rulesTextNl; 
+	private String infoTitleEn; 
+	private String infoTextEn; 
+	private String infoTitleNl; 
+	private String infoTextNl; 
 	
 	@PostConstruct
 	public void init(){
