@@ -344,7 +344,7 @@ function AjaxRegistrationLogin(form) {
                 window.location = "myaccount.html";
             }
             else {
-                $.cookie("login", false);
+                $.session.set("login", false);
                 $("#sorry").text(data.message);
                 $("input").focus(function() {
                     $("#sorry").text("");
