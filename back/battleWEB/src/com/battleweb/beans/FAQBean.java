@@ -51,7 +51,66 @@ public class FAQBean {
 	private Boolean qaView8 = false;
 	private Boolean qaView9 = false;
 	private Boolean qaView10 = false;
-
+	
+	public void apply(Long qaNum){
+		switch (qaNum.intValue()) {
+		case (1): {
+			textBean.edit(text_a1);
+			textBean.edit(text_q1);
+			break;
+		}
+		case (2): {
+			textBean.edit(text_a2);
+			textBean.edit(text_q2);
+			break;
+		}
+		case (3): {
+			textBean.edit(text_a3);
+			textBean.edit(text_q3);
+			break;
+		}
+		case (4): {
+			textBean.edit(text_a4);
+			textBean.edit(text_q4);
+			break;
+		}
+		case (5): {
+			textBean.edit(text_a5);
+			textBean.edit(text_q5);
+			break;
+		}
+		case (6): {
+			textBean.edit(text_a6);
+			textBean.edit(text_q6);
+			break;
+		}
+		case (7): {
+			textBean.edit(text_a7);
+			textBean.edit(text_q7);
+			break;
+		}
+		case (8): {
+			textBean.edit(text_a8);
+			textBean.edit(text_q8);
+			break;
+		}
+		case (9): {
+			textBean.edit(text_a9);
+			textBean.edit(text_q9);
+			break;
+		}
+		case (10): {
+			textBean.edit(text_a10);
+			textBean.edit(text_q10);
+			break;
+		}
+		}
+	}
+	
+	public void cancel(Long qaNum){
+		initQA(qaNum);
+	}
+	
 	public void changeView(Long qaNum) {
 		switch (qaNum.intValue()) {
 		case (1): {
