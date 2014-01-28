@@ -15,6 +15,7 @@ import com.battleejb.ejbbeans.RoleBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
+import com.battleweb.tools.ToolEmail;
 
 /**
  * 
@@ -29,8 +30,15 @@ public class UsersBean {
 	private UserBean userBean;
 	@EJB
 	private RoleBean roleBean;
+	@EJB
+	private ToolEmail toolEmail;
 	
 	private LazyDataModel<User> dataModel;
+	
+	private User selectedUser = new User();
+	
+	private String subject;
+	private String text;
 
 	@PostConstruct
 	private void init(){
@@ -45,6 +53,10 @@ public class UsersBean {
 				return userBean.findByLoginLimit(filters.get("login"), first, pageSize);
 			}
 		};
+	}
+	
+	public void sendEmail(){
+		toolEmail.send(subject, text, "battleofrotterdam@gmail.com", selectedUser.getEmail());
 	}
 	
 	public void changeRole(User user){
@@ -75,5 +87,29 @@ public class UsersBean {
 	public void setDataModel(LazyDataModel<User> dataModel) {
 		this.dataModel = dataModel;
 	}
+
+	public User getSelectedUser() {
+		return selectedUser;
+	}
+
+	public void setSelectedUser(User selectedUser) {
+		this.selectedUser = selectedUser;
+	}
 	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+		
 }
