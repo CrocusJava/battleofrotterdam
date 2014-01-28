@@ -867,12 +867,41 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More"}
+                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", bind: {popup_news:click}}
                                         ]}
                                 ]}
                         ]}
                 ]}
         ];
+		
+		
+		/*=======================мой код для попапа============================*/
+		var template_for_news_index_popup = [
+            {tag: "div", add_class: "popvis text_center", children: [
+                    {tag: "div", add_class: "boxfeature", children: [
+                            {tag: "div", add_class: "img_preview", children: [
+									{tag:"i", add_class:"icon-remove close_popup_news"},
+                                    {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+                                    {tag: "h4", text: "loaddate"}
+                                ]},
+                            {tag: "div", add_class: "desc_news desc", children: [
+                                    {tag: "p", text: "text"},
+                                    
+                                ]}
+                        ]}
+                ]},
+			{tag: "div", add_class:"popup_back_news"}
+        ];
+		
+		function popup_news(){
+		 call_markup_index(template_for_news_index_popup, $("#news_index"), data.lastnews[i]);
+		}
+				
+			/*=======================конец моего кода для попапа============================*/
+			
+			
+			
+			
         for (var i in data.lastnews) {
             call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
 			/*=======================мой код для попапа============================*/
