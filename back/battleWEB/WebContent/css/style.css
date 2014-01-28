@@ -167,6 +167,7 @@ Start Content TOP
 ================================*/
 #content_top {
     position: relative;
+	overflow: visible !important;
 }
 #content_top .inner-wrapper {
     min-height: 300px;

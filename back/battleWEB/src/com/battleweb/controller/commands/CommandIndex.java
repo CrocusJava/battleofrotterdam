@@ -89,6 +89,7 @@ public class CommandIndex implements Command{
 		for(Comment comment:lastComments){													
 			JsonObject jsonObjectComment = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_USER_LOGIN, comment.getUser().getLogin())
+				.add(Constants.PARAMETER_USER_ID, comment.getUser().getId())
 				.add(Constants.PARAMETER_USER_PHOTOPATH, comment.getUser().getPhotoPath())
 				.add(Constants.PARAMETER_COMMENT_DATE, dateFormat.format(comment.getCommentDate()))
 				.add(Constants.PARAMETER_COMMENT_TEXT, comment.getCommentText())
