@@ -386,13 +386,18 @@ function AjaxSendComment(form) {
         data: config.data,
         contentType: "application/json"
     }).done(function(data) {
-
+        if (data["status"] === true) {
+            createComment(form, JSON.parse(config.data));
+        }
+        else {
+            alert(data["message"]);
+        }
         console.log(data);
     }).fail(function(error) {
         console.log(error);
     });
     console.log(JSON.parse(config.data));
-    createComment(form, JSON.parse(config.data));
+
     return false;
 }
 
