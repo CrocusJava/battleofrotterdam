@@ -48,9 +48,9 @@
 			</p:column>
 
 			<p:column style="width:4%">
-				<p:commandButton id="selectButton"
-					update=":form:display" oncomplete="PF('compDialog').show()"
-					icon="ui-icon-search" title="View">
+				<p:commandButton id="selectButton" update=":form:display"
+					oncomplete="PF('compDialog').show()" icon="ui-icon-search"
+					title="View">
 					<f:setPropertyActionListener value="#{competition}"
 						target="#{competitionsBean.competition}" />
 				</p:commandButton>
@@ -84,11 +84,12 @@
 
 					<h:outputText value="Type " />
 					<h:panelGroup>
-					#{competition.type}
 					<p:selectOneRadio id="type"
-							value="aaaa}">
-							<f:selectItem itemLabel="Year" itemValue="1" />
-							<f:selectItem itemLabel="Month" itemValue="2" />
+							value="#{competitionsBean.competition.type}"
+							converter="#{competitionsBean}">
+							<f:selectItems var="type" itemLabel="#{type.name}"
+								value="#{competitionsBean.competitionTypes}" />
+
 						</p:selectOneRadio>
 					</h:panelGroup>
 
@@ -99,8 +100,8 @@
 
 				<p:editor id="editor"
 					value="#{competitionsBean.competition.description}" width="600" />
-					
-					<h:commandButton action="#{competitionsBean.edit()}" value="Submit" />
+
+				<h:commandButton action="#{competitionsBean.edit()}" value="Submit" />
 			</h:panelGroup>
 		</p:dialog>
 

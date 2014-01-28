@@ -93,12 +93,8 @@ public class CompetitionType implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CompetitionType [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append("]");
+		StringBuilder builder = new StringBuilder();		
+		builder.append(name);		
 		return builder.toString();
 	}
 }
