@@ -23,7 +23,8 @@
 			lazy="true">
 
 			<p:column>
-				<p:commandButton id="btn" action="#{usersBean.changeCommandAble(user)}"
+				<p:commandButton id="btn"
+					action="#{usersBean.changeCommandAble(user)}"
 					icon="ui-icon-comment" title="Send email" update=":form:display"
 					oncomplete="PF('emailDialog').show()">
 					<f:setPropertyActionListener value="#{user}"
@@ -32,7 +33,9 @@
 			</p:column>
 
 			<p:column headerText="Login" filterBy="#{user.login}">
-				<h:outputText value="#{user.login}" />
+				<h:outputLink value="static_profile.html#userlogin=#{user.login}">
+					<h:outputText value="#{user.login}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column headerText="Name">
@@ -79,12 +82,11 @@
 
 		</p:dataTable>
 
-		<p:dialog
-			header="Email"
-			widgetVar="emailDialog" resizable="false" id="emailDlg"
-			showEffect="fade" hideEffect="fade" modal="true">
+		<p:dialog header="Email" widgetVar="emailDialog" resizable="false"
+			id="emailDlg" showEffect="fade" hideEffect="fade" modal="true">
 			<h:panelGroup id="display">
-			<h:outputText value="Email to #{usersBean.selectedUser.login}: #{usersBean.selectedUser.email}" />
+				<h:outputText
+					value="Email to #{usersBean.selectedUser.login}: #{usersBean.selectedUser.email}" />
 				<h:panelGrid columns="2">
 					<h:outputText value="Subject " />
 					<h:inputText value="#{usersBean.subject}" size="50" />
@@ -92,7 +94,7 @@
 				<br />
 				<p:editor id="editor" value="#{usersBean.text}" width="600" />
 
-				<h:commandButton action="#{usersBean.sendEmail()}" value="Submit"/>
+				<h:commandButton action="#{usersBean.sendEmail()}" value="Submit" />
 			</h:panelGroup>
 		</p:dialog>
 

@@ -48,7 +48,10 @@
 			</p:column>
 
 			<p:column headerText="Winner">
-				<h:outputText value="#{competition.user.login}" />
+				<h:outputLink
+					value="static_profile.html#userlogin=#{competition.user.login}">
+					<h:outputText value="#{competition.user.login}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column style="width:4%">
