@@ -23,10 +23,12 @@ public class ToolCookie {
 	
 	public boolean isExistLocale(ServletRequest request){
 		Cookie[] cookieArray = ((HttpServletRequest)request).getCookies();
-		for (Cookie cookie : cookieArray) {
-			if (cookie.getName().equals(Constants.PARAMETER_LOCALE)){
-				return true; 
-			}	
+		if (null!=cookieArray && cookieArray.length!=0){
+			for (Cookie cookie : cookieArray) {
+				if (cookie.getName().equals(Constants.PARAMETER_LOCALE)){
+					return true; 
+				}	
+			}
 		}
 		Log.info(this, "Cookie: localization is not exist");
 		return false;

@@ -26,10 +26,12 @@ public class FilterEncoding implements Filter{
 	}
 	
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse responce,
+	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 			request.setCharacterEncoding("UTF-8");
-            chain.doFilter(request, responce);
+			if (null != chain) {
+	            chain.doFilter(request, response);
+		    }
 	}
 
 	@Override

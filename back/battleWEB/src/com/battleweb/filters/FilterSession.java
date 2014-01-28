@@ -34,14 +34,17 @@ public class FilterSession implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse responce,
+	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		chain.doFilter(request, responce);
-		HttpServletResponse resp = ((HttpServletResponse) responce);
+		HttpServletResponse resp = ((HttpServletResponse) response);
 		resp.addCookie(new Cookie(Constants.PARAMETER_IDUSER, toolSession
 				.getUserId(request).toString()));
 		resp.addCookie(new Cookie(Constants.PARAMETER_IDROLE, toolSession
 				.getRoleId(request).toString()));
+		
+		if (null != chain) {
+            chain.doFilter(request, response);
+	    }
 	}
 
 	@Override
