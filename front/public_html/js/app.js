@@ -1221,7 +1221,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid="' + project["projectid"] + ' style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
             '</div>' +
             '</div>' +
             '</section>' + '<div style="height:15px;"></div>';
