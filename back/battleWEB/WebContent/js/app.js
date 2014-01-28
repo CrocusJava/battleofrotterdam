@@ -344,8 +344,8 @@ function AjaxRegistrationLogin(form) {
                 window.location = "myaccount.html";
             }
             else {
-                $.cookie("login", false);
-                $("#sorry").text("Sorry, no guessing. Try again.");
+                $.session.set("login", false);
+                $("#sorry").text(data.message);
                 $("input").focus(function() {
                     $("#sorry").text("");
                 });
@@ -519,7 +519,7 @@ function call_load_data_for_index_events(load_data) {
 function call_load_data_for_index_comments(load_data) {
     function go_to_user_profile() {
         var href = $(this).attr("href");
-        href = href + "#userlogin=" + load_data["userlogin"];
+        href = href + "#userid=" + load_data["userid"];
         $(this).attr("href", href);
 
     }
@@ -1151,7 +1151,9 @@ function call_load_data_for_myaccount(id) {
         contentType: "application/json",
         data: JSON.stringify(send_data)
     }).done(function(respons) {
-        $.session.set("name", respons["login"]);
+        if (!send_data.iduser) {
+            $.session.set("name", respons["login"]);
+        }
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
         $("#name_static_profile").text(respons["login"]);
         $("#FirstName").text(respons["firstname"]);
@@ -1219,7 +1221,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid="' + project["projectid"] + ' style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
             '</div>' +
             '</div>' +
             '</section>' + '<div style="height:15px;"></div>';
@@ -1239,9 +1241,10 @@ function call_cookie_navigator() {
                     call_load_data_for_viewprojectcomments(projectid);
                 }
                 break;
-            case "userlogin":
+            case "userid":
                 if (parametrs[1]) {
-                    var userlogin = parametrs[1];
+                    var userid = parseInt(parametrs[1]);
+                    call_load_data_for_myaccount(userid);
                 }
                 break;
         }
