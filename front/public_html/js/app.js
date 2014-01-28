@@ -867,7 +867,9 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", bind: {popup_news:click}}
+                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More"
+											//, bind: {popup_news:click}
+											}
                                         ]}
                                 ]}
                         ]}
@@ -875,7 +877,7 @@ function call_load_data_for_news_index() {
         ];
 		
 		
-		/*=======================мой код для попапа============================*/
+		/*=======================мой код для попапа============================
 		var template_for_news_index_popup = [
             {tag: "div", add_class: "popvis text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
