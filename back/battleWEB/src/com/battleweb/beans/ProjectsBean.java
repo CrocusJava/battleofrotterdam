@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -43,7 +42,7 @@ public class ProjectsBean {
 				Date dateFrom = null;
 				Date dateTo = null;
 				String sort = "asc";
-				if (sortOrder.equals(sortOrder.DESCENDING)){
+				if (sortOrder.equals(SortOrder.DESCENDING)){
 					sort = "desc";
 				}
 				String orderBy = "date";

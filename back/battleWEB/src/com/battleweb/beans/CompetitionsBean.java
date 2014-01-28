@@ -1,5 +1,6 @@
 package com.battleweb.beans;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -8,12 +9,19 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import com.battleejb.ejbbeans.CompetitionBean;
+import com.battleejb.ejbbeans.CompetitionTypeBean;
 import com.battleejb.entities.Competition;
+import com.battleejb.entities.CompetitionType;
 
 /**
  * 
@@ -22,14 +30,21 @@ import com.battleejb.entities.Competition;
  */
 @ManagedBean
 @SessionScoped
-public class CompetitionsBean {
+@FacesConverter("userConvertor")
+public class CompetitionsBean implements Converter{
 
 	@EJB
 	private CompetitionBean competitionBean;
+	@EJB
+	private CompetitionTypeBean competitionTypeBean;
 
 	private LazyDataModel<Competition> dataModel;
 
 	private Competition competition = new Competition();
+	
+	private Competition newCompetition = new Competition();
+	
+	private List<CompetitionType> competitionTypes;
 	
 	@PostConstruct
 	private void init() {
@@ -52,7 +67,7 @@ public class CompetitionsBean {
 				Integer winnerId = null;
 				String sort = "asc";
 				String type = null;
-				if (sortOrder.equals(sortOrder.DESCENDING)) {
+				if (sortOrder.equals(SortOrder.DESCENDING)) {
 					sort = "desc";
 				}
 				String orderBy = "startdate";
@@ -72,10 +87,25 @@ public class CompetitionsBean {
 						winnerId, type, first, pageSize);
 			}
 		};
+		competitionTypes = new ArrayList<CompetitionType>();
+		competitionTypes.add(competitionTypeBean.findByName("year"));
+		competitionTypes.add(competitionTypeBean.findByName("month"));
 	}
-
+	
+	public void create(){
+		newCompetition.setType(competitionTypeBean.find(newCompetition.getType().getId()));
+		Competition competition = new Competition();
+		competition.setName(newCompetition.getName());
+		competition.setDateStart(newCompetition.getDateStart());
+		competition.setDateEnd(newCompetition.getDateEnd());
+		competition.setRegisterDeadline(newCompetition.getRegisterDeadline());
+		competition.setType(newCompetition.getType());
+		competition.setDescription(newCompetition.getDescription());
+		competitionBean.create(competition);
+		RequestContext.getCurrentInstance().closeDialog(null);
+	}
+		
 	public void edit(){
-		System.out.println(competition);
 		competitionBean.edit(competition);
 	}
 	
@@ -93,6 +123,39 @@ public class CompetitionsBean {
 
 	public void setCompetition(Competition competition) {
 		this.competition = competition;
+	}
+	
+	public void newCompetition(){
+		newCompetition = new Competition();
+		RequestContext.getCurrentInstance().openDialog("adminCreateCompetition");
+	}
+	
+	public List<CompetitionType> getCompetitionTypes() {
+		return competitionTypes;
+	}
+
+	public void setCompetitionTypes(List<CompetitionType> competitionTypes) {
+		this.competitionTypes = competitionTypes;
+	}
+
+	@Override
+	public Object getAsObject(FacesContext context, UIComponent component,
+			String value) {		
+		return competitionTypeBean.findByName(value);
+	}
+
+	@Override
+	public String getAsString(FacesContext context, UIComponent component,
+			Object value) {
+		return ((CompetitionType) value).getName();
+	}
+
+	public Competition getNewCompetition() {
+		return newCompetition;
+	}
+
+	public void setNewCompetition(Competition newCompetition) {
+		this.newCompetition = newCompetition;
 	}
 
 }

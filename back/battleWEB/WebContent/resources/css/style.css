@@ -23,7 +23,15 @@ h4{
 	font-size: x-large
 }
 .input_url_size{
-	width: 40%;
+	width: 60%;
 	height: 50px;
 	font-size: large
+}
+.input_qa_size{
+	width: 40%;
+	height: 100px;
+	font-size: large
+}
+.cl{
+	font-size: x-large;
 }

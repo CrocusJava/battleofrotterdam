@@ -19,6 +19,10 @@
 		<hr />
 		<h2>Edit Competitions</h2>
 
+		<p:commandButton partialSubmit="true"
+			action="#{competitionsBean.newCompetition()}" value="New competition">
+			<p:ajax event="dialogReturn" update=":form" />
+		</p:commandButton>
 		<p:dataTable var="competition" value="#{competitionsBean.dataModel}"
 			paginator="true" currentPageReportTemplate="true" rows="10"
 			rowsPerPageTemplate="10,25,50" lazy="true">
@@ -44,13 +48,16 @@
 			</p:column>
 
 			<p:column headerText="Winner">
-				<h:outputText value="#{competition.user.login}" />
+				<h:outputLink
+					value="static_profile.html#userlogin=#{competition.user.login}">
+					<h:outputText value="#{competition.user.login}" />
+				</h:outputLink>
 			</p:column>
 
 			<p:column style="width:4%">
-				<p:commandButton id="selectButton"
-					update=":form:display" oncomplete="PF('compDialog').show()"
-					icon="ui-icon-search" title="View">
+				<p:commandButton id="selectButton" update=":form:display"
+					oncomplete="PF('compDialog').show()" icon="ui-icon-search"
+					title="View">
 					<f:setPropertyActionListener value="#{competition}"
 						target="#{competitionsBean.competition}" />
 				</p:commandButton>
@@ -84,11 +91,12 @@
 
 					<h:outputText value="Type " />
 					<h:panelGroup>
-					#{competition.type}
-					<p:selectOneRadio id="type"
-							value="aaaa}">
-							<f:selectItem itemLabel="Year" itemValue="1" />
-							<f:selectItem itemLabel="Month" itemValue="2" />
+						<p:selectOneRadio id="type"
+							value="#{competitionsBean.competition.type}"
+							converter="#{competitionsBean}">
+							<f:selectItems var="type" itemLabel="#{type.name}"
+								value="#{competitionsBean.competitionTypes}" />
+
 						</p:selectOneRadio>
 					</h:panelGroup>
 
@@ -99,8 +107,8 @@
 
 				<p:editor id="editor"
 					value="#{competitionsBean.competition.description}" width="600" />
-					
-					<h:commandButton action="#{competitionsBean.edit()}" value="Submit" />
+
+				<h:commandButton action="#{competitionsBean.edit()}" value="Submit" />
 			</h:panelGroup>
 		</p:dialog>
 
