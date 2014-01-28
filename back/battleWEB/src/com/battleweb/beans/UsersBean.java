@@ -11,7 +11,9 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
+import com.battleejb.ejbbeans.RoleBean;
 import com.battleejb.ejbbeans.UserBean;
+import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
 
 /**
@@ -25,7 +27,9 @@ public class UsersBean {
 
 	@EJB
 	private UserBean userBean;
-
+	@EJB
+	private RoleBean roleBean;
+	
 	private LazyDataModel<User> dataModel;
 
 	@PostConstruct
@@ -41,6 +45,17 @@ public class UsersBean {
 				return userBean.findByLoginLimit(filters.get("login"), first, pageSize);
 			}
 		};
+	}
+	
+	public void changeRole(User user){
+		Role role = null;
+		if (user.getRole().getName().equals("user")){
+			role = roleBean.findByName("admin");
+		} else {
+			role = roleBean.findByName("user");
+		}
+		user.setRole(role);
+		userBean.edit(user);
 	}
 	
 	public void changeCommandAble(User user){
@@ -60,6 +75,5 @@ public class UsersBean {
 	public void setDataModel(LazyDataModel<User> dataModel) {
 		this.dataModel = dataModel;
 	}
-	
 	
 }

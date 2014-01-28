@@ -32,7 +32,14 @@
 			</p:column>
 
 			<p:column headerText="Role">
-				<h:outputText value="#{user.role.name}"/>
+				<h:panelGroup id="buttonR">
+					<h:outputText value="User " rendered="#{user.role.name.equals('user')}" />
+					<p:commandButton action="#{usersBean.changeRole(user)}"
+						value="Make admin" update="buttonR" rendered="#{user.role.name.equals('user')}" />
+					<h:outputText value="Admin " rendered="#{user.role.name.equals('admin')}" />
+					<p:commandButton action="#{usersBean.changeRole(user)}"
+						value="Make user" update="buttonR" rendered="#{user.role.name.equals('admin')}" />
+				</h:panelGroup>
 			</p:column>
 
 			<p:column headerText="Comment Able">
