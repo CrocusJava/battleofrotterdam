@@ -26,19 +26,19 @@ function call_all() {
 }
 
 function call_form_validation() {
-    if ($('#account').length > 0) {
-        $('#account').validate({
-            rules: {
-                birthday: {
-                    date: true
-                },
-                postcode: {
-                    number: true
-                }
-            },
-            submitHandler: AjaxRegistrationLogin
-        });
-    }
+//    if ($('#account').length > 0) {
+//        $('#account').validate({
+//            rules: {
+//                birthday: {
+//                    date: true
+//                },
+//                postcode: {
+//                    number: true
+//                }
+//            },
+//            submitHandler: AjaxRegistrationLogin
+//        });
+//    }
     if ($('.login_form_validation').length > 0) {
         $('.login_form_validation').validate({
             submitHandler: AjaxRegistrationLogin
@@ -369,11 +369,7 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-    if (window.upload_file) {
-        if (window.upload_file._input.files.length > 0) {
-            window.upload_file.submit();
-        }
-    }
+
     console.log(config, form.id);
     return false;
 }
@@ -614,7 +610,6 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/myaccount.html/)) {
 
-        call_send_form_accountupdate();
         call_load_data_for_myaccount();
     }
 //<<<<<<<<<<<<=============================задачи для страницы учасники или конкурс
@@ -1067,14 +1062,6 @@ function call_load_data_for_index_footer_contacts(contacts) {
 }
 
 
-function call_send_form_accountupdate() {
-    $("#accountupdate").on("submit", function() {
-        AjaxRegistrationLogin(this);
-        return false;
-    });
-}
-
-
 function call_load_data_for_myaccount(id) {
 
     var send_data = {iduser: (id ? id : 0)};
@@ -1098,8 +1085,66 @@ function call_load_data_for_myaccount(id) {
         $("#postcode").text(respons["postcode"]);
         $("#telephone").text(respons["phone"]);
         $("#mail").text(respons["email"]);
+        for (var project in respons["projects"]) {
+            call_create_murkup_for_account_projects(respons["projects"][project], respons);
+        }
+
     });
 
+}
+
+function call_upload_data_for_updateaccaunt() {
+    var uploadData = {};
+    uploadData.login = $("#name_static_profile").text();
+    uploadData.firstname = $("#FirstName").text();
+    uploadData.middlename = $("#MiddletName").text();
+    uploadData.lastname = $("#LastName").text();
+    uploadData.birthday = $("#birthday").text();
+    uploadData.phone = $("#telephone").text();
+    uploadData.email = $("#mail").text();
+    uploadData.town = $("#town").text();
+    uploadData.street = $("#street").text();
+    uploadData.housenumber = $("#housenumber").text();
+    uploadData.postcode = $("#postcode").text();
+    uploadData.password = "";
+    uploadData.passwordnew = "";
+
+    uploadData = JSON.stringify(uploadData);
+
+    $.ajax({
+        type: "POST",
+        url: "/battleWEB/controller?command=updateaccaunt",
+        dataType: "json",
+        contentType: "application/json",
+        data: uploadData
+    }).done(function(data) {
+        console.log(data.message);
+    }).fail(function() {
+        console.log("Problemi s obnovleniem dannih");
+    });
+}
+
+function call_create_murkup_for_account_projects(project, respons) {
+    var template_for_project = '<section class="project_block" >' +
+            '<div class="blog-line">' +
+            '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+            '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
+            '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
+            '<a href="#" class="trylater"><i class="icon-comments"></i><span>' + "" + '</span> Comments</a>' +
+            '</div>' +
+            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
+            '</div>' +
+            '<article  class="project_block_proj"  >' +
+            '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
+            '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
+            '</article>' +
+            '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
+            '<div class="viewtheproj">' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid="' + project["projectid"] + ' style="color:#fff;">View the project</a>' +
+            '</div>' +
+            '</div>' +
+            '</section>' + '<div style="height:15px;"></div>';
+    $(template_for_project).appendTo("#account_projects");
 }
 
 

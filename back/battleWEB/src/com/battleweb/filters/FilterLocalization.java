@@ -1,7 +1,6 @@
 package com.battleweb.filters;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.servlet.Filter;
@@ -12,7 +11,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import com.battleweb.tools.ToolSession;
+import com.battleweb.tools.ToolCookie;
 
 /**
  * @author rtkachuk
@@ -22,7 +21,7 @@ import com.battleweb.tools.ToolSession;
 public class FilterLocalization implements Filter{
 	
 	@EJB
-	private ToolSession toolSession;
+	private ToolCookie toolCookie;
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,15 +30,15 @@ public class FilterLocalization implements Filter{
 	}
 	
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse responce,
+	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 	   
-		if (null==toolSession.getUserLocalization(request)){
-	    	toolSession.setUserLocalization(request);
-	    }
+		if (!toolCookie.isExistLocale(request)){
+			toolCookie.setLocaleDefault(request, response);
+		}
 		
 	    if (null != chain) {
-            chain.doFilter(request, responce);
+            chain.doFilter(request, response);
 	    }
 	}
 

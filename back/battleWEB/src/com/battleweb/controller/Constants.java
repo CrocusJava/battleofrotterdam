@@ -61,6 +61,7 @@ public interface Constants {
 	public static final String COMMAND_CREATE_COMPETITON = "createcompetition";
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
 	public static final String COMMAND_SEARCH = "search";
+	public static final String COMMAND_LOCALE = "locale";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
@@ -311,7 +312,9 @@ public interface Constants {
 	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
 	
 	//Localization
-//	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
+	public static final String PARAMETER_LOCALE = "locale";
+	public static final String PARAMETER_LOCALE_EN = "en";
+	public static final String PARAMETER_LOCALE_NL = "nl";
 	
 	//Path
 	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";

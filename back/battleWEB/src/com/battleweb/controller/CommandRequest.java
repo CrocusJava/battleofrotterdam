@@ -35,6 +35,7 @@ import com.battleweb.controller.commands.CommandGetHome;
 import com.battleweb.controller.commands.CommandGetNews;
 import com.battleweb.controller.commands.CommandGetPhoto;
 import com.battleweb.controller.commands.CommandIndex;
+import com.battleweb.controller.commands.CommandLocale;
 import com.battleweb.controller.commands.CommandLogin;
 import com.battleweb.controller.commands.CommandLogout;
 import com.battleweb.controller.commands.CommandNews;
@@ -155,6 +156,8 @@ public class CommandRequest {
 	private CommandUploadPhotoNews commandUploadPhotoNews;
 	@EJB
 	private CommandUpdateAccaunt commandUpdateAccaunt;
+	@EJB
+	private CommandLocale commandLocale;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -204,6 +207,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_SEARCH, commandSearch);
 		commands.put(Constants.COMMAND_UPLOAD_PHOTO_NEWS, commandUploadPhotoNews);
 		commands.put(Constants.COMMAND_UPDATE_ACCOUNT, commandUpdateAccaunt);
+		commands.put(Constants.COMMAND_LOCALE, commandLocale);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
