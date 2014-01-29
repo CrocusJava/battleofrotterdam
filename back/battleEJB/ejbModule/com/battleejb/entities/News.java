@@ -23,7 +23,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	 @NamedQuery(name = "News.findAll", query = "SELECT n FROM News n ORDER BY n.loadDate DESC"),
 	 @NamedQuery(name = "News.findLast", query = "SELECT n FROM News n ORDER BY n.loadDate DESC"),
-	 @NamedQuery(name = "News.findOlder", query = "SELECT n FROM News n ORDER BY n.loadDate ASC")
+	 @NamedQuery(name = "News.findOlder", query = "SELECT n FROM News n ORDER BY n.loadDate ASC"),
+	 @NamedQuery(name = "News.getCount", query = "SELECT COUNT(n) FROM News n"),
 })
 public class News implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -104,5 +105,27 @@ public class News implements Serializable {
 
 	public void setValueNl(String valueNl) {
 		this.valueNl = valueNl;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("News [id=");
+		builder.append(id);
+		builder.append(", loadDate=");
+		builder.append(loadDate);
+		builder.append(", photoPath=");
+		builder.append(photoPath);
+		builder.append(", titleEn=");
+		builder.append(titleEn);
+		builder.append(", titleNl=");
+		builder.append(titleNl);
+		builder.append(", valueEn=");
+		builder.append(valueEn);
+		builder.append(", valueNl=");
+		builder.append(valueNl);
+		builder.append("]");
+		return builder.toString();
 	}	
+	
 }
