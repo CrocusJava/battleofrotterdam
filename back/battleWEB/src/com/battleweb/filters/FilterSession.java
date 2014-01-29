@@ -21,7 +21,7 @@ import com.battleweb.tools.ToolSession;
  * @author Lukashchuk Ivan
  * 
  */
-@WebFilter("/*")
+@WebFilter("/battleWEB")
 public class FilterSession implements Filter {
 
 	@EJB
