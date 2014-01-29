@@ -66,7 +66,7 @@ public class CommandCreateProject implements Command {
 			project.setUser(userBean.find(Integer.parseInt(request.getSession()
 					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
 					.toString())));
-			project.setApproved(true);
+			project.setApproved(false);
 
 			if (name != null && project.getCompetition() != null) {
 
