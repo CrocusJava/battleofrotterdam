@@ -1330,7 +1330,7 @@ function call_create_markup_for_viewproject(respons) {
 function call_load_data_for_viewprojectcomments(projectid) {
     var data = {
         projectid: projectid,
-        firstposition: 1,
+        firstposition: 0,
         size: 10
     };
     data = JSON.stringify(data);
