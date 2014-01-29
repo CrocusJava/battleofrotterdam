@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="form">	
+			<h:panelGroup id="display">
+				<h:panelGrid columns="2">
+					<h:outputText value="Title En" />
+					<h:outputText value="Title Nl" />
+					<p:inputText value="#{newBean.newNews.titleEn}" size="30" />
+					<p:inputText value="#{newBean.newNews.titleNl}" size="30" />
+					<h:outputText value="Text En" />
+					<h:outputText value="Text Nl" />
+						<p:editor id="editorEn"
+					value="#{newBean.newNews.valueEn}" width="300" />
+						<p:editor id="editorNl"
+					value="#{newBean.newNews.valueNl}" width="300" />
+				</h:panelGrid>			
+			</h:panelGroup>
+			<p:commandButton action="#{newBean.create()}" value="Create"/>
+		</h:form>
+</h:body>
+</html>
