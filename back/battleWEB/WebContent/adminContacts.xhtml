@@ -2,9 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<title>Edit Contacts</title>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
@@ -15,6 +17,30 @@
 		</h:outputLink>		
 		<br/><hr/>
 		<h2>Edit Contacts</h2> 
+		<h4>Address (en / nl):</h4>
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.address.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.address.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<h4>E-mail:</h4>
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.email.valueEn}" characterEncoding="utf-8" />
+		<br />
+		<h4>Phone (en / nl):</h4>
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.phone.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.phone.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<h4>Fax:</h4>
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.fax.valueEn}" characterEncoding="utf-8" />
+		<br />
+		<h4>Skype:</h4>
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.skype.valueEn}" characterEncoding="utf-8" />
+		<br />
+		<h4>General Information (en / nl):</h4>
+		<h:inputTextarea class="input_qa_size"  value="#{contacts.info.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_qa_size"  value="#{contacts.info.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<p:commandButton action="#{contacts.apply()}" value="Apply" update="@form" />
+		<p:commandButton action="#{contacts.cancel()}" value="Cancel" update="@form" />
+		
 		
 	</h:form>
 </h:body>

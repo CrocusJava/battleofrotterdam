@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<title>Edit Home Page</title>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
@@ -18,11 +19,9 @@
 	<h:form>
 		<h2>Edit Home Page Content</h2> 
 	
-		<h4>Wellcome text:</h4>
-		en / nl
+		<h4>Wellcome text (en / nl):</h4>
 		<br />
 		<h:inputTextarea class="input_text_size"  value="#{home.battleDescriptionShortEn}" characterEncoding="utf-8" />
-		
 		<h:inputTextarea class="input_text_size" value="#{home.battleDescriptionShortNl}" characterEncoding="utf-8" />
 		<br />
 		<br />
@@ -32,11 +31,9 @@
 		<br />	
 		<br />
 		
-		<h4>Animation description:</h4>
-		en /nl
+		<h4>Animation description (en / nl):</h4>
 		<br />
 		<h:inputTextarea class="input_text_size" value="#{home.battleAnimationDescriptionEn}" characterEncoding="utf-8"/>
-		
 		<h:inputTextarea class="input_text_size" value="#{home.battleAnimationDescriptionNl}" characterEncoding="utf-8"/>
 		<br />
 		<br />

@@ -1279,11 +1279,13 @@ function call_cookie_navigator() {
         var login_name = $.session.get("name");
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
-        $("#dropdown_login_yes").show();
+		$("#dropdown_login_yes").show();
+		$(".forall").removeClass("forall").addClass("for_registered");
         call_event_logout();
 
     }
     else {
+		$(".for_registered").removeClass("for_registered").addClass("forall");
         $("#dropdown_login_yes").hide();
         $("#dropdown_login_no").show();
     }
