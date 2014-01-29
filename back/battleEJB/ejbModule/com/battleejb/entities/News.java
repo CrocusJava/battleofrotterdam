@@ -3,15 +3,12 @@ package com.battleejb.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,17 +31,19 @@ public class News implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	private Integer keyval;
 	
 	@Temporal(TemporalType.DATE)
 	private Date loadDate;
 
 	private String photoPath;
 	
-	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private Text text;
+	private String titleEn;
+
+	private String titleNl;
 	
+	private String valueEn;
+
+	private String valueNl;
 //----------------------------------
 	
 	public News() {
@@ -57,14 +56,6 @@ public class News implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getKeyval() {
-		return keyval;
-	}
-
-	public void setKeyval(Integer keyval) {
-		this.keyval = keyval;
 	}
 
 	public Date getLoadDate() {
@@ -83,16 +74,35 @@ public class News implements Serializable {
 		this.photoPath = photoPath;
 	}
 
-	public Text getText() {
-		return text;
+	public String getTitleEn() {
+		return titleEn;
 	}
 
-	public void setText(Text text) {
-		this.text = text;
+	public void setTitleEn(String titleEn) {
+		this.titleEn = titleEn;
 	}
 
-	
-	
-	
-	
+	public String getTitleNl() {
+		return titleNl;
+	}
+
+	public void setTitleNl(String titleNl) {
+		this.titleNl = titleNl;
+	}
+
+	public String getValueEn() {
+		return valueEn;
+	}
+
+	public void setValueEn(String valueEn) {
+		this.valueEn = valueEn;
+	}
+
+	public String getValueNl() {
+		return valueNl;
+	}
+
+	public void setValueNl(String valueNl) {
+		this.valueNl = valueNl;
+	}	
 }
