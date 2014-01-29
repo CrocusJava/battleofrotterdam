@@ -34,10 +34,7 @@ public class Text implements Serializable {
 	private String valueEn;
 
 	private String valueNl;
-	
-	@OneToOne(mappedBy="text")
-	private News news;
-	
+		
 	@Transient
 	private Long num;
 	@Transient
@@ -79,14 +76,6 @@ public class Text implements Serializable {
 
 	public void setValueNl(String valueNl) {
 		this.valueNl = valueNl;
-	}
-
-	public News getNews() {
-		return news;
-	}
-
-	public void setNews(News news) {
-		this.news = news;
 	}
 
 	public Long getNum() {

@@ -126,7 +126,8 @@ INSERT INTO Text VALUES
 (58, 690, '', ''),
 (59, 695, '', '');
 (62, 1100, 'Your opportunity to comment on disabled. Please contact the administration.', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie.');
-(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.');
+(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.');
+
 (64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
 
 
@@ -138,12 +139,6 @@ INSERT INTO URL VALUES
 (5, 140, 'Name of Link4 on Home-page', 'Value of Link4 on Home-page');
 
 INSERT INTO News VALUES
-(1, 10, 'img/news1.jpg','2014-01-15', 39),
-(2, 20, 'img/news2.jpg','2014-01-16', 40),
-(3, 30, 'img/news3.jpg','2014-01-17', 41),
-(4, 40, '','2000-12-12', 42),
-(5, 50, '','2000-12-12', 43),
-(6, 60, '','2000-12-12', 44),
-(7, 70, '','2000-12-12', 45),
-(8, 80, '','2000-12-12', 60),
-(9, 90, '','2000-12-12', 61);
+(1, 'img/news1.jpg','2014-01-15', 'Battle of Rotterdam will start soon!','Battle of Rotterdam zal binnenkort beginnen!', 'Battle of Rotterdam will start soon!','Battle of Rotterdam zal binnenkort beginnen!'),
+(2, 'img/news2.jpg','2014-01-16', 'Celebration in honor of the opening of the "Battle of Rotterdam!"','Viering ter ere van de opening van de "Slag van Rotterdam!"', 'Celebration in honor of the opening of the "Battle of Rotterdam!"','Viering ter ere van de opening van de "Slag van Rotterdam!"'),
+(3, 'img/news3.jpg','2014-01-17', 'Lets make our city more beautiful!','Laten we onze stad mooier!', 'Lets make our city more beautiful!','Laten we onze stad mooier!');

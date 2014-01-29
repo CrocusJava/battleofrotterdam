@@ -37,7 +37,7 @@ public class CommandEditNews implements Command{
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
+		/*JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		Integer id = jsonObjectRequest.getInt(Constants.PARAMETER_ID);
 		News news = newsBean.find(id);
 		Integer keyval = news.getKeyval();
@@ -47,7 +47,7 @@ public class CommandEditNews implements Command{
 		textBean.edit(text);
 		news.setText(text);
 		news.setPhotoPath(jsonObjectRequest.getString(Constants.PARAMETER_PHOTO_PATH));
-		newsBean.edit(news);
+		newsBean.edit(news);*/
 		return null;
 	}
 
