@@ -8,22 +8,30 @@
 <h:head>
 </h:head>
 <h:body>
-	<h:form id="form">	
-			<h:panelGroup id="display">
-				<h:panelGrid columns="2">
-					<h:outputText value="Title En" />
-					<h:outputText value="Title Nl" />
-					<p:inputText value="#{newBean.newNews.titleEn}" size="30" />
-					<p:inputText value="#{newBean.newNews.titleNl}" size="30" />
-					<h:outputText value="Text En" />
-					<h:outputText value="Text Nl" />
-						<p:editor id="editorEn"
-					value="#{newBean.newNews.valueEn}" width="300" />
-						<p:editor id="editorNl"
-					value="#{newBean.newNews.valueNl}" width="300" />
-				</h:panelGrid>			
-			</h:panelGroup>
-			<p:commandButton action="#{newBean.create()}" value="Create"/>
-		</h:form>
+	<h:form id="form">
+		<h:panelGroup id="display">
+			<h:panelGrid columns="2">
+				<h:outputText value="Title En" />
+				<h:outputText value="Title Nl" />
+				<p:inputText value="#{newBean.newNews.titleEn}" size="30" />
+				<p:inputText value="#{newBean.newNews.titleNl}" size="30" />
+				<h:outputText value="Text En" />
+				<h:outputText value="Text Nl" />
+				<p:editor id="editorEn" value="#{newBean.newNews.valueEn}"
+					width="300" />
+				<p:editor id="editorNl" value="#{newBean.newNews.valueNl}"
+					width="300" />
+			</h:panelGrid>
+		</h:panelGroup>
+
+		<p:fileUpload id="avatar"
+			fileUploadListener="#{newBean.handleFileUpload}" size="50"
+			mode="advanced" dragDropSupport="false" update="messages"
+			sizeLimit="10000000" fileLimit="1"
+			allowTypes="/(\.|\/)(gif|jpe?g|bmp|jpg|JPG)$/" required="true" />
+		<p:growl id="messages" showDetail="true" />
+
+		<p:commandButton action="#{newBean.create()}" value="Create" />
+	</h:form>
 </h:body>
 </html>
