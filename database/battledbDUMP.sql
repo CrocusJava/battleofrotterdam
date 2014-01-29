@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 29, 2014 at 09:29 AM
+-- Generation Time: Jan 29, 2014 at 10:38 AM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `Address`
@@ -64,7 +64,11 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (51, 'Rotterdam', '3002', 'Wilbetoord', '43', NULL),
 (52, 'mmm', '12', 'mmm', '12', NULL),
 (53, 'Naaldwijk', '123', 'Koraal 43', '1', NULL),
-(54, 'mmm', '122222', 'mmm', '12', NULL);
+(54, 'mmm', '122222', 'mmm', '12', NULL),
+(55, '????????', '23425', '???????', '234', NULL),
+(56, '????????', '23425', '???????', '234', NULL),
+(57, '????????', '080808', '??????????', '5', NULL),
+(58, '????????', '080808', '??????????', '5', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
   KEY `project_id` (`project_id`),
   KEY `photo_id` (`photo_id`),
   FULLTEXT KEY `commentText` (`commentText`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `Comment`
@@ -103,7 +107,8 @@ INSERT INTO `Comment` (`id`, `commentText`, `commentDate`, `user_id`, `project_i
 (10, 'blabla444', '2014-01-24 18:27:22', 13, 2, 5),
 (11, 'blabla555', '2014-01-25 18:27:22', 14, 2, 5),
 (12, 'blabla666', '2014-01-26 18:27:22', 1, 2, 5),
-(14, 'blabla777', '2014-01-26 20:27:22', 11, 2, 5);
+(14, 'blabla777', '2014-01-26 20:27:22', 11, 2, 5),
+(21, 'Ostavil otziv dljja proverki chto kak', '2014-01-29 10:23:20', 1, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -164,29 +169,24 @@ INSERT INTO `CompetitionType` (`id`, `name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `News` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `keyval` bigint(20) NOT NULL,
   `photoPath` varchar(65) NOT NULL,
   `loadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `text_id` bigint(20) NOT NULL,
+  `titleEn` varchar(5000) NOT NULL,
+  `titleNl` varchar(5000) NOT NULL,
+  `valueEn` longtext NOT NULL,
+  `valueNl` longtext NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `keyval` (`keyval`),
-  KEY `text_id` (`text_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+  KEY `text_id` (`titleEn`(255))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `News`
 --
 
-INSERT INTO `News` (`id`, `keyval`, `photoPath`, `loadDate`, `text_id`) VALUES
-(1, 10, 'img/news1.jpg', '2014-01-15 08:00:00', 39),
-(2, 20, 'img/news2.jpg', '2014-01-16 08:00:00', 40),
-(3, 30, 'img/news3.jpg', '2014-01-17 08:00:00', 41),
-(4, 40, '', '2000-12-12 08:00:00', 42),
-(5, 50, '', '2000-12-12 08:00:00', 43),
-(6, 60, '', '2000-12-12 08:00:00', 44),
-(7, 70, '', '2000-12-12 08:00:00', 45),
-(8, 80, '', '2000-12-12 08:00:00', 60),
-(9, 90, '', '2000-12-12 08:00:00', 61);
+INSERT INTO `News` (`id`, `photoPath`, `loadDate`, `titleEn`, `titleNl`, `valueEn`, `valueNl`) VALUES
+(1, 'img/news1.jpg', '2014-01-15 08:00:00', 'Battle of Rotterdam will start soon!', 'Battle of Rotterdam zal binnenkort beginnen!', 'Battle of Rotterdam will start soon!', 'Battle of Rotterdam zal binnenkort beginnen!'),
+(2, 'img/news2.jpg', '2014-01-16 08:00:00', 'Celebration in honor of the opening of the "Battle of Rotterdam!"', 'Viering ter ere van de opening van de "Slag van Rotterdam!"', 'Celebration in honor of the opening of the "Battle of Rotterdam!"', 'Viering ter ere van de opening van de "Slag van Rotterdam!"'),
+(3, 'img/news3.jpg', '2014-01-17 08:00:00', 'Lets make our city more beautiful!', 'Laten we onze stad mooier!', 'Lets make our city more beautiful!', 'Laten we onze stad mooier!');
 
 -- --------------------------------------------------------
 
@@ -343,13 +343,6 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (36, 740, 'fax: +1 (44) 123-45-63 ', 'fax: +1 (44) 123-45-63'),
 (37, 750, 'Skype Me ', 'Skype Me'),
 (38, 800, 'Your project is registered', 'Uw project is geregistreerd'),
-(39, 10, 'Battle of Rotterdam will start soon!', 'Battle of Rotterdam zal binnenkort beginnen!'),
-(40, 20, 'Celebration in honor of the opening of the "Battle of Rotterdam!"', 'Viering ter ere van de opening van de "Slag van Rotterdam!"'),
-(41, 30, 'Lets make our city more beautiful!', 'Laten we onze stad mooier!'),
-(42, 40, '', ''),
-(43, 50, '', ''),
-(44, 60, '', ''),
-(45, 70, '', ''),
 (46, 1000, 'e-mail sent', 'e-mail verzonden'),
 (47, 1010, 'Сhanges are made', 'Wijzigingen worden aangebracht'),
 (48, 560, 'PLEASE READ THE FOLLOWING TERMS AND CONDITIONS CAREFULLY BEFORE USING THIS SITE. By using this site, you signify your agreement to these Terms and Conditions. If you do not agree to these Terms and Conditions, do not use this site. TheBattleOfRotterdam may modify these Terms and Conditions at anytime. \r\nRestrictions On Use of Materials \r\nThis site is copyright protected. Any textual or graphic material you copy, print, or download is licensed to you by Hasbro, Inc. and/or its subsidiaries ("TheBattleOfRotterdam") for your personal, non-commercial home use only, provided that you do not change or delete any copyright, trademark or other proprietary notices. \r\nTHE MATERIALS IN THIS SITE ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TheBattleOfRotterdam DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE CONTENT OR OTHER MATERIALS IN THIS SITE IN TERMS OF THEIR CORRECTNESS, ACCURACY, RELIABILITY, OR OTHERWISE.', 'LEES DE VOLGENDE VOORWAARDEN, VOORDAT U DEZE SITE. Door het gebruik van deze site gaat u akkoord met deze algemene voorwaarden. Indien u niet akkoord gaat met deze voorwaarden, deze site niet te gebruiken. TheBattleOfRotterdam kan deze voorwaarden op elk moment wijzigen.\r\nBeperkingen op het gebruik van materialen\r\nDeze site is auteursrechtelijk beschermd. Tekstuele of grafische materiaal dat u kopieert, wordt afdrukken of downloaden in licentie gegeven aan u door Hasbro, Inc en / of haar dochterondernemingen ("TheBattleOfRotterdam") voor uw persoonlijk, niet-commercieel thuisgebruik uitsluitend gebruik, op voorwaarde dat u niet wijzigen of verwijderen een auteursrecht, handelsmerk of andere eigendomsrechten.\r\nHET MATERIAAL OP DEZE SITE WORDEN "AS IS", ZONDER ENIGE GARANTIE OOK uitdrukkelijk noch stilzwijgend. TheBattleOfRotterdam GEEN GARANTIE OF HET GEBIED VAN HET GEBRUIK OF DE RESULTATEN VAN HET GEBRUIK VAN DE INHOUD OF ANDER MATERIAAL OP DEZE SITE IN ALGEMENE juistheid, nauwkeurigheid, betrouwbaarheid, OF ANDERS.'),
@@ -364,8 +357,6 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (57, 685, '', ''),
 (58, 690, '', ''),
 (59, 695, '', ''),
-(60, 80, '', ''),
-(61, 90, '', ''),
 (62, 1100, 'Your opportunity to comment on disabled. Please contact the administration', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie'),
 (63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie'),
 (64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord'),
@@ -424,7 +415,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `User`
@@ -446,7 +437,11 @@ INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `passw
 (29, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 47, 2, 1, 1, 1),
 (33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1),
 (35, 'Max', 'van', 'Dop', 'maxvandop', '25f9e794323b453885f5181f1b624d0b', 'default', 'maxvandop@hotmail.com', '123', '1997-02-01', 53, 2, 1, 1, 1),
-(36, 'mmm2 m2', '', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'controller?command=getphoto&avatarname=avatar36.jpg', 'marinkmak@gmail.com', '12545455221313', '1222-12-12', 54, 2, 0, 1, 1);
+(36, 'mmm2 m2', '', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'controller?command=getphoto&avatarname=avatar36.jpg', 'marinkmak@gmail.com', '12545455221313', '1222-12-12', 54, 2, 0, 1, 1),
+(37, '???????', '???????', '???', '????', 'e94f0bfab8c987a7437ba4e1697c1cc0', 'default', 'sdfg@sdf.sd', '+1(156)165 156 651', '2000-11-11', 55, 2, 1, 1, 0),
+(38, '???????', '???????', '???', '????', 'e94f0bfab8c987a7437ba4e1697c1cc0', 'default', 'sdfg@sdf.sd', '+1(156)165 156 651', '2000-11-11', 56, 2, 1, 1, 0),
+(39, '??????', '???????', '??????', '??????', '0d1b08c34858921bc7c662b228acb7ba', 'default', 'test5@gmadial.com', '0980101010', '1991-01-01', 57, 2, 1, 1, 0),
+(40, '??????', '???????', '??????', '???????', '0d1b08c34858921bc7c662b228acb7ba', 'default', 'test5@gmsadial.com', '0980101010', '1991-01-01', 58, 2, 1, 1, 0);
 
 -- --------------------------------------------------------
 

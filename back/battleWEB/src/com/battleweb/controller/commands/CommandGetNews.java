@@ -44,7 +44,7 @@ public class CommandGetNews implements Command{
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		List<News> allNews = newsBean.findLast(Constants.HOME_PAGE_LAST_NEWS_COUNT);
+	/*	List<News> allNews = newsBean.findLast(Constants.HOME_PAGE_LAST_NEWS_COUNT);
 		
 		JsonArrayBuilder newsArrayBuilder = Json.createArrayBuilder();
 		for(News news:allNews){	
@@ -66,7 +66,7 @@ public class CommandGetNews implements Command{
 			.add(Constants.PARAMETER_NEWS, newsArray)
 			.build();
 						
-		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);*/
 		return null;
 	}
 }

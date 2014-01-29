@@ -39,7 +39,7 @@ public class CommandCreateNews implements Command{
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		//replaces the older news by created
-		News news = newsBean.findOlder().get(0);
+	/*	News news = newsBean.findOlder().get(0);
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		Integer keyval = news.getKeyval();
 		Text text = textBean.findByKey(keyval);
@@ -49,7 +49,7 @@ public class CommandCreateNews implements Command{
 		news.setText(text);
 		news.setPhotoPath(jsonObjectRequest.getString(Constants.PARAMETER_PHOTO_PATH));
 		news.setLoadDate(new Date());
-		newsBean.edit(news);
+		newsBean.edit(news);*/
 		return null;
 	}
 
