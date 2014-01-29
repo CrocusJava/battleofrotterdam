@@ -21,65 +21,87 @@
 		<h2>Edit About Battle Page Content</h2> 
 		
 	<h:form>	
-		<h4>About Battle title:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_title_size" value="#{battle.battleTitleEn}" characterEncoding="utf-8"/>
-		<h:inputTextarea class="input_title_size" value="#{battle.battleTitleNl}" characterEncoding="utf-8"/>
-		<br />	
-		<h4>About Battle text:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_text_size"  value="#{battle.battleTextEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_text_size"  value="#{battle.battleTextNl}" characterEncoding="utf-8" />
-		<br />
-		<br />
-		
-		<h4>About Us title:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_title_size" value="#{battle.aboutUsTitleEn}" characterEncoding="utf-8"/>
-		<h:inputTextarea class="input_title_size" value="#{battle.aboutUsTitleNl}" characterEncoding="utf-8"/>
-		<br />	
-		<h4>About Us text:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_text_size"  value="#{battle.aboutUsTextEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_text_size"  value="#{battle.aboutUsTextNl}" characterEncoding="utf-8" />
-		<br />
-		<br />
-		
-		<h4>Rules title:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_title_size" value="#{battle.rulesTitleEn}" characterEncoding="utf-8"/>
-		<h:inputTextarea class="input_title_size" value="#{battle.rulesTitleNl}" characterEncoding="utf-8"/>
-		<br />	
-		<h4>Rules text:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_text_size"  value="#{battle.rulesTextEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_text_size"  value="#{battle.rulesTextNl}" characterEncoding="utf-8" />
-		<br />
-		<br />
-		
-		<h4>Information title:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_title_size" value="#{battle.infoTitleEn}" characterEncoding="utf-8"/>
-		<h:inputTextarea class="input_title_size" value="#{battle.infoTitleNl}" characterEncoding="utf-8"/>
-		<br />	
-		<h4>Information text:</h4>
-		en / nl
-		<br />
-		<h:inputTextarea class="input_text_size"  value="#{battle.infoTextEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_text_size"  value="#{battle.infoTextNl}" characterEncoding="utf-8" />
-		<br />
-		<br />
-		
-		<p:commandButton action="#{battle.apply()}" value="Apply" update="@form" />
-		<p:commandButton action="#{battle.cancel()}" value="Cancel" update="@form" />
 	
+	<h:commandLink class="cl" value="About Battle" action="#{battle.changeView(1)}" >
+			<f:ajax execute="@this" render="@form" />
+	</h:commandLink><br />
+	<h:panelGroup id="pg1" rendered="#{battle.battleView}">
+		<h4>About Battle title (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_title_size" value="#{battle.battleTitle.valueEn}" characterEncoding="utf-8"/>
+		<h:inputTextarea class="input_title_size" value="#{battle.battleTitle.valueNl}" characterEncoding="utf-8"/>
+		<br />	
+		<h4>About Battle text (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_text_size"  value="#{battle.battleText.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_text_size"  value="#{battle.battleText.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<br />
+		<p:commandButton action="#{battle.apply(1)}" value="Apply" update="@form" onclick="@this"/>
+		<p:commandButton action="#{battle.cancel(1)}" value="Cancel" update="@form" onclick="@this"/>
+		<hr />
+	</h:panelGroup>
+		
+	<h:commandLink class="cl" value="About Us" action="#{battle.changeView(2)}" >
+			<f:ajax execute="@this" render="@form" />
+	</h:commandLink><br />
+	<h:panelGroup id="pg2" rendered="#{battle.usView}">
+		<h4>About Us title (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_title_size" value="#{battle.aboutUsTitle.valueEn}" characterEncoding="utf-8"/>
+		<h:inputTextarea class="input_title_size" value="#{battle.aboutUsTitle.valueNl}" characterEncoding="utf-8"/>
+		<br />	
+		<h4>About Us text (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_text_size"  value="#{battle.aboutUsText.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_text_size"  value="#{battle.aboutUsText.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<br />
+		<p:commandButton action="#{battle.apply(2)}" value="Apply" update="@form" onclick="@this"/>
+		<p:commandButton action="#{battle.cancel(2)}" value="Cancel" update="@form" onclick="@this"/>
+		<hr />
+	</h:panelGroup>
+		
+	<h:commandLink class="cl" value="Rules" action="#{battle.changeView(3)}" >
+			<f:ajax execute="@this" render="@form" />
+	</h:commandLink><br />
+	<h:panelGroup id="pg3" rendered="#{battle.rulesView}">		
+		<h4>Rules title (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_title_size" value="#{battle.rulesTitle.valueEn}" characterEncoding="utf-8"/>
+		<h:inputTextarea class="input_title_size" value="#{battle.rulesTitle.valueNl}" characterEncoding="utf-8"/>
+		<br />	
+		<h4>Rules text (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_text_size"  value="#{battle.rulesText.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_text_size"  value="#{battle.rulesText.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<br />
+		<p:commandButton action="#{battle.apply(3)}" value="Apply" update="@form" onclick="@this"/>
+		<p:commandButton action="#{battle.cancel(3)}" value="Cancel" update="@form" onclick="@this"/>
+		<hr />
+	</h:panelGroup>
+		
+	<h:commandLink class="cl" value="Information" action="#{battle.changeView(4)}" >
+			<f:ajax execute="@this" render="@form" />
+	</h:commandLink><br />
+	<h:panelGroup id="pg4" rendered="#{battle.infoView}">	
+		<h4>Information title (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_title_size" value="#{battle.infoTitle.valueEn}" characterEncoding="utf-8"/>
+		<h:inputTextarea class="input_title_size" value="#{battle.infoTitle.valueNl}" characterEncoding="utf-8"/>
+		<br />	
+		<h4>Information text (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_text_size"  value="#{battle.infoText.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_text_size"  value="#{battle.infoText.valueNl}" characterEncoding="utf-8" />
+		<br />
+		<br />
+		<p:commandButton action="#{battle.apply(4)}" value="Apply" update="@form" onclick="@this"/>
+		<p:commandButton action="#{battle.cancel(4)}" value="Cancel" update="@form" onclick="@this"/>
+		<hr />
+	</h:panelGroup>	
+		
 	</h:form>
 </h:body>
 </html>

@@ -1,4 +1,4 @@
-﻿
+
 USE battledb;
 
 INSERT INTO Role  VALUES
@@ -124,10 +124,9 @@ INSERT INTO Text VALUES
 (56, 680, '', ''),
 (57, 685, '', ''),
 (58, 690, '', ''),
-(59, 695, '', '');
-(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration.', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie.');
-(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.');
-
+(59, 695, '', ''),
+(62, 1100, 'Your opportunity to comment on disabled. Please contact the administration.', 'Uw kans om opmerkingen te maken over een handicap. Neem contact op met de administratie.'),
+(63, 1110, 'Your account is blocked. Please contact the administration.', 'Uw account is geblokkeerd. Neem contact op met de administratie.'),
 (64, 1120, 'Wrong login or password', 'Verkeerde login of wachtwoord');
 
 

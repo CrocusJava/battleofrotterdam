@@ -490,7 +490,7 @@ function createElements(conteiner, parent, info) {
     var span = $(document.createElement("span"));
     span.addClass("padding_comment").attr({
         "name": "time"
-    }).text((new Date().toLocaleString()));
+    }).text((new Date().toLocaleString())).appendTo(p_time);
 }
 
 
@@ -887,7 +887,7 @@ function call_load_data_for_news_index() {
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
                                             {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": popup_news}
-                                                        //, bind: {popup_news:click}
+                                                //, bind: {popup_news:click}
                                             }
                                         ]}
                                 ]}
@@ -897,38 +897,37 @@ function call_load_data_for_news_index() {
 
 
         /*=======================мой код для попапа================================*/
-         var template_for_news_index_popup = [
-         {tag: "div", add_class: "popvis text_center", children: [
-         {tag: "div", add_class: "boxfeature", children: [
-         {tag: "div", add_class: "img_preview", children: [
-         {tag:"i", add_class:"icon-remove close_popup_news"},
-         {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
-         {tag: "h4", text: "loaddate"}
-         ]},
-         {tag: "div", add_class: "desc_news desc", children: [
-         {tag: "p", text: "text"},
+        var template_for_news_index_popup = [
+            {tag: "div", add_class: "popvis text_center", children: [
+                    {tag: "div", add_class: "boxfeature", children: [
+                            {tag: "div", add_class: "img_preview", children: [
+                                    {tag: "i", add_class: "icon-remove close_popup_news"},
+                                    {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+                                    {tag: "h4", text: "loaddate"}
+                                ]},
+                            {tag: "div", add_class: "desc_news desc", children: [
+                                    {tag: "p", text: "text"}
+                                ]}
+                        ]}
+                ]},
+            {tag: "div", add_class: "popup_back_news"}
+        ];
 
-         ]}
-         ]}
-         ]},
-         {tag: "div", add_class:"popup_back_news"}
-         ];
 
-        
-         /*=======================конец моего кода для попапа============================*/
+        /*=======================конец моего кода для попапа============================*/
 
 
 
 
         for (var i in data.lastnews) {
-			var data_popup_news = data.lastnews[i];
+            var data_popup_news = data.lastnews[i];
             call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
-			function popup_news(){
-			call_markup_index(template_for_news_index_popup, $("#news_index"), data_popup_news);
-         }
+            function popup_news() {
+                call_markup_index(template_for_news_index_popup, $("#news_index"), data_popup_news);
+            }
 
-			
-			
+
+
             /*=======================мой код для попапа============================*/
             /*=			<section class='popup'>
 
@@ -1373,7 +1372,7 @@ function call_create_markup_for_viewprojectcomments(respons) {
 function call_load_data_for_projets_page() {
     var template_projets_page = [
         {tag: "section", add_class: "project_block", children: [
-                {tag: "div", add_class: "blog-line", attr: {style:"background: rgba(0,181,0,0.3);"}, children: [
+                {tag: "div", add_class: "blog-line", attr: {style: "background: rgba(0,181,0,0.3);"}, children: [
                         {tag: "a", attr: {href: "#"}, children: [
                                 {tag: "i", add_class: "icon-user"},
                                 {tag: "span", text: "user", subattr: {"user": "login"}}
@@ -1463,7 +1462,28 @@ function AjaxSendSearch(form) {
 
 }
 
-
+function call_send_vote(projectid) {
+    var url = "/battleWEB/controller?command=vote";
+    var data = JSON.stringify({
+        projectid: projectid
+    });
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(vote) {
+        if (vote.voteresult === true) {
+            var text_rating = $("#rating").text();
+            text_rating = parseInt(text_rating);
+            text_rating++;
+            $("#rating").text(text_rating);
+        }
+    }).fail(function() {
+        console.log("Error for VOTE");
+    });
+}
 
 
 //	“name” : “***”,

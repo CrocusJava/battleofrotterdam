@@ -20,26 +20,26 @@ public class FAQBean {
 	@EJB
 	private TextBean textBean;
 	
-	Text text_q1;
-	Text text_a1;
-	Text text_q2;
-	Text text_a2;
-	Text text_q3;
-	Text text_a3;
-	Text text_q4;
-	Text text_a4;
-	Text text_q5;
-	Text text_a5;
-	Text text_q6;
-	Text text_a6;
-	Text text_q7;
-	Text text_a7;
-	Text text_q8;
-	Text text_a8;
-	Text text_q9;
-	Text text_a9;
-	Text text_q10;
-	Text text_a10;
+	private Text text_q1;
+	private Text text_a1;
+	private Text text_q2;
+	private Text text_a2;
+	private Text text_q3;
+	private Text text_a3;
+	private Text text_q4;
+	private Text text_a4;
+	private Text text_q5;
+	private Text text_a5;
+	private Text text_q6;
+	private Text text_a6;
+	private Text text_q7;
+	private Text text_a7;
+	private Text text_q8;
+	private Text text_a8;
+	private Text text_q9;
+	private Text text_a9;
+	private Text text_q10;
+	private Text text_a10;
 	
 	private Boolean qaView1 = false;
 	private Boolean qaView2 = false;
