@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -53,6 +54,10 @@ public class UsersBean {
 				return userBean.findByLoginLimit(filters.get("login"), first, pageSize);
 			}
 		};
+	}
+	
+	public void closeDialog(){
+		RequestContext.getCurrentInstance().closeDialog(null);
 	}
 	
 	public void sendEmail(){

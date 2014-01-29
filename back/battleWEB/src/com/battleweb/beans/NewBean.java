@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,6 +64,10 @@ public class NewBean {
 		});
 	}
 
+	public void closeDialog() {
+		RequestContext.getCurrentInstance().closeDialog(null);
+	}
+
 	public void handleFileUpload(FileUploadEvent event) {
 		photo = event.getFile();
 		FacesMessage msg = new FacesMessage("Succesful", photo.getFileName()
@@ -70,15 +75,20 @@ public class NewBean {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
-	public void create() {
-		int count = newsBean.count();
-		String fileName = "photonews" + (count + 1) + ".";
-
-		String fileNameUser = photo.getFileName();
-		String[] fileNameUserSplit = fileNameUser.split("\\.");
-		String fileNameCorrect = fileName
-				+ fileNameUserSplit[fileNameUserSplit.length - 1];
-		String filePath = Constants.PATH_SAVE_PHOTO_NEWS;
+	private String uploadPhoto(String photoName) {
+		String path = null;
+		String fileNameCorrect;
+		if (photoName == null) {
+			int count = newsBean.count();
+			String fileName = "photonews" + (count + 1) + ".";
+			String fileNameUser = photo.getFileName();
+			String[] fileNameUserSplit = fileNameUser.split("\\.");
+			fileNameCorrect = fileName
+					+ fileNameUserSplit[fileNameUserSplit.length - 1];
+		} else {
+			fileNameCorrect = photoName;
+		}
+		String filePath = "";// Constants.PATH_SAVE_PHOTO_NEWS;
 		File file = new File(filePath, fileNameCorrect);
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -88,24 +98,32 @@ public class NewBean {
 			while ((c = inputStream.read(buf)) >= 0) {
 				fileOutputStream.write(buf, 0, c);
 			}
+			photo = null;
+			path = "controller?command=getphoto&photoname=" + fileNameCorrect;
 			fileOutputStream.close();
-			
+			inputStream.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			photo = null;
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			photo = null;
 			e.printStackTrace();
 		}
-				
-		String photoPath = fileNameCorrect;
+		return path;
+	}
+
+	public void create() {
+		String photoPath = uploadPhoto(null);
 		newNews.setPhotoPath(photoPath);
 		newsBean.create(newNews);
 		RequestContext.getCurrentInstance().closeDialog(null);
 	}
 
 	public void edit() {
-		newsBean.edit(news); // + photo
+		if (photo != null) {
+			uploadPhoto(news.getPhotoPath());
+		}
+		newsBean.edit(news);
 	}
 
 	public LazyDataModel<News> getDataModel() {
@@ -118,7 +136,10 @@ public class NewBean {
 
 	public void newNews() {
 		newNews = new News();
-		RequestContext.getCurrentInstance().openDialog("adminCreateNews");
+		Map<String, Object> options = new HashMap<String, Object>();
+		options.put("modal", true);
+		RequestContext.getCurrentInstance().openDialog("adminCreateNews",
+				options, null);
 	}
 
 	public News getNews() {

@@ -8,7 +8,7 @@
 <h:head>
 </h:head>
 <h:body>
-	<h:form id="form">
+	<h:form>
 		<h:panelGroup id="display">
 			<h:panelGrid columns="2">
 				<h:outputText value="Title En" />
@@ -23,8 +23,8 @@
 					width="300" />
 			</h:panelGrid>
 		</h:panelGroup>
-
-		<p:fileUpload id="avatar"
+	
+		<p:fileUpload id="photo"
 			fileUploadListener="#{newBean.handleFileUpload}" size="50"
 			mode="advanced" dragDropSupport="false" update="messages"
 			sizeLimit="10000000" fileLimit="1"
@@ -32,6 +32,7 @@
 		<p:growl id="messages" showDetail="true" />
 
 		<p:commandButton action="#{newBean.create()}" value="Create" />
+		<p:commandButton action="#{newBean.closeDialog()}" value="Cancle" />
 	</h:form>
 </h:body>
 </html>

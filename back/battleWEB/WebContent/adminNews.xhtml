@@ -19,13 +19,17 @@
 		<hr />
 		<h2>News</h2>
 
-		<p:commandButton partialSubmit="true"
-			action="#{newBean.newNews()}" value="Create news">
+		<p:commandButton partialSubmit="true" action="#{newBean.newNews()}"
+			value="Create news">
 			<p:ajax event="dialogReturn" update=":form" />
 		</p:commandButton>
 		<p:dataTable var="new" value="#{newBean.dataModel}" paginator="true"
 			currentPageReportTemplate="true" rows="10"
 			rowsPerPageTemplate="10,25,50,100" lazy="true">
+
+			<p:column headerText="Date">
+				<h:outputText value="#{new.loadDate}" />
+			</p:column>
 
 			<p:column headerText="Tytle En">
 				<h:outputText value="#{new.titleEn}" />
@@ -56,13 +60,25 @@
 					<p:inputText value="#{newBean.news.titleNl}" size="30" />
 					<h:outputText value="Text En" />
 					<h:outputText value="Text Nl" />
-						<p:editor id="editorEn"
-					value="#{newBean.news.valueEn}" width="300" />
-						<p:editor id="editorNl"
-					value="#{newBean.news.valueNl}" width="300" />
-				</h:panelGrid>			
+					<p:editor id="editorEn" value="#{newBean.news.valueEn}" width="300" height="150" />
+					<p:editor id="editorNl" value="#{newBean.news.valueNl}" width="300" height="150" />
+				</h:panelGrid>
 			</h:panelGroup>
-			<h:commandButton action="#{newBean.edit()}" value="Edit"/>
+
+			<p:graphicImage width="200" height="150" value="#{newBean.news.photoPath}" />
+			<br/>
+			<h:outputText value="Change photo:" />
+
+			<p:fileUpload id="photo"
+				fileUploadListener="#{newBean.handleFileUpload}" size="50" 
+				mode="advanced" dragDropSupport="false" update="messages"
+				sizeLimit="10000000" fileLimit="1"
+				allowTypes="/(\.|\/)(gif|jpe?g|bmp|jpg|JPG)$/" required="true" />
+			<p:growl id="messages" showDetail="true" />
+
+			<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+				action="#{newBean.edit()}" value="Apply" />
+			<p:commandButton oncomplete="PF('newsDialog').hide()" value="Cancle" />
 		</p:dialog>
 
 	</h:form>

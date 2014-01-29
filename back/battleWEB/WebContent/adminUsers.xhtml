@@ -94,7 +94,10 @@
 				<br />
 				<p:editor id="editor" value="#{usersBean.text}" width="600" />
 
-				<h:commandButton action="#{usersBean.sendEmail()}" value="Submit" />
+				<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+					action="#{usersBean.sendEmail()}" value="Send" />
+				<p:commandButton oncomplete="PF('emailDialog').hide()"
+					value="Cancle" />
 			</h:panelGroup>
 		</p:dialog>
 
