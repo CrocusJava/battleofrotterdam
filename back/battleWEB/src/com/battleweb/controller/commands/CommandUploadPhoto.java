@@ -64,6 +64,10 @@ public class CommandUploadPhoto implements Command {
 		String fileNameCorrect=toolUpload.uploadImage(request, Constants.PATH_SAVE_PHOTO, fileName);
 		/** Create photo path*/
 		filePath=Constants.PATH_GET_PHOTO+fileNameCorrect;
+		/** Change project approved*/	
+		if (0==countPhotos){
+			project.setApproved(true);
+		}
 		/** Save photo*/
 		photo=new Photo();
 		photo.setLoadDate(new Date());
@@ -71,7 +75,7 @@ public class CommandUploadPhoto implements Command {
 		photo.setPath(filePath);
 		photo.setDescription(fileNameCorrect);
 		photoBean.create(photo);
-		
+
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID_PHOTO, photo.getId())
 				.add(Constants.PARAMETER_PHOTO_PATH, filePath)
