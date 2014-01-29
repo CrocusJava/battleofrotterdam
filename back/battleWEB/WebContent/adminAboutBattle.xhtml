@@ -24,7 +24,7 @@
 	
 	<h:commandLink class="cl" value="About Battle" action="#{battle.changeView(1)}" >
 			<f:ajax execute="@this" render="@form" />
-	</h:commandLink><br />
+	</h:commandLink><br /><br />
 	<h:panelGroup id="pg1" rendered="#{battle.battleView}">
 		<h4>About Battle title (en / nl):</h4>
 		<br />
@@ -44,7 +44,7 @@
 		
 	<h:commandLink class="cl" value="About Us" action="#{battle.changeView(2)}" >
 			<f:ajax execute="@this" render="@form" />
-	</h:commandLink><br />
+	</h:commandLink><br /><br />
 	<h:panelGroup id="pg2" rendered="#{battle.usView}">
 		<h4>About Us title (en / nl):</h4>
 		<br />
@@ -64,7 +64,7 @@
 		
 	<h:commandLink class="cl" value="Rules" action="#{battle.changeView(3)}" >
 			<f:ajax execute="@this" render="@form" />
-	</h:commandLink><br />
+	</h:commandLink><br /><br />
 	<h:panelGroup id="pg3" rendered="#{battle.rulesView}">		
 		<h4>Rules title (en / nl):</h4>
 		<br />
@@ -84,7 +84,7 @@
 		
 	<h:commandLink class="cl" value="Information" action="#{battle.changeView(4)}" >
 			<f:ajax execute="@this" render="@form" />
-	</h:commandLink><br />
+	</h:commandLink><br /><br />
 	<h:panelGroup id="pg4" rendered="#{battle.infoView}">	
 		<h4>Information title (en / nl):</h4>
 		<br />
