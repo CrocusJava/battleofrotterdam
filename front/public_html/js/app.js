@@ -1369,7 +1369,7 @@ function call_create_markup_for_viewprojectcomments(respons) {
 function call_load_data_for_projets_page() {
     var template_projets_page = [
         {tag: "section", add_class: "project_block", children: [
-                {tag: "div", add_class: "blog-line", children: [
+                {tag: "div", add_class: "blog-line", attr: {style:"background: rgba(0,181,0,0.3);"}, children: [
                         {tag: "a", attr: {href: "#"}, children: [
                                 {tag: "i", add_class: "icon-user"},
                                 {tag: "span", text: "user", subattr: {"user": "login"}}
