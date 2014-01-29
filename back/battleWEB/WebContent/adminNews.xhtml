@@ -1,20 +1,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:form>
-		<br/>
-		<h:outputLink value="administration.xhtml" >
+	<h:form id="form">
+		<br />
+		<h:outputLink value="administration.xhtml">
 			Administration Menu
-		</h:outputLink>		
-		<br/><hr/>
-		<h2>Edit News</h2> 
+		</h:outputLink>
+
+		<br />
+		<hr />
+		<h2>News</h2>
+
+		<p:commandButton partialSubmit="true"
+			action="#{newBean.newNews()}" value="Create news">
+			<p:ajax event="dialogReturn" update=":form" />
+		</p:commandButton>
+		<p:dataTable var="new" value="#{newBean.dataModel}" paginator="true"
+			currentPageReportTemplate="true" rows="10"
+			rowsPerPageTemplate="10,25,50,100" lazy="true">
+
+			<p:column headerText="Tytle En">
+				<h:outputText value="#{new.titleEn}" />
+			</p:column>
+
+			<p:column headerText="Tytle Nl">
+				<h:outputText value="#{new.titleNl}" />
+			</p:column>
+
+			<p:column style="width:4%">
+				<p:commandButton id="selectButton" update=":form:display"
+					oncomplete="PF('newsDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{new}"
+						target="#{newBean.news}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:dialog header="Edit new" widgetVar="newsDialog" resizable="false"
+			id="newsDlg" showEffect="fade" hideEffect="fade" modal="true">
+			<h:panelGroup id="display">
+				<h:panelGrid columns="2">
+					<h:outputText value="Title En" />
+					<h:outputText value="Title Nl" />
+					<p:inputText value="#{newBean.news.titleEn}" size="30" />
+					<p:inputText value="#{newBean.news.titleNl}" size="30" />
+					<h:outputText value="Text En" />
+					<h:outputText value="Text Nl" />
+						<p:editor id="editorEn"
+					value="#{newBean.news.valueEn}" width="300" />
+						<p:editor id="editorNl"
+					value="#{newBean.news.valueNl}" width="300" />
+				</h:panelGrid>			
+			</h:panelGroup>
+			<h:commandButton action="#{newBean.edit()}" value="Edit"/>
+		</p:dialog>
+
 	</h:form>
 </h:body>
 </html>
