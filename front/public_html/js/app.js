@@ -490,7 +490,7 @@ function createElements(conteiner, parent, info) {
     var span = $(document.createElement("span"));
     span.addClass("padding_comment").attr({
         "name": "time"
-    }).text((new Date().toLocaleString()));
+    }).text((new Date().toLocaleString())).appendTo(p_time);
 }
 
 
