@@ -18,28 +18,30 @@
 		<br/><hr/>
 		<h2>Edit Contacts</h2> 
 		<h4>Address (en / nl):</h4>
-		<h:inputTextarea class="input_url_size"  value="#{contacts.address.valueEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_url_size"  value="#{contacts.address.valueNl}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.address.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.address.valueNl}" characterEncoding="utf-8" />
 		<br />
 		<h4>E-mail:</h4>
-		<h:inputTextarea class="input_url_size"  value="#{contacts.email.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.email.valueEn}" characterEncoding="utf-8" />
 		<br />
 		<h4>Phone (en / nl):</h4>
-		<h:inputTextarea class="input_url_size"  value="#{contacts.phone.valueEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_url_size"  value="#{contacts.phone.valueNl}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.phone.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.phone.valueNl}" characterEncoding="utf-8" />
 		<br />
 		<h4>Fax:</h4>
-		<h:inputTextarea class="input_url_size"  value="#{contacts.fax.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.fax.valueEn}" characterEncoding="utf-8" />
 		<br />
 		<h4>Skype:</h4>
-		<h:inputTextarea class="input_url_size"  value="#{contacts.skype.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_fax_size"  value="#{contacts.skype.valueEn}" characterEncoding="utf-8" />
 		<br />
 		<h4>General Information (en / nl):</h4>
-		<h:inputTextarea class="input_text_size"  value="#{contacts.info.valueEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_text_size"  value="#{contacts.info.valueNl}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_qa_size"  value="#{contacts.info.valueEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_qa_size"  value="#{contacts.info.valueNl}" characterEncoding="utf-8" />
 		<br />
 		<p:commandButton action="#{contacts.apply()}" value="Apply" update="@form" />
 		<p:commandButton action="#{contacts.cancel()}" value="Cancel" update="@form" />
+		
+		
 	</h:form>
 </h:body>
 </html>

@@ -42,9 +42,12 @@ public class ContactsBean {
 	public String apply(){
 		textBean.edit(info);
 		textBean.edit(address);
+		email.setValueNl(email.getValueEn());
 		textBean.edit(email);
 		textBean.edit(phone);
+		fax.setValueNl(fax.getValueEn());
 		textBean.edit(fax);
+		skype.setValueNl(skype.getValueEn());
 		textBean.edit(skype);
 		return "administration";
 	}

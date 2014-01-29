@@ -32,6 +32,12 @@ h4{
 	height: 100px;
 	font-size: large
 }
+.input_fax_size{
+	width: 40%;
+	height: 50px;
+	font-size: large
+}
+
 .cl{
-	font-size: x-large;
+	font-size: large;
 }
