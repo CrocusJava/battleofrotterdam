@@ -54,25 +54,23 @@ public class CommandUploadPhoto implements Command {
 		Photo photo=null;
 		/** Define user project, from session info*/
 		User user= userBean.find(toolSession.getUserId(request));
-		List<Project> projectList=user.getProjects();
-		for (Project project : projectList) {
-			if (null!=request.getParameter(Constants.PARAMETER_TYPE_PROJECT) && request.getParameter(Constants.PARAMETER_TYPE_PROJECT).equals(project.getCompetition().getType().getName())){
-				String competitionName=project.getCompetition().getType().getName();
-				int countPhotos=project.getPhotos().size();
-				/** Create new name of photo*/
-				String fileName="photo"+user.getId()+"_"+(countPhotos+1)+"_"+competitionName+".";
-				String fileNameCorrect=toolUpload.uploadImage(request, Constants.PATH_SAVE_PHOTO, fileName);
-				/** Create photo path*/
-				filePath=Constants.PATH_GET_PHOTO+fileNameCorrect;
-				/** Save photo*/
-				photo=new Photo();
-				photo.setLoadDate(new Date());
-				photo.setProject(project);
-				photo.setPath(filePath);
-				photo.setDescription(fileNameCorrect);
-				photoBean.create(photo);
-			}
-		}
+		
+		String projectId=request.getParameter(Constants.PARAMETER_PROJECT_ID);
+		Project project= projectBean.find(projectId);
+		String competitionName=project.getCompetition().getType().getName();
+		int countPhotos=project.getPhotos().size();
+		/** Create new name of photo*/
+		String fileName="photo"+user.getId()+"_"+(countPhotos+1)+"_"+competitionName+".";
+		String fileNameCorrect=toolUpload.uploadImage(request, Constants.PATH_SAVE_PHOTO, fileName);
+		/** Create photo path*/
+		filePath=Constants.PATH_GET_PHOTO+fileNameCorrect;
+		/** Save photo*/
+		photo=new Photo();
+		photo.setLoadDate(new Date());
+		photo.setProject(project);
+		photo.setPath(filePath);
+		photo.setDescription(fileNameCorrect);
+		photoBean.create(photo);
 		
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
 				.add(Constants.PARAMETER_ID_PHOTO, photo.getId())
