@@ -25,6 +25,7 @@ import com.battleweb.tools.ToolJSON;
 
 /**
  * @author marina
+ * @author Lukashchuk Ivan
  * 
  */
 
@@ -48,10 +49,22 @@ public class CommandNews implements Command{
 		List<News> lastNews = newsBean.findLast(Constants.HOME_PAGE_LAST_NEWS_COUNT);
 		
 		JsonArrayBuilder lastNewsArrayBuilder = Json.createArrayBuilder();
+		
+		String locale = request.getLocale().toString();
+		
 		for(News news:lastNews){	
-			String newsText = textBean.findLocaleTextByKey(news.getKeyval(), request.getLocale());
+			String newsTitle;
+			String newsText;
+			if(locale.equalsIgnoreCase("nl")){
+				newsTitle = news.getTitleNl();
+				newsText = news.getValueNl();
+			} else {
+				newsTitle = news.getTitleEn();
+				newsText = news.getValueEn();
+			}
 			JsonObject jsonObjectNews = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_PHOTO_PATH, news.getPhotoPath())
+				.add(Constants.PARAMETER_TITLE, newsTitle)
 				.add(Constants.PARAMETER_TEXT, newsText)
 				.add(Constants.PARAMETER_LOAD_DATE, dateFormat.format(news.getLoadDate()))
 				.build();
