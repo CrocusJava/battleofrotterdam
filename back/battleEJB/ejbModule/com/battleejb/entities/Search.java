@@ -22,9 +22,9 @@ import javax.persistence.NamedNativeQuery;
 		+ "UNION "
 		+ "SELECT 'comment' AS type, id,'', commentText as description, MATCH(co.commentText) AGAINST(:text IN BOOLEAN MODE) as score "
 		+ "FROM battledb.`Comment` AS co WHERE MATCH(co.commentText) AGAINST(:text IN BOOLEAN MODE) "
-		+ "UNION "
-		+ "SELECT 'news' AS type, n.id, t.valueEn , t.valueNl, MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) as score "
-		+ "FROM battledb.`News` AS n CROSS JOIN battledb.`Text` AS t WHERE n.text_id=t.id AND MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) "
+//		+ "UNION "
+//		+ "SELECT 'news' AS type, n.id, t.valueEn , t.valueNl, MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) as score "
+//		+ "FROM battledb.`News` AS n CROSS JOIN battledb.`Text` AS t WHERE n.text_id=t.id AND MATCH(t.valueEn) AGAINST(:text IN BOOLEAN MODE) "
 		+ "ORDER BY score DESC", resultClass = Search.class)
 @Entity
 public class Search implements Serializable {
