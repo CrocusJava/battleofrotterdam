@@ -477,7 +477,7 @@ function createElements(conteiner, parent, info) {
     var div = $(document.createElement("div"));
     div.addClass("comment_inner").attr("style", "display:block;").appendTo(article);
     var p = $(document.createElement("p"));
-    p.text(info.message).appendTo(div); // текст нужно получить с формы
+    p.text(info.commenttext).appendTo(div); // текст нужно получить с формы
 
     var p_time = $(document.createElement("p"));
     p_time.attr({
@@ -490,7 +490,7 @@ function createElements(conteiner, parent, info) {
     var span = $(document.createElement("span"));
     span.addClass("padding_comment").attr({
         "name": "time"
-    }).text(new Date().toLocaleString());
+    }).text((new Date().toLocaleString()));
 }
 
 
@@ -1227,7 +1227,7 @@ function call_upload_data_for_updateaccaunt() {
 
 function call_create_murkup_for_account_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line">' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
             '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
