@@ -436,7 +436,25 @@ width: 95%;
 text-align: center;
 }
 
+#formsg_if_nophoto{
+color: #fff;
+position:relative;
+clear:both;
+margin: 5px auto;
+background-color: rgba(0,181,0,0.2);
+font-size: 18px;
+padding: 5px;
+width: 99%;
 
+text-align: center;
+
+}
+
+.addphoto{
+clear: both;
+margin: 10px 42%;
+
+}
 .editable{
 background-color: rgba(0,181,0,0.1);
 font-size: 18px;
