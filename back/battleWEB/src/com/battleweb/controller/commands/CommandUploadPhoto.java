@@ -56,7 +56,7 @@ public class CommandUploadPhoto implements Command {
 		User user= userBean.find(toolSession.getUserId(request));
 		
 		String projectId=request.getParameter(Constants.PARAMETER_PROJECT_ID);
-		Project project= projectBean.find(projectId);
+		Project project= projectBean.find(Integer.valueOf(projectId));
 		String competitionName=project.getCompetition().getType().getName();
 		int countPhotos=project.getPhotos().size();
 		/** Create new name of photo*/
