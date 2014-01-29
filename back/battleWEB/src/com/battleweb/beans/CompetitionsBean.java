@@ -92,16 +92,8 @@ public class CompetitionsBean implements Converter{
 		competitionTypes.add(competitionTypeBean.findByName("month"));
 	}
 	
-	public void create(){
-		newCompetition.setType(competitionTypeBean.find(newCompetition.getType().getId()));
-		Competition competition = new Competition();
-		competition.setName(newCompetition.getName());
-		competition.setDateStart(newCompetition.getDateStart());
-		competition.setDateEnd(newCompetition.getDateEnd());
-		competition.setRegisterDeadline(newCompetition.getRegisterDeadline());
-		competition.setType(newCompetition.getType());
-		competition.setDescription(newCompetition.getDescription());
-		competitionBean.create(competition);
+	public void create(){		
+		competitionBean.create(newCompetition);
 		RequestContext.getCurrentInstance().closeDialog(null);
 	}
 		
