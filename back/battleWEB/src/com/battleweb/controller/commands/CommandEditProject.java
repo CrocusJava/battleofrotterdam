@@ -27,7 +27,7 @@ import com.battleweb.tools.ToolSession;
  */
 @Stateless
 @LocalBean
-public class CommandCreateProject implements Command {
+public class CommandEditProject implements Command {
 
 	@EJB
 	private ToolJSON toolJSON;
@@ -47,7 +47,7 @@ public class CommandCreateProject implements Command {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		JsonObject jsonObjectResponse = null;
-
+				
 		if (toolSession.getUser(request) != null) {
 
 			JsonObject jsonObjectRequest = toolJSON
@@ -55,32 +55,32 @@ public class CommandCreateProject implements Command {
 			String name = jsonObjectRequest.getString(Constants.PARAMETER_NAME);
 			String description = jsonObjectRequest
 					.getString(Constants.PARAMETER_DESCRIPTION);
-			int competitionId = jsonObjectRequest
-					.getInt(Constants.PARAMETER_COMPETITION_ID);
+			int projectId = jsonObjectRequest
+					.getInt(Constants.PARAMETER_PROJECT_ID);
 
-			Project project = new Project();
+			Project project = projectBean.find(projectId);
 			project.setName(name);
 			project.setDescription(description);
-			project.setCreationDate(new Date());
-			project.setCompetition(competitionBean.find(competitionId));
-			project.setUser(userBean.find(Integer.parseInt(request.getSession()
-					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
-					.toString())));
-			project.setApproved(false);
 
-			if (name != null && project.getCompetition() != null) {
+			if (name != null
+					&& project.getCompetition() != null
+					&& toolSession.getUserId(request).equals(
+							project.getUser().getId())) {
 
-				projectBean.create(project);
+				projectBean.edit(project);
 
 				String cteateProjectMessage = textBean.findLocaleTextByKey(
-						Constants.TEXT_MESSAGE_CREATE_PROJECT,
+						Constants.TEXT_MESSAGE_ADMIN_EDIT_USER,
 						request.getLocale());
 
-				jsonObjectResponse = Json
-						.createObjectBuilder()
-						.add(Constants.PARAMETER_PROJECT_ID, project.getId())
-						.add(Constants.PARAMETER_CREATE_PROJECT_MESSAGE,
-								cteateProjectMessage).build();
+				jsonObjectResponse = Json.createObjectBuilder()
+						.add(Constants.PARAMETER_STATUS, true)
+						.add(Constants.PARAMETER_MESSAGE, cteateProjectMessage)
+						.build();
+			} else {
+				jsonObjectResponse = Json.createObjectBuilder()
+						.add(Constants.PARAMETER_STATUS, false)
+						.build();
 			}
 
 		} else {
@@ -89,6 +89,7 @@ public class CommandCreateProject implements Command {
 					.add(Constants.PARAMETER_MESSAGE,
 							"Invocation without authorization").build();
 		}
+
 
 		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 

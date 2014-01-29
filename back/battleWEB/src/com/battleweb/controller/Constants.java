@@ -62,6 +62,7 @@ public interface Constants {
 	public static final String COMMAND_EDIT_COMPETITON = "editcompetition";
 	public static final String COMMAND_SEARCH = "search";
 	public static final String COMMAND_LOCALE = "locale";
+	public static final String COMMAND_EDIT_PROJECT = "editproject";
 	
 	//Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
