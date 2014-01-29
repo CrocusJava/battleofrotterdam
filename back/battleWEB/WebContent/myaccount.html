@@ -151,6 +151,29 @@
                                             <div id="mail" class="margin_text_email" ></div>
                                         </div>
 
+										  <div style="height:15px;"></div>
+										
+									
+										<fieldset id="change_password" class="unvisiblin" style="width: 50%; margin: 10px auto;">
+																<div class="panel">
+                                                                    <h4>Change password</h4>
+                                                               
+						
+                                        <input type="text" name="current_pw" class="input-block-level" required=""placeholder="Current password" >
+                             
+                                        <input type="password" name="new_pw" class="input-block-level" required="" placeholder="New password">
+									
+                                        <input type="password" name="confirm_pw" class="input-block-level" required="" placeholder="Confirm password">
+															   </div>
+															    <div id="button_pw_profile" class="btn btn-primary btn-large flat" >  Save new password <i class="icon-ok"></i>
+																</div>
+                                                                       
+                                                                       
+                                                                   
+                                        </fieldset>
+										
+										
+										
                                         <div style="height:35px;"></div>
 
                                     </section>
@@ -237,10 +260,12 @@
             <div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">Wellcome to creating new project</h3>
+                    <h3 id="myModalLabel" class="caption_profile">Wellcome to creating new project</h3>
                 </div>
                 <div class="modal-body">
-                    <label>Chose the Competition:</label>
+                    <label class="header_popup_pz">Chose the Competition:</label>
+					 <div style="margin: 25px 25px;">
+					
                     <div class="radio">
                         <label>
                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -248,20 +273,22 @@
                         </label>
                     </div>
                     <div class="radio">
-                        <label>
+                        <label >
                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                             Yearly competition
                         </label>
                     </div>
-
-                    <label>Enter project name:</label>
-                    <input type="text" name="project" class="input-block-level" required="">
-                    <label>Enter project description:</label>
-                    <textarea  rows=5 style="width:90%;" required=""></textarea>
+						
+					</div>
+						  
+                    <label class="header_popup_pz">Enter project name:</label>
+                    <input type="text" name="project" class="input-block-level" style="width: 100%; margin: 10px auto;" required="">
+                    <label class="header_popup_pz">Enter project description:</label>
+                    <textarea  rows=5 style="width:95%; margin: 10px auto;" required=""></textarea>
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn create" data-dismiss="modal" aria-hidden="true">Create</button>
+                    <button id="create_button" class="create btn btn-primary btn-large flat"  data-dismiss="modal" aria-hidden="true">Create</button>
                 </div>
             </div>
 
@@ -437,6 +464,7 @@
                     $("#adress, #telephone, #birthday").removeClass("editable").addClass("margin_text").attr('contenteditable', 'false');
                     $("#mail").removeClass("editable").addClass("margin_text_email").attr('contenteditable', 'false');
                     $("#uploadavatar").addClass("unvisiblin");
+					 $("#change_password").addClass("unvisiblin");
                     if (window.upload_file && window.upload_file._input) {
                         if (window.upload_file._input.files.length > 0) {
                             window.upload_file.submit();

@@ -178,13 +178,15 @@
 
 
 
-            <div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">Wellcome to creating new project</h3>
+                    <h3 id="myModalLabel" class="caption_profile">Wellcome to creating new project</h3>
                 </div>
                 <div class="modal-body">
-                    <label>Chose the Competition:</label>
+                    <label class="header_popup_pz">Chose the Competition:</label>
+					 <div style="margin: 25px 25px;">
+					
                     <div class="radio">
                         <label>
                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -192,18 +194,22 @@
                         </label>
                     </div>
                     <div class="radio">
-                        <label>
+                        <label >
                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                             Yearly competition
                         </label>
                     </div>
-
-                    <label>Enter project name:</label>
-                    <input type="text" name="project" class="input-block-level" required="">
+						
+					</div>
+						  
+                    <label class="header_popup_pz">Enter project name:</label>
+                    <input type="text" name="project" class="input-block-level" style="width: 100%; margin: 10px auto;" required="">
+                    <label class="header_popup_pz">Enter project description:</label>
+                    <textarea  rows=5 style="width:95%; margin: 10px auto;" required=""></textarea>
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn create" data-dismiss="modal" aria-hidden="true">Create</button>
+                    <button id="create_button" class="create btn btn-primary btn-large flat"  data-dismiss="modal" aria-hidden="true">Create</button>
                 </div>
             </div>
 

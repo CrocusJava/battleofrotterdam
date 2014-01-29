@@ -291,16 +291,15 @@ font-weight: 600;
 }
 
 .project_block{
-background: rgba(0,188,0,0.2);
-box-shadow: 0px 0px 16px 3px #C9C9C9; 
+
 padding: 12px; 
 width:95%; 
-height:250px; 
+height:300px; 
 margin: 0 auto;
 }
 
 .project_block_ava{
-width:20%; 
+width:10%; 
 margin: 0 1%; 
 float: left;  
 height:150px; 
@@ -324,7 +323,8 @@ line-height:110%;
 }
 
 .project_block_proj{
-width:50%;  
+width:55%;  
+margin: 0 2% 0 2%;
 float: left; 
 height:150px; 
 overflow: hidden; 
@@ -382,8 +382,54 @@ float: right;
 margin: 15px 25px;"
 
 }
+
+#button_pw_profile{
+font-size: 18px; 
+padding: 5px 25px; 
+float: right; 
+margin: 15px 25px;"
+
+}
+
+#create_button{
+font-size: 18px; 
+padding: 5px 25px; 
+float: right; 
+margin: 15px 25px;"
+
+}
+
+
 .unvisiblin{
 display: none; }
+
+
+.header_popup{
+
+position:relative;
+clear:both;
+margin: 5px auto;
+background-color: rgba(0,181,0,0.5);
+font-size: 18px;
+padding: 10px;
+width: 95%;
+
+text-align: center;
+}
+
+.header_popup_pz{
+
+position:relative;
+clear:both;
+margin: 5px auto;
+background-color: rgba(0,181,0,0.5);
+font-size: 14px;
+padding: 5px;
+width: 95%;
+
+text-align: center;
+}
+
 
 .editable{
 background-color: rgba(0,181,0,0.1);

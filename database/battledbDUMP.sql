@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2014 at 10:31 PM
+-- Generation Time: Jan 29, 2014 at 09:29 AM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2
 
@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS `Address` (
   `houseNumber` varchar(45) NOT NULL,
   `apartment` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `Address`
 --
 
 INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apartment`) VALUES
-(1, 'town 10', 'postcode 15', 'street 20', 'houseNumber 30', 'apartment 40'),
+(1, 'town 10', 'postcode 15155', 'street 20', 'houseNumber 30', 'apartment 40'),
 (2, 'towntest', '080808', 'streettest', '5', NULL),
 (28, 'test100', 'test100', 'test100', '43', NULL),
 (29, '', '', '', '', NULL),
@@ -64,7 +64,7 @@ INSERT INTO `Address` (`id`, `town`, `postcode`, `street`, `houseNumber`, `apart
 (51, 'Rotterdam', '3002', 'Wilbetoord', '43', NULL),
 (52, 'mmm', '12', 'mmm', '12', NULL),
 (53, 'Naaldwijk', '123', 'Koraal 43', '1', NULL),
-(54, 'mmm', '12', 'mmm', '12', NULL);
+(54, 'mmm', '122222', 'mmm', '12', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
   KEY `project_id` (`project_id`),
   KEY `photo_id` (`photo_id`),
   FULLTEXT KEY `commentText` (`commentText`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `Comment`
@@ -97,7 +97,13 @@ INSERT INTO `Comment` (`id`, `commentText`, `commentDate`, `user_id`, `project_i
 (4, 'Hello!!!!!!!!!!!!', '2014-01-03 16:00:00', 12, 4, 4),
 (5, 'Nice try!', '2014-01-04 16:00:00', 13, 5, 5),
 (6, 'I hope it is possible...', '2014-01-05 16:00:00', 14, 6, 6),
-(7, 'blabla111', '2014-01-22 18:27:22', 1, 2, 5);
+(7, 'blabla111', '2014-01-22 18:27:22', 1, 2, 5),
+(8, 'blabla222', '2014-01-23 19:27:22', 12, 2, 5),
+(9, 'blabla333', '2014-01-24 18:27:22', 12, 2, 5),
+(10, 'blabla444', '2014-01-24 18:27:22', 13, 2, 5),
+(11, 'blabla555', '2014-01-25 18:27:22', 14, 2, 5),
+(12, 'blabla666', '2014-01-26 18:27:22', 1, 2, 5),
+(14, 'blabla777', '2014-01-26 20:27:22', 11, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -253,8 +259,8 @@ CREATE TABLE IF NOT EXISTS `Project` (
 --
 
 INSERT INTO `Project` (`id`, `name`, `description`, `creationDate`, `user_id`, `competition_id`, `approved`) VALUES
-(1, 'Rays month project', 'description of Rays month project', '2014-01-01 16:00:00', 11, 3, 1),
-(2, 'Rays year project', 'description of Rays year project', '2014-01-01 16:00:00', 11, 1, 1),
+(1, 'test''s month project', 'description of test''s month project', '2014-01-01 16:00:00', 1, 3, 1),
+(2, 'test''s year project', 'description of test''s year project', '2014-01-01 16:00:00', 1, 1, 1),
 (3, 'Joes month project', 'description of Joes month project', '2014-01-03 16:00:00', 12, 3, 1),
 (4, 'Joes year project', 'description of Joes year project', '2014-01-03 16:00:00', 12, 1, 1),
 (5, 'Jennys year project', 'description of Jennys year project', '2014-01-04 16:00:00', 13, 1, 1),
@@ -306,7 +312,7 @@ INSERT INTO `Text` (`id`, `keyval`, `valueEn`, `valueNl`) VALUES
 (2, 200, 'Please check your email to complete your registration', 'Controleer uw e-mail om uw registratie te voltooien'),
 (3, 300, 'Thank you! Now you can login and try create your first project', 'Dank je wel! Nu kunt u inloggen en probeer maak uw eerste project'),
 (4, 310, 'Something WRONG. Please check your email again', 'Iets mis. Controleer uw e-mail opnieuw'),
-(5, 500, 'Welcome to the website of the Battle of Rotterdam. On this website you can upload pictures of the renovation and you could win a cash prize!\r\nAfter you have created an account, you can upload photos and view the current position on the ranking page.\r\nShould you have any questions, please look first at the FAQ page.\r\nUnder "Links" you will find a variety of relevant websites to make your renovation a success.\r\n Good luck with the Battle of Rotterdam!', 'Welkom op de website van de Battle of Rotterdam. Op deze website kunt u uw foto’s van de verbouwing insturen en maakt u kans op een geldprijs!\r\nNadat u een account aangemaakt heeft kunt u foto’s uploaden en de huidige plaats bekijken op de ranking page.\r\nMocht u nog vragen hebben kijkt u dan eerst even bij de FAQ pagina.\r\nOnder “links” vind u diverse relevante websites om uw verbouwing tot een succes te maken.\r\n Veel succes met de Battle of Rotterdam!'),
+(5, 500, 'Welcome to the website of the Battle of Rotterdam.\r\n On this website you can upload pictures of the renovation and you could win a cash prize!\r\nAfter you have created an account, you can upload photos and view the current position on the ranking page.\r\nShould you have any questions, please look first at the FAQ page.\r\nUnder "Links" you will find a variety of relevant websites to make your renovation a success.\r\n Good luck with the Battle of Rotterdam!', 'Welkom op de website van de Battle of Rotterdam. Op deze website kunt u uw foto’s van de verbouwing insturen en maakt u kans op een geldprijs!\r\nNadat u een account aangemaakt heeft kunt u foto’s uploaden en de huidige plaats bekijken op de ranking page.\r\nMocht u nog vragen hebben kijkt u dan eerst even bij de FAQ pagina.\r\nOnder “links” vind u diverse relevante websites om uw verbouwing tot een succes te maken.\r\n Veel succes met de Battle of Rotterdam!'),
 (6, 510, 'Some description of the video', 'Enkele beschrijving van de video'),
 (7, 210, 'Dear, user thank you for registration on the Battle of Rotterdam site, please click on the link to complete your registration', 'Geachte, gebruiker bedankt voor registratie op de Battle of Rotterdam site, klik op de link om uw registratie te voltooien'),
 (8, 110, 'Your login: ', 'Uw loginnaam: '),
@@ -425,22 +431,22 @@ CREATE TABLE IF NOT EXISTS `User` (
 --
 
 INSERT INTO `User` (`id`, `firstname`, `middlename`, `lastname`, `login`, `password`, `photoPath`, `email`, `phone`, `birthday`, `address_id`, `role_id`, `commentAble`, `active`, `approveregistration`) VALUES
-(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'img/test.jpg', 'test@gmail.com', '0501010101', '1960-01-01', 1, 2, 1, 1, 1),
+(1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'controller?command=getphoto&avatarname=avatar1.jpg', 'test@gmail.com', '0501010101', '2014-01-01', 1, 2, 1, 1, 1),
 (2, 'test100', 'test100', 'test100', 'test100', 'f5f97c92ae39d49a4fa87d97eb3d89ff', 'default', 'rer@ukr.net', '0974324324324', NULL, 28, 2, 1, 1, 0),
 (3, '', '', '', 'i', 'd41d8cd98f00b204e9800998ecf8427e', 'default', 'i@i.i', '', NULL, 29, 2, 1, 1, 0),
 (4, 'test100500', 'test100500', 'test100500', 'test100500', '019fb0f5329189e23737b7e93b3d5576', 'default', 'hovrah_boom@ukr.net', '0974324324324', NULL, 30, 2, 1, 1, 0),
 (5, 'test55', 'test55', 'test55', 'test55', '7e39cfce74d155294619613f42484f18', 'default', 'dsad@ukr.net', '32421', NULL, 31, 2, 1, 1, 0),
-(11, 'Ray', 'O’', 'Sun', 'ray_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
-(12, 'Joe', '', 'Morton', 'joe_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
+(11, 'Ray', 'O’', 'Suny', 'ray_login', 'b59c67bf196a4758191e42f76670ceba', 'controller?command=getphoto&avatarname=avatar11.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 2, 1, 1, 1),
+(12, 'Joe', '', 'Morton', 'joe_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 0, 1, 1),
 (13, 'Jenny', '', 'Flex', 'jenny_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
 (14, 'Lupe', '', 'Lamora', 'lupe_login', 'b59c67bf196a4758191e42f76670ceba', 'img/c4.jpg', 'lupe@gmail.com', '0501015050', '1977-05-05', 1, 2, 1, 1, 1),
 (15, 'ss', 'ss', 'ss', 'sss', '3691308f2a4c2f6983f2880d32e29c84', 'default', 's@s.com', '3(099)123 456 789', '2012-12-01', 32, 2, 1, 1, 0),
 (16, 'O_o', 'O_O', 'o_O', 'agent008', '59739de02f972041fbab2123eb047cf7', 'default', 'zernovagg@gmail.com', '13', NULL, 33, 2, 1, 1, 1),
-(24, 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ð¹Ñ?Ñ?', 'Ñ?Ñ?Ð²Ð°', '96263c660bc72a504fbbf673464c17de', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0),
+(24, 'йцвфыа', 'вапывар', 'ывами', 'вапи', '96263c660bc72a504fbbf673464c17de', 'default', 'lujack@mail.ru', '123412314', '1234-11-12', 41, 2, 1, 1, 0),
 (29, 'Gerard', 'Test', 'Boot', 'GerardBoot', '855889a1a0c753e2fb6e825a4195d674', 'default', 'gerard.boot3@gmail.com', '+31683697708', '1990-03-12', 47, 2, 1, 1, 1),
 (33, 'Rob', 'van der', 'kroef', 'rob', 'a117768239df9c97cc0ab15b70fd248b', 'default', '0852575@hr.nl', '012015454', '1992-11-02', 51, 2, 1, 1, 1),
 (35, 'Max', 'van', 'Dop', 'maxvandop', '25f9e794323b453885f5181f1b624d0b', 'default', 'maxvandop@hotmail.com', '123', '1997-02-01', 53, 2, 1, 1, 1),
-(36, 'mmm', 'mmm', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'default', 'marinkmak@gmail.com', '12', '1212-12-12', 54, 2, 1, 1, 1);
+(36, 'mmm2 m2', '', 'mmm', 'mmm', 'c4efd5020cb49b9d3257ffa0fbccc0ae', 'controller?command=getphoto&avatarname=avatar36.jpg', 'marinkmak@gmail.com', '12545455221313', '1222-12-12', 54, 2, 0, 1, 1);
 
 -- --------------------------------------------------------
 

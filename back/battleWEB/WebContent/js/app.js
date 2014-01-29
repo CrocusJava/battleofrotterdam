@@ -54,6 +54,11 @@ function call_form_validation() {
             submitHandler: AjaxSendComment
         });
     }
+    if ($('#search').length > 0) {
+        $('#search').validate({
+            submitHandler: AjaxSendSearch
+        });
+    }
     if ($('.singup_form_validation').length > 0) {
         $('.singup_form_validation').validate({
             rules: {
@@ -315,6 +320,14 @@ function data_collection_forms(form) {
     for (var i in post) {
         collection.data[post[i].name] = post[i].value;
     }
+    if (form.id === "sendcomment") {
+        collection.data["projectid"] = window.projectId;
+    }
+    if (form.id === "search") {
+        collection.data["firstposition"] = 0;
+        collection.data["size"] = 10;
+    }
+
     collection.data = JSON.stringify(collection.data);
     return collection;
 }
@@ -383,13 +396,18 @@ function AjaxSendComment(form) {
         data: config.data,
         contentType: "application/json"
     }).done(function(data) {
-
+        if (data["status"] === true) {
+            createComment(form, JSON.parse(config.data));
+        }
+        else {
+            alert(data["message"]);
+        }
         console.log(data);
     }).fail(function(error) {
         console.log(error);
     });
     console.log(JSON.parse(config.data));
-    createComment(form, JSON.parse(config.data));
+
     return false;
 }
 
@@ -413,7 +431,7 @@ function call_event_create_comment() {
         $(".comments").on("click", "a.reply", function() {
             $("#f3").focus();
             var $this = $(this);
-            $("#comments_form").data("element", $this);
+            $("#sendcomment").data("element", $this);
         });
     }
 }
@@ -431,7 +449,7 @@ function createComment(element, info) {
     else {
         var Ul = $("#main_conteiner_comments"); // если коментарий не адресован пользователю то коментарий адресован проекту
     }
-    console.log(Ul);
+
     createElements(Ul, li, info);
 }
 
@@ -449,22 +467,30 @@ function createElements(conteiner, parent, info) {
     var article = $(document.createElement("article"));
     article.appendTo(li);
     var h5 = $(document.createElement("h5"));
-    h5.addClass("autor").text(info.firstname).appendTo(article); //имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
+    h5.addClass("autor").text($.session.get("name")).appendTo(article); //имя зарегистрированного нужно гдето хранить или как глобальная переменная или кеш или локалсторедж
 
     var img = $(document.createElement("img"));
     img.addClass("avatar").attr({
-        "src": "img/c1.jpg", // тоже самое со ссылкой на фото участника
+        "src": $.session.get("avatar"), // тоже самое со ссылкой на фото участника
         "alt": "preview"
     }).appendTo(article);
     var div = $(document.createElement("div"));
-    div.addClass("comment_inner").appendTo(article);
+    div.addClass("comment_inner").attr("style", "display:block;").appendTo(article);
     var p = $(document.createElement("p"));
-    p.text(info.message).appendTo(div); // текст нужно получить с формы
+    p.text(info.commenttext).appendTo(div); // текст нужно получить с формы
 
-    var a = $(document.createElement("a"));
-    a.addClass("reply").text("Reply").attr({
-        "href": "#comment"
+    var p_time = $(document.createElement("p"));
+    p_time.attr({
+        "style": "color:rgba(0, 181, 0,1);"
     }).appendTo(div);
+
+    var i = $(document.createElement("i"));
+    i.addClass("icon-time").appendTo(p_time);
+
+    var span = $(document.createElement("span"));
+    span.addClass("padding_comment").attr({
+        "name": "time"
+    }).text((new Date().toLocaleString()));
 }
 
 
@@ -584,14 +610,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы поиска
 
     if (window.location.href.match(/search.html$/)) {
-        var result_search = $("#result_search");
-        $("#search").on("keyup", function() {
-            var $this = $(this);
-            $(result_search).text($this.val());
-            if ($this.val().length >= 3) {
-                console.log("ajax");
-            }
-        });
+//пока задач нет но появлятся
     }
 
 //<<<<<<<<<<<<=============================задачи для страницы вопросов и ответов
@@ -1155,6 +1174,7 @@ function call_load_data_for_myaccount(id) {
             $.session.set("name", respons["login"]);
         }
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
+        $.session.set("avatar", respons["photopath"]);
         $("#name_static_profile").text(respons["login"]);
         $("#FirstName").text(respons["firstname"]);
         $("#MiddletName").text(respons["middlename"]);
@@ -1207,7 +1227,7 @@ function call_upload_data_for_updateaccaunt() {
 
 function call_create_murkup_for_account_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line">' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
             '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
@@ -1237,6 +1257,7 @@ function call_cookie_navigator() {
             case "projectid":
                 if (parametrs[1]) {
                     var projectid = parseInt(parametrs[1]);
+                    window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
                     call_load_data_for_viewprojectcomments(projectid);
                 }
@@ -1413,7 +1434,30 @@ function call_load_data_for_projets_page() {
 }
 
 
+function AjaxSendSearch(form) {
+    var config = data_collection_forms(form);
+    $.ajax({
+        url: config.url,
+        type: "POST",
+        dataType: "json",
+        data: config.data,
+        contentType: "application/json"
+    }).done(function(data) {
+        var resalt = JSON.stringify(data);
+        var result_search = $("#result_search");
+        $(result_search).text(resalt);
+        console.log(data);
+    }).fail(function(error) {
+        console.log(error);
+    });
+    console.log(JSON.parse(config.data));
 
+    return false;
+
+
+
+
+}
 
 
 
@@ -1431,3 +1475,21 @@ function call_load_data_for_projets_page() {
 //	    		    	"projectname": "***",
 //				   	 "userlogin": "***"
 //			          	},
+// создание проекта, загрузку фото и коммнтарии + голосование
+//[20:50:43] Marina: + Ваня: отправка юзеру e-mail из админки
+/*
+ * search
+ {
+ "text":"***",
+ "firstposition":0,
+ "size":10
+ }
+
+ */
+
+
+
+
+
+
+
