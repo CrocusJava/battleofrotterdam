@@ -189,7 +189,8 @@ box-shadow:0 1px 3px rgba(0,0,0,0.1)}
 .img-circle{
 -webkit-border-radius:500px;
 -moz-border-radius:500px;
-border-radius:500px}
+border-radius:500px;
+margin-left: 15px}
 
 .row{
 margin-left:-20px;

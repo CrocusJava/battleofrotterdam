@@ -38,7 +38,7 @@ public class Photo implements Serializable {
 	@OneToMany(mappedBy = "photo")
 	private List<Comment> comments;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Project project;
 
 	// --------------------------------------------

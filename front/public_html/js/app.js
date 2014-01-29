@@ -886,7 +886,7 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More"
+                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": popup_news}
                                                         //, bind: {popup_news:click}
                                             }
                                         ]}
@@ -896,7 +896,7 @@ function call_load_data_for_news_index() {
         ];
 
 
-        /*=======================мой код для попапа============================
+        /*=======================мой код для попапа================================*/
          var template_for_news_index_popup = [
          {tag: "div", add_class: "popvis text_center", children: [
          {tag: "div", add_class: "boxfeature", children: [
@@ -914,17 +914,21 @@ function call_load_data_for_news_index() {
          {tag: "div", add_class:"popup_back_news"}
          ];
 
-         function popup_news(){
-         call_markup_index(template_for_news_index_popup, $("#news_index"), data.lastnews[i]);
-         }
-
+        
          /*=======================конец моего кода для попапа============================*/
 
 
 
 
         for (var i in data.lastnews) {
+			var data_popup_news = data.lastnews[i];
             call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
+			function popup_news(){
+			call_markup_index(template_for_news_index_popup, $("#news_index"), data_popup_news);
+         }
+
+			
+			
             /*=======================мой код для попапа============================*/
             /*=			<section class='popup'>
 
@@ -1369,7 +1373,7 @@ function call_create_markup_for_viewprojectcomments(respons) {
 function call_load_data_for_projets_page() {
     var template_projets_page = [
         {tag: "section", add_class: "project_block", children: [
-                {tag: "div", add_class: "blog-line", children: [
+                {tag: "div", add_class: "blog-line", attr: {style:"background: rgba(0,181,0,0.3);"}, children: [
                         {tag: "a", attr: {href: "#"}, children: [
                                 {tag: "i", add_class: "icon-user"},
                                 {tag: "span", text: "user", subattr: {"user": "login"}}

@@ -28,10 +28,10 @@ public class Voice implements Serializable {
 	@Temporal( TemporalType.DATE)
 	private Date voiceDate;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
 
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Project project;
 
 //---------------------------------------------------	
