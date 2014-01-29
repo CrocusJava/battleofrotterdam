@@ -88,7 +88,7 @@ public class NewBean {
 		} else {
 			fileNameCorrect = photoName;
 		}
-		String filePath = "";// Constants.PATH_SAVE_PHOTO_NEWS;
+		String filePath = Constants.PATH_SAVE_PHOTO_NEWS;
 		File file = new File(filePath, fileNameCorrect);
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
