@@ -77,7 +77,7 @@ public class User implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Address address;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;
 
 	@OneToMany(mappedBy = "user")
