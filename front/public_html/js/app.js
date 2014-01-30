@@ -1543,6 +1543,7 @@ function call_createproject() {
 
 
 function call_new_added_photo_for_edit_project(photo) {
+    window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = '<section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">' +
             '<a href="img/remont1.jpg" class="image_link">' +
             '<div class="with_hover"></div>' +
