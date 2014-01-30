@@ -1,20 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
 	<h:form>
-		<br/>
-		<h:outputLink value="administration.xhtml" >
+		<br />
+		<h:outputLink value="administration.xhtml">
 			Administration Menu
-		</h:outputLink>		
-		<br/><hr/>
-		<h2>Edit Terms &amp; Conditions</h2> 
+		</h:outputLink>
+		<br />
+		<hr />
+		<h2>Edit Terms &amp; Conditions</h2>
+
+		<h4>Terms &amp; Conditions (en / nl):</h4>
+		<br />
+		<h:inputTextarea class="input_text_size" style="hieght:500px"
+			value="#{termsAndConditionsBean.termsAndConditionsEn}" characterEncoding="utf-8" />
+		<h:inputTextarea class="input_text_size" style="hieght:500px"
+			value="#{termsAndConditionsBean.termsAndConditionsNl}" characterEncoding="utf-8" />
+		<br />
+		<br />
+		
+		<p:commandButton action="#{termsAndConditionsBean.apply()}" value="Apply" update="@form" />
+		<p:commandButton action="#{termsAndConditionsBean.cancel()}" value="Cancel"
+			update="@form" />
+
 	</h:form>
 </h:body>
 </html>
