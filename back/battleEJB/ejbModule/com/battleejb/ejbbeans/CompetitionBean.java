@@ -109,7 +109,7 @@ public class CompetitionBean extends AbstractFacade<Competition> {
 			}
 
 			Order order = null;
-			if (sort.equals(SORT_TYPE_ASC)) {
+			if (sort != null && sort.equals(SORT_TYPE_ASC)) {
 				order = cb.asc(ex);
 			} else {
 				order = cb.desc(ex);
