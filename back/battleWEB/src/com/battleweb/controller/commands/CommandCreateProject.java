@@ -16,6 +16,7 @@ import com.battleejb.ejbbeans.CompetitionBean;
 import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
+import com.battleejb.entities.Competition;
 import com.battleejb.entities.Project;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
@@ -55,14 +56,19 @@ public class CommandCreateProject implements Command {
 			String name = jsonObjectRequest.getString(Constants.PARAMETER_NAME);
 			String description = jsonObjectRequest
 					.getString(Constants.PARAMETER_DESCRIPTION);
-			int competitionId = jsonObjectRequest
-					.getInt(Constants.PARAMETER_COMPETITION_ID);
+			String type = jsonObjectRequest.getString(Constants.PARAMETER_TYPE);
+
+			Date currentDate = new Date();
+			Competition competition = competitionBean
+					.findFilterOrderByDateLimit("startdate", null, null, null,
+							currentDate, null, null, currentDate, null, null,
+							null, type, 0, 1).get(0);
 
 			Project project = new Project();
 			project.setName(name);
 			project.setDescription(description);
 			project.setCreationDate(new Date());
-			project.setCompetition(competitionBean.find(competitionId));
+			project.setCompetition(competition);
 			project.setUser(userBean.find(Integer.parseInt(request.getSession()
 					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
 					.toString())));
