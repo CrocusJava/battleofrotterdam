@@ -1279,13 +1279,13 @@ function call_cookie_navigator() {
         var login_name = $.session.get("name");
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
-		$("#dropdown_login_yes").show();
-		$(".forall").removeClass("forall").addClass("for_registered");
+        $("#dropdown_login_yes").show();
+        $(".forall").removeClass("forall").addClass("for_registered");
         call_event_logout();
 
     }
     else {
-		$(".for_registered").removeClass("for_registered").addClass("forall");
+        $(".for_registered").removeClass("for_registered").addClass("forall");
         $("#dropdown_login_yes").hide();
         $("#dropdown_login_no").show();
     }
@@ -1488,6 +1488,28 @@ function call_send_vote(projectid) {
 }
 
 
+
+function call_createproject() {
+    var url = "/battleWEB/controller?command=createproject";
+    var data = {};
+    data.name = $("#name").val();
+    data.description = $("#description").val();
+    data.type = $("[name=type]:checked").val();
+//
+    data = JSON.stringify(data);
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        window.location = "edit_project.html#projectid=" + respons.projectid;
+
+    }).fail(function() {
+        console.log("Error for projectsave");
+    });
+}
 //	“name” : “***”,
 //		“creationdate”: “***”
 //		“description” : “***”,
