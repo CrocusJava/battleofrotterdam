@@ -773,13 +773,14 @@ function call_data_for_footer() {
 }
 
 
-function call_uploading_file_on_server(command_value) {
+function call_uploading_file_on_server() {
+    var command_value;
     if (window.location.href.match(/myaccount.html/)) {
-        var command_value = "uploadavatar";
+        command_value = "uploadavatar";
     }
 
     if (window.location.href.match(/edit_project.html/)) {
-        var command_value = "uploadphoto";
+        command_value = "uploadphoto";
     }
 
     if (command_value) {
