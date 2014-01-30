@@ -1,20 +1,71 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:form>
-		<br/>
-		<h:outputLink value="administration.xhtml" >
+	<h:form id="form">
+		<br />
+		<h:outputLink value="administration.xhtml">
 			Administration Menu
-		</h:outputLink>		
-		<br/><hr/>
-		<h2>Edit Links</h2> 
+		</h:outputLink>
+		<br />
+		<hr />
+		<h2>Edit Links</h2>
+
+		<p:commandButton partialSubmit="true" action="#{linksBean.newUrl()}"
+			value="New link">
+			<p:ajax event="dialogReturn" update=":form" />
+		</p:commandButton>
+
+		<p:dataTable var="link" value="#{linksBean.dataModel}"
+			paginator="true" currentPageReportTemplate="true" rows="10"
+			rowsPerPageTemplate="10,25,50" lazy="true">
+
+			<p:column headerText="Name">
+				<h:outputText value="#{link.name}" />
+			</p:column>
+
+			<p:column headerText="URL">
+				<h:outputText value="#{link.value}" />
+			</p:column>
+
+			<p:column style="width:4%">
+				<p:commandButton id="selectButton" update=":form:display"
+					oncomplete="PF('compDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{link}"
+						target="#{linksBean.url}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:dialog header="Edit competition" widgetVar="compDialog"
+			resizable="false" id="compDlg" showEffect="fade" hideEffect="fade"
+			modal="true">
+			<h:panelGroup id="display">
+				<h:panelGrid columns="2">
+					<h:outputText value="Name " />
+					<p:inputText value="#{linksBean.url.name}" size="50" />
+
+					<h:outputLabel value="URL " />
+					<p:inputText value="#{linksBean.url.value}" size="50" />
+				</h:panelGrid>
+				
+				<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+					action="#{linksBean.edit()}" value="Apply" />
+				<p:commandButton oncomplete="PF('compDialog').hide()" value="Cancel" />
+			</h:panelGroup>
+		</p:dialog>
+
+
+
 	</h:form>
 </h:body>
 </html>
