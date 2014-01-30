@@ -780,7 +780,7 @@ function call_uploading_file_on_server() {
     }
 
     if (window.location.href.match(/edit_project.html/)) {
-        command_value = "uploadphoto";
+        command_value = "uploadphoto&projectid=" + window.projectId;
     }
 
     if (command_value) {
@@ -824,6 +824,9 @@ function call_uploading_file_on_server() {
             },
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
+                console.log(file);
+                console.log(response);
+                console.log(arguments);
             }
         });
     }
@@ -1543,9 +1546,14 @@ function call_createproject() {
 
 
 function call_new_added_photo_for_edit_project(photo) {
+    function Save_img_and_description(event) {
+        window.upload_file.submit();
+        window.upload_file.enable();
+        event.preventDefault();
+    }
     window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = '<section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">' +
-            '<a href="img/remont1.jpg" class="image_link">' +
+            '<a href="' + photo + '" class="image_link">' +
             '<div class="with_hover"></div>' +
             ' <div style="width:25%; margin: 0 1%; float: left;  height:200px; ">' +
             '<img src="' + photo + '" class="img-polaroid" style="width:100%;">' +
@@ -1557,10 +1565,13 @@ function call_new_added_photo_for_edit_project(photo) {
             '<a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>' +
             '<span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>' +
             '<span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>' +
+            '<span><a href="#" class=" btn btn-primary flat" id="save_photo"> Save <i class="icon-angle-right"></i></a></span>' +
+            '</p>' +
             '</article>' +
             '</section>' +
             '<div style="height:35px;"></div>';
     $(temlate_for_new_added_photo_for_edit_project).appendTo("#new_added_photo").focus();
+    $("#save_photo").click(Save_img_and_description);
 }
 
 
