@@ -1321,7 +1321,9 @@ function call_create_markup_for_viewproject(respons) {
     $("#rating").text(respons["rating"]);
     $("#commentquantity").text(respons["commentquantity"]);
     $("#firstphoto_path").attr("src", respons["firstphoto"]["path"]);
+	$("#firstphoto_path_big").attr("href", respons["firstphoto"]["path"]);
     $("#firstphoto_description").text(respons["firstphoto"]["description"]);
+	 $("#lastphoto_path_big").attr("href", respons["lastphoto"]["path"]);
     $("#lastphoto_path").attr("src", respons["lastphoto"]["path"]);
     $("#lastphoto_description").text(respons["lastphoto"]["description"]);
 
