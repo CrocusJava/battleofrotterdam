@@ -1548,7 +1548,8 @@ function call_new_added_photo_for_edit_project(photo) {
         console.log(description);
     }
     function Delete_this_photo_and_description() {
-        $(this).parent("section.project_block").remove();
+        var parent = $(this).parent("section.project_block");
+        $(parent).remove();
     }
     window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = [
