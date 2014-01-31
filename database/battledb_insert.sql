@@ -11,7 +11,7 @@ INSERT INTO Address VALUES
 
 INSERT INTO User VALUES
 (1, 'Test', 'Test', 'Test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'path', 'test@gmail.com', '0501010101', '1960-01-01', 1, 1, 1, 1, 1),
-(2, 'Root', 'Root', 'Root', 'root', '111', 'path', 'root@gmail.com', '0501010101', '1960-01-01', 1, 1, 1, 1, 1),
+(2, 'Root', 'Root', 'Root', 'root', 'root', 'path', 'root@gmail.com', '0501010101', '1960-01-01', 1, 1, 1, 1, 1),
 (11, 'Ray', 'O’', 'Sun', 'ray_login', '1111', 'img/c1.jpg', 'ray@gmail.com', '0501012020', '1985-02-02', 1, 1, 1, 1, 1),
 (12, 'Joe', '', 'Morton', 'joe_login', '1111', 'img/c2.jpg', 'joe@gmail.com', '0501013030', '1979-03-03', 1, 2, 1, 1, 1),
 (13, 'Jenny', '', 'Flex',  'jenny_login', '1111', 'img/c3.jpg', 'jenny@gmail.com', '0501014040', '1988-04-04', 1, 2, 1, 1, 1),
