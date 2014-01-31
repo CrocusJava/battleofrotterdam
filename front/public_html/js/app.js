@@ -887,9 +887,23 @@ function call_event_logout() {
     });
 }
 
+
+                                <a href="img/remont1.jpg" class="image_link">
+
+
+                                    <div class="with_hover"></div>
+
+
+
+
+                                    <div class="hover singlephoto" ><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
+
+                                    </div>  </a>
+
 function call_load_data_for_news_index() {
     $.post("/battleWEB/controller?command=news", function(data) {
         var template_for_news_index = [
+
             {tag: "div", add_class: "span4 text_center", children: [
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
@@ -899,7 +913,7 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+                                            {tag: "a", add_class: "trylater news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
 //, bind: {popup_news:click}
                                             }
                                         ]}
