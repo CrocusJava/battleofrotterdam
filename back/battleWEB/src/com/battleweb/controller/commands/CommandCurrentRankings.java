@@ -2,6 +2,7 @@ package com.battleweb.controller.commands;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,6 +22,7 @@ import com.battleejb.ejbbeans.CompetitionBean;
 import com.battleejb.ejbbeans.PhotoBean;
 import com.battleejb.ejbbeans.ProjectBean;
 import com.battleejb.ejbbeans.VoiceBean;
+import com.battleejb.entities.Competition;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
@@ -74,9 +76,15 @@ public class CommandCurrentRankings implements Command {
 			String competitionType, HttpServletRequest request) {
 
 		List<Project> projects = null;
+
+		Date currentDate = new Date();
+		Competition competition = competitionBean.findFilterOrderByDateLimit(
+				"startdate", null, null, null, currentDate, null, null,
+				currentDate, null, null, null, competitionType, 0, 1).get(0);
+
 		projects = projectBean.findFilterOrderByDateOrRatingLimit("rating",
-				"desc", null, null, null, null, null, competitionType, 0, 3,
-				null);
+				"desc", null, null, null, null, competition.getId(),
+				competitionType, 0, 3, null);
 		JsonArrayBuilder jsonProjects = Json.createArrayBuilder();
 		for (Project project : projects) {
 
@@ -90,7 +98,7 @@ public class CommandCurrentRankings implements Command {
 			JsonObjectBuilder jsonLustPhotoBuilder = Json.createObjectBuilder();
 			List<Photo> photos = photoBean.findLimitByProjectId(
 					project.getId(), 0, 1);
-			if (photos.size() > 0) {			
+			if (photos.size() > 0) {
 				Photo photo = photos.get(0);
 				jsonLustPhotoBuilder
 						.add(Constants.PARAMETER_ID, photo.getId())
