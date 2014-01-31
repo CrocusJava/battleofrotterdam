@@ -822,6 +822,8 @@ function call_uploading_file_on_server() {
                 console.log("передача файла завершена");
                 console.log(file);
                 console.log(response);
+                console.log($(response));
+
                 console.log(arguments);
             }
         });
