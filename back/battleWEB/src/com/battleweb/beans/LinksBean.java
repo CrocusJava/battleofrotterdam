@@ -43,7 +43,11 @@ public class LinksBean {
 			public List<URL> load(int first, int pageSize, String sortField,
 					SortOrder sortOrder, Map<String, String> filters) {					
 				setRowCount((int) urlBean.count());
-				return urlBean.findRange(first, pageSize);						
+				List<URL> links = urlBean.findRange(first, pageSize);
+				if (links != null && links.get(0).getId().equals(1)){
+					links.remove(0);
+				}
+				return links;
 			}
 		};
 	}
