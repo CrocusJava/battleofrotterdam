@@ -1534,6 +1534,9 @@ function call_new_added_photo_for_edit_project(photo) {
         var description = $(this).find("[name=description]").text();
         console.log(description);
     }
+    function Delete_this_photo_and_description() {
+        $(this).parent("section.project_block").remove();
+    }
     window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = [
         {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
@@ -1555,7 +1558,7 @@ function call_new_added_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
