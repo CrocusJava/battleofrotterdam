@@ -912,7 +912,7 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "trylater news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+                                            {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
 //, bind: {popup_news:click}
                                             }
                                         ]}
@@ -1123,7 +1123,7 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "trylater btn btn-primary flat btn-large", text: "Read More"}
+                                                {tag: "a", add_class: "unvisiblin btn btn-primary flat btn-large", text: "Read More"}
                                             ]}
                                     ]}
                             ]}
