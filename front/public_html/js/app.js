@@ -1285,6 +1285,7 @@ function call_cookie_navigator() {
                     window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
                     call_load_data_for_viewprojectcomments(projectid);
+                    call_load_data_for_viewprojectphotos(projectid)
                 }
                 break;
             case "userid":
@@ -1592,6 +1593,41 @@ function call_new_added_photo_for_edit_project(photo) {
 
 }
 
+function  call_load_data_for_viewprojectphotos(projectid) {
+    var data = {
+        projectid: projectid,
+        firstposition: 0,
+        size: 10
+    };
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=viewprojectphotos";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        for (var photo in respons["photos"]) {
+            call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
+        }
+
+    }).fail(function() {
+        console.log("error onload command=viewprojectphotos ");
+    });
+}
+function call_create_markup_for_viewprojectphotos(respons) {
+    var template_for_viewprojectphotos = '<section class="project_block singlephotoblock">' +
+            ' <a href="' + respons["photopath"] + '" class="image_link">' +
+            ' <div class="with_hover"></div>' +
+            '<div class="hover singlephoto" ><img src="' + respons["photopath"] + '" class="img-polaroid" style="width:100%;">' +
+            '</div>  </a>' +
+            '<article class="descr_singlephoto"  >' +
+            ' <p class="abzac" >' + respons["description"] + '</p>' +
+            ' </article>' +
+            ' </section>';
+    $(template_for_viewprojectphotos).appendTo("#viewprojectphotos");
+}
 
 //	“name” : “***”,
 //		“creationdate”: “***”
