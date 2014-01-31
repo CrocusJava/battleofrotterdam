@@ -820,11 +820,15 @@ function call_uploading_file_on_server() {
             },
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
-                console.log(file);
-                console.log(response);
-                console.log($(response));
+                try {
+                    var data = $(response)[0];
+                    var text = $(data).text();
+                    text = JSON.parse(text);
+                    console.log(text);
+                }
+                catch (e) {
+                }
 
-                console.log(arguments);
             }
         });
     }
