@@ -1110,7 +1110,7 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                                {tag: "a", add_class: "trylater btn btn-primary flat btn-large", text: "Read More"}
                                             ]}
                                     ]}
                             ]}
