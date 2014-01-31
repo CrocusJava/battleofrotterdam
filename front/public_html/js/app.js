@@ -768,16 +768,19 @@ function call_data_for_footer() {
 
 function call_uploading_file_on_server() {
     var command_value;
+    var target;
     if (window.location.href.match(/myaccount.html/)) {
         command_value = "uploadavatar";
+        target = "uploadavatar";
     }
 
     if (window.location.href.match(/edit_project.html/)) {
         command_value = "uploadphoto&projectid=" + window.projectId;
+        target = "uploadphoto";
     }
 
-    if (command_value) {
-        window.upload_file = new AjaxUpload(command_value, {
+    if (target) {
+        window.upload_file = new AjaxUpload(target, {
             action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
             name: command_value,
             data: {
@@ -787,13 +790,13 @@ function call_uploading_file_on_server() {
             onChange: function(file, ext) {
                 if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
                     var reader = new FileReader();
-                    if (command_value === "uploadavatar") {
+                    if (target === "uploadavatar") {
                         $(reader).on("load", function() {
                             var img = $("#preview_avatar");
                             $(img).attr("src", reader.result);
                         });
                     }
-                    if (command_value === "uploadphoto") {
+                    if (target === "uploadphoto") {
                         $(reader).on("load", function() {
                             call_new_added_photo_for_edit_project(reader.result);
                         });
