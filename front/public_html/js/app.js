@@ -1530,10 +1530,13 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.enable();
         event.preventDefault();
     }
-
+    function Send_description_this_photo() {
+        var description = $(this).find("[name=description]").text();
+        console.log(description);
+    }
     window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = [
-        {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, children: [
+        {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
                 {tag: "a", add_class: "image_link", attr: {href: "#photo"}, children: [
                         {tag: "div", add_class: "with_hover"},
                         {tag: "div", attr: {style: "width:25%; margin: 0 1%; float: left;  height:200px;"}, children: [
@@ -1541,7 +1544,7 @@ function call_new_added_photo_for_edit_project(photo) {
                             ]}
                     ]},
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
-                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true"}},
+                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
                         {tag: "p", children: [
                                 {tag: "a", add_class: "btn btn-primary flat", text: "Preview", children: [
                                         {tag: "i", add_class: "icon-angle-right"}
@@ -1566,7 +1569,7 @@ function call_new_added_photo_for_edit_project(photo) {
             ]},
         {tag: "div", attr: {style: "height:35px;"}
         }];
-    call_markup_index(temlate_for_new_added_photo_for_edit_project, $("#new_added_photo"));
+    call_markup_index(temlate_for_new_added_photo_for_edit_project, $("#new_added_photo"), {});
 
 }
 
