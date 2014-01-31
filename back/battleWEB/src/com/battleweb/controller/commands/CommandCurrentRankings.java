@@ -79,8 +79,8 @@ public class CommandCurrentRankings implements Command {
 
 		Date currentDate = new Date();
 		Competition competition = competitionBean.findFilterOrderByDateLimit(
-				"startdate", null, null, null, currentDate, null, null,
-				currentDate, null, null, null, competitionType, 0, 1).get(0);
+				"startdate", null, "asc", null, currentDate, currentDate, null,
+				null, null, null, null, competitionType, 0, 1).get(0);
 
 		projects = projectBean.findFilterOrderByDateOrRatingLimit("rating",
 				"desc", null, null, null, null, competition.getId(),
