@@ -1192,6 +1192,7 @@ function call_load_data_for_myaccount(id) {
     }).done(function(respons) {
         if (!send_data.iduser) {
             $.session.set("name", respons["login"]);
+            call_cookie_navigator();
         }
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
         $.session.set("avatar", respons["photopath"]);
@@ -1552,26 +1553,27 @@ function call_new_added_photo_for_edit_project(photo) {
         event.preventDefault();
     }
     window.upload_file.disable();
-    var temlate_for_new_added_photo_for_edit_project = '<section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">' +
-            '<a href="' + photo + '" class="image_link">' +
-            '<div class="with_hover"></div>' +
-            ' <div style="width:25%; margin: 0 1%; float: left;  height:200px; ">' +
-            '<img src="' + photo + '" class="img-polaroid" style="width:100%;">' +
-            ' </div>' +
-            '</a>' +
-            '<article style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;">' +
-            '<p contenteditable="true">Description your photo</p>' +
-            '<p>' +
-            '<a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>' +
-            '<span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>' +
-            '<span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>' +
-            '<span><a href="#" class=" btn btn-primary flat" id="save_photo"> Save <i class="icon-angle-right"></i></a></span>' +
-            '</p>' +
-            '</article>' +
-            '</section>' +
-            '<div style="height:35px;"></div>';
-    $(temlate_for_new_added_photo_for_edit_project).appendTo("#new_added_photo").focus();
-    $("#save_photo").click(Save_img_and_description);
+    var temlate_for_new_added_photo_for_edit_project = [
+        '<section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">' +
+                '<a href="' + photo + '" class="image_link">' +
+                '<div class="with_hover"></div>' +
+                ' <div style="width:25%; margin: 0 1%; float: left;  height:200px; ">' +
+                '<img src="' + photo + '" class="img-polaroid" style="width:100%;">' +
+                ' </div>' +
+                '</a>' +
+                '<article style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;">' +
+                '<p contenteditable="true">Description your photo</p>' +
+                '<p>' +
+                '<a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>' +
+                '<span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>' +
+                '<span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>' +
+                '<span><a href="#" class=" btn btn-primary flat" id="save_photo"> Save <i class="icon-angle-right"></i></a></span>' +
+                '</p>' +
+                '</article>' +
+                '</section>' +
+                '<div style="height:35px;"></div>'];
+    $(temlate_for_new_added_photo_for_edit_project).appendTo("#new_added_photo");
+
 }
 
 
