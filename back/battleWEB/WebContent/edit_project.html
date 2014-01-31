@@ -121,121 +121,192 @@
                 </div>
                 <div class="inner-wrapper driver_space"></div>
             </section><!-- End section logo message area -->
+
+
+
+
             <!-- Start section content page -->
             <section id="content">
                 <div class="inner-wrapper">
                     <div class="row-fluid">
+
+
                         <div class="span12">
+                            <!-- Start section Blog Line details -->
+                            <div class="blog-line" style="background-color: rgba(0,181,0,0.5);">
+                                <a href="#"><i class="icon-calendar"></i><span id="creationdate"></span></a>
+                                <span> <a href="#"> <i class="icon-user"></i><span id="rating"></span> Likes</a></span>
+                                <!--  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a> -->
+                                <a href="#" ><i class="icon-comments"></i><span id="commentquantity"></span> Comments</a>
+
+                             <!--     <div class="forall" style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
 
-
-                            <div class="singup_area with_bg">
-                                <form>
-
-                                    <div id="button_edit_profile" class=" btn btn-primary btn-large flat" >  Edit profile <i class="icon-pencil"></i>
-                                    </div>
-
-                                    <div style="height:15px;"></div>
-                                    <section  style="background: #fff; height: auto;" >
-                                        <div class="photo_static_profile"> <img class="img-polaroid photo_static_center" id="preview_avatar" src="" data-src="" alt="preview"></div>
-
-                                        <div class="text_center">
-                                            <a href="#" class="margin_text unvisiblin" id="uploadavatar" ><i class="icon-cloud-upload"></i> Upload photo </a>
-
-                                            <div id="name_static_profile" class="name_static_profile font-hotel"></div>
-
-                                            <div id="longname" class="margin_text_longname" > <span id="FirstName"></span> <span id="MiddletName"></span> <span id="LastName"></span></div>
-                                            <div id="birthday" class="margin_text_birthday" ></div>
-                                            <div id="adress" class="margin_text" ><span id="town"></span>, <span id="street"></span>, <span id="housenumber"></span>, <span id="postcode"></span></div>
-                                            <div id="telephone" class="margin_text" ></div>
-                                            <div id="mail" class="margin_text_email" ></div>
-                                        </div>
-
-                                        <div style="height:15px;"></div>
-
-
-                                        <fieldset id="change_password" class="unvisiblin" style="width: 50%; margin: 10px auto;">
-                                            <div class="panel">
-                                                <h4>Change password</h4>
-
-
-                                                <input type="text" name="current_pw" class="input-block-level" required="" placeholder="Current password" >
-
-                                                <input type="password" name="new_pw" class="input-block-level" required="" placeholder="New password">
-
-                                                <input type="password" name="confirm_pw" class="input-block-level" required="" placeholder="Confirm password">
-                                            </div>
-                                            <div id="button_pw_profile" class="btn btn-primary btn-large flat" >  Save new password <i class="icon-ok"></i>
-                                            </div>
-
-
-
-                                        </fieldset>
-
-
-
-                                        <div style="height:35px;"></div>
-
-                                    </section>
-
-
-                                    <!-- Start Break Page Style-->
-                                    <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
-
-                                    <div class="caption_profile"> My projects</div>
-                                    <div  id="account_projects"></div>
-
-
-                                    <div class="btn btn-primary btn-large flat createproj" style="margin: 20px 35%;">Create new project</div>
-
-
-                                </form><!-- End Form-->
+                                <!-- <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:150px; margin: 0px 10px 0px 10px; float: left;"> <span style="position:relative; float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:18px; font-family: 'Lobster Two', cursive; padding:15px; margin-top: 50px;">[Jhohn Smith]</span>
+                                </div>-->
                             </div>
 
 
+                            <div class="text_center" style=" clear:both; ">
+                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;" id="name"></h1>
+
+                                <p id="description"></p>
+                            </div>
+                            <!-- Start Break Page Style-->
+                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
+							
+							<div id="need_for_nophoto">
+							<div id="formsg_if_nophoto" class="header_popup_pz"><strong style="color:red;"><i class="icon-bullhorn"></i>  THERE IS NO PHOTOS IN YOUR PROJECT   </strong></div>
+							
+                            <input type="submit" class="addphoto btn btn-primary btn-large flat" value=" Add photo" >
+							</div	>
+
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="panel">
+                                        <h4 class="recent-post-header">
+                                            <a href="#">First photo</a>
+                                        </h4>
+                                        <img src="" alt="img_preview" style="width:100%;" id="firstphoto_path">
+                                        <div class="clearfix post_date">
+                                            <span class="pull-left"></span>
+
+                                        </div>
+                                        <p id="firstphoto_description"></p>
+                                        <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="panel">
+                                        <h4 class="recent-post-header">
+                                            <a href="#">Current photo</a>
+                                        </h4>
+                                        <img src="" alt="img_preview" style="width:100%;" id="lastphoto_path">
+                                        <div class="clearfix post_date">
+                                            <span class="pull-left"></span>
+
+                                        </div>
+                                        <p id="lastphoto_description"></p>
+                                        <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Start Break Page Style-->
+                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
+
+                            <div style="height:35px;"></div>
+                            <section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">
+
+                                <a href="img/remont1.jpg" class="image_link">
 
 
+                                    <div class="with_hover"></div>
+
+
+
+
+                                    <div  style="width:25%; margin: 0 1%; float: left;  height:200px; "><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
+
+                                    </div>  </a>
+
+
+                                <article  style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;" >
+
+                                    <p> Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                    </p>
+                                    <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
+                                        <span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>
+                                        <span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>
+
+                                </article>
+
+
+                            </section>
+
+                            <div style="height:35px;"></div>
+
+                            <section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">
+
+
+
+                                <div  style="width:25%; margin: 0 1%; float: left;  height:200px; "><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
+
+                                </div>
+                                <article  style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;" >
+
+                                    <p> Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                    </p>
+                                    <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
+                                        <span><a href="#" class="btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>
+                                        <span><a href="#" class="btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>
+                                </article>
+
+
+                            </section>
+
+                            <div style="height:35px;"></div>
+                            <input type="submit" class="addphoto btn btn-primary btn-large flat" value=" Add photo" >
+
+
+                            <div style="height:35px;"></div>
+
+                            <!--Start Pagination -->
+                            <div class="pagination flat-pagination  pagination-large text_center">
+                                <ul>
+                                    <li><a href="#">Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </div><!--End Pagination -->
+
+
+
+                        <!---    <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                            <div class="comments">
+                                <ul id="main_conteiner_comments"></ul>
+                            </div>
+                            <div style="height:35px;"></div>
+
+                            <!--Start Pagination --
+                            <div class="pagination flat-pagination  pagination-large text_center">
+                                <ul>
+                                    <li><a href="#">Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </div><!--End Pagination --
+
+
+                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                            <!-- Start Form Comment --
+                            <div class="forall">
+                                <h3>LEAVE COMMENT</h3>
+                                <form action="" method="post" class="comment_form_validation" novalidate="novalidate" id="sendcomment">
+
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="form-padding">
+                                                <label for="f3">Comment:</label>
+                                                <textarea name="commenttext" id="f3" class="input-block-level" rows="10" required=""></textarea>
+                                                <input type="submit" class="btn btn-primary btn-large flat" value="Submit the comment ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form><!-- End Form Comment -->
+                            </div>
 
                         </div>
+
+
+
+
                     </div>
                 </div>
-
             </section><!-- End section content page -->
-
-            <div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel" class="caption_profile">Wellcome to creating new project</h3>
-                </div>
-                <div class="modal-body">
-                    <label class="header_popup_pz">Chose the Competition:</label>
-                    <div style="margin: 25px 25px;">
-
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="type" id="month" value="month" checked>
-                                Monthly competition
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label >
-                                <input type="radio" name="type" id="year" value="year">
-                                Yearly competition
-                            </label>
-                        </div>
-
-                    </div>
-
-                    <label class="header_popup_pz">Enter project name:</label>
-                    <input type="text" name="name" id="name" class="input-block-level" style="width: 100%; margin: 10px auto;" required="">
-                    <label class="header_popup_pz">Enter project description:</label>
-                    <textarea id="description" name="description" rows=5 style="width:95%; margin: 10px auto;" required=""></textarea>
-
-                </div>
-                <div class="modal-footer">
-                    <button id="create_button" class="create btn btn-primary btn-large flat"  data-dismiss="modal" aria-hidden="true">Create</button>
-                </div>
-            </div>
 
 
 
@@ -262,20 +333,16 @@
                             <!--End List Links Social Network-->
                         </div>
                         <div class="span3">
-                            <h3 style="text-align: center;">Friendly <span class="font_hotel" > Sites</span></h3>
+                            <h3 style="text-align: center;">Friendly <span class="font_hotel" >  Sites</span></h3>
                             <!--Start List Link pages-->
-                            <ul id="footer_links" class="link_list_footer">
-
-                            </ul>
+                            <ul id="footer_links" class="link_list_footer"></ul>
                             <!--End List Link pages-->
                         </div>
 
                         <div class="span5">
                             <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
                             <!--Start List Grid Galeries img-->
-                            <div id="footer_gallery" class="gridmasonry galeries_footer" style="display: block; position: relative; height: 248px;">
-
-                            </div>
+                            <div id="footer_gallery" class="gridmasonry galeries_footer" style="display: block; position: relative; height: 248px;"></div>
                             <!--End List Grid Galeries img-->
                         </div>
                     </div>
@@ -313,25 +380,6 @@
                     </a>
                 </div><!--End Arrow Back To TOP Page-->
             </footer><!--End Footer Section-->
-        </div>
-
-
-        <!-- Modal -->
-        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <form id="forgotpassword" novalidate="novalidate" method="POST" action="">
-                <div class="modal-header">
-                    <h4 id="myModalLabel">Please enter your email and wait for an answer</h4>
-                </div>
-                <div class="modal-body">
-
-                    <input type="text" name="email" class="input-block-level" required=""/>
-                    <h4 id="newpasswordmessage" class="text-error"></h4>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-info" type="submit">Send</button>
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                </div>
-            </form>
         </div>
 
         <!--=========================================================================-->
@@ -390,44 +438,20 @@
         <!--end JS config application-->
 
         <script type="text/javascript">
-            $(".createproj").click(function() {
-                $("#myModal_CP").modal("show");
-                $(".create").click(function() {
-                    call_createproject();
-                });
+            $("#vote").click(function() {
+                call_send_vote(window.projectId);
+                return false;
             });
         </script>
-
-        <script>
-
-
-
-            $("#button_edit_profile").click(function() {
-                if ($(this).text() === "Update profile") {
-                    $(this).html("  Edit profile <i class='icon-pencil'></i>");
-                    $(" #longname").removeClass("editable").addClass("margin_text_longname").attr('contenteditable', 'false');
-                    $("#adress, #telephone, #birthday").removeClass("editable").addClass("margin_text").attr('contenteditable', 'false');
-                    $("#mail").removeClass("editable").addClass("margin_text_email").attr('contenteditable', 'false');
-                    $("#uploadavatar").addClass("unvisiblin");
-                    $("#change_password").addClass("unvisiblin");
-                    if (window.upload_file && window.upload_file._input) {
-                        if (window.upload_file._input.files.length > 0) {
-                            window.upload_file.submit();
-                        }
-                    }
-                    call_upload_data_for_updateaccaunt();
-                }
-                else {
-                    $("#button_edit_profile").text("Update profile");
-                    $(".unvisiblin").removeClass("unvisiblin");
-                    $(" #longname, #adress, #telephone, #mail, #birthday").removeClass().addClass("editable").attr('contenteditable', 'true');
-                    $("#longname").focus();
-                }
-            });
-
-
-        </script>
-
 
     </body>
 </html>
+
+
+
+
+
+
+
+
+

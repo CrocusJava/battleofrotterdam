@@ -886,7 +886,7 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": popup_news}
+                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
                                                 //, bind: {popup_news:click}
                                             }
                                         ]}
@@ -1279,13 +1279,13 @@ function call_cookie_navigator() {
         var login_name = $.session.get("name");
         $("#login_name").text(" " + login_name + " ");
         $("#dropdown_login_no").hide();
-		$("#dropdown_login_yes").show();
-		$(".forall").removeClass("forall").addClass("for_registered");
+        $("#dropdown_login_yes").show();
+        $(".forall").removeClass("forall").addClass("for_registered");
         call_event_logout();
 
     }
     else {
-		$(".for_registered").removeClass("for_registered").addClass("forall");
+        $(".for_registered").removeClass("for_registered").addClass("forall");
         $("#dropdown_login_yes").hide();
         $("#dropdown_login_no").show();
     }
@@ -1321,7 +1321,9 @@ function call_create_markup_for_viewproject(respons) {
     $("#rating").text(respons["rating"]);
     $("#commentquantity").text(respons["commentquantity"]);
     $("#firstphoto_path").attr("src", respons["firstphoto"]["path"]);
+	$("#firstphoto_path_big").attr("href", respons["firstphoto"]["path"]);
     $("#firstphoto_description").text(respons["firstphoto"]["description"]);
+	 $("#lastphoto_path_big").attr("href", respons["lastphoto"]["path"]);
     $("#lastphoto_path").attr("src", respons["lastphoto"]["path"]);
     $("#lastphoto_description").text(respons["lastphoto"]["description"]);
 
@@ -1330,7 +1332,7 @@ function call_create_markup_for_viewproject(respons) {
 function call_load_data_for_viewprojectcomments(projectid) {
     var data = {
         projectid: projectid,
-        firstposition: 1,
+        firstposition: 0,
         size: 10
     };
     data = JSON.stringify(data);
@@ -1488,6 +1490,28 @@ function call_send_vote(projectid) {
 }
 
 
+
+function call_createproject() {
+    var url = "/battleWEB/controller?command=createproject";
+    var data = {};
+    data.name = $("#name").val();
+    data.description = $("#description").val();
+    data.type = $("[name=type]:checked").val();
+//
+    data = JSON.stringify(data);
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        window.location = "edit_project.html#projectid=" + respons.projectid;
+
+    }).fail(function() {
+        console.log("Error for projectsave");
+    });
+}
 //	“name” : “***”,
 //		“creationdate”: “***”
 //		“description” : “***”,
