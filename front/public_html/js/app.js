@@ -1530,6 +1530,7 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.enable();
         event.preventDefault();
     }
+
     window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = [
         {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, children: [
@@ -1556,7 +1557,7 @@ function call_new_added_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Save", add_hendler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
