@@ -773,10 +773,16 @@ function call_data_for_footer() {
 }
 
 
-function call_uploading_file_on_server(command_value) {
+function call_uploading_file_on_server() {
+    var command_value;
     if (window.location.href.match(/myaccount.html/)) {
-        var command_value = "uploadavatar";
+        command_value = "uploadavatar";
     }
+
+    if (window.location.href.match(/edit_project.html/)) {
+        command_value = "uploadphoto&projectid=" + window.projectId;
+    }
+
     if (command_value) {
         window.upload_file = new AjaxUpload(command_value, {
             action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
@@ -788,10 +794,18 @@ function call_uploading_file_on_server(command_value) {
             onChange: function(file, ext) {
                 if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
                     var reader = new FileReader();
-                    $(reader).on("load", function() {
-                        var img = $("#preview_avatar");
-                        $(img).attr("src", reader.result);
-                    });
+                    if (command_value === "uploadavatar") {
+                        $(reader).on("load", function() {
+                            var img = $("#preview_avatar");
+                            $(img).attr("src", reader.result);
+                        });
+                    }
+                    if (command_value === "uploadphoto") {
+                        $(reader).on("load", function() {
+                            call_new_added_photo_for_edit_project(reader.result);
+                        });
+                    }
+
                     reader.readAsDataURL(window.upload_file._input.files[0]);
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
@@ -810,6 +824,9 @@ function call_uploading_file_on_server(command_value) {
             },
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
+                console.log(file);
+                console.log(response);
+                console.log(arguments);
             }
         });
     }
@@ -1320,10 +1337,25 @@ function call_create_markup_for_viewproject(respons) {
     $("#description").text(respons["description"]);
     $("#rating").text(respons["rating"]);
     $("#commentquantity").text(respons["commentquantity"]);
-    $("#firstphoto_path").attr("src", respons["firstphoto"]["path"]);
-    $("#firstphoto_description").text(respons["firstphoto"]["description"]);
-    $("#lastphoto_path").attr("src", respons["lastphoto"]["path"]);
-    $("#lastphoto_description").text(respons["lastphoto"]["description"]);
+    try {
+        $("#firstphoto_path").attr("src", respons["firstphoto"]["path"]);
+        $("#firstphoto_path_big").attr("href", respons["firstphoto"]["path"]);
+        $("#firstphoto_description").text(respons["firstphoto"]["description"]);
+
+    }
+    catch (e) {
+
+    }
+    try {
+        $("#lastphoto_path_big").attr("href", respons["lastphoto"]["path"]);
+        $("#lastphoto_path").attr("src", respons["lastphoto"]["path"]);
+        $("#lastphoto_description").text(respons["lastphoto"]["description"]);
+
+    }
+    catch (e) {
+
+    }
+
 
 }
 
@@ -1510,6 +1542,39 @@ function call_createproject() {
         console.log("Error for projectsave");
     });
 }
+
+
+
+function call_new_added_photo_for_edit_project(photo) {
+    function Save_img_and_description(event) {
+        window.upload_file.submit();
+        window.upload_file.enable();
+        event.preventDefault();
+    }
+    window.upload_file.disable();
+    var temlate_for_new_added_photo_for_edit_project = '<section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">' +
+            '<a href="' + photo + '" class="image_link">' +
+            '<div class="with_hover"></div>' +
+            ' <div style="width:25%; margin: 0 1%; float: left;  height:200px; ">' +
+            '<img src="' + photo + '" class="img-polaroid" style="width:100%;">' +
+            ' </div>' +
+            '</a>' +
+            '<article style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;">' +
+            '<p contenteditable="true">Description your photo</p>' +
+            '<p>' +
+            '<a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>' +
+            '<span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>' +
+            '<span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>' +
+            '<span><a href="#" class=" btn btn-primary flat" id="save_photo"> Save <i class="icon-angle-right"></i></a></span>' +
+            '</p>' +
+            '</article>' +
+            '</section>' +
+            '<div style="height:35px;"></div>';
+    $(temlate_for_new_added_photo_for_edit_project).appendTo("#new_added_photo").focus();
+    $("#save_photo").click(Save_img_and_description);
+}
+
+
 //	“name” : “***”,
 //		“creationdate”: “***”
 //		“description” : “***”,

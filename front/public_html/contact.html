@@ -117,9 +117,47 @@
                 <div class="inner-wrapper">
                     <div class="row-fluid">
                         <div class="span12">
-                            <h1>Start <strong>Content</strong></h1>
+               
+										<section  style="background: #fff; height: auto;" >
+                                      
 
 
+
+
+
+
+                                        <div class="text_center">
+
+                                            <div class="name_static_profile font-hotel"> About Those Who Made It </div>
+
+                                            <div id="university" class="margin_text_longname" >University of Applied Sciences Rotterdam</div>
+                                            <div id="birthday" class="margin_text_birthday" ></div>
+                                            <div id="adress" class="margin_text" >Bergselaan 30, 3011 MZ Rotterdam</div>
+                                            <div id="telephone1" class="margin_text" >phone: +1 (44) 123-45-67 </div>
+											  <div id="telephone2" class="margin_text" >fax: +1 (44) 123-45-63 </div>
+                                            <div id="mail" class="margin_text_email" ><a href="mailto:mail@must.be.here?subject=fromBattleOfRoterdam">mail@must.be.here</a></div>
+                                        </div>
+
+                                        <div style="height:35px;"></div>
+
+                                    </section>
+ <!--Start Sucribe Panel-->
+                <div class="subcribe text_center"" style="width:60%; margin: 0 auto;">
+              
+                        <div class="row-fluid" >
+                            <div class="span12"><h2> <strong>Subscribe</strong> to the <span class="font_hotel">Battle Latest News</span> </h2></div>
+                            <div class="span12" style="clear:both; margin:0 auto;">
+                                <!--Start Form Subcribe-->
+                                <form>
+                                    <input id="email" type="text" name="email" class=" input-block-level" placeholder="Enter Your Email">
+                            <a class="bs" >  <input type="submit"  name="send" value="Subscribe" class="buttonsend btn flat btn-primary btn-large"></a>
+                                </form>
+                                <!--End Form Subcribe-->
+                            </div>
+                        </div>
+                   
+                </div>
+                <!--End Sucribe Panel-->
 
 
                         </div>
@@ -265,8 +303,13 @@
         <!--Load JS config application-->
         <script src="js/app.js"></script>
         <!--end JS config application-->
-
-
+		 <script >
+		$('.buttonsend').click(function(){
+		var adress='mailto:zernovagg@gmail.com?Subject=battleOfRotterdam&body='+$("#email").val();
+		$('.bs').attr('href', adress)
+		
+		})
+		</script>
     </body>
 </html>
 
