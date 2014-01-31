@@ -1546,13 +1546,16 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.enable();
         event.preventDefault();
     }
-    function Send_description_this_photo() {
+    function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
+        event.preventDefault();
         console.log(description);
     }
-    function Delete_this_photo_and_description() {
-        var parent = $(this).parent("section.project_block");
+    function Delete_this_photo_and_description(event) {
+        var parent = $(this).parents("section.project_block");
         $(parent).remove();
+        console.log(parent);
+        event.preventDefault();
     }
     window.upload_file.disable();
     var temlate_for_new_added_photo_for_edit_project = [
