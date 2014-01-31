@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "Photo.findLast", query = "SELECT p FROM Photo AS p WHERE p.project.approved=true ORDER BY p.loadDate DESC"),
+		@NamedQuery(name = "Photo.findLast", query = "SELECT p FROM Photo AS p WHERE p.project.approved=true AND p.project.user.active=true ORDER BY p.loadDate DESC"),
 		@NamedQuery(name = "Photo.findLastByProject", query = "SELECT p FROM Photo AS p WHERE p.project=:project ORDER BY p.loadDate DESC"),
 		@NamedQuery(name = "Photo.findRendom", query = "SELECT p FROM Photo p WHERE p.project.approved=true ORDER BY RAND()"),
 		@NamedQuery(name = "Photo.findAll", query = "SELECT p FROM Photo p WHERE p.project.approved=true"),
