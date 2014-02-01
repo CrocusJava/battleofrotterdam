@@ -821,10 +821,10 @@ function call_uploading_file_on_server() {
                 try {
                     var parent_block = window.upload_file.block_of_sended_photo;
                     try {
-                        parent_block["fixed_id_photo"] = response["id"];
+                        $(parent_block).data({"fixed_id_photo": response["idphoto"]});
                     }
                     catch (e) {
-
+                        console.log(e);
                     }
                     var description_photo = $(parent_block).trigger("my_send.description");
 
@@ -1584,7 +1584,7 @@ function call_new_added_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
 
-        console.log(parent);
+        console.log(parent.data("fixed_id_photo"));
 
         $(parent).remove();
         window.upload_file._clearInput();
@@ -1636,7 +1636,7 @@ function call_send_description_for_this_photo(response, description_photo) {
      "description":"bla-bla"
      }*/
     var send_data = {
-        id: response.id,
+        id: response.idphoto,
         description: description_photo
     };
     var url = "/battleWEB/controller?command=editphotodescription";
