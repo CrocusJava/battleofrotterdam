@@ -1410,45 +1410,8 @@ function call_create_markup_for_viewprojectcomments(respons) {
 
 
 function call_load_data_for_projets_page() {
-    var template_projets_page = [
-        {tag: "section", add_class: "project_block", children: [
-                {tag: "div", add_class: "blog-line", attr: {style: "background: rgba(0,181,0,0.3);"}, children: [
-                        {tag: "a", attr: {href: "#"}, children: [
-                                {tag: "i", add_class: "icon-user"},
-                                {tag: "span", text: "user", subattr: {"user": "login"}}
-                            ]},
-                        {tag: "span", children: [
-                                {tag: "a", attr: {href: "#"}, children: [
-                                        {tag: "i", add_class: "icon-ok"},
-                                        {tag: "span", text: "rating"},
-                                        {tag: "span", text: " Likes"}
-                                    ]}
-                            ]},
-                        {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
-                                {tag: "i", add_class: "icon-comments"},
-                                {tag: "span", text: "commentquantity"},
-                                {tag: "span", text: " Comments"}
-                            ]}
-                    ]},
-                {tag: "div", add_class: "project_block_ava", children: [
-                        {tag: "img", attr: {src: "user"}, subattr: {"src": "avatarpath"}, add_class: "img-circle ava_proj"}
-                    ]},
-                {tag: "article", add_class: "project_block_proj", children: [
-                        {tag: "div", add_class: "project_block_proj_name", text: "name"},
-                        {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
-                    ]},
-                {tag: "div", add_class: "project_block_photo", children: [
-                        {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"},
-                        {tag: "div", add_class: "viewtheproj", children: [
-                                {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
-                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
-                                    ]}
-                            ]}
-                    ]}
-            ]},
-        {tag: "div", attr: {"style": "height:35px;"}}
 
-    ];
+
     var url = "/battleWEB/controller?command=projects";
     var data = JSON.stringify({
         firstposition: 0,
@@ -1463,15 +1426,62 @@ function call_load_data_for_projets_page() {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+        for (var project in respons.projects) {
+            call_create_markup_for_projects(respons.projects[project]);
+        }
 
-        call_create_markup_for_projects(respons);
     }).fail(function() {
         console.log("error onload command = projects ");
     });
     function call_create_markup_for_projects(respons) {
-        for (var project in respons.projects) {
-            call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons.projects[project]);
+
+        function go_to_project() {
+            var href = $(this).attr("href");
+            href = href + "#projectid=" + respons["id"];
+            $(this).attr("href", href);
         }
+
+        var template_projets_page = [
+            {tag: "section", add_class: "project_block", children: [
+                    {tag: "div", add_class: "blog-line", attr: {style: "background: rgba(0,181,0,0.3);"}, children: [
+                            {tag: "a", attr: {href: "#"}, children: [
+                                    {tag: "i", add_class: "icon-user"},
+                                    {tag: "span", text: "user", subattr: {"user": "login"}}
+                                ]},
+                            {tag: "span", children: [
+                                    {tag: "a", attr: {href: "#"}, children: [
+                                            {tag: "i", add_class: "icon-ok"},
+                                            {tag: "span", text: "rating"},
+                                            {tag: "span", text: " Likes"}
+                                        ]}
+                                ]},
+                            {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
+                                    {tag: "i", add_class: "icon-comments"},
+                                    {tag: "span", text: "commentquantity"},
+                                    {tag: "span", text: " Comments"}
+                                ]}
+                        ]},
+                    {tag: "div", add_class: "project_block_ava", children: [
+                            {tag: "img", attr: {src: "user"}, subattr: {"src": "avatarpath"}, add_class: "img-circle ava_proj"}
+                        ]},
+                    {tag: "article", add_class: "project_block_proj", children: [
+                            {tag: "div", add_class: "project_block_proj_name", text: "name"},
+                            {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
+                        ]},
+                    {tag: "div", add_class: "project_block_photo", children: [
+                            {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"},
+                            {tag: "div", add_class: "viewtheproj", children: [
+                                    {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
+                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
+                                        ]}
+                                ]}
+                        ]}
+                ]},
+            {tag: "div", attr: {"style": "height:35px;"}}
+
+        ];
+        call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons);
+
     }
 }
 
@@ -1558,7 +1568,8 @@ function call_new_added_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
         $(parent).remove();
-        console.log(parent);
+
+        window.upload_file.enable();
         event.preventDefault();
     }
     window.upload_file.disable();
