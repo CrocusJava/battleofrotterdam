@@ -782,11 +782,9 @@ function call_uploading_file_on_server() {
     if (target) {
         window.upload_file = new AjaxUpload(target, {
             action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
-            name: command_value,
-            data: {
-                'some_key1': "This data won't be sent, we will overwrite it."
-            },
+
             autoSubmit: false,
+            responseType: "json",
             onChange: function(file, ext) {
                 if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
                     var reader = new FileReader();
@@ -821,10 +819,12 @@ function call_uploading_file_on_server() {
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
                 try {
-                    var data = $(response)[0];
-                    var text = $(data).text();
-                    text = JSON.parse(text);
-                    console.log(text);
+                    console.log(response);
+//                    var data = $(response)[0];
+//                    var text = $(data).text();
+//                    text = JSON.parse(text);
+//                    console.log(text);
+
                 }
                 catch (e) {
                 }
@@ -1289,7 +1289,7 @@ function call_cookie_navigator() {
                     window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
                     call_load_data_for_viewprojectcomments(projectid);
-                    call_load_data_for_viewprojectphotos(projectid)
+                    call_load_data_for_viewprojectphotos(projectid);
                 }
                 break;
             case "userid":
@@ -1646,6 +1646,11 @@ function call_create_markup_for_viewprojectphotos(respons) {
             ' </section>';
     $(template_for_viewprojectphotos).appendTo("#viewprojectphotos");
 }
+
+/* command=editphotodescription
+ {"id":234,
+ "description":"bla-bla"
+ }*/
 
 //	“name” : “***”,
 //		“creationdate”: “***”
