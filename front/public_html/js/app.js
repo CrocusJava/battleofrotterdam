@@ -819,7 +819,20 @@ function call_uploading_file_on_server() {
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
                 try {
+                    var parent_block = window.upload_file.block_of_sended_photo;
+                    try {
+                        parent_block["fixed_id_photo"] = response["id"];
+                    }
+                    catch (e) {
+
+                    }
+                    var description_photo = $(parent_block).trigger("my_send.description");
+
+                    call_send_description_for_this_photo(response, description_photo);
+
                     console.log(response);
+                    console.log(parent_block);
+                    console.log(description_photo);
 //                    var data = $(response)[0];
 //                    var text = $(data).text();
 //                    text = JSON.parse(text);
@@ -1556,6 +1569,8 @@ function call_createproject() {
 
 function call_new_added_photo_for_edit_project(photo) {
     function Save_img_and_description(event) {
+        var parent = $(this).parents("section.project_block");
+        window.upload_file.block_of_sended_photo = parent;
         window.upload_file.submit();
         window.upload_file.enable();
         event.preventDefault();
@@ -1564,11 +1579,15 @@ function call_new_added_photo_for_edit_project(photo) {
         var description = $(this).find("[name=description]").text();
         event.preventDefault();
         console.log(description);
+        return description;
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
-        $(parent).remove();
 
+        console.log(parent);
+
+        $(parent).remove();
+        window.upload_file._clearInput();
         window.upload_file.enable();
         event.preventDefault();
     }
@@ -1611,6 +1630,32 @@ function call_new_added_photo_for_edit_project(photo) {
 
 }
 
+function call_send_description_for_this_photo(response, description_photo) {
+    /* command=editphotodescription
+     {"id":234,
+     "description":"bla-bla"
+     }*/
+    var send_data = {
+        id: response.id,
+        description: description_photo
+    };
+    var url = "/battleWEB/controller?command=editphotodescription";
+    send_data = JSON.stringify(send_data);
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: send_data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        console.log("Description of photo sended");
+        console.log(respons);
+    }).fail(function() {
+        console.log("error  command=editphotodescription");
+    });
+}
+
 function  call_load_data_for_viewprojectphotos(projectid) {
     var data = {
         projectid: projectid,
@@ -1647,10 +1692,7 @@ function call_create_markup_for_viewprojectphotos(respons) {
     $(template_for_viewprojectphotos).appendTo("#viewprojectphotos");
 }
 
-/* command=editphotodescription
- {"id":234,
- "description":"bla-bla"
- }*/
+
 
 //	“name” : “***”,
 //		“creationdate”: “***”
