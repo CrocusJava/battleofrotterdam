@@ -108,7 +108,7 @@
 				<p:editor id="editor"
 					value="#{competitionsBean.competition.description}" width="600" />
 
-				<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+				<p:commandButton partialSubmit="true" onclick="PF('newsDialog').hide()"
 					action="#{competitionsBean.edit()}" value="Apply" />
 				<p:commandButton oncomplete="PF('compDialog').hide()" value="Cancel" />
 			</h:panelGroup>
