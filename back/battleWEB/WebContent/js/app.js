@@ -382,7 +382,6 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data, "\n faile");
     });
-
     console.log(config, form.id);
     return false;
 }
@@ -407,7 +406,6 @@ function AjaxSendComment(form) {
         console.log(error);
     });
     console.log(JSON.parse(config.data));
-
     return false;
 }
 
@@ -483,10 +481,8 @@ function createElements(conteiner, parent, info) {
     p_time.attr({
         "style": "color:rgba(0, 181, 0,1);"
     }).appendTo(div);
-
     var i = $(document.createElement("i"));
     i.addClass("icon-time").appendTo(p_time);
-
     var span = $(document.createElement("span"));
     span.addClass("padding_comment").attr({
         "name": "time"
@@ -514,7 +510,6 @@ function call_load_data_for_index_events(load_data) {
         var href = $(this).attr("href");
         href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
-
     }
 
     var index_last_events_template = [
@@ -547,13 +542,11 @@ function call_load_data_for_index_comments(load_data) {
         var href = $(this).attr("href");
         href = href + "#userid=" + load_data["userid"];
         $(this).attr("href", href);
-
     }
     function go_to_project() {
         var href = $(this).attr("href");
         href = href + "#projectid=" + load_data["projectid"];
         $(this).attr("href", href);
-
     }
     var index_last_comments_template = [
         {tag: "li", add_class: "clearfix", children: [
@@ -775,16 +768,19 @@ function call_data_for_footer() {
 
 function call_uploading_file_on_server() {
     var command_value;
+    var target;
     if (window.location.href.match(/myaccount.html/)) {
         command_value = "uploadavatar";
+        target = "uploadavatar";
     }
 
     if (window.location.href.match(/edit_project.html/)) {
         command_value = "uploadphoto&projectid=" + window.projectId;
+        target = "uploadphoto";
     }
 
-    if (command_value) {
-        window.upload_file = new AjaxUpload(command_value, {
+    if (target) {
+        window.upload_file = new AjaxUpload(target, {
             action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
             name: command_value,
             data: {
@@ -794,13 +790,13 @@ function call_uploading_file_on_server() {
             onChange: function(file, ext) {
                 if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
                     var reader = new FileReader();
-                    if (command_value === "uploadavatar") {
+                    if (target === "uploadavatar") {
                         $(reader).on("load", function() {
                             var img = $("#preview_avatar");
                             $(img).attr("src", reader.result);
                         });
                     }
-                    if (command_value === "uploadphoto") {
+                    if (target === "uploadphoto") {
                         $(reader).on("load", function() {
                             call_new_added_photo_for_edit_project(reader.result);
                         });
@@ -824,9 +820,15 @@ function call_uploading_file_on_server() {
             },
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
-                console.log(file);
-                console.log(response);
-                console.log(arguments);
+                try {
+                    var data = $(response)[0];
+                    var text = $(data).text();
+                    text = JSON.parse(text);
+                    console.log(text);
+                }
+                catch (e) {
+                }
+
             }
         });
     }
@@ -891,6 +893,19 @@ function call_event_logout() {
     });
 }
 
+
+//                                <a href="img/remont1.jpg" class="image_link">
+//
+//
+//                                    <div class="with_hover"></div>
+//
+//
+//
+//
+//                                    <div class="hover singlephoto" ><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
+//
+//                                    </div>  </a>
+
 function call_load_data_for_news_index() {
     $.post("/battleWEB/controller?command=news", function(data) {
         var template_for_news_index = [
@@ -903,16 +918,14 @@ function call_load_data_for_news_index() {
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
-                                                //, bind: {popup_news:click}
+                                            {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+//, bind: {popup_news:click}
                                             }
                                         ]}
                                 ]}
                         ]}
                 ]}
         ];
-
-
         /*=======================мой код для попапа================================*/
         var template_for_news_index_popup = [
             {tag: "div", add_class: "popvis text_center", children: [
@@ -929,8 +942,6 @@ function call_load_data_for_news_index() {
                 ]},
             {tag: "div", add_class: "popup_back_news"}
         ];
-
-
         /*=======================конец моего кода для попапа============================*/
 
 
@@ -1118,7 +1129,7 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                                {tag: "a", add_class: "unvisiblin btn btn-primary flat btn-large", text: "Read More"}
                                             ]}
                                     ]}
                             ]}
@@ -1192,6 +1203,7 @@ function call_load_data_for_myaccount(id) {
     }).done(function(respons) {
         if (!send_data.iduser) {
             $.session.set("name", respons["login"]);
+            call_cookie_navigator();
         }
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
         $.session.set("avatar", respons["photopath"]);
@@ -1211,7 +1223,6 @@ function call_load_data_for_myaccount(id) {
         }
 
     });
-
 }
 
 function call_upload_data_for_updateaccaunt() {
@@ -1229,9 +1240,7 @@ function call_upload_data_for_updateaccaunt() {
     uploadData.postcode = $("#postcode").text();
     uploadData.password = "";
     uploadData.passwordnew = "";
-
     uploadData = JSON.stringify(uploadData);
-
     $.ajax({
         type: "POST",
         url: "/battleWEB/controller?command=updateaccount",
@@ -1280,6 +1289,7 @@ function call_cookie_navigator() {
                     window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
                     call_load_data_for_viewprojectcomments(projectid);
+                    call_load_data_for_viewprojectphotos(projectid)
                 }
                 break;
             case "userid":
@@ -1299,7 +1309,6 @@ function call_cookie_navigator() {
         $("#dropdown_login_yes").show();
         $(".forall").removeClass("forall").addClass("for_registered");
         call_event_logout();
-
     }
     else {
         $(".for_registered").removeClass("for_registered").addClass("forall");
@@ -1341,7 +1350,6 @@ function call_create_markup_for_viewproject(respons) {
         $("#firstphoto_path").attr("src", respons["firstphoto"]["path"]);
         $("#firstphoto_path_big").attr("href", respons["firstphoto"]["path"]);
         $("#firstphoto_description").text(respons["firstphoto"]["description"]);
-
     }
     catch (e) {
 
@@ -1350,7 +1358,6 @@ function call_create_markup_for_viewproject(respons) {
         $("#lastphoto_path_big").attr("href", respons["lastphoto"]["path"]);
         $("#lastphoto_path").attr("src", respons["lastphoto"]["path"]);
         $("#lastphoto_description").text(respons["lastphoto"]["description"]);
-
     }
     catch (e) {
 
@@ -1397,7 +1404,6 @@ function call_create_markup_for_viewprojectcomments(respons) {
             "</div>" +
             "</article>" +
             "</li>";
-
     $(template_for_viewprojectcomments).appendTo("#main_conteiner_comments");
 }
 
@@ -1462,7 +1468,6 @@ function call_load_data_for_projets_page() {
     }).fail(function() {
         console.log("error onload command = projects ");
     });
-
     function call_create_markup_for_projects(respons) {
         for (var project in respons.projects) {
             call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons.projects[project]);
@@ -1488,12 +1493,7 @@ function AjaxSendSearch(form) {
         console.log(error);
     });
     console.log(JSON.parse(config.data));
-
     return false;
-
-
-
-
 }
 
 function call_send_vote(projectid) {
@@ -1537,7 +1537,6 @@ function call_createproject() {
         contentType: "application/json"
     }).done(function(respons) {
         window.location = "edit_project.html#projectid=" + respons.projectid;
-
     }).fail(function() {
         console.log("Error for projectsave");
     });
@@ -1551,29 +1550,91 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.enable();
         event.preventDefault();
     }
+    function Send_description_this_photo(event) {
+        var description = $(this).find("[name=description]").text();
+        event.preventDefault();
+        console.log(description);
+    }
+    function Delete_this_photo_and_description(event) {
+        var parent = $(this).parents("section.project_block");
+        $(parent).remove();
+        console.log(parent);
+        event.preventDefault();
+    }
     window.upload_file.disable();
-    var temlate_for_new_added_photo_for_edit_project = '<section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">' +
-            '<a href="' + photo + '" class="image_link">' +
-            '<div class="with_hover"></div>' +
-            ' <div style="width:25%; margin: 0 1%; float: left;  height:200px; ">' +
-            '<img src="' + photo + '" class="img-polaroid" style="width:100%;">' +
-            ' </div>' +
-            '</a>' +
-            '<article style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;">' +
-            '<p contenteditable="true">Description your photo</p>' +
-            '<p>' +
-            '<a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>' +
-            '<span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>' +
-            '<span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>' +
-            '<span><a href="#" class=" btn btn-primary flat" id="save_photo"> Save <i class="icon-angle-right"></i></a></span>' +
-            '</p>' +
-            '</article>' +
-            '</section>' +
-            '<div style="height:35px;"></div>';
-    $(temlate_for_new_added_photo_for_edit_project).appendTo("#new_added_photo").focus();
-    $("#save_photo").click(Save_img_and_description);
+    var temlate_for_new_added_photo_for_edit_project = [
+        {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
+                {tag: "a", add_class: "image_link", attr: {href: "#photo"}, children: [
+                        {tag: "div", add_class: "with_hover"},
+                        {tag: "div", attr: {style: "width:25%; margin: 0 1%; float: left;  height:200px;"}, children: [
+                                {tag: "img", add_class: "img-polaroid", attr: {src: photo, style: "width:100%;"}}
+                            ]}
+                    ]},
+                {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
+                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
+                        {tag: "p", children: [
+                                {tag: "a", add_class: "btn btn-primary flat", text: "Preview", children: [
+                                        {tag: "i", add_class: "icon-angle-right"}
+                                    ]},
+                                {tag: "span", children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", text: "Edit", children: [
+                                                {tag: "i", add_class: "icon-angle-right"}
+                                            ]}
+                                    ]},
+                                {tag: "span", children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                                {tag: "i", add_class: "icon-angle-right"}
+                                            ]}
+                                    ]},
+                                {tag: "span", children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                                {tag: "i", add_class: "icon-angle-right"}
+                                            ]}
+                                    ]}
+                            ]}
+                    ]}
+            ]},
+        {tag: "div", attr: {style: "height:35px;"}
+        }];
+    call_markup_index(temlate_for_new_added_photo_for_edit_project, $("#new_added_photo"), {});
+
 }
 
+function  call_load_data_for_viewprojectphotos(projectid) {
+    var data = {
+        projectid: projectid,
+        firstposition: 0,
+        size: 10
+    };
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=viewprojectphotos";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        for (var photo in respons["photos"]) {
+            call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
+        }
+
+    }).fail(function() {
+        console.log("error onload command=viewprojectphotos ");
+    });
+}
+function call_create_markup_for_viewprojectphotos(respons) {
+    var template_for_viewprojectphotos = '<section class="project_block singlephotoblock">' +
+            ' <a href="' + respons["photopath"] + '" class="image_link">' +
+            ' <div class="with_hover"></div>' +
+            '<div class="hover singlephoto" ><img src="' + respons["photopath"] + '" class="img-polaroid" style="width:100%;">' +
+            '</div>  </a>' +
+            '<article class="descr_singlephoto"  >' +
+            ' <p class="abzac" >' + respons["description"] + '</p>' +
+            ' </article>' +
+            ' </section>';
+    $(template_for_viewprojectphotos).appendTo("#viewprojectphotos");
+}
 
 //	“name” : “***”,
 //		“creationdate”: “***”

@@ -1,22 +1,23 @@
 package com.battleweb.controller;
+
 /**
  * @author rtkachuk
  * @author marina
- *
- * Constants contains names of all path to web pages or elements of web pages
+ * 
+ *         Constants contains names of all path to web pages or elements of web
+ *         pages
  */
 public interface Constants {
-	//Parameters for the home-page view
+	// Parameters for the home-page view
 	public static final Integer HOME_PAGE_LAST_NEWS_COUNT = 3;
 	public static final Integer HOME_PAGE_LAST_COMMENTS_COUNT = 5;
 	public static final Integer HOME_PAGE_LAST_PHOTOS_COUNT = 3;
 	public static final Integer FOOTER_GALLERY_PHOTOS_COUNT = 12;
-	
-	
-	//Parameter for all request
+
+	// Parameter for all request
 	public static final String COMMAND = "command";
-	
-	//Set of name commands for CommandRequest
+
+	// Set of name commands for CommandRequest
 	public static final String COMMAND_LOGIN = "login";
 	public static final String COMMAND_LOGOUT = "logout";
 	public static final String COMMAND_REGISTRATION = "registration";
@@ -64,14 +65,14 @@ public interface Constants {
 	public static final String COMMAND_LOCALE = "locale";
 	public static final String COMMAND_EDIT_PROJECT = "editproject";
 	public static final String COMMAND_EDIT_PHOTO_DESCRIPTION = "editphotodescription";
-	
-	//Set name properties in session
-	public static final String PARAMETER_SESSION_LOCALE= "userlocalization";
-	public static final String PARAMETER_SESSION_USER= "user";
-	public static final String PARAMETER_SESSION_IDUSER= "iduser";
-	public static final String PARAMETER_SESSION_IDROLE= "idrole";
-	
-	//Set of name parameters JSON objects
+
+	// Set name properties in session
+	public static final String PARAMETER_SESSION_LOCALE = "userlocalization";
+	public static final String PARAMETER_SESSION_USER = "user";
+	public static final String PARAMETER_SESSION_IDUSER = "iduser";
+	public static final String PARAMETER_SESSION_IDROLE = "idrole";
+
+	// Set of name parameters JSON objects
 	public static final String PARAMETER_LOGIN = "login";
 	public static final String PARAMETER_PASSWORD = "password";
 	public static final String PARAMETER_PASSWORD_NEW = "passwordnew";
@@ -89,16 +90,16 @@ public interface Constants {
 	public static final String PARAMETER_EMAIL = "email";
 	public static final String PARAMETER_STATUSMAIL = "statusemail";
 	public static final String PARAMETER_STATUSLOFIN = "statuslogin";
-	public static final String PARAMETER_REGISTRATIONMESSAGE = "registrationmessage";	
-	public static final String PARAMETER_NEWPASSWORDMESSAGE = "newpasswordmessage";	
-	public static final String PARAMETER_USERNAME = "username";	
-	public static final String PARAMETER_APPROVEREGISTRATIONMESSAGE = "approveregistrationmessage";	
-	public static final String PARAMETER_APPROVE_REGISTRATION = "approveregistration";	
-	
+	public static final String PARAMETER_REGISTRATIONMESSAGE = "registrationmessage";
+	public static final String PARAMETER_NEWPASSWORDMESSAGE = "newpasswordmessage";
+	public static final String PARAMETER_USERNAME = "username";
+	public static final String PARAMETER_APPROVEREGISTRATIONMESSAGE = "approveregistrationmessage";
+	public static final String PARAMETER_APPROVE_REGISTRATION = "approveregistration";
+
 	public static final String PARAMETER_TEXT_MESSAGE_NEW_PASSWORD = "newpasswordmessage";
 	public static final String PARAMETER_TEXT_MESSAGE_REGISTRATION = "registrationmessage";
 	public static final String PARAMETER_TEXT_MESSAGE_APPROVEREGISTRATION = "approveregistrationmessage";
-	
+
 	public static final String PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT = "battledescriptionshort";
 	public static final String PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION = "battleanimationdescription";
 	public static final String PARAMETER_BATTLE_YEAR_FINISH_DATE = "battleyearfinishdate";
@@ -141,7 +142,7 @@ public interface Constants {
 	public static final String PARAMETER_FAQ_LIST_NL = "faqlistnl";
 	public static final String PARAMETER_FAQ_QUESTION = "faqquestion";
 	public static final String PARAMETER_FAQ_ANSVER = "faqansver";
-	
+
 	public static final String PARAMETER_YEAR_PROJECTS = "yearprojects";
 	public static final String PARAMETER_NAME = "name";
 	public static final String PARAMETER_RATING = "rating";
@@ -178,7 +179,7 @@ public interface Constants {
 	public static final String PARAMETER_VOTE_RESULT = "voteresult";
 	public static final String PARAMETER_COMMENT_RESULT = "commentresult";
 	public static final String PARAMETER_VOICES_COUNT = "voicescount";
-	
+
 	public static final String PARAMETER_CONTACTS = "contacts";
 	public static final String PARAMETER_CONTACTS_INFO_INDEX = "contactsinfoindex";
 	public static final String PARAMETER_CONTACTS_ADDRESS = "contactsaddress";
@@ -189,27 +190,27 @@ public interface Constants {
 	public static final String PARAMETER_FOOTER_GALLERY = "footergallery";
 	public static final String PARAMETER_CREATE_PROJECT_MESSAGE = "createprojectmessage";
 	public static final String PARAMETER_COMMENT_ID = "commentid";
-	
+
 	public static final String PARAMETER_TYPE_PROJECT = "typeproject";
-	public static final String PARAMETER_PHOTO_NAME="photoname";
-	public static final String PARAMETER_PHOTO_NEWS_NAME="photonewsname";
-	public static final String PARAMETER_AVATAR_NAME="avatarname";
+	public static final String PARAMETER_PHOTO_NAME = "photoname";
+	public static final String PARAMETER_PHOTO_NEWS_NAME = "photonewsname";
+	public static final String PARAMETER_AVATAR_NAME = "avatarname";
 	public static final String PARAMETER_ID_PHOTO = "idphoto";
-	
+
 	public static final String PARAMETER_SHOW_DESCRIPTION = "showdescription";
-	public static final String PARAMETER_START_DATE_FROM="startdatefrom";
+	public static final String PARAMETER_START_DATE_FROM = "startdatefrom";
 	public static final String PARAMETER_START_DATE_TO = "startdateto";
-	public static final String PARAMETER_END_DATE_FROM="enddatefrom";
+	public static final String PARAMETER_END_DATE_FROM = "enddatefrom";
 	public static final String PARAMETER_END_DATE_TO = "enddateto";
-	public static final String PARAMETER_REG_DEADLINE_FROM="regdeadlinefrom";
-	public static final String PARAMETER_REG_DEADLINE_TO="regdeadlineto";
-	public static final String PARAMETER_WINNER_ID="winnerid";
-	public static final String PARAMETER_WINNER="winner";
-	public static final String PARAMETER_START_DATE="startdate";
-	public static final String PARAMETER_END_DATE="enddate";
-	public static final String PARAMETER_REG_DEADLINE="regdeadline";	
+	public static final String PARAMETER_REG_DEADLINE_FROM = "regdeadlinefrom";
+	public static final String PARAMETER_REG_DEADLINE_TO = "regdeadlineto";
+	public static final String PARAMETER_WINNER_ID = "winnerid";
+	public static final String PARAMETER_WINNER = "winner";
+	public static final String PARAMETER_START_DATE = "startdate";
+	public static final String PARAMETER_END_DATE = "enddate";
+	public static final String PARAMETER_REG_DEADLINE = "regdeadline";
 	public static final String PARAMETER_COMPETITIONS = "competitions";
-	
+
 	public static final String PARAMETER_COMMENT_ABLE = "commentable";
 	public static final String PARAMETER_STATUS = "status";
 	public static final String PARAMETER_ACTIVE = "active";
@@ -219,22 +220,22 @@ public interface Constants {
 	public static final String PARAMETER_ERROR_MESSAGE = "errormessage";
 	public static final String PARAMETER_USER_ID = "userid";
 	public static final String PARAMETER_APPROVED = "approved";
-	
-	public static final String PARAMETER_PROJECT_NAME="projectname";
-	public static final String PARAMETER_PROJECT_DESCRIPTION="projectdescription";
-	public static final String PARAMETER_PROJECT_DATE_CREATION="projectdatecteation";
-	
-	//Set key of value Text
+
+	public static final String PARAMETER_PROJECT_NAME = "projectname";
+	public static final String PARAMETER_PROJECT_DESCRIPTION = "projectdescription";
+	public static final String PARAMETER_PROJECT_DATE_CREATION = "projectdatecteation";
+
+	// Set key of value Text
 	public static final Integer TEXT_MESSAGE_NEW_PASSWORD = 100;
 	public static final Integer TEXT_MESSAGE_YOUR_LOGIN = 110;
 	public static final Integer TEXT_MESSAGE_YOUR_PASSWORD = 111;
 	public static final Integer TEXT_MESSAGE_EMAIL_NOT_EXIST = 120;
-	
+
 	public static final Integer TEXT_MESSAGE_REGISTRATION = 200;
 	public static final Integer TEXT_MESSAGE_REGISTRATION_MAIL = 210;
 	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_MAIL_EXIST_IN_DB = 220;
-	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_NO_CORRECT_PASSWORD= 230;
-	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_SUCCESS= 240;
+	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_NO_CORRECT_PASSWORD = 230;
+	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_SUCCESS = 240;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
 	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
@@ -249,7 +250,7 @@ public interface Constants {
 	public static final Integer TEXT_TITLE_ABOUT_US = 541;
 	public static final Integer TEXT_TITLE_INFO = 551;
 	public static final Integer TEXT_TITLE_TERMS = 561;
-	
+
 	public static final Integer TEXT_Q1 = 600;
 	public static final Integer TEXT_A1 = 605;
 	public static final Integer TEXT_Q2 = 610;
@@ -280,31 +281,31 @@ public interface Constants {
 	public static final Integer TEXT_NEWS7 = 70;
 	public static final Integer TEXT_NEWS8 = 80;
 	public static final Integer TEXT_NEWS9 = 90;
-	
+
 	public static final Integer TEXT_CONTACTS_INFO_ON_INDEX = 700;
 	public static final Integer TEXT_CONTACTS_ADDRESS = 710;
 	public static final Integer TEXT_CONTACTS_EMAIL = 720;
 	public static final Integer TEXT_CONTACTS_PHONE = 730;
 	public static final Integer TEXT_CONTACTS_FAX = 740;
 	public static final Integer TEXT_CONTACTS_SKYPE = 750;
-	
+
 	public static final Integer TEXT_MESSAGE_CREATE_PROJECT = 800;
-	
+
 	public static final Integer TEXT_MESSAGE_ADMIN_SEND_EMAIL = 1000;
 	public static final Integer TEXT_MESSAGE_ADMIN_EDIT_USER = 1010;
-	
+
 	public static final Integer TEXT_MESSAGE_ACTOVE_FALSE = 1110;
 	public static final Integer TEXT_MESSAGE_COMMANDABLE_FALSE = 1100;
 	public static final Integer TEXT_MESSAGE_WRONG_LOGIN_OR_PASSWORD = 1120;
-	
-	//Set key of value URL
+
+	// Set key of value URL
 	public static final Integer URL_BATTLE_ANIMATION = 100;
 	public static final Integer URL_HOMEPAGE_LINK1 = 110;
 	public static final Integer URL_HOMEPAGE_LINK2 = 120;
 	public static final Integer URL_HOMEPAGE_LINK3 = 130;
 	public static final Integer URL_HOMEPAGE_LINK4 = 140;
 
-	//Set some constants
+	// Set some constants
 	public static final String COMPETITION_TYPE_YEAR = "year";
 	public static final String COMPETITION_TYPE_MONTH = "month";
 	public static final String SORT_TYPE_ASC = "asc";
@@ -312,18 +313,18 @@ public interface Constants {
 	public static final String ORDER_BY_START_DATE = "startdate";
 	public static final String ORDER_BY_END_DATE = "enddate";
 	public static final String ORDER_BY_REG_DEADLINE = "regdeadline";
-	
-	//Localization
+
+	// Localization
 	public static final String PARAMETER_LOCALE = "locale";
 	public static final String PARAMETER_LOCALE_EN = "en";
 	public static final String PARAMETER_LOCALE_NL = "nl";
-	
-	//Path
+
+	// Path
 	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";
 	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
 	public static final String PATH_SAVE_PHOTO = "/usr/app/jboss/photo";
-	
-	public static final String PATH_GET_PHOTO="controller?command=getphoto&photoname=";
-	public static final String PATH_GET_AVATAR="controller?command=getphoto&avatarname=";
-	public static final String PATH_GET_PHOTO_NEWS="controller?command=getphoto&photonewsname=";	
+
+	public static final String PATH_GET_PHOTO = "controller?command=getphoto&photoname=";
+	public static final String PATH_GET_AVATAR = "controller?command=getphoto&avatarname=";
+	public static final String PATH_GET_PHOTO_NEWS = "controller?command=getphoto&photonewsname=";
 }
