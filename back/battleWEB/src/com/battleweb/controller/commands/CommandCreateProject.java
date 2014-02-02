@@ -2,6 +2,7 @@ package com.battleweb.controller.commands;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -18,6 +19,7 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Competition;
 import com.battleejb.entities.Project;
+import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
@@ -50,43 +52,60 @@ public class CommandCreateProject implements Command {
 		JsonObject jsonObjectResponse = null;
 
 		if (toolSession.getUser(request) != null) {
-
 			JsonObject jsonObjectRequest = toolJSON
 					.getJsonObjectRequest(request);
-			String name = jsonObjectRequest.getString(Constants.PARAMETER_NAME);
-			String description = jsonObjectRequest
-					.getString(Constants.PARAMETER_DESCRIPTION);
 			String type = jsonObjectRequest.getString(Constants.PARAMETER_TYPE);
-
 			Date currentDate = new Date();
 			Competition competition = competitionBean
 					.findFilterOrderByDateLimit("startdate", null, null, null,
 							currentDate, null, null, currentDate, null, null,
 							null, type, 0, 1).get(0);
 
-			Project project = new Project();
-			project.setName(name);
-			project.setDescription(description);
-			project.setCreationDate(new Date());
-			project.setCompetition(competition);
-			project.setUser(userBean.find(Integer.parseInt(request.getSession()
+			User user = userBean.find(Integer.parseInt(request.getSession()
 					.getAttribute(Constants.PARAMETER_SESSION_IDUSER)
-					.toString())));
-			project.setApproved(false);
+					.toString()));
 
-			if (name != null && project.getCompetition() != null) {
+			List<Project> projects = projectBean
+					.findFilterOrderByDateOrRatingLimit("date", "desc",
+							user.getLogin(), null, null, null,
+							competition.getId(), null, 0, 1, null);
 
-				projectBean.create(project);
+			if (projects == null || projects.isEmpty()) {
 
-				String cteateProjectMessage = textBean.findLocaleTextByKey(
-						Constants.TEXT_MESSAGE_CREATE_PROJECT,
-						request.getLocale());
+				String name = jsonObjectRequest
+						.getString(Constants.PARAMETER_NAME);
+				String description = jsonObjectRequest
+						.getString(Constants.PARAMETER_DESCRIPTION);
 
+				Project project = new Project();
+				project.setName(name);
+				project.setDescription(description);
+				project.setCreationDate(new Date());
+				project.setCompetition(competition);
+				project.setUser(user);
+				project.setApproved(false);
+
+				if (name != null && project.getCompetition() != null) {
+
+					projectBean.create(project);
+
+					String cteateProjectMessage = textBean.findLocaleTextByKey(
+							Constants.TEXT_MESSAGE_CREATE_PROJECT,
+							request.getLocale());
+
+					jsonObjectResponse = Json
+							.createObjectBuilder()
+							.add(Constants.PARAMETER_PROJECT_ID,
+									project.getId())
+							.add(Constants.PARAMETER_CREATE_PROJECT_MESSAGE,
+									cteateProjectMessage).build();
+				}
+			} else {
 				jsonObjectResponse = Json
 						.createObjectBuilder()
-						.add(Constants.PARAMETER_PROJECT_ID, project.getId())
-						.add(Constants.PARAMETER_CREATE_PROJECT_MESSAGE,
-								cteateProjectMessage).build();
+						.add(Constants.PARAMETER_MESSAGE,
+								"User already has a project in this competition")
+						.build();
 			}
 
 		} else {
