@@ -125,7 +125,7 @@ public class CommandRegistration implements Command {
 			message.append(toolMD5.generateMD5(user.getLogin()));
 			
 			toolEmail.send("Battle of Rotterdam registration",
-					message.toString(), "battleofrotterdam@gmail.com", email);
+					message.toString(), email);
 		}
 
 		JsonObject jsonObjectResponse = Json

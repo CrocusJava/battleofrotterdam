@@ -59,8 +59,7 @@ public class CommandSendEmail implements Command {
 
 			User user = userBean.find(userId);
 
-			toolEmail.send(subject, text, "battleofrotterdam@gmail.com",
-					user.getEmail());
+			toolEmail.send(subject, text, user.getEmail());
 
 			jsonObjectResponseBuilder.add(Constants.PARAMETER_STATUS, state)
 					.add(Constants.PARAMETER_MESSAGE,

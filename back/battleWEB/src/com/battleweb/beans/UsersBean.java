@@ -61,7 +61,7 @@ public class UsersBean {
 	}
 	
 	public void sendEmail(){
-		toolEmail.send(subject, text, "battleofrotterdam@gmail.com", selectedUser.getEmail());
+		toolEmail.send(subject, text, selectedUser.getEmail());
 	}
 	
 	public void changeRole(User user){
