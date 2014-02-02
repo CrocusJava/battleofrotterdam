@@ -1807,7 +1807,7 @@ function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
         }
 // <<<<<<<<<<================================== Добавление дочерих элементов к элементу
         if ("children" in templateObj) {
-            call_markup_index(templateObj["children"], new_parentsContainer, dataObj);
+            call_markup_for_admin_text(templateObj["children"], new_parentsContainer, dataObj);
         }
 
     }
