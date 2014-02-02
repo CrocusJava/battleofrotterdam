@@ -580,8 +580,8 @@ function call_data_for_index_html() {
         $.post("/battleWEB/controller?command=index", function(respons, status) {
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
-            $("#battledescriptionshort").text(respons["battledescriptionshort"]);
-            $("#battleanimationdescription").text(respons["battleanimationdescription"]);
+            $("#battledescriptionshort").html(respons["battledescriptionshort"]);
+            $("#battleanimationdescription").html(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
@@ -887,10 +887,10 @@ function call_load_data_for_about_battle() {
             {tag: "h1", add_class: "font_hotel", text: "title"},
             {tag: "p", text: "description"}
         ];
-        call_markup_index(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
-        call_markup_index(template_for_about_battle, $("#rules "), data.rules);
-        call_markup_index(template_for_about_battle, $("#aboutus"), data.aboutus);
-        call_markup_index(template_for_about_battle, $("#information"), data.information);
+        call_markup_for_admin_text(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
+        call_markup_for_admin_text(template_for_about_battle, $("#rules "), data.rules);
+        call_markup_for_admin_text(template_for_about_battle, $("#aboutus"), data.aboutus);
+        call_markup_for_admin_text(template_for_about_battle, $("#information"), data.information);
         console.log(data);
     }, "json").fail("data for about battle not loaded");
 }
@@ -959,9 +959,9 @@ function call_load_data_for_news_index() {
 
         for (var i in data.lastnews) {
             var data_popup_news = data.lastnews[i];
-            call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
+            call_markup_for_admin_text(template_for_news_index, $("#news_index"), data.lastnews[i]);
             function popup_news() {
-                call_markup_index(template_for_news_index_popup, $("#news_index"), data_popup_news);
+                call_markup_for_admin_text(template_for_news_index_popup, $("#news_index"), data_popup_news);
             }
 
 
@@ -1151,12 +1151,12 @@ function call_load_data_for_current_rankings() {
         var monthprojects = data["monthprojects"];
         for (var i in monthprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
@@ -1752,6 +1752,66 @@ function call_send_data_editproject() {
 
 
 
+function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
 
+    for (var j in markupTemplate) {
+
+        var templateObj = markupTemplate[j];
+        // <<<<<<<<<<================================== Создание элемента тега
+        if ("tag" in templateObj) {
+            var element = $(document.createElement(templateObj["tag"]));
+            element.appendTo(parentsContainer);
+            var new_parentsContainer = element;
+        }
+// <<<<<<<<<<================================== Добавление класса к элементу
+        if ("add_class" in templateObj) {
+            element.addClass(templateObj["add_class"]);
+        }
+// <<<<<<<<<<================================== Добавление атрибутов к элементу
+        if ("attr" in templateObj) {
+            var attr = templateObj["attr"];
+            for (var name_prop in attr) {
+                var value = attr[name_prop];
+                value = dataObj[value] || value;
+                // <<<<<<<<<<================================== Если атрибут является объектом
+                if ({}.toString.call(value) === "[object Object]") {
+// <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                    var subvalue = value[templateObj["subattr"][name_prop]];
+                    element.attr(name_prop, subvalue);
+                }
+                else {
+                    element.attr(name_prop, value);
+                }
+            }
+        }
+// <<<<<<<<<<================================== Добавление текста к элементу
+        if ("text" in templateObj) {
+            var text_key = templateObj["text"];
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : dataObj[text_key] === "" ? "  " : text_key; //var text_value = dataObj[text_key] || text_key;
+            // <<<<<<<<<<================================== Если текст является объектом
+            if ({}.toString.call(text_value) === "[object Object]") {
+// <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                var subvalue_text = text_value[templateObj["subattr"][text_key]];
+                element.html(subvalue_text);
+            }
+            else {
+                element.html(text_value);
+            }
+
+        }
+// <<<<<<<<<<================================== Добавление обработчика событий к элементу
+        if ("add_handler" in templateObj) {
+            for (var event in templateObj["add_handler"]) {
+                element.on(event, templateObj["add_handler"][event]);
+            }
+        }
+// <<<<<<<<<<================================== Добавление дочерих элементов к элементу
+        if ("children" in templateObj) {
+            call_markup_index(templateObj["children"], new_parentsContainer, dataObj);
+        }
+
+    }
+
+}
 
 
