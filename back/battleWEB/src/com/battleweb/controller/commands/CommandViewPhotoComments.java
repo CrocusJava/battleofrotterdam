@@ -28,7 +28,7 @@ import com.battleweb.tools.ToolJSON;
 @Stateless
 @LocalBean
 public class CommandViewPhotoComments implements Command {
-	
+
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
@@ -53,20 +53,23 @@ public class CommandViewPhotoComments implements Command {
 		for (Comment comment : comments) {
 
 			User user = comment.getUser();
-			JsonObject jsonUser = Json.createObjectBuilder()
-					.add(Constants.PARAMETER_ID, user.getId())
-					.add(Constants.PARAMETER_LOGIN, user.getLogin())
-					.add(Constants.PARAMETER_AVATAR_PATH, user.getPhotoPath())
-					.build();
+			if (user.getCommentAble() && user.getActive()) {
+				JsonObject jsonUser = Json
+						.createObjectBuilder()
+						.add(Constants.PARAMETER_ID, user.getId())
+						.add(Constants.PARAMETER_LOGIN, user.getLogin())
+						.add(Constants.PARAMETER_AVATAR_PATH,
+								user.getPhotoPath()).build();
 
-			JsonObject jsonPhoto = Json
-					.createObjectBuilder()
-					.add(Constants.PARAMETER_ID, comment.getId())
-					.add(Constants.PARAMETER_TEXT, comment.getCommentText())
-					.add(Constants.PARAMETER_DATE,
-							dateFormat.format(comment.getCommentDate()))
-					.add(Constants.PARAMETER_USER, jsonUser).build();
-			jsonPhotos.add(jsonPhoto);
+				JsonObject jsonPhoto = Json
+						.createObjectBuilder()
+						.add(Constants.PARAMETER_ID, comment.getId())
+						.add(Constants.PARAMETER_TEXT, comment.getCommentText())
+						.add(Constants.PARAMETER_DATE,
+								dateFormat.format(comment.getCommentDate()))
+						.add(Constants.PARAMETER_USER, jsonUser).build();
+				jsonPhotos.add(jsonPhoto);
+			}
 		}
 
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()
