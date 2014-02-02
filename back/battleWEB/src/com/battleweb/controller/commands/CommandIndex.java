@@ -110,6 +110,7 @@ public class CommandIndex implements Command{
 				.add(Constants.PARAMETER_LOAD_DATE, dateFormat.format(photo.getLoadDate()))
 				.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
 				.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
+				.add(Constants.PARAMETER_PROJECT_NAME, photo.getProject().getName())
 				.add(Constants.PARAMETER_PROJECT_ID, photo.getProject().getId())
 				.add(Constants.PARAMETER_PHOTO_ID, photo.getId())
 				.build();
