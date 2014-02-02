@@ -826,17 +826,14 @@ function call_uploading_file_on_server() {
                     catch (e) {
                         console.log(e);
                     }
-                    var description_photo = $(parent_block).trigger("my_send.description");
-
-                    call_send_description_for_this_photo(response, description_photo);
+                    $(parent_block).trigger("my_send.description");
 
                     console.log(response);
                     console.log(parent_block);
-                    console.log(description_photo);
-//                    var data = $(response)[0];
-//                    var text = $(data).text();
-//                    text = JSON.parse(text);
-//                    console.log(text);
+                    console.log(window.upload_file.upload_desription);
+
+                    call_send_description_for_this_photo(response, window.upload_file.upload_desription);
+
 
                 }
                 catch (e) {
@@ -1577,9 +1574,10 @@ function call_new_added_photo_for_edit_project(photo) {
     }
     function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
+        window.upload_file.upload_desription = description;
         event.preventDefault();
         console.log(description);
-        return description;
+
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
