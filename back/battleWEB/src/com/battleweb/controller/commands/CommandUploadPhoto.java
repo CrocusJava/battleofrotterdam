@@ -73,7 +73,7 @@ public class CommandUploadPhoto implements Command {
 		photo.setLoadDate(new Date());
 		photo.setProject(project);
 		photo.setPath(filePath);
-		photo.setDescription(fileNameCorrect);
+		photo.setDescription("");
 		photoBean.create(photo);
 
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
