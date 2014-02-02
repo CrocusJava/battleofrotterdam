@@ -76,7 +76,7 @@
 				allowTypes="/(\.|\/)(gif|jpe?g|bmp|jpg|JPG)$/" required="true" />
 			<p:growl id="messages" showDetail="true" />
 
-			<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+			<p:commandButton partialSubmit="true" onclick="PF('newsDialog').hide()"
 				action="#{newBean.edit()}" value="Apply" />
 			<p:commandButton oncomplete="PF('newsDialog').hide()" value="Cancel" />
 		</p:dialog>

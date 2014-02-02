@@ -177,30 +177,30 @@
             </section><!-- End section content page -->
 
 
-			<div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="myModal_CP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="myModalLabel" class="caption_profile">Wellcome to creating new project</h3>
                 </div>
                 <div class="modal-body">
                     <label class="header_popup_pz">Chose the Competition:</label>
-					 <div style="margin: 25px 25px;">
-					
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                            Monthly competition
-                        </label>
+                    <div style="margin: 25px 25px;">
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                Monthly competition
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label >
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                Yearly competition
+                            </label>
+                        </div>
+
                     </div>
-                    <div class="radio">
-                        <label >
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                            Yearly competition
-                        </label>
-                    </div>
-						
-					</div>
-						  
+
                     <label class="header_popup_pz">Enter project name:</label>
                     <input type="text" name="project" class="input-block-level" style="width: 100%; margin: 10px auto;" required="">
                     <label class="header_popup_pz">Enter project description:</label>
@@ -351,7 +351,7 @@
             $(".createproj").click(function() {
                 $("#myModal_CP").modal("show");
                 $(".create").click(function() {
-                    window.location = "single_project.html";
+                    call_createproject();
                 });
             });
         </script>

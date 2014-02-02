@@ -58,7 +58,7 @@
 					<p:inputText value="#{linksBean.url.value}" size="50" />
 				</h:panelGrid>
 				
-				<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+				<p:commandButton partialSubmit="true" onclick="PF('newsDialog').hide()"
 					action="#{linksBean.edit()}" value="Apply" />
 				<p:commandButton oncomplete="PF('compDialog').hide()" value="Cancel" />
 			</h:panelGroup>

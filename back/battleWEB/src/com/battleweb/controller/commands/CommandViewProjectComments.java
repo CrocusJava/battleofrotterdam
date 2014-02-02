@@ -37,7 +37,7 @@ public class CommandViewProjectComments implements Command {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat(
 				"dd MMMM yyyy HH:mm", Locale.ENGLISH);
 
@@ -52,23 +52,26 @@ public class CommandViewProjectComments implements Command {
 				firstPosition, size);
 		JsonArrayBuilder jsonPhotos = Json.createArrayBuilder();
 		for (Comment comment : comments) {
-			
+
 			User user = comment.getUser();
-			JsonObject jsonUser = Json
-					.createObjectBuilder()
-					.add(Constants.PARAMETER_ID, user.getId())
-					.add(Constants.PARAMETER_LOGIN, user.getLogin())
-					.add(Constants.PARAMETER_AVATAR_PATH,
-							user.getPhotoPath()).build();
-			
-			JsonObject jsonPhoto = Json
-					.createObjectBuilder()
-					.add(Constants.PARAMETER_ID, comment.getId())
-					.add(Constants.PARAMETER_TEXT, comment.getCommentText())
-					.add(Constants.PARAMETER_DATE,
-							dateFormat.format(comment.getCommentDate()))
-					.add(Constants.PARAMETER_USER, jsonUser).build();
-			jsonPhotos.add(jsonPhoto);
+
+			if (user.getCommentAble() && user.getActive()) {
+				JsonObject jsonUser = Json
+						.createObjectBuilder()
+						.add(Constants.PARAMETER_ID, user.getId())
+						.add(Constants.PARAMETER_LOGIN, user.getLogin())
+						.add(Constants.PARAMETER_AVATAR_PATH,
+								user.getPhotoPath()).build();
+
+				JsonObject jsonPhoto = Json
+						.createObjectBuilder()
+						.add(Constants.PARAMETER_ID, comment.getId())
+						.add(Constants.PARAMETER_TEXT, comment.getCommentText())
+						.add(Constants.PARAMETER_DATE,
+								dateFormat.format(comment.getCommentDate()))
+						.add(Constants.PARAMETER_USER, jsonUser).build();
+				jsonPhotos.add(jsonPhoto);
+			}
 		}
 
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()

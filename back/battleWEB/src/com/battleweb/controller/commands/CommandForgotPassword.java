@@ -64,7 +64,7 @@ public class CommandForgotPassword implements Command {
 			message.append(newPassword);
 
 			toolEmail.send("Battle of Rotterdam new password",
-					message.toString(), "battleofrotterdam@gmail.com", email);
+					message.toString(), email);
 			
 			newPasswordMessage = textBean.findLocaleTextByKey(
 					Constants.TEXT_MESSAGE_NEW_PASSWORD, locale);

@@ -147,11 +147,12 @@
                             </div>
 
 
-                            <div class="text_center" style=" clear:both; ">
+                            <div class="text_center" style=" clear:both;"  contenteditable="true">
                                 <h1 class="font_hotel" style=" margin: 10px 0 10px 0;" id="name"></h1>
 
                                 <p id="description"></p>
                             </div>
+                            <div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>
                             <!-- Start Break Page Style-->
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
@@ -198,6 +199,7 @@
 
                             <div style="height:35px;"></div>
                             <section id="new_added_photo"></section>
+                            <section id="viewprojectphotos"></section>
                             <!--                            <section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">
 
                                                             <a href="img/remont1.jpg" class="image_link">
@@ -248,7 +250,7 @@
                                                         </section>
 
                                                         <div style="height:35px;"></div>-->
-                            <!--                            <button class="addphoto btn btn-primary btn-large flat uploadphoto"> Add photo</button>-->
+                            <label class="addphoto btn btn-primary btn-large flat" for="uploadphoto"> Add photo</label>
 
 
                             <div style="height:35px;"></div>
@@ -439,11 +441,17 @@
         <!--end JS config application-->
 
         <script type="text/javascript">
-            $("#vote").click(function() {
-                call_send_vote(window.projectId);
-                return false;
+            $("#button_edit_profile").click(function() {
+                call_send_data_editproject();
             });
         </script>
+
+        <!--        <script type="text/javascript">
+                    $("#vote").click(function() {
+                        call_send_vote(window.projectId);
+                        return false;
+                    });
+                </script>-->
 
     </body>
 </html>

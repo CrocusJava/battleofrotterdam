@@ -33,7 +33,7 @@
 			</p:column>
 
 			<p:column headerText="Login" filterBy="#{user.login}">
-				<h:outputLink value="static_profile.html#userlogin=#{user.login}">
+				<h:outputLink value="static_profile.html#userid=#{user.id}">
 					<h:outputText value="#{user.login}" />
 				</h:outputLink>
 			</p:column>
@@ -94,7 +94,7 @@
 				<br />
 				<p:editor id="editor" value="#{usersBean.text}" width="600" />
 
-				<p:commandButton oncomplete="PF('newsDialog').hide()" update=":form"
+				<p:commandButton partialSubmit="true" onclick="PF('newsDialog').hide()"
 					action="#{usersBean.sendEmail()}" value="Send" />
 				<p:commandButton oncomplete="PF('emailDialog').hide()"
 					value="Cancel" />
