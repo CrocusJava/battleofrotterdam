@@ -318,15 +318,10 @@ public interface Constants {
 	public static final String PARAMETER_LOCALE = "locale";
 	public static final String PARAMETER_LOCALE_EN = "en";
 	public static final String PARAMETER_LOCALE_NL = "nl";
-<<<<<<< HEAD
 	
 	//Path
 	public static final String PATH_NO_PHOTO = "img/nophoto.png";
-	
-=======
 
-	// Path
->>>>>>> adf08e10793fa387c326bcdf226bc75c066fb0da
 	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";
 	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
 	public static final String PATH_SAVE_PHOTO = "/usr/app/jboss/photo";
