@@ -75,4 +75,10 @@ public class ToolSession {
 		Integer roleId = getRoleId(request);
 		return roleId != null && roleId == 1;
 	}
+	
+	public void updateUser(HttpServletRequest request, User user){
+		HttpSession session = ((HttpServletRequest)request).getSession();
+		session.removeAttribute(Constants.PARAMETER_SESSION_USER);
+		session.setAttribute(Constants.PARAMETER_SESSION_USER, user);
+	}
 }

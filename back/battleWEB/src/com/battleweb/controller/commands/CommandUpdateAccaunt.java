@@ -103,6 +103,9 @@ public class CommandUpdateAccaunt implements Command {
 		makeResponse(request, response, Constants.TEXT_MESSAGE_UPDATE_ACCOUNT_SUCCESS);
 		Log.debug(this, "Account success updated.");
 		
+		/** Update user in session*/
+		toolSession.updateUser(request, user);
+		Log.debug(this, "Update user in session");
 		return null;
 	}
 	
