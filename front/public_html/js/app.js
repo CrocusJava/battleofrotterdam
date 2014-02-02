@@ -1690,8 +1690,40 @@ function call_create_markup_for_viewprojectphotos(respons) {
     $(template_for_viewprojectphotos).appendTo("#viewprojectphotos");
 }
 
+/*command:editproject
+ url:http://edu.bionic-university.com:1120/battleWEB/controller
 
+ {
+ “projectid”:23,
+ “name” : “***”,
+ “description”:”***”
+ }
+ ответ от сервера:
+ {
+ “status”:true/false,
+ “message”:”***”                //изменения внесены…
+ }*/
+function call_send_data_editproject() {
+    var data = {
+        projectid: window.projectId,
+        "name": $("#name").text(),
+        "description": $("#description").text()
+    };
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=editproject";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        console.log(respons);
 
+    }).fail(function() {
+        console.log("error onload command=editproject ");
+    });
+}
 //	“name” : “***”,
 //		“creationdate”: “***”
 //		“description” : “***”,
