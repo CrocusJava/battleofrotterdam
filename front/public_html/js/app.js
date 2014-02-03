@@ -402,7 +402,7 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data);
     }).fail(function(data) {
-        $.cookie("login", false);
+        $.session.set("login", false);
         $("#sorry").text("Sorry, no guessing. Try again.");
         $("input").focus(function() {
             $("#sorry").text("");
