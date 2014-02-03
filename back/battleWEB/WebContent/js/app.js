@@ -903,23 +903,27 @@ function call_event_logout() {
     });
 }
 
-
-//                                <a href="img/remont1.jpg" class="image_link">
-//
-//
-//                                    <div class="with_hover"></div>
-//
-//
-//
-//
-//                                    <div class="hover singlephoto" ><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
-//
-//                                    </div>  </a>
+ /*=====
+function call_load_data_for_footer_gallery(load_data) {
+    var index_footer_gallery_template = [
+        {tag: "div", add_class: "item_grid item3", children: [
+                {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
+                        {tag: "div", add_class: "hover"},
+                        {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
+                    ]}
+            ]}
+    ];
+    call_markup_index(index_footer_gallery_template, $("#footer_gallery"), load_data);
+}
+=====*/
 
 function call_load_data_for_news_index() {
     $.post("/battleWEB/controller?command=news", function(data) {
         var template_for_news_index = [
             {tag: "div", add_class: "span4 text_center", children: [
+					{tag: "a", attr: {href: "photopath",  "data-href": "photopath"}, children: [
+                        {tag: "div", add_class: "hover"},
+			
                     {tag: "div", add_class: "boxfeature", children: [
                             {tag: "div", add_class: "img_preview", children: [
                                     {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
@@ -934,7 +938,10 @@ function call_load_data_for_news_index() {
                                         ]}
                                 ]}
                         ]}
-                ]}
+                
+					]}
+				
+				]}
         ];
         /*=======================мой код для попапа================================*/
         var template_for_news_index_popup = [
