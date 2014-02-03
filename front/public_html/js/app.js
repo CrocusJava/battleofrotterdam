@@ -285,23 +285,22 @@ function call_scroll() {
 
 
 function call_lightbox_news() {
-if ($('.news_index').length > 0) {
+    if ($('.news_index').length > 0) {
         $('.news_index').magnificPopup({
             delegate: 'a',
             type: 'image',
             tLoading: 'Loading image...',
             mainClass: 'mfp-img-mobile',
-           
             image: {
                 tError: 'The image could not be loaded.',
                 titleSrc: function(item) {
-                    return item.el.attr('title') ;
+                    return item.el.attr('title');
                 }
             }
         });
 
 
-}
+    }
 
 }
 
@@ -327,18 +326,18 @@ function call_lightbox() {
             image: {
                 tError: 'The image could not be loaded.',
                 titleSrc: function(item) {
-                    return item.el.attr('title') + '<small>By ' + item.el.attr("data-user") + '</small>';
+                    return '<a href="single_project.html#projectid="' + item.el.attr('projectid') + '>' + item.el.attr('title') + '<small>By ' + item.el.attr("data-user") + '</small></a>';
                 }
             }
         });
     }
-	
-	
-    }
-	
-	
-	
-	
+
+
+}
+
+
+
+
 
 function data_collection_forms(form) {
     var collection = {};
@@ -759,7 +758,7 @@ function call_load_data_for_footer_links(load_data) {
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
         {tag: "div", add_class: "item_grid item3", children: [
-                {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
+                {tag: "a", attr: {href: "photopath", title: "photodescription", "data-user": "userlogin", projectid: "projectid"}, children: [
                         {tag: "div", add_class: "hover"},
                         {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
                     ]}
@@ -932,34 +931,32 @@ function call_event_logout() {
     });
 }
 
- /*=====
-function call_load_data_for_footer_gallery(load_data) {
-    var index_footer_gallery_template = [
-        {tag: "div", add_class: "item_grid item3", children: [
-                {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
-                        {tag: "div", add_class: "hover"},
-                        {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
-                    ]}
-            ]}
-    ];
-    call_markup_index(index_footer_gallery_template, $("#footer_gallery"), load_data);
-}
-=====*/
+/*=====
+ function call_load_data_for_footer_gallery(load_data) {
+ var index_footer_gallery_template = [
+ {tag: "div", add_class: "item_grid item3", children: [
+ {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
+ {tag: "div", add_class: "hover"},
+ {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
+ ]}
+ ]}
+ ];
+ call_markup_index(index_footer_gallery_template, $("#footer_gallery"), load_data);
+ }
+ =====*/
 
 function call_load_data_for_news_index() {
     $.post("/battleWEB/controller?command=news", function(data) {
         var template_for_news_index = [
             {tag: "div", add_class: "span4 text_center", children: [
-					
-			
                     {tag: "div", add_class: "news_index boxfeature", children: [
-					{tag: "a", attr: {href: "photopath", title:"text", "data-href": "photopath"}, children: [
-                        {tag: "div", add_class: "hover"},
-                            {tag: "div", add_class: "img_preview", children: [
-                                    {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
-                                    {tag: "h4", text: "loaddate"}
-                                ]}
-								 ]},
+                            {tag: "a", attr: {href: "photopath", title: "text", "data-href": "photopath"}, children: [
+                                    {tag: "div", add_class: "hover"},
+                                    {tag: "div", add_class: "img_preview", children: [
+                                            {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+                                            {tag: "h4", text: "loaddate"}
+                                        ]}
+                                ]},
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
@@ -968,11 +965,11 @@ function call_load_data_for_news_index() {
                                             }
                                         ]}
                                 ]}
-                       
-                
-					]}
-				
-				]}
+
+
+                        ]}
+
+                ]}
         ];
         /*=======================мой код для попапа================================*/
         var template_for_news_index_popup = [
@@ -998,7 +995,7 @@ function call_load_data_for_news_index() {
         for (var i in data.lastnews) {
             var data_popup_news = data.lastnews[i];
             call_markup_for_admin_text(template_for_news_index, $("#news_index"), data.lastnews[i]);
-           call_lightbox_news(); 
+            call_lightbox_news();
 
 
         }
