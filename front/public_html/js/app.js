@@ -326,7 +326,7 @@ function call_lightbox() {
             image: {
                 tError: 'The image could not be loaded.',
                 titleSrc: function(item) {
-                    return '<a href="single_project.html#projectid="' + item.el.attr('projectid') + '>' + item.el.attr('title') + '<small>By ' + item.el.attr("data-user") + '</small></a>';
+                    return '<a href="single_project.html#projectid=' + item.el.attr('projectid') + '">' + item.el.attr('title') + '<small>By ' + item.el.attr("data-user") + '</small></a>';
                 }
             }
         });

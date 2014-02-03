@@ -42,19 +42,19 @@
         <!-- End CountTime -->
 
     </head>
-	
+
     <body class="theme_default">
-	
+
         <div id="wrapper">
-		
-		
-		
+
+
+
             <section id="top_header" class="">
-			
-			
-			
+
+
+
                 <div class="inner-wrapper text_center">
-				
+
                     <!--Start Main Navigation-->
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
@@ -83,12 +83,12 @@
                                 </ul>
                             </li>
                             <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
-							
+
                         </ul>
                     </nav>
                 </div>
             </section>
-			 <div class="inner-wrapper text_center" style="height: 50px;"></div>
+            <div class="inner-wrapper text_center" style="height: 50px;"></div>
             <!--Start main Title content--
             <section id="content_top">
                 <div class="bg_content_top general_bg">
@@ -102,10 +102,10 @@
             <!-- Start section logo message area -->
             <section id="logo_message_area">
                 <div class="inner-wrapper">
-                 
+
                     <!-- Start Message Your own -->
                     <div class="row-fluid">
-  <div class="span12">
+                        <div class="span12">
                             <!--Start List Flags-->
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
@@ -116,7 +116,7 @@
                             </div>
                             <!--End List Flags-->
                         </div>
-                       
+
                     </div><!-- End Message Your own -->
                 </div>
                 <div class="inner-wrapper driver_space"></div>
@@ -156,7 +156,7 @@
                                                     </div>
                                                 </div>-->
 
-                                             
+
                                                 <label>Login</label>
                                                 <input type="text" name="login" class="input-block-level" required="">
                                                 <label>E-mail</label>
@@ -171,11 +171,11 @@
                                         </div>
                                         <div class="span6">
                                             <div class="panel">
-                                               
+
                                                 <label>First Name</label>
                                                 <input type="text" class="input-block-level" required="" name="firstname">
                                                 <label>Middle Name</label>
-                                                <input type="text" class="input-block-level" required="" name="middlename">
+                                                <input type="text" class="input-block-level"  name="middlename">
                                                 <label>Last Name</label>
                                                 <input type="text" class="input-block-level" required="" name="lastname">
                                                 <label>Date of Birth</label>
@@ -195,8 +195,8 @@
                                                 <span class="help-block">Example: +3(099)123 456 789</span>
 
                                                 <label class="checkbox">
-                                                    <input type="checkbox" value="">
-                                                    <small>Agree <a href="terms_conditions.html">Terms AND Conditions</a></small>
+                                                    <input type="checkbox" value="" required="">
+                                                    <small>Agree <a href="terms_conditions.html" id="terms_condition">Terms AND Conditions</a></small>
                                                 </label>
                                             </div>
                                         </div>
@@ -214,7 +214,7 @@
                 </div>
 
             </section><!-- End section content page -->
- 
+
             <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
@@ -275,6 +275,18 @@
             </footer><!--End Footer Section-->
         </div>
 
+        <div id="myModal_TC" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="termstitle"></h3>
+            </div>
+            <div class="modal-body">
+                <p id="termstext"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
         <!--=========================================================================-->
         <!--Load JS source-->
         <!--=========================================================================-->
@@ -330,10 +342,20 @@
         <script src="js/app.js"></script>
         <!--end JS config application-->
 
+        <script type="text/javascript">
+            $.post("/battleWEB/controller?command=terms", function(data) {
+                $("#termstitle").html(data.termstitle);
+                $("#termstext").html(data.termstext);
+            });
+            $("#terms_condition").click(function(event) {
+                event.preventDefault();
+                $("#myModal_TC").modal("show");
+
+            });
+        </script>
 
 
 
-      
 
     </body>
 </html>
