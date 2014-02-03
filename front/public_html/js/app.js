@@ -283,6 +283,28 @@ function call_scroll() {
     });
 }
 
+
+function call_lightbox_news() {
+if ($('.news_index').length > 0) {
+        $('.news_index').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image...',
+            mainClass: 'mfp-img-mobile',
+           
+            image: {
+                tError: 'The image could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title') ;
+                }
+            }
+        });
+
+
+}
+
+
+
 function call_lightbox() {
     if ($('.image_link').length > 0) {
         $('.image_link').magnificPopup({
@@ -311,20 +333,7 @@ function call_lightbox() {
         });
     }
 	
-	if ($('.news_index').length > 0) {
-        $('.news_index').magnificPopup({
-            delegate: 'a',
-            type: 'image',
-            tLoading: 'Loading image...',
-            mainClass: 'mfp-img-mobile',
-           
-            image: {
-                tError: 'The image could not be loaded.',
-                titleSrc: function(item) {
-                    return item.el.attr('title') ;
-                }
-            }
-        });
+	
     }
 	
 	
@@ -989,60 +998,9 @@ function call_load_data_for_news_index() {
         for (var i in data.lastnews) {
             var data_popup_news = data.lastnews[i];
             call_markup_for_admin_text(template_for_news_index, $("#news_index"), data.lastnews[i]);
-            function popup_news() {
-                call_markup_for_admin_text(template_for_news_index_popup, $("#news_index"), data_popup_news);
-            }
+           call_lightbox_news(); 
 
 
-
-            /*=======================мой код для попапа============================*/
-            /*=			<section class='popup'>
-
-             <div class="popvis text_center">
-             <div class="boxfeature">
-             <div class="img_preview">
-             <i class="icon-remove close_popup_news" > </i>
-             <img src="img/remont11.jpg" data-src="img/remont11.jpg" alt="img_preview">
-
-             </div>
-             <div class="desc_news desc" >
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-             </p>
-
-             </div>
-             </div>
-             </div>
-             <div class="popup_back_news">
-
-
-
-
-             </section>==
-
-
-
-
-             var template_for_news_index_popup = [
-             {tag: "div", add_class: "popvis text_center", children: [
-             {tag: "div", add_class: "boxfeature", children: [
-             {tag: "div", add_class: "img_preview", children: [
-             {tag:"i", add_class:"icon-remove close_popup_news"},
-             {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
-             {tag: "h4", text: "loaddate"}
-             ]},
-             {tag: "div", add_class: "desc_news desc", children: [
-             {tag: "p", text: "text"},
-
-             ]}
-             ]}
-             ]},
-             {tag: "div", add_class:"popup_back_news"}
-             ];
-
-
-
-             /*=======================конец моего кода для попапа============================*/
         }
 
 
