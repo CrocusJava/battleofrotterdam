@@ -924,12 +924,13 @@ function call_load_data_for_news_index() {
 					
 			
                     {tag: "div", add_class: "boxfeature", children: [
-					{tag: "a", attr: {href: "photopath",  "data-href": "photopath"}, children: [
+					{tag: "a", attr: {href: "photopath", title:"text", "data-href": "photopath"}, children: [
                         {tag: "div", add_class: "hover"},
                             {tag: "div", add_class: "img_preview", children: [
                                     {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
                                     {tag: "h4", text: "loaddate"}
-                                ]},
+                                ]}
+								 ]},
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "text"},
                                     {tag: "p", children: [
@@ -938,7 +939,7 @@ function call_load_data_for_news_index() {
                                             }
                                         ]}
                                 ]}
-                        ]}
+                       
                 
 					]}
 				
