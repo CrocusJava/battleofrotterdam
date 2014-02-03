@@ -516,7 +516,7 @@ function call_load_data_for_index_events(load_data) {
         {tag: "li", children: [
                 {tag: "div", add_class: "content_post", children: [
                         {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
-                        {tag: "h4", text: "competitionname"},
+                        {tag: "h4", text: "projectname"},
                         {tag: "p", text: "photodescription"},
                         {tag: "p", add_class: "clear", children: [
                                 {tag: "span", children: [
@@ -580,8 +580,8 @@ function call_data_for_index_html() {
         $.post("/battleWEB/controller?command=index", function(respons, status) {
 
             call_start_count_timer(respons["battleyearfinishdate"], respons["battlemonthfinishdate"]);
-            $("#battledescriptionshort").text(respons["battledescriptionshort"]);
-            $("#battleanimationdescription").text(respons["battleanimationdescription"]);
+            $("#battledescriptionshort").html(respons["battledescriptionshort"]);
+            $("#battleanimationdescription").html(respons["battleanimationdescription"]);
             $("#battleanimationurl").attr("src", respons["battleanimationurl"]);
             var dataArray = respons["lastcommentslist"];
             for (var i in dataArray) {
@@ -782,11 +782,9 @@ function call_uploading_file_on_server() {
     if (target) {
         window.upload_file = new AjaxUpload(target, {
             action: '/battleWEB/controller?command=' + command_value, //command=uploadavatar command=uploadphoto
-            name: command_value,
-            data: {
-                'some_key1': "This data won't be sent, we will overwrite it."
-            },
+
             autoSubmit: false,
+            responseType: "json",
             onChange: function(file, ext) {
                 if (ext && /^(jpg|gif|jpeg|bmp|png)$/.test(ext)) {
                     var reader = new FileReader();
@@ -821,10 +819,22 @@ function call_uploading_file_on_server() {
             onComplete: function(file, response) {
                 console.log("передача файла завершена");
                 try {
-                    var data = $(response)[0];
-                    var text = $(data).text();
-                    text = JSON.parse(text);
-                    console.log(text);
+                    var parent_block = window.upload_file.block_of_sended_photo;
+                    try {
+                        $(parent_block).data({"fixed_id_photo": response["idphoto"]});
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                    $(parent_block).trigger("my_send.description");
+
+                    console.log(response);
+                    console.log(parent_block);
+                    console.log(window.upload_file.upload_desription);
+
+                    call_send_description_for_this_photo(response, window.upload_file.upload_desription);
+
+
                 }
                 catch (e) {
                 }
@@ -877,10 +887,10 @@ function call_load_data_for_about_battle() {
             {tag: "h1", add_class: "font_hotel", text: "title"},
             {tag: "p", text: "description"}
         ];
-        call_markup_index(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
-        call_markup_index(template_for_about_battle, $("#rules "), data.rules);
-        call_markup_index(template_for_about_battle, $("#aboutus"), data.aboutus);
-        call_markup_index(template_for_about_battle, $("#information"), data.information);
+        call_markup_for_admin_text(template_for_about_battle, $("#aboutbattle"), data.aboutbattle);
+        call_markup_for_admin_text(template_for_about_battle, $("#rules "), data.rules);
+        call_markup_for_admin_text(template_for_about_battle, $("#aboutus"), data.aboutus);
+        call_markup_for_admin_text(template_for_about_battle, $("#information"), data.information);
         console.log(data);
     }, "json").fail("data for about battle not loaded");
 }
@@ -949,9 +959,9 @@ function call_load_data_for_news_index() {
 
         for (var i in data.lastnews) {
             var data_popup_news = data.lastnews[i];
-            call_markup_index(template_for_news_index, $("#news_index"), data.lastnews[i]);
+            call_markup_for_admin_text(template_for_news_index, $("#news_index"), data.lastnews[i]);
             function popup_news() {
-                call_markup_index(template_for_news_index_popup, $("#news_index"), data_popup_news);
+                call_markup_for_admin_text(template_for_news_index_popup, $("#news_index"), data_popup_news);
             }
 
 
@@ -1141,12 +1151,12 @@ function call_load_data_for_current_rankings() {
         var monthprojects = data["monthprojects"];
         for (var i in monthprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
-            call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
@@ -1289,7 +1299,7 @@ function call_cookie_navigator() {
                     window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
                     call_load_data_for_viewprojectcomments(projectid);
-                    call_load_data_for_viewprojectphotos(projectid)
+                    call_load_data_for_viewprojectphotos(projectid);
                 }
                 break;
             case "userid":
@@ -1410,45 +1420,8 @@ function call_create_markup_for_viewprojectcomments(respons) {
 
 
 function call_load_data_for_projets_page() {
-    var template_projets_page = [
-        {tag: "section", add_class: "project_block", children: [
-                {tag: "div", add_class: "blog-line", attr: {style: "background: rgba(0,181,0,0.3);"}, children: [
-                        {tag: "a", attr: {href: "#"}, children: [
-                                {tag: "i", add_class: "icon-user"},
-                                {tag: "span", text: "user", subattr: {"user": "login"}}
-                            ]},
-                        {tag: "span", children: [
-                                {tag: "a", attr: {href: "#"}, children: [
-                                        {tag: "i", add_class: "icon-ok"},
-                                        {tag: "span", text: "rating"},
-                                        {tag: "span", text: " Likes"}
-                                    ]}
-                            ]},
-                        {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
-                                {tag: "i", add_class: "icon-comments"},
-                                {tag: "span", text: "commentquantity"},
-                                {tag: "span", text: " Comments"}
-                            ]}
-                    ]},
-                {tag: "div", add_class: "project_block_ava", children: [
-                        {tag: "img", attr: {src: "user"}, subattr: {"src": "avatarpath"}, add_class: "img-circle ava_proj"}
-                    ]},
-                {tag: "article", add_class: "project_block_proj", children: [
-                        {tag: "div", add_class: "project_block_proj_name", text: "name"},
-                        {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
-                    ]},
-                {tag: "div", add_class: "project_block_photo", children: [
-                        {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"},
-                        {tag: "div", add_class: "viewtheproj", children: [
-                                {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
-                                        {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project"}
-                                    ]}
-                            ]}
-                    ]}
-            ]},
-        {tag: "div", attr: {"style": "height:35px;"}}
 
-    ];
+
     var url = "/battleWEB/controller?command=projects";
     var data = JSON.stringify({
         firstposition: 0,
@@ -1463,15 +1436,62 @@ function call_load_data_for_projets_page() {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+        for (var project in respons.projects) {
+            call_create_markup_for_projects(respons.projects[project]);
+        }
 
-        call_create_markup_for_projects(respons);
     }).fail(function() {
         console.log("error onload command = projects ");
     });
     function call_create_markup_for_projects(respons) {
-        for (var project in respons.projects) {
-            call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons.projects[project]);
+
+        function go_to_project() {
+            var href = $(this).attr("href");
+            href = href + "#projectid=" + respons["id"];
+            $(this).attr("href", href);
         }
+
+        var template_projets_page = [
+            {tag: "section", add_class: "project_block", children: [
+                    {tag: "div", add_class: "blog-line", attr: {style: "background: rgba(0,181,0,0.3);"}, children: [
+                            {tag: "a", attr: {href: "#"}, children: [
+                                    {tag: "i", add_class: "icon-user"},
+                                    {tag: "span", text: "user", subattr: {"user": "login"}}
+                                ]},
+                            {tag: "span", children: [
+                                    {tag: "a", attr: {href: "#"}, children: [
+                                            {tag: "i", add_class: "icon-ok"},
+                                            {tag: "span", text: "rating"},
+                                            {tag: "span", text: " Likes"}
+                                        ]}
+                                ]},
+                            {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
+                                    {tag: "i", add_class: "icon-comments"},
+                                    {tag: "span", text: "commentquantity"},
+                                    {tag: "span", text: " Comments"}
+                                ]}
+                        ]},
+                    {tag: "div", add_class: "project_block_ava", children: [
+                            {tag: "img", attr: {src: "user"}, subattr: {"src": "avatarpath"}, add_class: "img-circle ava_proj"}
+                        ]},
+                    {tag: "article", add_class: "project_block_proj", children: [
+                            {tag: "div", add_class: "project_block_proj_name", text: "name"},
+                            {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
+                        ]},
+                    {tag: "div", add_class: "project_block_photo", children: [
+                            {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"},
+                            {tag: "div", add_class: "viewtheproj", children: [
+                                    {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
+                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
+                                        ]}
+                                ]}
+                        ]}
+                ]},
+            {tag: "div", attr: {"style": "height:35px;"}}
+
+        ];
+        call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons);
+
     }
 }
 
@@ -1546,19 +1566,27 @@ function call_createproject() {
 
 function call_new_added_photo_for_edit_project(photo) {
     function Save_img_and_description(event) {
+        var parent = $(this).parents("section.project_block");
+        window.upload_file.block_of_sended_photo = parent;
         window.upload_file.submit();
         window.upload_file.enable();
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
+        window.upload_file.upload_desription = description;
         event.preventDefault();
         console.log(description);
+
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
+
+        console.log(parent.data("fixed_id_photo"));
+
         $(parent).remove();
-        console.log(parent);
+        window.upload_file._clearInput();
+        window.upload_file.enable();
         event.preventDefault();
     }
     window.upload_file.disable();
@@ -1600,6 +1628,32 @@ function call_new_added_photo_for_edit_project(photo) {
 
 }
 
+function call_send_description_for_this_photo(response, description_photo) {
+    /* command=editphotodescription
+     {"id":234,
+     "description":"bla-bla"
+     }*/
+    var send_data = {
+        id: response.idphoto,
+        description: description_photo
+    };
+    var url = "/battleWEB/controller?command=editphotodescription";
+    send_data = JSON.stringify(send_data);
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: send_data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        console.log("Description of photo sended");
+        console.log(respons);
+    }).fail(function() {
+        console.log("error  command=editphotodescription");
+    });
+}
+
 function  call_load_data_for_viewprojectphotos(projectid) {
     var data = {
         projectid: projectid,
@@ -1636,6 +1690,40 @@ function call_create_markup_for_viewprojectphotos(respons) {
     $(template_for_viewprojectphotos).appendTo("#viewprojectphotos");
 }
 
+/*command:editproject
+ url:http://edu.bionic-university.com:1120/battleWEB/controller
+
+ {
+ “projectid”:23,
+ “name” : “***”,
+ “description”:”***”
+ }
+ ответ от сервера:
+ {
+ “status”:true/false,
+ “message”:”***”                //изменения внесены…
+ }*/
+function call_send_data_editproject() {
+    var data = {
+        projectid: window.projectId,
+        "name": $("#name").text(),
+        "description": $("#description").text()
+    };
+    data = JSON.stringify(data);
+    var url = "/battleWEB/controller?command=editproject";
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: data,
+        contentType: "application/json"
+    }).done(function(respons) {
+        console.log(respons);
+
+    }).fail(function() {
+        console.log("error onload command=editproject ");
+    });
+}
 //	“name” : “***”,
 //		“creationdate”: “***”
 //		“description” : “***”,
@@ -1664,6 +1752,66 @@ function call_create_markup_for_viewprojectphotos(respons) {
 
 
 
+function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
 
+    for (var j in markupTemplate) {
+
+        var templateObj = markupTemplate[j];
+        // <<<<<<<<<<================================== Создание элемента тега
+        if ("tag" in templateObj) {
+            var element = $(document.createElement(templateObj["tag"]));
+            element.appendTo(parentsContainer);
+            var new_parentsContainer = element;
+        }
+// <<<<<<<<<<================================== Добавление класса к элементу
+        if ("add_class" in templateObj) {
+            element.addClass(templateObj["add_class"]);
+        }
+// <<<<<<<<<<================================== Добавление атрибутов к элементу
+        if ("attr" in templateObj) {
+            var attr = templateObj["attr"];
+            for (var name_prop in attr) {
+                var value = attr[name_prop];
+                value = dataObj[value] || value;
+                // <<<<<<<<<<================================== Если атрибут является объектом
+                if ({}.toString.call(value) === "[object Object]") {
+// <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                    var subvalue = value[templateObj["subattr"][name_prop]];
+                    element.attr(name_prop, subvalue);
+                }
+                else {
+                    element.attr(name_prop, value);
+                }
+            }
+        }
+// <<<<<<<<<<================================== Добавление текста к элементу
+        if ("text" in templateObj) {
+            var text_key = templateObj["text"];
+            var text_value = dataObj[text_key] ? dataObj[text_key] : dataObj[text_key] === 0 ? 0 : dataObj[text_key] === "" ? "  " : text_key; //var text_value = dataObj[text_key] || text_key;
+            // <<<<<<<<<<================================== Если текст является объектом
+            if ({}.toString.call(text_value) === "[object Object]") {
+// <<<<<<<<<<================================== Требуется сабатрибут для опредиления конечного значения
+                var subvalue_text = text_value[templateObj["subattr"][text_key]];
+                element.html(subvalue_text);
+            }
+            else {
+                element.html(text_value);
+            }
+
+        }
+// <<<<<<<<<<================================== Добавление обработчика событий к элементу
+        if ("add_handler" in templateObj) {
+            for (var event in templateObj["add_handler"]) {
+                element.on(event, templateObj["add_handler"][event]);
+            }
+        }
+// <<<<<<<<<<================================== Добавление дочерих элементов к элементу
+        if ("children" in templateObj) {
+            call_markup_for_admin_text(templateObj["children"], new_parentsContainer, dataObj);
+        }
+
+    }
+
+}
 
 
