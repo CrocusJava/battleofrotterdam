@@ -310,6 +310,26 @@ function call_lightbox() {
             }
         });
     }
+	
+	if ($('.news_index').length > 0) {
+        $('.news_index').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image...',
+            mainClass: 'mfp-img-mobile',
+           
+            image: {
+                tError: 'The image could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title') ;
+                }
+            }
+        });
+    }
+	
+	
+	
+	
 }
 function data_collection_forms(form) {
     var collection = {};
@@ -923,7 +943,7 @@ function call_load_data_for_news_index() {
             {tag: "div", add_class: "span4 text_center", children: [
 					
 			
-                    {tag: "div", add_class: "boxfeature", children: [
+                    {tag: "div", add_class: "news_index boxfeature", children: [
 					{tag: "a", attr: {href: "photopath", title:"text", "data-href": "photopath"}, children: [
                         {tag: "div", add_class: "hover"},
                             {tag: "div", add_class: "img_preview", children: [
