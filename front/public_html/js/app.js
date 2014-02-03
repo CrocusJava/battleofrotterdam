@@ -372,7 +372,7 @@ function AjaxRegistrationLogin(form) {
     }).done(function(data) {
         if (form.id === "registration") {
             if (data.statuslogin === true && data.statusemail === true) {
-                $(".modal-body>p").text(data.registrationmessage);
+                $("#myModal > div.modal-body>p").text(data.registrationmessage);
                 $("#myModal").modal("show");
                 $("#myModal").on("hide", function() {
                     window.location = "index.html";
