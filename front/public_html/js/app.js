@@ -303,7 +303,7 @@ if ($('.news_index').length > 0) {
 
 }
 
-
+}
 
 function call_lightbox() {
     if ($('.image_link').length > 0) {
@@ -339,7 +339,7 @@ function call_lightbox() {
 	
 	
 	
-}
+
 function data_collection_forms(form) {
     var collection = {};
     collection.data = {};
