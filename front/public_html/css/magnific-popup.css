@@ -137,7 +137,7 @@ button::-moz-focus-inner {
   text-align: center;
   opacity: 0.65;
   padding: 0 0 18px 10px;
-  color: white;
+  color: black;
   font-style: normal;
   font-size: 28px;
   font-family: Arial, Baskerville, monospace; }
@@ -152,7 +152,7 @@ button::-moz-focus-inner {
 .mfp-image-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
   color: white;
-  right: -6px;
+  right: 6px;
   text-align: right;
   padding-right: 6px;
   width: 100%; }
@@ -284,7 +284,9 @@ img.mfp-img {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); }
 
 .mfp-figure {
-  line-height: 0; }
+  line-height: 0;
+background-color: rgba(256,256,256,1);
+padding: 0% 4%;  }
 
 .mfp-bottom-bar {
   margin-top: -36px;
@@ -295,11 +297,12 @@ img.mfp-img {
   cursor: auto; }
 
 .mfp-title {
-  text-align: left;
+  text-align: center;
   line-height: 18px;
-  color: #f3f3f3;
+  color: black;
   word-break: break-word;
-  padding-right: 36px; }
+  padding: 18px;
+background-color: #fff;  }
 
 .mfp-figure small {
   color: #bdbdbd;

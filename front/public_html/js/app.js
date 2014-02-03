@@ -13,7 +13,7 @@ function call_all() {
     call_control_color_theme();
 //    call_lazy_load_images();
     call_form_validation();
-//    call_events_show_hide_login_registration();
+
 
     call_event_create_comment();
     call_start_carousel();
@@ -372,7 +372,7 @@ function AjaxRegistrationLogin(form) {
     }).done(function(data) {
         if (form.id === "registration") {
             if (data.statuslogin === true && data.statusemail === true) {
-                $(".modal-body>p").text(data.registrationmessage);
+                $("#myModal > div.modal-body>p").text(data.registrationmessage);
                 $("#myModal").modal("show");
                 $("#myModal").on("hide", function() {
                     window.location = "index.html";
@@ -402,7 +402,7 @@ function AjaxRegistrationLogin(form) {
         call_enabling_submit_button();
         console.log(data);
     }).fail(function(data) {
-        $.cookie("login", false);
+        $.session.set("login", false);
         $("#sorry").text("Sorry, no guessing. Try again.");
         $("input").focus(function() {
             $("#sorry").text("");
@@ -436,20 +436,6 @@ function AjaxSendComment(form) {
     console.log(JSON.parse(config.data));
     return false;
 }
-
-function call_events_show_hide_login_registration() {
-    $("a[href$=#login]").on("click", function() {
-        $(".singup_area").slideUp(function() {
-            $(".login_area").slideDown();
-        });
-    });
-    $("a[href$=#singup]").on("click", function() {
-        $(".login_area").slideUp(function() {
-            $(".singup_area").slideDown();
-        });
-    });
-}
-
 
 
 function call_event_create_comment() {

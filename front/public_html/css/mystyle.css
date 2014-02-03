@@ -346,7 +346,23 @@ font-size: 0.7em;
 text-align: center; 
 }
 
+.res_search{
+margin: 1% 20%;
+padding: 1%;
+width: 65%;
+font-size: 14px;
+line-height: 130%;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
 
+
+}
+.res_search:hover{
+padding: 2%;
+background-color: rgba(0,188,0,0.1);
+
+}
 
 .star1{
 
