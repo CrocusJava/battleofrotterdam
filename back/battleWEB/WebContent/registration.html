@@ -42,19 +42,19 @@
         <!-- End CountTime -->
 
     </head>
-	
+
     <body class="theme_default">
-	
+
         <div id="wrapper">
-		
-		
-		
+
+
+
             <section id="top_header" class="">
-			
-			
-			
+
+
+
                 <div class="inner-wrapper text_center">
-				
+
                     <!--Start Main Navigation-->
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
@@ -83,12 +83,12 @@
                                 </ul>
                             </li>
                             <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
-							
+
                         </ul>
                     </nav>
                 </div>
             </section>
-			 <div class="inner-wrapper text_center" style="height: 50px;"></div>
+            <div class="inner-wrapper text_center" style="height: 50px;"></div>
             <!--Start main Title content--
             <section id="content_top">
                 <div class="bg_content_top general_bg">
@@ -102,10 +102,10 @@
             <!-- Start section logo message area -->
             <section id="logo_message_area">
                 <div class="inner-wrapper">
-                 
+
                     <!-- Start Message Your own -->
                     <div class="row-fluid">
-  <div class="span12">
+                        <div class="span12">
                             <!--Start List Flags-->
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
@@ -116,7 +116,7 @@
                             </div>
                             <!--End List Flags-->
                         </div>
-                       
+
                     </div><!-- End Message Your own -->
                 </div>
                 <div class="inner-wrapper driver_space"></div>
@@ -156,7 +156,7 @@
                                                     </div>
                                                 </div>-->
 
-                                             
+
                                                 <label>Login</label>
                                                 <input type="text" name="login" class="input-block-level" required="">
                                                 <label>E-mail</label>
@@ -171,11 +171,11 @@
                                         </div>
                                         <div class="span6">
                                             <div class="panel">
-                                               
+
                                                 <label>First Name</label>
                                                 <input type="text" class="input-block-level" required="" name="firstname">
                                                 <label>Middle Name</label>
-                                                <input type="text" class="input-block-level" required="" name="middlename">
+                                                <input type="text" class="input-block-level"  name="middlename">
                                                 <label>Last Name</label>
                                                 <input type="text" class="input-block-level" required="" name="lastname">
                                                 <label>Date of Birth</label>
@@ -195,8 +195,8 @@
                                                 <span class="help-block">Example: +3(099)123 456 789</span>
 
                                                 <label class="checkbox">
-                                                    <input type="checkbox" value="">
-                                                    <small>Agree <a href="terms_conditions.html">Terms AND Conditions</a></small>
+                                                    <input type="checkbox" value="" required="">
+                                                    <small>Agree <a href="terms_conditions.html" id="terms_condition">Terms AND Conditions</a></small>
                                                 </label>
                                             </div>
                                         </div>
@@ -214,36 +214,33 @@
                 </div>
 
             </section><!-- End section content page -->
+
             <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
                     <div class="row-fluid">
                         <div class="span4">
-                            <h3 style="text-align: center;">About <span class="font_hotel">Those Who Made It</span></h3>
+                            <h3 style="text-align: center;"> <span class="font_hotel">Contacts</span></h3>
                             <p>University of Applied Sciences Rotterdam</p>
                             <!--Start List Contact Info-->
-                            <ul class="unstyled contact_info" id="index_contact_info">
-                                <!--                                <li class="location">12345 / Some Street<br>Portland, USA</li>
-                                                                <li class="phone">phone: +1 (44)  123-45-67<br>fax: +1 (44)  123-45-63</li>
-                                                                <li class="skype"><a href="skype:echo123?call">Skype Me</a></li>-->
-                            </ul>
+                            <ul class="unstyled contact_info" id="index_contact_info"></ul>
                             <!--End List Contact Info-->
                             <h3>Stay Connect  <span class="font_hotel"> Socials</span></h3>
                             <!--Start List Links Social Network-->
                             <div class="link_socials">
-                                <a href="#"><img src="img/facebook.png" alt="network"></a>
-                                <a href="#"><img src="img/twitter.png" alt="network"></a>
-                                <a href="#"><img src="img/google-plus.png" alt="network"></a>
-                                <a href="#"><img src="img/vimeo.png" alt="network"></a>
-                                <a href="#"><img src="img/youtube.png" alt="network"></a>
+                                <a href="https://www.facebook.com/" ><img src="img/facebook.png" alt="network"></a>
+                                <a href="https://twitter.com/" > <img src="img/twitter.png" alt="network"></a>
+                                <a href="https://plus.google.com/" ><img src="img/google-plus.png" alt="network"></a>
+                                <a href="https://vimeo.com/log_in/" ><img src="img/vimeo.png" alt="network"></a>
+                                <a href="http://www.youtube.com/" ><img src="img/youtube.png" alt="network"></a>
                             </div>
                             <!--End List Links Social Network-->
                         </div>
                         <div class="span3">
-                            <h3 style="text-align: center;">Friendly <span class="font_hotel" > Sites</span></h3>
+                            <h3 style="text-align: center;">Friendly<span class="font_hotel" > Sites</span></h3>
                             <!--Start List Link pages-->
-                            <ul id="footer_links" class="link_list_footer">
+                            <ul class="link_list_footer" id="footer_links">
 
                             </ul>
                             <!--End List Link pages-->
@@ -252,31 +249,15 @@
                         <div class="span5">
                             <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
                             <!--Start List Grid Galeries img-->
-                            <div id="footer_gallery" class="gridmasonry galeries_footer" style="display: block; position: relative; height: 248px;">
+                            <div id="footer_gallery" class="gridmasonry galeries_footer">
 
                             </div>
                             <!--End List Grid Galeries img-->
                         </div>
                     </div>
                 </div>
+
                 <div style="height:35px;"></div>
-                <!--Start Sucribe Panel--
-                <div class="subcrible">
-                    <div class="inner-wrapper">
-                        <div class="row-fluid" >
-                            <div class="span3"><h2> <strong>Subscribe</strong> to the <span class="font_hotel">Battle Latest News</span> </h2></div>
-                            <div class="span9">
-                <!--Start Form Subcribe--
-                <form>
-                    <input type="text" name="email" class="input-block-level" placeholder="Enter Your Email">
-                    <input type="submit" name="send" value="Subcribe" class="btn flat btn-primary btn-large">
-                </form>
-                <!--End Form Subcribe--
-                </div>
-            </div>
-        </div>
-    </div>
-                <!--End Sucribe Panel-->
                 <!--Start Footer Bottom-->
                 <div class="footer_bottom">
                     <div class="inner-wrapper">
@@ -294,21 +275,18 @@
             </footer><!--End Footer Section-->
         </div>
 
-        <!-- Modal -->
-        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="myModal_TC" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Wellcome</h3>
+                <h3 id="termstitle"></h3>
             </div>
             <div class="modal-body">
-                <p></p>
+                <p id="termstext"></p>
             </div>
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
         </div>
-
-
         <!--=========================================================================-->
         <!--Load JS source-->
         <!--=========================================================================-->
@@ -355,6 +333,7 @@
         <script src="js/county.js"></script>
         <!-- End Load JS CountTime -->
 
+
         <!-- Load JS AjaxUpload -->
         <script src="js/ajaxupload.js"></script>
         <!-- End Load JS AjaxUpload -->
@@ -362,6 +341,20 @@
         <!--Load JS config application-->
         <script src="js/app.js"></script>
         <!--end JS config application-->
+
+        <script type="text/javascript">
+            $.post("/battleWEB/controller?command=terms", function(data) {
+                $("#termstitle").html(data.termstitle);
+                $("#termstext").html(data.termstext);
+            });
+            $("#terms_condition").click(function(event) {
+                event.preventDefault();
+                $("#myModal_TC").modal("show");
+
+            });
+        </script>
+
+
 
 
     </body>
