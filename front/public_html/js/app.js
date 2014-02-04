@@ -1446,15 +1446,16 @@ function call_load_data_for_projets_page() {
                         ]},
                     {tag: "article", add_class: "project_block_proj", children: [
                             {tag: "div", add_class: "project_block_proj_name", text: "name"},
-                            {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
-                        ]},
-                    {tag: "div", add_class: "project_block_photo", children: [
-                            {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"},
-                            {tag: "div", add_class: "viewtheproj", children: [
+                            {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}},
+							 {tag: "div", add_class: "viewtheproj", children: [
                                     {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
                                             {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
                                         ]}
                                 ]}
+                        ]},
+                    {tag: "div", add_class: "project_block_photo", children: [
+                            {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"}
+                           
                         ]}
                 ]},
             {tag: "div", attr: {"style": "height:35px;"}}
