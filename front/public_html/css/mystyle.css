@@ -359,7 +359,7 @@ padding: 1%;
 width: 65%;
 font-size: 14px;
 line-height: 130%;
-white-space: nowrap;
+
 text-overflow: ellipsis;
 overflow: hidden;
 
