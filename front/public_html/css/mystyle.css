@@ -339,6 +339,9 @@ text-overflow: ellipsis;
 
 
 .project_block_proj_descr{
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
 width: 95%; 
 margin: 0 auto; 
 padding: 5px;  
