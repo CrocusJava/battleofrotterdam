@@ -42,14 +42,14 @@
 				<h:outputText value="#{project.competition.type.name}" />
 			</p:column>
 
-			<p:column headerText="Approved">
+			<p:column headerText="Active">
 				<h:panelGroup id="buttonA">
-					<h:outputText value="Approved " rendered="#{project.approved}" />
+					<h:outputText value="Active " rendered="#{project.approved}" />
 					<p:commandButton action="#{projectsBean.changeApprove(project)}"
-						value="Unapprove" update="buttonA" rendered="#{project.approved}" />
-					<h:outputText value="Not approved " rendered="#{!project.approved}" />
+						value="Deactivate" update="buttonA" rendered="#{project.approved}" />
+					<h:outputText value="Not active " rendered="#{!project.approved}" />
 					<p:commandButton action="#{projectsBean.changeApprove(project)}"
-						value="Approve" update="buttonA" rendered="#{!project.approved}" />
+						value="Activate" update="buttonA" rendered="#{!project.approved}" />
 				</h:panelGroup>
 			</p:column>
 
