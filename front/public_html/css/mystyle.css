@@ -366,6 +366,19 @@ padding: 2%;
 background-color: rgba(0,188,0,0.1);
 
 }
+#voteforproject{
+color:#fff; 
+background: rgba(0,188,0,0.6); 
+font-size:28px; 
+font-family: 'Lobster Two', cursive; 
+padding:13px; 
+margin-top:10px;
+
+}
+#voteforproject:hover{
+background: rgba(0,188,0,0.8); 
+padding:15px; 
+}
 
 .star1{
 
