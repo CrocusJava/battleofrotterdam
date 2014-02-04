@@ -1020,10 +1020,10 @@ function call_data_load_for_competitions() {
         data: year
     }).done(function(year) {
         year = year.competitions[0];
-        $("#yearly_battle_competitions_name").text(year["name"]);
-        $("#yearly_battle_competitions_startdate").text(year["startdate"]);
-        $("#yearly_battle_competitions_enddate").text(year["enddate"]);
-        $("#yearly_battle_competitions_description").text(year["description"]);
+        $("#yearly_battle_competitions_name").html(year["name"]);
+        $("#yearly_battle_competitions_startdate").html(year["startdate"]);
+        $("#yearly_battle_competitions_enddate").html(year["enddate"]);
+        $("#yearly_battle_competitions_description").html(year["description"]);
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1035,10 +1035,10 @@ function call_data_load_for_competitions() {
         data: month
     }).done(function(month) {
         month = month.competitions[0];
-        $("#monthly_battle_competitions_name").text(month["name"]);
-        $("#monthly_battle_competitions_startdate").text(month["startdate"]);
-        $("#monthly_battle_competitions_enddate").text(month["enddate"]);
-        $("#monthly_battle_competitions_description").text(month["description"]);
+        $("#monthly_battle_competitions_name").html(month["name"]);
+        $("#monthly_battle_competitions_startdate").html(month["startdate"]);
+        $("#monthly_battle_competitions_enddate").html(month["enddate"]);
+        $("#monthly_battle_competitions_description").html(month["description"]);
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1121,12 +1121,12 @@ function call_load_data_for_current_rankings() {
         var monthprojects = data["monthprojects"];
         for (var i in monthprojects) {
             ++count;
-            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
-            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
@@ -1447,7 +1447,7 @@ function call_load_data_for_projets_page() {
                     {tag: "article", add_class: "project_block_proj", children: [
                             {tag: "div", add_class: "project_block_proj_name", text: "name"},
                             {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}},
-							 {tag: "div", add_class: "viewtheproj", children: [
+                            {tag: "div", add_class: "viewtheproj", children: [
                                     {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
                                             {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
                                         ]}
@@ -1455,7 +1455,7 @@ function call_load_data_for_projets_page() {
                         ]},
                     {tag: "div", add_class: "project_block_photo", children: [
                             {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"}
-                           
+
                         ]}
                 ]},
             {tag: "div", attr: {"style": "height:35px;"}}
