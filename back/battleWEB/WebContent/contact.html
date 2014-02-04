@@ -142,15 +142,16 @@
 
                                     </section>
  <!--Start Sucribe Panel-->
-                <div class="subcribe text_center"" style="width:60%; margin: 0 auto;">
+                <div class="subscribe text_center"" style="width:60%; margin: 0 auto;">
               
                         <div class="row-fluid" >
                             <div class="span12"><h2> <strong>Subscribe</strong> to the <span class="font_hotel">Battle Latest News</span> </h2></div>
                             <div class="span12" style="clear:both; margin:0 auto;">
                                 <!--Start Form Subcribe-->
                                 <form>
-                                    <input id="email" type="text" name="email" class=" input-block-level" placeholder="Enter Your Email">
-                            <a class="bs" >  <input type="submit"  name="send" value="Subscribe" class="trylater buttonsend btn flat btn-primary btn-large"></a>
+                            <input id="email" type="text" name="email" class=" input-block-level" placeholder="Enter Your Email">
+                          
+						      <a class="bs">  <span class="buttonsend btn flat btn-primary btn-large"> Subscribe <i class="icon-angle-right"></i></span></a>
                                 </form>
                                 <!--End Form Subcribe-->
                             </div>
@@ -163,11 +164,20 @@
                         </div>
                     </div>
                 </div>
+		
+				
             </section><!-- End section content page -->
 
-
-
-
+		
+				
+			<div id="myModal_ok" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel" class="caption_profile" style="font-size: 28px;"> Your request is successful! </h3>
+                </div>
+               
+              
+            </div>
 
 
 
@@ -286,14 +296,25 @@
         <script src="js/app.js"></script>
         <!--end JS config application-->
 
-		<script >
-		$('.buttonsend').click(function(){
-		var adress='mailto:zernovagg@gmail.com?Subject=battleOfRotterdam&body='+$("#email").val();
+		
+		
+		<script type="text/javascript">
+			
+			 $(window).load(function() {
+		
+				$(".buttonsend").click(function() {
+                $("#myModal_ok").modal("show");
+          
+		var adress='mailto:adminBattle@rotterdam.nl?Subject=Battle%20of%20Rotterdam&body='+$("#email").val();
 		$('.bs').attr('href', adress)
 		
-		})
-		</script>
-
+		
+                });
+            })
+			
+        </script>
+		
+		
 
       
 
