@@ -531,7 +531,7 @@ function call_load_data_for_index_events(load_data) {
                 {tag: "div", add_class: "content_post", children: [
                         {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
                         {tag: "h4", text: "projectname"},
-                        {tag: "p", text: "photodescription"},
+                        {tag: "p", add_class: "single_row", text: "photodescription"},
                         {tag: "p", add_class: "clear", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
@@ -569,7 +569,7 @@ function call_load_data_for_index_comments(load_data) {
                     ]},
                 {tag: "h4", add_class: "media-heading", text: "userlogin"},
                 {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
-                        {tag: "p", text: "commenttext"},
+                        {tag: "p", add_class: "single_row", text: "commenttext"},
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
@@ -1107,7 +1107,7 @@ function call_load_data_for_current_rankings() {
                                         {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
                                     ]},
                                 {tag: "div", add_class: "desc", children: [
-                                        {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
+                                        {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
                                                 {tag: "a", add_class: "unvisiblin btn btn-primary flat btn-large", text: "Read More"}
                                             ]}

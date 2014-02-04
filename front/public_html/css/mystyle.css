@@ -209,7 +209,11 @@ overflow-y: scroll;
 
 }
 
-
+.single_row{
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+}
 .popup_text{
 padding: 20px 20px;
 font-size: 18px;
