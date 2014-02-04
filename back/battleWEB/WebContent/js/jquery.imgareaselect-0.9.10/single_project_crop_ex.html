@@ -40,13 +40,7 @@
         <!-- Style CountTime -->
         <link href="css/county.css" rel="stylesheet">
         <!-- End CountTime -->
-		
-		
-		<!-- Style CountTime -->
-		<link rel="stylesheet" type="text/css" href="css/imgareaselect-default.css" />
-		
-		<!-- End CountTime -->
-		
+
     </head>
 
     <body class="theme_default">
@@ -139,13 +133,13 @@
 
                         <div class="span12">
                             <!-- Start section Blog Line details -->
-                            <div class="blog-line" style="background-color: rgba(0,181,0,0.5);">
+                            <div class="blog-line" >
                                 <a href="#"><i class="icon-calendar"></i><span id="creationdate"></span></a>
                                 <span> <a href="#"> <i class="icon-user"></i><span id="rating"></span> Likes</a></span>
                                 <!--  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a> -->
                                 <a href="#" ><i class="icon-comments"></i><span id="commentquantity"></span> Comments</a>
 
-                                <!--     <div class="forall" style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
+                                <div class="forall"  style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
 
                                 <!-- <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:150px; margin: 0px 10px 0px 10px; float: left;"> <span style="position:relative; float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:18px; font-family: 'Lobster Two', cursive; padding:15px; margin-top: 50px;">[Jhohn Smith]</span>
@@ -153,20 +147,16 @@
                             </div>
 
 
-                            <div class="text_center" style=" clear:both;"  contenteditable="true">
+                            <div class="text_center" style=" clear:both; ">
                                 <h1 class="font_hotel" style=" margin: 10px 0 10px 0;" id="name"></h1>
 
                                 <p id="description"></p>
                             </div>
-                            <div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>
                             <!-- Start Break Page Style-->
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
-                            <div id="need_for_nophoto">
-                                <div id="formsg_if_nophoto" class="header_popup_pz"><strong style="color:red;"><i class="icon-bullhorn"></i>  THERE IS NO PHOTOS IN YOUR PROJECT   </strong></div>
 
-                                <button class="addphoto btn btn-primary btn-large flat" id="uploadphoto">Add photo</button>
-                            </div>
+
 
                             <div class="row-fluid">
                                 <div class="span6">
@@ -174,14 +164,23 @@
                                         <h4 class="recent-post-header">
                                             <a href="#">First photo</a>
                                         </h4>
-										
-                                        <img src="" alt="img_preview" style="width:100%;" id="firstphoto_path">
+                                        <a href="" class="image_link" id="firstphoto_path_big">
+
+
+                                            <div class="with_hover"></div>
+
+                                            <div class="hover" > <img src="" alt="img_preview" style="width:100%;" id="firstphoto_path">
+
+                                            </div>  </a>
+
+
+
                                         <div class="clearfix post_date">
                                             <span class="pull-left"></span>
 
                                         </div>
                                         <p id="firstphoto_description"></p>
-                                        <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
+                                        <!--   <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>-->
                                     </div>
                                 </div>
                                 <div class="span6">
@@ -189,25 +188,39 @@
                                         <h4 class="recent-post-header">
                                             <a href="#">Current photo</a>
                                         </h4>
-                                        <img src="" alt="img_preview" style="width:100%;" id="lastphoto_path">
+                                        <a href="" class="image_link" id="lastphoto_path_big">
+
+
+                                            <div class="with_hover"></div>
+
+                                            <div class="hover" >  <img src="" alt="img_preview" style="width:100%;" id="lastphoto_path">
+
+                                            </div>  </a>
+
+
+
                                         <div class="clearfix post_date">
                                             <span class="pull-left"></span>
 
                                         </div>
                                         <p id="lastphoto_description"></p>
-                                        <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
+                                        <!--   <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>-->
                                     </div>
                                 </div>
 
                             </div>
 
+
                             <!-- Start Break Page Style-->
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
+                            <div class="text_center" style=" clear:both; ">
+                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;">Photos</h1>
+                            </div>
+
                             <div style="height:35px;"></div>
-                            <section id="new_added_photo"></section>
                             <section id="viewprojectphotos"></section>
-                            <!--                            <section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">
+                            <!--                            <section class="project_block singlephotoblock">
 
                                                             <a href="img/remont1.jpg" class="image_link">
 
@@ -217,47 +230,55 @@
 
 
 
-                                                                <div  style="width:25%; margin: 0 1%; float: left;  height:200px; "><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
+                                                                <div class="hover singlephoto" ><img src="img/remont8.jpg" class="img-polaroid" style="width:100%;">
 
                                                                 </div>  </a>
 
 
-                                                            <article  style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;" >
+                                                            <article class="descr_singlephoto"  >
 
-                                                                <p> Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                                <p class="abzac" > Lorem Ipsum is simply dummy text
                                                                 </p>
-                                                                <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
-                                                                    <span><a href="#" class=" btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>
-                                                                    <span><a href="#" class=" btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>
+                                                                 <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
+
 
                                                             </article>
 
 
-                                                        </section>
+                                                        </section>-->
 
-                                                        <div style="height:35px;"></div>
+                            <!--                            <div style="height:35px;"></div>
+                                                        <section class="project_block singlephotoblock">
 
-                                                        <section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">
+                                                            <a href="img/remont1.jpg" class="image_link">
+
+
+                                                                <div class="with_hover"></div>
 
 
 
-                                                            <div  style="width:25%; margin: 0 1%; float: left;  height:200px; "><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
 
-                                                            </div>
-                                                            <article  style="width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;" >
+                                                                <div class="hover singlephoto" ><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
 
-                                                                <p> Lorem Ipsum is simply dummy text of the printLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simplying and typesetting industry.
+                                                                </div>  </a>
+
+
+                                                            <article class="descr_singlephoto"  >
+
+                                                                <p style="font-size:1.3em; line-height:130%; background-color:rgba(0,181,0,0.2); padding: 3% 3%;"> Lorem Ipsum is simply dummy text fjmry odifhboihof oizdhfo i\doifbpio zd pioh bpdioh dz\pih pih dpih \dfpibh \dpfibpiojhpd\bpoblk\doui vofoiehlf lk;ofjhkjga\ oihdjbadlfih  lkdhfgoighroig
                                                                 </p>
-                                                                <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
-                                                                    <span><a href="#" class="btn btn-primary flat"> Edit <i class="icon-angle-right"></i></a></span>
-                                                                    <span><a href="#" class="btn btn-primary flat"> Delete <i class="icon-angle-right"></i></a></span></p>
+                                                                 <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
+
+
                                                             </article>
 
 
-                                                        </section>
+                                                        </section>-->
 
-                                                        <div style="height:35px;"></div>-->
-                            <label class="addphoto btn btn-primary btn-large flat" for="uploadphoto"> Add photo</label>
+
+
+
+
 
 
                             <div style="height:35px;"></div>
@@ -274,13 +295,13 @@
 
 
 
-                            <!---    <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
-                                <div class="comments">
-                                    <ul id="main_conteiner_comments"></ul>
-                                </div>
-                                <div style="height:35px;"></div>
+                            <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
+                            <div class="comments">
+                                <ul id="main_conteiner_comments"></ul>
+                            </div>
+                            <div style="height:35px;"></div>
 
-                            <!--Start Pagination --
+                            <!--Start Pagination -->
                             <div class="pagination flat-pagination  pagination-large text_center">
                                 <ul>
                                     <li><a href="#">Prev</a></li>
@@ -288,11 +309,11 @@
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">Next</a></li>
                                 </ul>
-                            </div><!--End Pagination --
+                            </div><!--End Pagination -->
 
 
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
-                            <!-- Start Form Comment --
+                            <!-- Start Form Comment -->
                             <div class="forall">
                                 <h3>LEAVE COMMENT</h3>
                                 <form action="" method="post" class="comment_form_validation" novalidate="novalidate" id="sendcomment">
@@ -307,17 +328,16 @@
                                         </div>
                                     </div>
                                 </form><!-- End Form Comment -->
+                            </div>
+
                         </div>
 
+
+
+
                     </div>
-
-
-
-
                 </div>
-                <!--        </div>-->
             </section><!-- End section content page -->
-
 
 
             <!--Start Footer Section-->
@@ -412,7 +432,7 @@
         <script src="js/jquery.unveil.min.js"></script>
         <!--Load JS jquery validation -->
         <script src="js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
+
 
         <!--load js cookie #[optional]-->
         <script src="js/jquery.cookie.js"></script>
@@ -434,29 +454,7 @@
         <!--Load JS config application-->
         <script src="js/app.js"></script>
         <!--end JS config application-->
-		<script type="text/javascript">
-            $("#button_edit_profile").click(function() {
-                call_send_data_editproject();
-            });
-			
-			
-			$(document).ready(function () {
-			$('#firstphoto_path').imgAreaSelect({ aspectRatio: '4:3', 
-										handles: true,  
-										onSelectEnd: function (img, selection) {
-										alert('coordinates of the top left corner of the selected area: x1=' + selection.x1 + ' y1=' + selection.y1 + 'coordinates of the bottom right corner of the selected area x2='+ selection.x2 + ' y2=' + selection.y2 + ' width: ' + selection.width + ' height: ' + selection.height);
-    } });
-				});
-        </script>
 
-
-		
-        <!--        <script type="text/javascript">
-                    $("#vote").click(function() {
-                        call_send_vote(window.projectId);
-                        return false;
-                    });
-                </script>-->
 
 
 
@@ -464,11 +462,6 @@
 
     </body>
 </html>
-
-      
-
-
-
 
 
 

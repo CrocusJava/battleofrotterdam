@@ -42,19 +42,19 @@
         <!-- End CountTime -->
 
     </head>
-	
+
     <body class="theme_default">
-	
+
         <div id="wrapper">
-		
-		
-		
+
+
+
             <section id="top_header" class="">
-			
-			
-			
+
+
+
                 <div class="inner-wrapper text_center">
-				
+
                     <!--Start Main Navigation-->
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
@@ -83,12 +83,12 @@
                                 </ul>
                             </li>
                             <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
-							
+
                         </ul>
                     </nav>
                 </div>
             </section>
-			 <div class="inner-wrapper text_center" style="height: 50px;"></div>
+            <div class="inner-wrapper text_center" style="height: 50px;"></div>
             <!--Start main Title content--
             <section id="content_top">
                 <div class="bg_content_top general_bg">
@@ -102,10 +102,10 @@
             <!-- Start section logo message area -->
             <section id="logo_message_area" >
                 <div class="inner-wrapper">
-                 
+
                     <!-- Start Message Your own -->
                     <div class="row-fluid">
-  <div class="span12">
+                        <div class="span12">
                             <!--Start List Flags-->
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
@@ -116,7 +116,7 @@
                             </div>
                             <!--End List Flags-->
                         </div>
-                       
+
                     </div><!-- End Message Your own -->
                 </div>
                 <div class="inner-wrapper driver_space"></div>
@@ -138,7 +138,7 @@
                                              <a href="#" class="btn flat btn-warning Mtop-1">[ Jhon ] Continue Login</a>
                                          </p>--->
 
-                                       
+
 
                                         <label>Login</label>
                                         <input type="text" name="login" class="input-block-level" required="">
@@ -162,7 +162,7 @@
                 </div>
 
             </section><!-- End section content page -->
-         
+
             <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
@@ -223,6 +223,24 @@
             </footer><!--End Footer Section-->
         </div>
 
+        <!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form id="forgotpassword" novalidate="novalidate" method="POST" action="">
+                <div class="modal-header">
+                    <h4 id="myModalLabel">Please enter your email and wait for an answer</h4>
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" name="email" class="input-block-level" required=""/>
+                    <h4 id="newpasswordmessage" class="text-error"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="submit">Send</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </form>
+        </div>
+
         <!--=========================================================================-->
         <!--Load JS source-->
         <!--=========================================================================-->
@@ -281,7 +299,7 @@
 
 
 
-      
+
 
     </body>
 </html>
