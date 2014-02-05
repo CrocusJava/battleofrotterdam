@@ -1205,6 +1205,10 @@ function call_load_data_for_myaccount(id) {
     });
 }
 
+
+
+
+
 function call_upload_data_for_updateaccaunt() {
     var uploadData = {};
     uploadData.login = $("#name_static_profile").text();
@@ -1247,12 +1251,13 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<article  class="project_block_proj"  >' +
             '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
+			'<div class="viewtheproj">' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff; margin-left:40%;">View the project</a>' +
+            '</div>' +
+            '</div>' +
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
-            '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
-            '</div>' +
-            '</div>' +
+            
             '</section>' + '<div style="height:15px;"></div>';
     $(template_for_project).appendTo("#account_projects");
 }
