@@ -209,7 +209,11 @@ overflow-y: scroll;
 
 }
 
-
+.single_row{
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+}
 .popup_text{
 padding: 20px 20px;
 font-size: 18px;
@@ -366,19 +370,6 @@ padding: 2%;
 background-color: rgba(0,188,0,0.1);
 
 }
-#voteforproject{
-color:#fff; 
-background: rgba(0,188,0,0.6); 
-font-size:28px; 
-font-family: 'Lobster Two', cursive; 
-padding:13px; 
-margin-top:10px;
-
-}
-#voteforproject:hover{
-background: rgba(0,188,0,0.8); 
-padding:15px; 
-}
 
 .star1{
 
@@ -434,6 +425,14 @@ font-size: 18px;
 padding: 5px 25px; 
 float: right; 
 margin: 15px 25px;"
+
+}
+
+.nomasonry{
+max-width:33%;
+max-height: 80px; 
+overflow:hidden; 
+
 
 }
 
@@ -523,7 +522,7 @@ margin: 10px auto;
 .buttonviewtheproj{
 font-size: 12px; 
 padding: 5px; 
-float: right;
+margin-left: 40%;
 }
 
 .amortiz{

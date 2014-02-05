@@ -158,7 +158,7 @@
 
                                 <p id="description"></p>
                             </div>
-                            <div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>
+                     
                             <!-- Start Break Page Style-->
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
@@ -204,7 +204,8 @@
                             <!-- Start Break Page Style-->
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
-                            <div style="height:35px;"></div>
+                         
+							<div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>
                             <section id="new_added_photo"></section>
                             <section id="viewprojectphotos"></section>
                             <!--                            <section class="project_block" style="border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;">
@@ -443,9 +444,10 @@
 			$(document).ready(function () {
 			$('#firstphoto_path').imgAreaSelect({ aspectRatio: '4:3', 
 										handles: true,  
-										onSelectEnd: function (img, selection) {
-										alert('coordinates of the top left corner of the selected area: x1=' + selection.x1 + ' y1=' + selection.y1 + 'coordinates of the bottom right corner of the selected area x2='+ selection.x2 + ' y2=' + selection.y2 + ' width: ' + selection.width + ' height: ' + selection.height);
-    } });
+										//onSelectEnd: function (img, selection) {
+										//alert('coordinates of the top left corner of the selected area: x1=' + selection.x1 + ' y1=' + //selection.y1 + 'coordinates of the bottom right corner of the selected area x2='+ selection.x2 //+ ' y2=' + selection.y2 + ' width: ' + selection.width + ' height: ' + selection.height);
+											//									}
+	});
 				});
         </script>
 

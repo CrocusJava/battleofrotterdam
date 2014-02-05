@@ -531,7 +531,7 @@ function call_load_data_for_index_events(load_data) {
                 {tag: "div", add_class: "content_post", children: [
                         {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
                         {tag: "h4", text: "projectname"},
-                        {tag: "p", text: "photodescription"},
+                        {tag: "p", add_class: "single_row", text: "photodescription"},
                         {tag: "p", add_class: "clear", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
@@ -569,7 +569,7 @@ function call_load_data_for_index_comments(load_data) {
                     ]},
                 {tag: "h4", add_class: "media-heading", text: "userlogin"},
                 {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, children: [
-                        {tag: "p", text: "commenttext"},
+                        {tag: "p", add_class: "single_row", text: "commenttext"},
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
@@ -743,7 +743,7 @@ function call_load_data_for_footer_links(load_data) {
 
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
-        {tag: "div", add_class: "item_grid item3", children: [
+        {tag: "div", add_class: "nomasonry item_grid item3", children: [
                 {tag: "a", attr: {href: "photopath", title: "photodescription", "data-user": "userlogin", projectid: "projectid"}, children: [
                         {tag: "div", add_class: "hover"},
                         {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
@@ -1020,10 +1020,10 @@ function call_data_load_for_competitions() {
         data: year
     }).done(function(year) {
         year = year.competitions[0];
-        $("#yearly_battle_competitions_name").text(year["name"]);
-        $("#yearly_battle_competitions_startdate").text(year["startdate"]);
-        $("#yearly_battle_competitions_enddate").text(year["enddate"]);
-        $("#yearly_battle_competitions_description").text(year["description"]);
+        $("#yearly_battle_competitions_name").html(year["name"]);
+        $("#yearly_battle_competitions_startdate").html(year["startdate"]);
+        $("#yearly_battle_competitions_enddate").html(year["enddate"]);
+        $("#yearly_battle_competitions_description").html(year["description"]);
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1035,10 +1035,10 @@ function call_data_load_for_competitions() {
         data: month
     }).done(function(month) {
         month = month.competitions[0];
-        $("#monthly_battle_competitions_name").text(month["name"]);
-        $("#monthly_battle_competitions_startdate").text(month["startdate"]);
-        $("#monthly_battle_competitions_enddate").text(month["enddate"]);
-        $("#monthly_battle_competitions_description").text(month["description"]);
+        $("#monthly_battle_competitions_name").html(month["name"]);
+        $("#monthly_battle_competitions_startdate").html(month["startdate"]);
+        $("#monthly_battle_competitions_enddate").html(month["enddate"]);
+        $("#monthly_battle_competitions_description").html(month["description"]);
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1107,7 +1107,7 @@ function call_load_data_for_current_rankings() {
                                         {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
                                     ]},
                                 {tag: "div", add_class: "desc", children: [
-                                        {tag: "p", text: "lastphoto", subattr: {"lastphoto": "description"}},
+                                        {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
                                                 {tag: "a", add_class: "unvisiblin btn btn-primary flat btn-large", text: "Read More"}
                                             ]}
@@ -1121,12 +1121,12 @@ function call_load_data_for_current_rankings() {
         var monthprojects = data["monthprojects"];
         for (var i in monthprojects) {
             ++count;
-            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
-            call_markup_for_admin_text(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
         }
 
 
@@ -1205,6 +1205,10 @@ function call_load_data_for_myaccount(id) {
     });
 }
 
+
+
+
+
 function call_upload_data_for_updateaccaunt() {
     var uploadData = {};
     uploadData.login = $("#name_static_profile").text();
@@ -1247,12 +1251,13 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<article  class="project_block_proj"  >' +
             '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
-            '</article>' +
-            '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
-            '<div class="viewtheproj">' +
+			'<div class="viewtheproj">' +
             '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
             '</div>' +
             '</div>' +
+            '</article>' +
+            '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
+            
             '</section>' + '<div style="height:15px;"></div>';
     $(template_for_project).appendTo("#account_projects");
 }
@@ -1446,15 +1451,16 @@ function call_load_data_for_projets_page() {
                         ]},
                     {tag: "article", add_class: "project_block_proj", children: [
                             {tag: "div", add_class: "project_block_proj_name", text: "name"},
-                            {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}}
-                        ]},
-                    {tag: "div", add_class: "project_block_photo", children: [
-                            {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"},
+                            {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}},
                             {tag: "div", add_class: "viewtheproj", children: [
                                     {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
                                             {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
                                         ]}
                                 ]}
+                        ]},
+                    {tag: "div", add_class: "project_block_photo", children: [
+                            {tag: "img", attr: {src: "lastphoto"}, subattr: {"src": "path"}, add_class: "img-polaroid photo_proj"}
+
                         ]}
                 ]},
             {tag: "div", attr: {"style": "height:35px;"}}
@@ -1571,11 +1577,11 @@ function call_new_added_photo_for_edit_project(photo) {
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
                         {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
                         {tag: "p", children: [
-                                {tag: "a", add_class: "btn btn-primary flat", text: "Preview", children: [
+                                {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Preview", children: [
                                         {tag: "i", add_class: "icon-angle-right"}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Edit", children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Edit", children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
@@ -1585,7 +1591,7 @@ function call_new_added_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
