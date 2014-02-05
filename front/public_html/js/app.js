@@ -1577,11 +1577,11 @@ function call_new_added_photo_for_edit_project(photo) {
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
                         {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
                         {tag: "p", children: [
-                                {tag: "a", add_class: "btn btn-primary flat", text: "Preview", children: [
+                                {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Preview", children: [
                                         {tag: "i", add_class: "icon-angle-right"}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Edit", children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Edit", children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
@@ -1591,7 +1591,7 @@ function call_new_added_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
