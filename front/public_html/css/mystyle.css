@@ -210,7 +210,7 @@ overflow-y: scroll;
 }
 
 .single_row{
-
+white-space: nowrap;
 text-overflow: ellipsis;
 overflow: hidden;
 }
@@ -343,7 +343,7 @@ text-overflow: ellipsis;
 
 
 .project_block_proj_descr{
-
+white-space: nowrap;
 text-overflow: ellipsis;
 overflow: hidden;
 width: 95%; 
