@@ -743,7 +743,7 @@ function call_load_data_for_footer_links(load_data) {
 
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
-        {tag: "div", add_class: "item_grid item3", children: [
+        {tag: "div", add_class: "nomasonry item_grid item3", children: [
                 {tag: "a", attr: {href: "photopath", title: "photodescription", "data-user": "userlogin", projectid: "projectid"}, children: [
                         {tag: "div", add_class: "hover"},
                         {tag: "img", attr: {src: "photopath", alt: "img_preview"}}

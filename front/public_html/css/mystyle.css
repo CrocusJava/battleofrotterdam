@@ -428,6 +428,14 @@ margin: 15px 25px;"
 
 }
 
+.nomasonry{
+max-width:33%;
+max-height: 80px; 
+overflow:hidden; 
+
+
+}
+
 
 .unvisiblin{
 display: none; }
