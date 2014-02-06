@@ -1331,7 +1331,8 @@ function call_create_markup_for_viewproject(respons) {
         $("#firstphoto_description").text(respons["firstphoto"]["description"]);
     }
     catch (e) {
-
+        $("#firstphoto_path").attr("src", "img/nophoto.png");
+        $("#firstphoto_path_big").attr("href", "img/nophoto.png");
     }
     try {
         $("#lastphoto_path_big").attr("href", respons["lastphoto"]["path"]);
@@ -1339,7 +1340,8 @@ function call_create_markup_for_viewproject(respons) {
         $("#lastphoto_description").text(respons["lastphoto"]["description"]);
     }
     catch (e) {
-
+        $("#lastphoto_path_big").attr("href", "img/nophoto.png");
+        $("#lastphoto_path").attr("src", "img/nophoto.png");
     }
 
 
