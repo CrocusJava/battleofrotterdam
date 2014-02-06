@@ -2,7 +2,7 @@ $(window).load(function() {
     call_all();
 });
 function call_all() {
-    call_grid();
+//    call_grid();
     call_scroll();
 //    call_slider_sequence();
     call_datatables();
@@ -767,7 +767,7 @@ function call_data_for_footer() {
             call_load_data_for_footer_gallery(dataObj);
         }
 //<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
-        call_grid();
+//        call_grid();
         console.log("Respons data for footer ====> ", status);
     }, "json").fail(function(data) {
         console.log("Somsing wrang", data);
