@@ -163,7 +163,7 @@
                                                 <span class="help-block">Example: +3(099)123 456 789</span>
 
                                                 <label class="checkbox">
-                                                    <input type="checkbox" value="" id="agree" required="">
+                                                    <input type="checkbox" value="">
                                                     <small>Agree <a href="terms_conditions.html" id="terms_condition">Terms AND Conditions</a></small>
                                                 </label>
                                             </div>
@@ -337,13 +337,13 @@
 
             });
 
-//            function valid_checkbox() {
-//                if (!($("input:checked").length)) {
-//                    alert("Остынь\n гарячий какой\n а галочка для СОГЛАСИН, кто ставить будет????????!!!!!!!!!!!!!!!");
-//                    return false;
-//                }
-//            }
-//            $(".btn-large:submit").click(valid_checkbox);
+            function valid_checkbox() {
+                if (!($("input:checked").length)) {
+                    alert("Остынь\n гарячий какой\n а галочка для СОГЛАСИН, кто ставить будет????????!!!!!!!!!!!!!!!");
+                    return false;
+                }
+            }
+            $(".btn-large:submit").click(valid_checkbox);
         </script>
 
 
