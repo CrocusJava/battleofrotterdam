@@ -26,19 +26,7 @@ function call_all() {
 }
 
 function call_form_validation() {
-//    if ($('#account').length > 0) {
-//        $('#account').validate({
-//            rules: {
-//                birthday: {
-//                    date: true
-//                },
-//                postcode: {
-//                    number: true
-//                }
-//            },
-//            submitHandler: AjaxRegistrationLogin
-//        });
-//    }
+
     if ($('.login_form_validation').length > 0) {
         $('.login_form_validation').validate({
             submitHandler: AjaxRegistrationLogin
