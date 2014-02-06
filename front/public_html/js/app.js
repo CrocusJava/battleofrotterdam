@@ -425,6 +425,7 @@ function AjaxSendComment(form) {
     }).done(function(data) {
         if (data["status"] === true) {
             createComment(form, JSON.parse(config.data));
+            $("#f3").val("");
         }
         else {
             alert(data["message"]);
@@ -883,7 +884,7 @@ function call_data_for_faq() {
 
         var faqlist = data.faqlist;
         for (var list in faqlist) {
-            call_markup_index(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
+            call_markup_for_admin_text(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
             count++;
         }
 
@@ -1251,13 +1252,12 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<article  class="project_block_proj"  >' +
             '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
-			'<div class="viewtheproj">' +
+            '<div class="viewtheproj">' +
             '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
             '</div>' +
             '</div>' +
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
-            
             '</section>' + '<div style="height:15px;"></div>';
     $(template_for_project).appendTo("#account_projects");
 }
@@ -1510,6 +1510,9 @@ function call_send_vote(projectid) {
             text_rating++;
             $("#rating").text(text_rating);
         }
+        else {
+            alert("Вам нельзя голосовать!!!!!!!!!!!!!!");
+        }
     }).fail(function() {
         console.log("Error for VOTE");
     });
@@ -1532,7 +1535,12 @@ function call_createproject() {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        window.location = "edit_project.html#projectid=" + respons.projectid;
+        if (respons.projectid) {
+            window.location = "edit_project.html#projectid=" + respons.projectid;
+        }
+        else {
+            alert("УУУУ,\n да у вас проблемы,\n сори, наверное проект для этого соривнования уже существует,\n очень жаль =(\n попробуйте принять участие в другом соревнованиии =)");
+        }
     }).fail(function() {
         console.log("Error for projectsave");
     });
