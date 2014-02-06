@@ -468,7 +468,7 @@ function createElements(conteiner, parent, info) {
         li.appendTo(ul);
     }
     else {
-        li.appendTo(conteiner);
+        li.prependTo(conteiner);
     }
 
     var article = $(document.createElement("article"));
@@ -1351,7 +1351,7 @@ function call_load_data_for_viewprojectcomments(projectid) {
     var data = {
         projectid: projectid,
         firstposition: 0,
-        size: 10
+        size: 5
     };
     data = JSON.stringify(data);
     var url = "/battleWEB/controller?command=viewprojectcomments";
@@ -1638,7 +1638,7 @@ function  call_load_data_for_viewprojectphotos(projectid) {
     var data = {
         projectid: projectid,
         firstposition: 0,
-        size: 10
+        size: 2
     };
     data = JSON.stringify(data);
     var url = "/battleWEB/controller?command=viewprojectphotos";
