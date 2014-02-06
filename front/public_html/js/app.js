@@ -366,6 +366,12 @@ function AjaxRegistrationLogin(form) {
                     window.location = "index.html";
                 });
             }
+            else if (!data.statuslogin) {
+                alert("когда логин занят \n" + data.registrationmessage + "\n попробуйте еще раз");
+            }
+            else if (!data.statusemail) {
+                alert("когда эмэел занят \n" + data.registrationmessage + "\n попробуйте еще раз");
+            }
         }
         if (form.id === "login") {
             if (data.iduser) {
