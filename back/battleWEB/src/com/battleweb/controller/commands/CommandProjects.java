@@ -188,10 +188,13 @@ public class CommandProjects implements Command {
 			jsonProjectsArrayBuilder.add(jsonProjectBuilder.build());
 		}
 
-		JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder()
+		JsonObjectBuilder jsonObjectBuilder = Json
+				.createObjectBuilder()
 				.add(Constants.PARAMETER_PROJECTS, jsonProjectsArrayBuilder)
-				.add(Constants.PARAMETER_PROJECT_QUANTITY, projectBean.count()); 
-				/*count without taking into account filter*/
+				.add(Constants.PARAMETER_PROJECT_QUANTITY,
+						projectBean.findCountFilterOrderByDateOrRatingLimit(
+								orderBy, sort, login, name, dateFrom, dateTo,
+								competitionId, competitionType, approved));
 
 		toolJSON.setJsonObjectResponse(response, jsonObjectBuilder.build());
 
