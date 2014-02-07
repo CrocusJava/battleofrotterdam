@@ -1314,8 +1314,8 @@ function call_cookie_navigator() {
                     var projectid = parseInt(parametrs[1]);
                     window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
-                    call_load_data_for_viewprojectcomments(projectid);
-                    call_load_data_for_viewprojectphotos(projectid);
+                    call_load_data_for_viewprojectcomments(projectid, 0);
+                    call_load_data_for_viewprojectphotos(projectid, 0);
                 }
                 break;
             case "userid":
@@ -1402,10 +1402,10 @@ function call_create_markup_for_viewproject(respons) {
 
 }
 
-function call_load_data_for_viewprojectcomments(projectid) {
+function call_load_data_for_viewprojectcomments(projectid, firstposition) {
     var data = {
         projectid: projectid,
-        firstposition: 0,
+        firstposition: firstposition,
         size: 5
     };
     data = JSON.stringify(data);
@@ -1689,10 +1689,10 @@ function call_send_description_for_this_photo(response, description_photo) {
     });
 }
 
-function  call_load_data_for_viewprojectphotos(projectid) {
+function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
     var data = {
         projectid: projectid,
-        firstposition: 0,
+        firstposition: firstposition,
         size: 2
     };
     data = JSON.stringify(data);
@@ -1852,11 +1852,19 @@ function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
 
 function paging_for_comments() {
     var comments = window.pagenation.comments;
-    var kolichestvo_stranic = Math.ceil(comments / 5);
+    var kolichestvo_stranic;
     var next = $("#comments_next");
+    if (comments > 5) {
+        kolichestvo_stranic = Math.ceil(comments / 5);
+    }
+    else {
+        kolichestvo_stranic = 1;
+    }
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + i + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            console.log(this);
+        $('<li id="' + (i + 5) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+            $("#main_conteiner_comments").empty();
+            var firstposition = $(this).attr("id");
+            call_load_data_for_viewprojectcomments(window.projectId, firstposition);
             event.preventDefault();
         }).insertBefore(next);
     }
@@ -1869,11 +1877,20 @@ function paging_for_comments() {
 
 function paging_for_photos() {//
     var photos = window.pagenation.photos;
-    var kolichestvo_stranic = Math.ceil(photos / 2);
+    var kolichestvo_stranic;
     var next = $("#photos_next");
+    if (photos > 2) {
+        kolichestvo_stranic = Math.ceil(photos / 2);
+    }
+    else {
+        kolichestvo_stranic = 1;
+    }
+
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + i + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            console.log(this);
+        $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+            $("#viewprojectphotos").empty();
+            var firstposition = $(this).attr("id");
+            call_load_data_for_viewprojectphotos(window.projectId, firstposition);
             event.preventDefault();
         }).insertBefore(next);
     }
