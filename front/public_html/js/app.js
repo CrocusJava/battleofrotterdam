@@ -1090,35 +1090,35 @@ function call_trylater() {
 }
 
 /*
-function call_load_data_for_news_index() {
-    $.post("/battleWEB/controller?command=news", function(data) {
-        var template_for_news_index = [
-            {tag: "div", add_class: "span4 text_center", children: [
-                    {tag: "div", add_class: "news_index boxfeature", children: [
-                            {tag: "a", attr: {href: "photopath", title: "text", "data-href": "photopath"}, children: [
-                                    {tag: "div", add_class: "hover"},
-                                    {tag: "div", add_class: "img_preview", children: [
-                                            {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
-                                            {tag: "h4", text: "loaddate"}
-                                        ]}
-                                ]},
-                            {tag: "div", add_class: "desc", children: [
-                                    {tag: "p", text: "text"},
-                                    {tag: "p", children: [
-                                            {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
-//, bind: {popup_news:click}
-                                            }
-                                        ]}
-                                ]}
+ function call_load_data_for_news_index() {
+ $.post("/battleWEB/controller?command=news", function(data) {
+ var template_for_news_index = [
+ {tag: "div", add_class: "span4 text_center", children: [
+ {tag: "div", add_class: "news_index boxfeature", children: [
+ {tag: "a", attr: {href: "photopath", title: "text", "data-href": "photopath"}, children: [
+ {tag: "div", add_class: "hover"},
+ {tag: "div", add_class: "img_preview", children: [
+ {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+ {tag: "h4", text: "loaddate"}
+ ]}
+ ]},
+ {tag: "div", add_class: "desc", children: [
+ {tag: "p", text: "text"},
+ {tag: "p", children: [
+ {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+ //, bind: {popup_news:click}
+ }
+ ]}
+ ]}
 
 
-                        ]}
+ ]}
 
-                ]}
-        ];
+ ]}
+ ];
 
 
-*/
+ */
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
@@ -1130,26 +1130,22 @@ function call_load_data_for_current_rankings() {
                 {tag: "div", add_class: "span4 text_center", children: [
                         {tag: "div", add_class: "current_rank boxfeature_", children: [
                                 {tag: "div", add_class: "img_preview_", children: [
-										
-									{tag: "a", attr: {href: "lastphoto", title: "lastphoto.description", "data-href": "lastphoto"}, children: [
-										{tag: "div", add_class: "hover"},
+                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto.description", "data-href": "lastphoto"}, children: [
+                                                {tag: "div", add_class: "hover"},
+                                                {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
+                                                {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
+                                                        {tag: "span", text: "rating"},
+                                                        {tag: "span", text: " Likes"}
+                                                    ]},
+                                                {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
+                                                        {tag: "span", text: "commentquantity"},
+                                                        {tag: "span", text: " Comments"}
+                                                    ]},
+                                                {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
 
-									   {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
-                                        {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                {tag: "span", text: "rating"},
-                                                {tag: "span", text: " Likes"}
+
                                             ]},
-                                        {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
-                                                {tag: "span", text: "commentquantity"},
-                                                {tag: "span", text: " Comments"}
-                                            ]},
-                                        {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
-										
-										
-									]},
-										
-										
-                                ]},
+                                    ]},
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
@@ -1166,13 +1162,13 @@ function call_load_data_for_current_rankings() {
         for (var i in monthprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
-			call_lightbox_current_rank();
+            call_lightbox_current_rank();
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
-			call_lightbox_current_rank();
+            call_lightbox_current_rank();
         }
 
 
@@ -1360,6 +1356,8 @@ function call_load_data_for_viewproject(projectid) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+        window.pagenation.comments = respons.commentquantity;
+        window.pagenation.photos = respons.photoquantity;
         call_create_markup_for_viewproject(respons);
     }).fail(function() {
         console.log("error onload command=viewproject ");
