@@ -1864,7 +1864,7 @@ function paging_for_comments() {
         $('<li id="' + (i + 5) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#main_conteiner_comments").empty();
             var firstposition = $(this).attr("id");
-            call_load_data_for_viewprojectcomments(parseInt(window.projectId), firstposition);
+            call_load_data_for_viewprojectcomments(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
     }
@@ -1890,7 +1890,7 @@ function paging_for_photos() {//
         $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#viewprojectphotos").empty();
             var firstposition = $(this).attr("id");
-            call_load_data_for_viewprojectphotos(parseInt(window.projectId), firstposition);
+            call_load_data_for_viewprojectphotos(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
     }
