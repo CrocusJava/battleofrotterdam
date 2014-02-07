@@ -677,7 +677,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы вывода всех проектов
 
     if (window.location.href.match(/projets.html$/)) {
-        call_load_data_for_projets_page();
+        call_load_data_for_projets_page(0);
     }
 
 //<<<<<<<<<<<<=============================задачи для всех страницы
@@ -1445,13 +1445,13 @@ function call_create_markup_for_viewprojectcomments(respons) {
 
 
 
-function call_load_data_for_projets_page() {
+function call_load_data_for_projets_page(firstposition) {
 
 
     var url = "/battleWEB/controller?command=projects";
     var data = JSON.stringify({
-        firstposition: 0,
-        size: 10,
+        firstposition: firstposition,
+        size: 2,
         orderby: "date",
         sort: "desc"
     });
@@ -1462,10 +1462,13 @@ function call_load_data_for_projets_page() {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+        window.pagenation = {
+            projects: respons.projectquantity
+        };
         for (var project in respons.projects) {
             call_create_markup_for_projects(respons.projects[project]);
         }
-
+        paging_for_projects();
     }).fail(function() {
         console.log("error onload command = projects ");
     });
@@ -1517,7 +1520,7 @@ function call_load_data_for_projets_page() {
             {tag: "div", attr: {"style": "height:35px;"}}
 
         ];
-        call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons);
+        call_markup_index(template_projets_page, $("#projects"), respons);
 
     }
 }
@@ -1899,4 +1902,25 @@ function paging_for_photos() {//
 //        console.log(this);
 //        event.preventDefault();
 //    });
+}
+
+function paging_for_projects() {
+    var projects = window.pagenation.projects;
+    var kolichestvo_stranic;
+    var next = $("#projects_next");
+    if (projects > 2) {
+        kolichestvo_stranic = Math.ceil(projects / 2);
+    }
+    else {
+        kolichestvo_stranic = 1;
+    }
+
+    for (var i = 0; i < kolichestvo_stranic; i++) {
+        $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+            $("#projects").empty();
+            var firstposition = $(this).attr("id");
+            call_load_data_for_projets_page(parseInt(firstposition));
+            event.preventDefault();
+        }).insertBefore(next);
+    }
 }
