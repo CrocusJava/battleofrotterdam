@@ -1356,8 +1356,11 @@ function call_load_data_for_viewproject(projectid) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        window.pagenation.comments = respons.commentquantity;
-        window.pagenation.photos = respons.photoquantity;
+        window.pagenation = {
+            comments: respons.commentquantity,
+            photos: respons.photoquantity
+        };
+
         call_create_markup_for_viewproject(respons);
     }).fail(function() {
         console.log("error onload command=viewproject ");
