@@ -1470,9 +1470,12 @@ function call_load_data_for_projets_page(firstposition) {
         for (var project in respons.projects) {
             call_create_markup_for_projects(respons.projects[project]);
         }
-        if (firstposition === 0) {
+
+        if (!paging_for_projects.loaded) {
             paging_for_projects();
+            paging_for_projects.loaded = true;
         }
+
     }).fail(function() {
         console.log("error onload command = projects ");
     });
@@ -1913,6 +1916,9 @@ function paging_for_photos() {//
 }
 
 function paging_for_projects() {
+    if (paging_for_projects.loaded) {
+        return;
+    }
     var projects = window.pagenation.projects;
     var kolichestvo_stranic;
     var next = $("#projects_next");
