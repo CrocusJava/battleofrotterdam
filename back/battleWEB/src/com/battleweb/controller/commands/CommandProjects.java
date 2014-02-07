@@ -188,8 +188,10 @@ public class CommandProjects implements Command {
 			jsonProjectsArrayBuilder.add(jsonProjectBuilder.build());
 		}
 
-		JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder().add(
-				Constants.PARAMETER_PROJECTS, jsonProjectsArrayBuilder);
+		JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_PROJECTS, jsonProjectsArrayBuilder)
+				.add(Constants.PARAMETER_PROJECT_QUANTITY, projectBean.count()); 
+				/*count without taking into account filter*/
 
 		toolJSON.setJsonObjectResponse(response, jsonObjectBuilder.build());
 

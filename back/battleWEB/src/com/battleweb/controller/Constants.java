@@ -147,6 +147,7 @@ public interface Constants {
 	public static final String PARAMETER_NAME = "name";
 	public static final String PARAMETER_RATING = "rating";
 	public static final String PARAMETER_VOTES_QUANTITY = "votesquantity";
+	public static final String PARAMETER_PROJECT_QUANTITY = "projectquantity";
 	public static final String PARAMETER_CREATION_DATE = "creationdate";
 	public static final String PARAMETER_LAST_PHOTO = "lastphoto";
 	public static final String PARAMETER_ID = "id";
