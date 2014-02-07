@@ -1375,6 +1375,8 @@ function call_load_data_for_viewproject(projectid) {
 
 
 function call_create_markup_for_viewproject(respons) {
+    $("#user").text(respons["user"]["login"]);
+    $("#user_account").attr("href", "static_profile.html#userid=" + respons["user"]["id"]);
     $("#name").text(respons["name"]);
     $("#creationdate").text(respons["creationdate"]);
     $("#description").text(respons["description"]);
