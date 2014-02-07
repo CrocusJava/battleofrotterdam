@@ -401,28 +401,7 @@
                 event.preventDefault();
             });
         </script>
-        <script type="text/javascript">
-            function paging_for_comments() {
-                var comments = window.pagenation.comments;
-                var kolichestvo_stranic = comments / 5;
-                $("#comments_pagenation").on("click", "li", function() {
-                    console.log(arguments);
-                    console.log(this);
-                });
-            }
-            paging_for_comments();
-        </script>
-        <script type="text/javascript">
-            function paging_for_photos() {
-                var photos = window.pagenation.photos;
-                var kolichestvo_stranic = photos / 2;
-                $("#photos_pagenation").on("click", "li", function() {
 
-                    console.log(this);
-                });
-            }
-            paging_for_photos();
-        </script>
 
 
     </body>

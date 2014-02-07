@@ -1417,7 +1417,7 @@ function call_load_data_for_viewprojectcomments(projectid) {
         for (var comment in respons["comments"]) {
             call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
         }
-
+        paging_for_comments();
     }).fail(function() {
         console.log("error onload command=viewprojectcomments ");
     });
@@ -1704,7 +1704,7 @@ function  call_load_data_for_viewprojectphotos(projectid) {
         for (var photo in respons["photos"]) {
             call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
         }
-
+        paging_for_photos();
     }).fail(function() {
         console.log("error onload command=viewprojectphotos ");
     });
@@ -1847,3 +1847,20 @@ function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
 }
 
 
+function paging_for_comments() {
+    var comments = window.pagenation.comments;
+    var kolichestvo_stranic = comments / 5;
+    $("#comments_pagenation").on("click", "li", function() {
+        console.log(arguments);
+        console.log(this);
+    });
+}
+
+function paging_for_photos() {
+    var photos = window.pagenation.photos;
+    var kolichestvo_stranic = photos / 2;
+    $("#photos_pagenation").on("click", "li", function() {
+
+        console.log(this);
+    });
+}
