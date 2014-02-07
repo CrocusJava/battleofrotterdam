@@ -1852,18 +1852,34 @@ function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
 
 function paging_for_comments() {
     var comments = window.pagenation.comments;
-    var kolichestvo_stranic = comments / 5;
-    $("#comments_pagenation").on("click", "li", function() {
-        console.log(arguments);
-        console.log(this);
-    });
+    var kolichestvo_stranic = Math.ceil(comments / 5);
+    var next = $("#comments_next");
+    for (var i = 0; i < kolichestvo_stranic; i++) {
+        $('<li id="' + i + '"><a href="#">' + (++i) + '</a></li>').click(function(event) {
+            console.log(this);
+            event.preventDefault();
+        }).insertBefore(next);
+    }
+//    $("#comments_pagenation").on("click", "li", function(event) {
+//
+//        console.log(this);
+//        event.preventDefault();
+//    });
 }
 
-function paging_for_photos() {
+function paging_for_photos() {//
     var photos = window.pagenation.photos;
-    var kolichestvo_stranic = photos / 2;
-    $("#photos_pagenation").on("click", "li", function() {
-
-        console.log(this);
-    });
+    var kolichestvo_stranic = Math.ceil(photos / 2);
+    var next = $("#photos_next");
+    for (var i = 0; i < kolichestvo_stranic; i++) {
+        $('<li id="' + i + '"><a href="#">' + (++i) + '</a></li>').click(function(event) {
+            console.log(this);
+            event.preventDefault();
+        }).insertBefore(next);
+    }
+//    $("#photos_pagenation").on("click", "li", function(event) {
+//
+//        console.log(this);
+//        event.preventDefault();
+//    });
 }
