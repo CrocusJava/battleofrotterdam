@@ -1855,7 +1855,7 @@ function paging_for_comments() {
     var kolichestvo_stranic = Math.ceil(comments / 5);
     var next = $("#comments_next");
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + i + '"><a href="#">' + (++i) + '</a></li>').click(function(event) {
+        $('<li id="' + i + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             console.log(this);
             event.preventDefault();
         }).insertBefore(next);
@@ -1872,7 +1872,7 @@ function paging_for_photos() {//
     var kolichestvo_stranic = Math.ceil(photos / 2);
     var next = $("#photos_next");
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + i + '"><a href="#">' + (++i) + '</a></li>').click(function(event) {
+        $('<li id="' + i + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             console.log(this);
             event.preventDefault();
         }).insertBefore(next);
