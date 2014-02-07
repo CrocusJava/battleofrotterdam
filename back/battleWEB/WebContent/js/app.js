@@ -2,7 +2,7 @@ $(window).load(function() {
     call_all();
 });
 function call_all() {
-    call_grid();
+//    call_grid();
     call_scroll();
 //    call_slider_sequence();
     call_datatables();
@@ -26,19 +26,7 @@ function call_all() {
 }
 
 function call_form_validation() {
-//    if ($('#account').length > 0) {
-//        $('#account').validate({
-//            rules: {
-//                birthday: {
-//                    date: true
-//                },
-//                postcode: {
-//                    number: true
-//                }
-//            },
-//            submitHandler: AjaxRegistrationLogin
-//        });
-//    }
+
     if ($('.login_form_validation').length > 0) {
         $('.login_form_validation').validate({
             submitHandler: AjaxRegistrationLogin
@@ -304,6 +292,29 @@ function call_lightbox_news() {
 
 }
 
+function call_lightbox_current_rank() {
+    if ($('.current_rank').length > 0) {
+        $('.current_rank').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image...',
+            mainClass: 'mfp-img-mobile',
+            image: {
+                tError: 'The image could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title');
+                }
+            }
+        });
+
+
+    }
+
+}
+
+
+
+
 function call_lightbox() {
     if ($('.image_link').length > 0) {
         $('.image_link').magnificPopup({
@@ -378,6 +389,12 @@ function AjaxRegistrationLogin(form) {
                     window.location = "index.html";
                 });
             }
+            else if (!data.statuslogin) {
+                alert("когда логин занят \n" + data.registrationmessage + "\n попробуйте еще раз");
+            }
+            else if (!data.statusemail) {
+                alert("когда эмэел занят \n" + data.registrationmessage + "\n попробуйте еще раз");
+            }
         }
         if (form.id === "login") {
             if (data.iduser) {
@@ -425,6 +442,7 @@ function AjaxSendComment(form) {
     }).done(function(data) {
         if (data["status"] === true) {
             createComment(form, JSON.parse(config.data));
+            $("#f3").val("");
         }
         else {
             alert(data["message"]);
@@ -473,7 +491,7 @@ function createElements(conteiner, parent, info) {
         li.appendTo(ul);
     }
     else {
-        li.appendTo(conteiner);
+        li.prependTo(conteiner);
     }
 
     var article = $(document.createElement("article"));
@@ -659,7 +677,7 @@ function call_data_for_index_html() {
 //<<<<<<<<<<<<=============================задачи для страницы вывода всех проектов
 
     if (window.location.href.match(/projets.html$/)) {
-        call_load_data_for_projets_page();
+        call_load_data_for_projets_page(0);
     }
 
 //<<<<<<<<<<<<=============================задачи для всех страницы
@@ -744,7 +762,7 @@ function call_load_data_for_footer_links(load_data) {
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
         {tag: "div", add_class: "nomasonry item_grid item3", children: [
-                {tag: "a", attr: {href: "photopath", title: "photodescription", "data-user": "userlogin", projectid: "projectid"}, children: [
+                {tag: "a", attr: {href: "photopath", title: "competitionname", "data-user": "userlogin", projectid: "projectid"}, children: [
                         {tag: "div", add_class: "hover"},
                         {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
                     ]}
@@ -772,7 +790,7 @@ function call_data_for_footer() {
             call_load_data_for_footer_gallery(dataObj);
         }
 //<<<<<<<<<<<<<========= Вызов плагина масонри для выравнивания картинок
-        call_grid();
+//        call_grid();
         console.log("Respons data for footer ====> ", status);
     }, "json").fail(function(data) {
         console.log("Somsing wrang", data);
@@ -883,7 +901,7 @@ function call_data_for_faq() {
 
         var faqlist = data.faqlist;
         for (var list in faqlist) {
-            call_markup_index(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
+            call_markup_for_admin_text(return_faq_template_end_scope(count), $("#accordion"), faqlist[list]);
             count++;
         }
 
@@ -917,19 +935,7 @@ function call_event_logout() {
     });
 }
 
-/*=====
- function call_load_data_for_footer_gallery(load_data) {
- var index_footer_gallery_template = [
- {tag: "div", add_class: "item_grid item3", children: [
- {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin"}, children: [
- {tag: "div", add_class: "hover"},
- {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
- ]}
- ]}
- ];
- call_markup_index(index_footer_gallery_template, $("#footer_gallery"), load_data);
- }
- =====*/
+
 
 function call_load_data_for_news_index() {
     $.post("/battleWEB/controller?command=news", function(data) {
@@ -1083,7 +1089,36 @@ function call_trylater() {
     });
 }
 
+/*
+ function call_load_data_for_news_index() {
+ $.post("/battleWEB/controller?command=news", function(data) {
+ var template_for_news_index = [
+ {tag: "div", add_class: "span4 text_center", children: [
+ {tag: "div", add_class: "news_index boxfeature", children: [
+ {tag: "a", attr: {href: "photopath", title: "text", "data-href": "photopath"}, children: [
+ {tag: "div", add_class: "hover"},
+ {tag: "div", add_class: "img_preview", children: [
+ {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
+ {tag: "h4", text: "loaddate"}
+ ]}
+ ]},
+ {tag: "div", add_class: "desc", children: [
+ {tag: "p", text: "text"},
+ {tag: "p", children: [
+ {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+ //, bind: {popup_news:click}
+ }
+ ]}
+ ]}
 
+
+ ]}
+
+ ]}
+ ];
+
+
+ */
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
@@ -1093,23 +1128,28 @@ function call_load_data_for_current_rankings() {
 
             return [
                 {tag: "div", add_class: "span4 text_center", children: [
-                        {tag: "div", add_class: "boxfeature_", children: [
+                        {tag: "div", add_class: "current_rank boxfeature_", children: [
                                 {tag: "div", add_class: "img_preview_", children: [
-                                        {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
-                                        {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                {tag: "span", text: "rating"},
-                                                {tag: "span", text: " Likes"}
+                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto.description", "data-href": "lastphoto"}, children: [
+                                                {tag: "div", add_class: "hover"},
+                                                {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
+                                                {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
+                                                        {tag: "span", text: "rating"},
+                                                        {tag: "span", text: " Likes"}
+                                                    ]},
+                                                {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
+                                                        {tag: "span", text: "commentquantity"},
+                                                        {tag: "span", text: " Comments"}
+                                                    ]},
+                                                {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
+
+
                                             ]},
-                                        {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
-                                                {tag: "span", text: "commentquantity"},
-                                                {tag: "span", text: " Comments"}
-                                            ]},
-                                        {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
                                     ]},
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "unvisiblin btn btn-primary flat btn-large", text: "Read More"}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
                                             ]}
                                     ]}
                             ]}
@@ -1122,11 +1162,13 @@ function call_load_data_for_current_rankings() {
         for (var i in monthprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
+            call_lightbox_current_rank();
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
+            call_lightbox_current_rank();
         }
 
 
@@ -1251,13 +1293,12 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<article  class="project_block_proj"  >' +
             '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
-			'<div class="viewtheproj">' +
+            '<div class="viewtheproj">' +
             '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
             '</div>' +
             '</div>' +
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
-            
             '</section>' + '<div style="height:15px;"></div>';
     $(template_for_project).appendTo("#account_projects");
 }
@@ -1273,8 +1314,8 @@ function call_cookie_navigator() {
                     var projectid = parseInt(parametrs[1]);
                     window.projectId = projectid;
                     call_load_data_for_viewproject(projectid);
-                    call_load_data_for_viewprojectcomments(projectid);
-                    call_load_data_for_viewprojectphotos(projectid);
+                    call_load_data_for_viewprojectcomments(projectid, 0);
+                    call_load_data_for_viewprojectphotos(projectid, 0);
                 }
                 break;
             case "userid":
@@ -1315,6 +1356,14 @@ function call_load_data_for_viewproject(projectid) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+        window.pagenation = {
+            comments: respons.commentquantity,
+            photos: respons.photoquantity
+        };
+
+        paging_for_photos();
+        paging_for_comments();
+
         call_create_markup_for_viewproject(respons);
     }).fail(function() {
         console.log("error onload command=viewproject ");
@@ -1326,6 +1375,8 @@ function call_load_data_for_viewproject(projectid) {
 
 
 function call_create_markup_for_viewproject(respons) {
+    $("#user").text(respons["user"]["login"]);
+    $("#user_account").attr("href", "static_profile.html#userid=" + respons["user"]["id"]);
     $("#name").text(respons["name"]);
     $("#creationdate").text(respons["creationdate"]);
     $("#description").text(respons["description"]);
@@ -1337,7 +1388,8 @@ function call_create_markup_for_viewproject(respons) {
         $("#firstphoto_description").text(respons["firstphoto"]["description"]);
     }
     catch (e) {
-
+        $("#firstphoto_path").attr("src", "img/nophoto.png");
+        $("#firstphoto_path_big").attr("href", "img/nophoto.png");
     }
     try {
         $("#lastphoto_path_big").attr("href", respons["lastphoto"]["path"]);
@@ -1345,17 +1397,18 @@ function call_create_markup_for_viewproject(respons) {
         $("#lastphoto_description").text(respons["lastphoto"]["description"]);
     }
     catch (e) {
-
+        $("#lastphoto_path_big").attr("href", "img/nophoto.png");
+        $("#lastphoto_path").attr("src", "img/nophoto.png");
     }
 
 
 }
 
-function call_load_data_for_viewprojectcomments(projectid) {
+function call_load_data_for_viewprojectcomments(projectid, firstposition) {
     var data = {
         projectid: projectid,
-        firstposition: 0,
-        size: 10
+        firstposition: firstposition,
+        size: 5
     };
     data = JSON.stringify(data);
     var url = "/battleWEB/controller?command=viewprojectcomments";
@@ -1394,13 +1447,13 @@ function call_create_markup_for_viewprojectcomments(respons) {
 
 
 
-function call_load_data_for_projets_page() {
+function call_load_data_for_projets_page(firstposition) {
 
 
     var url = "/battleWEB/controller?command=projects";
     var data = JSON.stringify({
-        firstposition: 0,
-        size: 10,
+        firstposition: firstposition,
+        size: 2,
         orderby: "date",
         sort: "desc"
     });
@@ -1411,10 +1464,13 @@ function call_load_data_for_projets_page() {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+        window.pagenation = {
+            projects: respons.projectquantity
+        };
         for (var project in respons.projects) {
             call_create_markup_for_projects(respons.projects[project]);
         }
-
+        paging_for_projects();
     }).fail(function() {
         console.log("error onload command = projects ");
     });
@@ -1466,7 +1522,7 @@ function call_load_data_for_projets_page() {
             {tag: "div", attr: {"style": "height:35px;"}}
 
         ];
-        call_markup_index(template_projets_page, $("#content > div.inner-wrapper"), respons);
+        call_markup_index(template_projets_page, $("#projects"), respons);
 
     }
 }
@@ -1510,6 +1566,9 @@ function call_send_vote(projectid) {
             text_rating++;
             $("#rating").text(text_rating);
         }
+        else {
+            alert("Вам нельзя голосовать!!!!!!!!!!!!!!");
+        }
     }).fail(function() {
         console.log("Error for VOTE");
     });
@@ -1532,7 +1591,12 @@ function call_createproject() {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        window.location = "edit_project.html#projectid=" + respons.projectid;
+        if (respons.projectid) {
+            window.location = "edit_project.html#projectid=" + respons.projectid;
+        }
+        else {
+            alert("УУУУ,\n да у вас проблемы,\n сори, наверное проект для этого соривнования уже существует,\n очень жаль =(\n попробуйте принять участие в другом соревнованиии =)");
+        }
     }).fail(function() {
         console.log("Error for projectsave");
     });
@@ -1630,11 +1694,11 @@ function call_send_description_for_this_photo(response, description_photo) {
     });
 }
 
-function  call_load_data_for_viewprojectphotos(projectid) {
+function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
     var data = {
         projectid: projectid,
-        firstposition: 0,
-        size: 10
+        firstposition: firstposition,
+        size: 2
     };
     data = JSON.stringify(data);
     var url = "/battleWEB/controller?command=viewprojectphotos";
@@ -1791,3 +1855,74 @@ function call_markup_for_admin_text(markupTemplate, parentsContainer, dataObj) {
 }
 
 
+function paging_for_comments() {
+    var comments = window.pagenation.comments;
+    var kolichestvo_stranic;
+    var next = $("#comments_next");
+    if (comments > 5) {
+        kolichestvo_stranic = Math.ceil(comments / 5);
+    }
+    else {
+        kolichestvo_stranic = 1;
+    }
+    for (var i = 0; i < kolichestvo_stranic; i++) {
+        $('<li id="' + (i + 5) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+            $("#main_conteiner_comments").empty();
+            var firstposition = $(this).attr("id");
+            call_load_data_for_viewprojectcomments(parseInt(window.projectId), parseInt(firstposition));
+            event.preventDefault();
+        }).insertBefore(next);
+    }
+//    $("#comments_pagenation").on("click", "li", function(event) {
+//
+//        console.log(this);
+//        event.preventDefault();
+//    });
+}
+
+function paging_for_photos() {//
+    var photos = window.pagenation.photos;
+    var kolichestvo_stranic;
+    var next = $("#photos_next");
+    if (photos > 2) {
+        kolichestvo_stranic = Math.ceil(photos / 2);
+    }
+    else {
+        kolichestvo_stranic = 1;
+    }
+
+    for (var i = 0; i < kolichestvo_stranic; i++) {
+        $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+            $("#viewprojectphotos").empty();
+            var firstposition = $(this).attr("id");
+            call_load_data_for_viewprojectphotos(parseInt(window.projectId), parseInt(firstposition));
+            event.preventDefault();
+        }).insertBefore(next);
+    }
+//    $("#photos_pagenation").on("click", "li", function(event) {
+//
+//        console.log(this);
+//        event.preventDefault();
+//    });
+}
+
+function paging_for_projects() {
+    var projects = window.pagenation.projects;
+    var kolichestvo_stranic;
+    var next = $("#projects_next");
+    if (projects > 2) {
+        kolichestvo_stranic = Math.ceil(projects / 2);
+    }
+    else {
+        kolichestvo_stranic = 1;
+    }
+
+    for (var i = 0; i < kolichestvo_stranic; i++) {
+        $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+            $("#projects").empty();
+            var firstposition = $(this).attr("id");
+            call_load_data_for_projets_page(parseInt(firstposition));
+            event.preventDefault();
+        }).insertBefore(next);
+    }
+}

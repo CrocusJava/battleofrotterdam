@@ -89,16 +89,7 @@
                 </div>
             </section>
             <div class="inner-wrapper text_center" style="height: 50px;"></div>
-            <!--Start main Title content--
-            <section id="content_top">
-                <div class="bg_content_top general_bg">
-                    <div class="inner-wrapper text_center">
-                        <h1 class="no_margin main_title font_hotel">
-                            [Jhon Smith]
-                        </h1>
-                    </div>
-                </div>
-            </section><!--end main Title content-->
+
             <!-- Start section logo message area -->
             <section id="logo_message_area">
                 <div class="inner-wrapper">
@@ -172,7 +163,7 @@
                                                 <span class="help-block">Example: +3(099)123 456 789</span>
 
                                                 <label class="checkbox">
-                                                    <input type="checkbox" value="" required="">
+                                                    <input type="checkbox" value="">
                                                     <small>Agree <a href="terms_conditions.html" id="terms_condition">Terms AND Conditions</a></small>
                                                 </label>
                                             </div>
@@ -226,7 +217,7 @@
                         <div class="span5">
                             <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
                             <!--Start List Grid Galeries img-->
-                            <div id="footer_gallery" class="gridmasonry galeries_footer">
+                            <div id="footer_gallery" class="galeries_footer">
 
                             </div>
                             <!--End List Grid Galeries img-->
@@ -345,6 +336,14 @@
                 $("#myModal_TC").modal("show");
 
             });
+
+            function valid_checkbox() {
+                if (!($("input:checked").length)) {
+                    alert("Остынь\n гарячий какой\n а галочка для СОГЛАСИН, кто ставить будет????????!!!!!!!!!!!!!!!");
+                    return false;
+                }
+            }
+            $(".btn-large:submit").click(valid_checkbox);
         </script>
 
 

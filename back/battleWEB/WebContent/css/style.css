@@ -984,7 +984,7 @@ Start Content Section
     font-size: 14px;
 }
 #content .with_bg {
-    background: url(../img/microCamera.jpg) no-repeat center center fixed;
+    background: url(../img/microCamera_lr.jpg) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

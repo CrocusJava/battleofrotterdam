@@ -116,11 +116,11 @@ public class CommandFooter implements Command {
 		for(Photo photo:photosGallery){
 			JsonObject jsonObjectPhoto = Json.createObjectBuilder()
 					.add(Constants.PARAMETER_PHOTO_PATH, photo.getPath())
-					.add(Constants.PARAMETER_PHOTO_DESCRIPTION, photo.getDescription())
 					.add(Constants.PARAMETER_LOAD_DATE, photo.getLoadDate().toString())
 					.add(Constants.PARAMETER_USER_LOGIN, photo.getProject().getUser().getLogin())
 					.add(Constants.PARAMETER_COMPETITION_NAME, photo.getProject().getCompetition().getName())
 					.add(Constants.PARAMETER_PROJECT_ID, photo.getProject().getId())
+					.add(Constants.PARAMETER_PROJECT_NAME, photo.getProject().getName())
 					.add(Constants.PARAMETER_PHOTO_ID, photo.getId())
 					.build();
 			photosGalleryArrayBuilder.add(jsonObjectPhoto);
