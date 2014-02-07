@@ -293,8 +293,8 @@ function call_lightbox_news() {
 }
 
 function call_lightbox_current_rank() {
-    if ($('.news_index').length > 0) {
-        $('.news_index').magnificPopup({
+    if ($('.current_rank').length > 0) {
+        $('.current_rank').magnificPopup({
             delegate: 'a',
             type: 'image',
             tLoading: 'Loading image...',
@@ -1128,7 +1128,7 @@ function call_load_data_for_current_rankings() {
 
             return [
                 {tag: "div", add_class: "span4 text_center", children: [
-                        {tag: "div", add_class: "boxfeature_", children: [
+                        {tag: "div", add_class: "current_rank boxfeature_", children: [
                                 {tag: "div", add_class: "img_preview_", children: [
 										
 									{tag: "a", attr: {href: "lastphoto", title: "lastphoto.description", "data-href": "lastphoto"}, children: [
@@ -1166,11 +1166,13 @@ function call_load_data_for_current_rankings() {
         for (var i in monthprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
+			call_lightbox_current_rank();
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
+			call_lightbox_current_rank();
         }
 
 
