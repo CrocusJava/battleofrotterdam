@@ -135,9 +135,10 @@
                             <!-- Start section Blog Line details -->
                             <div class="blog-line" >
                                 <a href="#"><i class="icon-calendar"></i><span id="creationdate"></span></a>
-                                <span> <a href="#"> <i class="icon-user"></i><span id="rating"></span> Likes</a></span>
+                                <span> <a href="#"> <i class="icon-ok"></i><span id="rating"></span> Likes</a></span>
                                 <!--  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a> -->
                                 <a href="#" ><i class="icon-comments"></i><span id="commentquantity"></span> Comments</a>
+                                <a href="#" id="user_account"><i class="icon-user"></i> <span id="user"></span></a>
 
                                 <div class="forall"  style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
@@ -220,76 +221,15 @@
 
                             <div style="height:35px;"></div>
                             <section id="viewprojectphotos"></section>
-                            <!--                            <section class="project_block singlephotoblock">
-
-                                                            <a href="img/remont1.jpg" class="image_link">
-
-
-                                                                <div class="with_hover"></div>
-
-
-
-
-                                                                <div class="hover singlephoto" ><img src="img/remont8.jpg" class="img-polaroid" style="width:100%;">
-
-                                                                </div>  </a>
-
-
-                                                            <article class="descr_singlephoto"  >
-
-                                                                <p class="abzac" > Lorem Ipsum is simply dummy text
-                                                                </p>
-                                                                 <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
-
-
-                                                            </article>
-
-
-                                                        </section>-->
-
-                            <!--                            <div style="height:35px;"></div>
-                                                        <section class="project_block singlephotoblock">
-
-                                                            <a href="img/remont1.jpg" class="image_link">
-
-
-                                                                <div class="with_hover"></div>
-
-
-
-
-                                                                <div class="hover singlephoto" ><img src="img/remont1.jpg" class="img-polaroid" style="width:100%;">
-
-                                                                </div>  </a>
-
-
-                                                            <article class="descr_singlephoto"  >
-
-                                                                <p style="font-size:1.3em; line-height:130%; background-color:rgba(0,181,0,0.2); padding: 3% 3%;"> Lorem Ipsum is simply dummy text fjmry odifhboihof oizdhfo i\doifbpio zd pioh bpdioh dz\pih pih dpih \dfpibh \dpfibpiojhpd\bpoblk\doui vofoiehlf lk;ofjhkjga\ oihdjbadlfih  lkdhfgoighroig
-                                                                </p>
-                                                                 <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a>
-
-
-                                                            </article>
-
-
-                                                        </section>-->
-
-
-
-
-
-
 
                             <div style="height:35px;"></div>
 
                             <!--Start Pagination -->
                             <div class="pagination flat-pagination  pagination-large text_center">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">Next</a></li>
+                                <ul id="photos_pagenation">
+                                    <li id="photos_prev"><a href="#">Prev</a></li>
+
+                                    <li id="photos_next"><a href="#">Next</a></li>
                                 </ul>
                             </div><!--End Pagination -->
 
@@ -303,11 +243,10 @@
 
                             <!--Start Pagination -->
                             <div class="pagination flat-pagination  pagination-large text_center">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">Next</a></li>
+                                <ul id="comments_pagenation">
+                                    <li id="comments_prev"><a href="#">Prev</a></li>
+
+                                    <li id="comments_next"><a href="#">Next</a></li>
                                 </ul>
                             </div><!--End Pagination -->
 
@@ -374,7 +313,7 @@
                         <div class="span5">
                             <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
                             <!--Start List Grid Galeries img-->
-                            <div id="footer_gallery" class="gridmasonry galeries_footer">
+                            <div id="footer_gallery" class="galeries_footer">
 
                             </div>
                             <!--End List Grid Galeries img-->
@@ -455,10 +394,14 @@
         <script src="js/app.js"></script>
         <!--end JS config application-->
 
+        <script type="text/javascript">
+            $("#vote").click(function(event) {
+                call_send_vote(window.projectId);
+                event.preventDefault();
+            });
+        </script>
 
 
-
-      
 
     </body>
 </html>
