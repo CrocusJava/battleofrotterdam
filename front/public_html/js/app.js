@@ -1361,6 +1361,9 @@ function call_load_data_for_viewproject(projectid) {
             photos: respons.photoquantity
         };
 
+        paging_for_photos();
+        paging_for_comments();
+
         call_create_markup_for_viewproject(respons);
     }).fail(function() {
         console.log("error onload command=viewproject ");
@@ -1417,7 +1420,7 @@ function call_load_data_for_viewprojectcomments(projectid) {
         for (var comment in respons["comments"]) {
             call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
         }
-        paging_for_comments();
+
     }).fail(function() {
         console.log("error onload command=viewprojectcomments ");
     });
@@ -1704,7 +1707,7 @@ function  call_load_data_for_viewprojectphotos(projectid) {
         for (var photo in respons["photos"]) {
             call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
         }
-        paging_for_photos();
+
     }).fail(function() {
         console.log("error onload command=viewprojectphotos ");
     });
