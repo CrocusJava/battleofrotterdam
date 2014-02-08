@@ -1616,6 +1616,7 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.block_of_sended_photo = parent;
         window.upload_file.submit();
         window.upload_file.enable();
+        $("#uploadphoto").css("visibility", "visible");
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
@@ -1628,14 +1629,16 @@ function call_new_added_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
 
-        console.log(parent.data("fixed_id_photo"));
-
         $(parent).remove();
         window.upload_file._clearInput();
         window.upload_file.enable();
+        $("#uploadphoto").css("visibility", "visible");
         event.preventDefault();
     }
+
     window.upload_file.disable();
+    $("#uploadphoto").css("visibility", "hidden");
+
     var temlate_for_new_added_photo_for_edit_project = [
         {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
                 {tag: "a", add_class: "image_link", attr: {href: "#photo"}, children: [
