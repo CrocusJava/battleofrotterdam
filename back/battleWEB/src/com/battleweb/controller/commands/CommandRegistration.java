@@ -106,7 +106,7 @@ public class CommandRegistration implements Command {
 			user.setApproveregistration(false);
 			user.setActive(true);
 			user.setCommentAble(true);
-			user.setPhotoPath(Constants.PATH_NO_PHOTO);
+			user.setPhotoPath(Constants.PATH_NO_AVATAR);
 			
 			try {
 				SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyy");

@@ -322,6 +322,7 @@ public interface Constants {
 	
 	//Path
 	public static final String PATH_NO_PHOTO = "img/nophoto.png";
+	public static final String PATH_NO_AVATAR = "img/noavatar.jpg";
 
 	public static final String PATH_SAVE_PHOTO_NEWS = "/usr/app/jboss/photo/news";
 	public static final String PATH_SAVE_AVATAR = "/usr/app/jboss/photo/avatar";
