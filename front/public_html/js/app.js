@@ -835,8 +835,9 @@ function call_uploading_file_on_server() {
                     reader.readAsDataURL(window.upload_file._input.files[0]);
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                    $("#warning_load_file").show();
-                    $("#warning_load_file").fadeOut(10000);
+//                    $("#warning_load_file").show();
+//                    $("#warning_load_file").fadeOut(10000);
+                    alert("Можно загружать только файлы с разширением jpg | gif | jpeg | bmp | png ");
                     return false;
                 }
 
@@ -1294,7 +1295,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
             '</div>' +
             '</div>' +
             '</article>' +
