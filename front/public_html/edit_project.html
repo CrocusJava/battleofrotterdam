@@ -131,10 +131,11 @@
                         <div class="span12">
                             <!-- Start section Blog Line details -->
                             <div class="blog-line" style="background-color: rgba(0,181,0,0.5);">
-                                <a href="#"><i class="icon-calendar"></i><span id="creationdate"></span></a>
-                                <span> <a href="#"> <i class="icon-ok"></i><span id="rating"></span> Likes</a></span>
-                                <!--  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a> -->
-                                <a href="#" ><i class="icon-comments"></i><span id="commentquantity"></span> Comments</a>
+                                <a href=""><i class="icon-calendar"></i><span id="creationdate"></span></a>
+                                <span> <a href=""> <i class="icon-ok"></i><span id="rating"></span> Likes</a></span>
+
+                                <a href="" ><i class="icon-comments"></i><span id="commentquantity"></span> Comments</a>
+                                <a href="" ><i class="icon-pencil"></i><span class="text-info"> All text editable</span></a>
 
                                 <!--     <div class="forall" style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
@@ -144,10 +145,10 @@
                             </div>
 
 
-                            <div class="text_center" style=" clear:both;"  contenteditable="true">
-                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;" id="name"></h1>
+                            <div class="text_center" style=" clear:both;">
+                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;" id="name" contenteditable="true"></h1>
 
-                                <p id="description"></p>
+                                <p id="description" contenteditable="true"></p>
                             </div>
 
                             <!-- Start Break Page Style-->
@@ -172,7 +173,7 @@
 
                                         </div>
                                         <p id="firstphoto_description"></p>
-                                        <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
+                                        <p style="visibility: hidden;"><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
                                     </div>
                                 </div>
                                 <div class="span6">
@@ -186,7 +187,7 @@
 
                                         </div>
                                         <p id="lastphoto_description"></p>
-                                        <p><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
+                                        <p style="visibility: hidden;"><a href="#" class="btn btn-primary flat"> Preview <i class="icon-angle-right"></i></a></p>
                                     </div>
                                 </div>
 
@@ -196,12 +197,12 @@
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
                             <div id="need_for_nophoto">
-                                <div id="formsg_if_nophoto" class="header_popup_pz"><strong style="color:red;"><i class="icon-bullhorn"></i>  THERE IS NO PHOTOS IN YOUR PROJECT   </strong></div>
+                                <div id="formsg_if_nophoto" class="header_popup_pz" style="visibility: hidden;"><strong style="color:red;"><i class="icon-bullhorn"></i>  THERE IS NO PHOTOS IN YOUR PROJECT   </strong></div>
 
                                 <button class="addphoto btn btn-primary btn-large flat" id="uploadphoto">Add photo</button>
                             </div>
 
-                            <div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>
+                            <!--<div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>-->
                             <section id="new_added_photo"></section>
                             <section id="viewprojectphotos"></section>
 
@@ -225,7 +226,7 @@
                     </div>
 
                 </div>
-                <!--        </div>-->
+
             </section><!-- End section content page -->
 
 
