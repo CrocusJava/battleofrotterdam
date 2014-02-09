@@ -1677,7 +1677,7 @@ function call_load_photo_for_edit_project(photo) {
     function Save_description_this_photo(event) {
         var parent = $(this).parents("section.project_block");
         $(parent).trigger("find.description");
-
+        $(this).removeClass("btn-danger").addClass("btn-primary");
         event.preventDefault();
     }
     function Find_description_this_photo(event) {
@@ -1697,7 +1697,19 @@ function call_load_photo_for_edit_project(photo) {
         event.preventDefault();
     }
 
+    function Fixed_what_this_description_changed() {
+        var prev_text = photo["description"];
+        var current_text = $(this).text();
 
+        if (current_text !== prev_text) {
+            console.log(current_text);
+            $("#save-description-photo").removeClass("btn-primary").addClass("btn-danger");
+        }
+        else {
+            $("#save-description-photo").removeClass("btn-danger").addClass("btn-primary");
+        }
+
+    }
     var temlate_for_new_added_photo_for_edit_project = [
         {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"find.description": Find_description_this_photo}, children: [
                 {tag: "a", add_class: "image_link", children: [
@@ -1707,7 +1719,7 @@ function call_load_photo_for_edit_project(photo) {
                             ]}
                     ]},
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
-                        {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}},
+                        {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
@@ -1715,7 +1727,7 @@ function call_load_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"id": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
