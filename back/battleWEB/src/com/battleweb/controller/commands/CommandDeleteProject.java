@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.battleejb.ejbbeans.PhotoBean;
+import com.battleejb.ejbbeans.ProjectBean;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
 import com.battleweb.tools.ToolJSON;
@@ -22,22 +22,21 @@ import com.battleweb.tools.ToolJSON;
 
 @Stateless
 @LocalBean
-public class CommandDeletePhoto implements Command {
+public class CommandDeleteProject implements Command {
 
 	@EJB
 	private ToolJSON toolJSON;
 	@EJB
-	private PhotoBean photoBean;
-	
+	private ProjectBean projectBean;
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		
-		int photoId = jsonObjectRequest.getInt(Constants.PARAMETER_PHOTO_ID);
-		photoBean.remove(photoBean.find(photoId));
-		Log.debug(this, "Photo id="+photoId+" was deleted");
+		int projectId = jsonObjectRequest.getInt(Constants.PARAMETER_PROJECT_ID);
+		projectBean.remove(projectBean.find(projectId));
+		Log.debug(this, "Project id="+projectId+" was deleted");
 		return null;
 	}
 
