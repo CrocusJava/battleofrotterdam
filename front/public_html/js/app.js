@@ -835,8 +835,7 @@ function call_uploading_file_on_server() {
                     reader.readAsDataURL(window.upload_file._input.files[0]);
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-//                    $("#warning_load_file").show();
-//                    $("#warning_load_file").fadeOut(10000);
+
                     alert("Можно загружать только файлы с разширением jpg | gif | jpeg | bmp | png ");
                     return false;
                 }
@@ -1613,17 +1612,31 @@ function call_createproject() {
 function call_new_added_photo_for_edit_project(photo) {
     function Save_img_and_description(event) {
         var parent = $(this).parents("section.project_block");
-        window.upload_file.block_of_sended_photo = parent;
-        window.upload_file.submit();
-        window.upload_file.enable();
-        $("#uploadphoto").css("visibility", "visible");
+        var id = $(parent).data("fixed_id_photo");
+        if (id) {
+            $(parent).trigger("my_send.description");//call_send_description_for_this_photo(id, description_photo);
+        }
+        else {
+            window.upload_file.block_of_sended_photo = parent;
+            window.upload_file.submit();
+            window.upload_file.enable();
+            $("#uploadphoto").css("visibility", "visible");
+        }
+
         $(this).removeClass("btn-danger").addClass("btn-primary");
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
-        window.upload_file.upload_desription = description;
-        photo["description"] = description;
+        var id = $(this).data("fixed_id_photo");
+        if (id) {
+            call_send_description_for_this_photo(id, description);
+        }
+        else {
+            window.upload_file.upload_desription = description;
+        }
+
+        photo["description"] = description;//<<<<<<<================ нужно разобраться как определять изменения в тексте для только что созданного елемента
         event.preventDefault();
         console.log(description);
 
@@ -1631,15 +1644,21 @@ function call_new_added_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
 
+        var id = $(parent).data("fixed_id_photo");
+        if (id) {
+            call_delete_photo(id);
+        }
+        else {
+            window.upload_file._clearInput();
+            window.upload_file.enable();
+            $("#uploadphoto").css("visibility", "visible");
+        }
         $(parent).remove();
-        window.upload_file._clearInput();
-        window.upload_file.enable();
-        $("#uploadphoto").css("visibility", "visible");
         event.preventDefault();
     }
 
     function Fixed_what_this_description_changed() {
-        var prev_text = photo["description"];
+        var prev_text = photo["description"];//<<<<<<<================ нужно разобраться как определять изменения в тексте для только что созданного елемента
         var current_text = $(this).text();
         var parent = $(this).parents("section.project_block")[0];
         if (current_text !== prev_text) {
@@ -1707,8 +1726,11 @@ function call_load_photo_for_edit_project(photo) {
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
-
-        $(parent).remove();
+        var whate = confirm("У Е Р Е Н Ы ??????!!!!!!!!!");
+        if (whate) {
+            call_delete_photo(photo["id"]);
+            $(parent).remove();
+        }
 
         event.preventDefault();
     }
@@ -1760,10 +1782,7 @@ function call_load_photo_for_edit_project(photo) {
 
 
 function call_send_description_for_this_photo(idphoto, description_photo) {
-    /* command=editphotodescription
-     {"id":234,
-     "description":"bla-bla"
-     }*/
+
     var send_data = {
         id: idphoto,
         description: description_photo
@@ -1782,6 +1801,29 @@ function call_send_description_for_this_photo(idphoto, description_photo) {
         console.log(respons);
     }).fail(function() {
         console.log("error  command=editphotodescription");
+    });
+}
+
+
+function call_delete_photo(id) {
+
+    var delete_photo = {
+        photoid: id
+    };
+    delete_photo = JSON.stringify(delete_photo);
+    var url = "/battleWEB/controller?command=deletephoto";
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: delete_photo,
+        contentType: "application/json"
+    }).done(function(respons) {
+        console.log(" photo DELETED");
+        console.log(respons);
+    }).fail(function() {
+        console.log("error  command = deletephoto");
     });
 }
 
