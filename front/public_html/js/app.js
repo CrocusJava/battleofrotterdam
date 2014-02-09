@@ -1617,11 +1617,13 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.submit();
         window.upload_file.enable();
         $("#uploadphoto").css("visibility", "visible");
+        $(this).removeClass("btn-danger").addClass("btn-primary");
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
         window.upload_file.upload_desription = description;
+        photo["description"] = description;
         event.preventDefault();
         console.log(description);
 
@@ -1636,6 +1638,20 @@ function call_new_added_photo_for_edit_project(photo) {
         event.preventDefault();
     }
 
+    function Fixed_what_this_description_changed() {
+        var prev_text = photo["description"];
+        var current_text = $(this).text();
+        var parent = $(this).parents("section.project_block")[0];
+        if (current_text !== prev_text) {
+            console.log(current_text);
+            $(parent).find("[name=save-description-photo]").removeClass("btn-primary").addClass("btn-danger");
+        }
+        else {
+            $(parent).find("[name=save-description-photo]").removeClass("btn-danger").addClass("btn-primary");
+        }
+
+    }
+
     window.upload_file.disable();
     $("#uploadphoto").css("visibility", "hidden");
 
@@ -1648,7 +1664,7 @@ function call_new_added_photo_for_edit_project(photo) {
                             ]}
                     ]},
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
-                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
+                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
@@ -1656,7 +1672,7 @@ function call_new_added_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_img_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
@@ -1684,7 +1700,7 @@ function call_load_photo_for_edit_project(photo) {
         var description = $(this).find("[name=description_photo]").text();
 
         call_send_description_for_this_photo(photo["id"], description);
-
+        photo["description"] = description;
         event.preventDefault();
         console.log(description);
 
@@ -1700,13 +1716,13 @@ function call_load_photo_for_edit_project(photo) {
     function Fixed_what_this_description_changed() {
         var prev_text = photo["description"];
         var current_text = $(this).text();
-
+        var parent = $(this).parents("section.project_block")[0];
         if (current_text !== prev_text) {
             console.log(current_text);
-            $("#save-description-photo").removeClass("btn-primary").addClass("btn-danger");
+            $(parent).find("[name=save-description-photo]").removeClass("btn-primary").addClass("btn-danger");
         }
         else {
-            $("#save-description-photo").removeClass("btn-danger").addClass("btn-primary");
+            $(parent).find("[name=save-description-photo]").removeClass("btn-danger").addClass("btn-primary");
         }
 
     }
@@ -1727,7 +1743,7 @@ function call_load_photo_for_edit_project(photo) {
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"id": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
