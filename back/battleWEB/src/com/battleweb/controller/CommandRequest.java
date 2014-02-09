@@ -20,6 +20,7 @@ import com.battleweb.controller.commands.CommandCreateCompetition;
 import com.battleweb.controller.commands.CommandCreateNews;
 import com.battleweb.controller.commands.CommandCreateProject;
 import com.battleweb.controller.commands.CommandCurrentRankings;
+import com.battleweb.controller.commands.CommandDeletePhoto;
 import com.battleweb.controller.commands.CommandEditComment;
 import com.battleweb.controller.commands.CommandEditCompetition;
 import com.battleweb.controller.commands.CommandEditFAQ;
@@ -164,6 +165,8 @@ public class CommandRequest {
 	private CommandEditProject commandEditProject;
 	@EJB
 	private CommandEditPhotoDescription commandEditPhotoDescription;
+	@EJB
+	private CommandDeletePhoto commandDeletePhoto;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -216,6 +219,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_LOCALE, commandLocale);
 		commands.put(Constants.COMMAND_EDIT_PROJECT, commandEditProject);
 		commands.put(Constants.COMMAND_EDIT_PHOTO_DESCRIPTION, commandEditPhotoDescription);
+		commands.put(Constants.COMMAND_DELETE_PHOTO, commandDeletePhoto);
 	}
 
 	public Command getCommand(HttpServletRequest request) {

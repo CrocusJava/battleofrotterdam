@@ -65,13 +65,13 @@ public class User implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
 	private List<Competition> competitions;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
 	private List<Project> projects;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -80,7 +80,7 @@ public class User implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
 	private List<Voice> voices;
 
 //--------------------------	

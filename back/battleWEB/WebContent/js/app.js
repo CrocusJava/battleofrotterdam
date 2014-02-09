@@ -762,7 +762,7 @@ function call_load_data_for_footer_links(load_data) {
 function call_load_data_for_footer_gallery(load_data) {
     var index_footer_gallery_template = [
         {tag: "div", add_class: "nomasonry item_grid item3", children: [
-                {tag: "a", attr: {href: "photopath", title: "competitionname", "data-user": "userlogin", projectid: "projectid"}, children: [
+                {tag: "a", attr: {href: "photopath", title: "projectname", "data-user": "userlogin", projectid: "projectid"}, children: [
                         {tag: "div", add_class: "hover"},
                         {tag: "img", attr: {src: "photopath", alt: "img_preview"}}
                     ]}
@@ -835,8 +835,9 @@ function call_uploading_file_on_server() {
                     reader.readAsDataURL(window.upload_file._input.files[0]);
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-                    $("#warning_load_file").show();
-                    $("#warning_load_file").fadeOut(10000);
+//                    $("#warning_load_file").show();
+//                    $("#warning_load_file").fadeOut(10000);
+                    alert("Можно загружать только файлы с разширением jpg | gif | jpeg | bmp | png ");
                     return false;
                 }
 
@@ -1294,7 +1295,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1470,7 +1471,12 @@ function call_load_data_for_projets_page(firstposition) {
         for (var project in respons.projects) {
             call_create_markup_for_projects(respons.projects[project]);
         }
-        paging_for_projects();
+
+        if (!paging_for_projects.loaded) {
+            paging_for_projects();
+            paging_for_projects.loaded = true;
+        }
+
     }).fail(function() {
         console.log("error onload command = projects ");
     });
@@ -1610,6 +1616,7 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.block_of_sended_photo = parent;
         window.upload_file.submit();
         window.upload_file.enable();
+        $("#uploadphoto").css("visibility", "visible");
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
@@ -1622,14 +1629,16 @@ function call_new_added_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
 
-        console.log(parent.data("fixed_id_photo"));
-
         $(parent).remove();
         window.upload_file._clearInput();
         window.upload_file.enable();
+        $("#uploadphoto").css("visibility", "visible");
         event.preventDefault();
     }
+
     window.upload_file.disable();
+    $("#uploadphoto").css("visibility", "hidden");
+
     var temlate_for_new_added_photo_for_edit_project = [
         {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
                 {tag: "a", add_class: "image_link", attr: {href: "#photo"}, children: [
@@ -1859,6 +1868,7 @@ function paging_for_comments() {
     var comments = window.pagenation.comments;
     var kolichestvo_stranic;
     var next = $("#comments_next");
+    var count = 0;
     if (comments > 5) {
         kolichestvo_stranic = Math.ceil(comments / 5);
     }
@@ -1866,12 +1876,13 @@ function paging_for_comments() {
         kolichestvo_stranic = 1;
     }
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + (i + 5) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+        $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#main_conteiner_comments").empty();
             var firstposition = $(this).attr("id");
             call_load_data_for_viewprojectcomments(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
+        count += 5;
     }
 //    $("#comments_pagenation").on("click", "li", function(event) {
 //
@@ -1884,6 +1895,7 @@ function paging_for_photos() {//
     var photos = window.pagenation.photos;
     var kolichestvo_stranic;
     var next = $("#photos_next");
+    var count = 0;
     if (photos > 2) {
         kolichestvo_stranic = Math.ceil(photos / 2);
     }
@@ -1892,12 +1904,13 @@ function paging_for_photos() {//
     }
 
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+        $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#viewprojectphotos").empty();
             var firstposition = $(this).attr("id");
             call_load_data_for_viewprojectphotos(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
+        count += 2;
     }
 //    $("#photos_pagenation").on("click", "li", function(event) {
 //
@@ -1907,9 +1920,13 @@ function paging_for_photos() {//
 }
 
 function paging_for_projects() {
+    if (paging_for_projects.loaded) {
+        return;
+    }
     var projects = window.pagenation.projects;
     var kolichestvo_stranic;
     var next = $("#projects_next");
+    var count = 0;
     if (projects > 2) {
         kolichestvo_stranic = Math.ceil(projects / 2);
     }
@@ -1918,11 +1935,12 @@ function paging_for_projects() {
     }
 
     for (var i = 0; i < kolichestvo_stranic; i++) {
-        $('<li id="' + (i + 2) + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
+        $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#projects").empty();
             var firstposition = $(this).attr("id");
             call_load_data_for_projets_page(parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
+        count += 2;
     }
 }

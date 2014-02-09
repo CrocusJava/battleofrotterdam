@@ -35,10 +35,10 @@ public class Photo implements Serializable {
 
 	private String path;
 
-	@OneToMany(mappedBy = "photo")
+	@OneToMany(mappedBy = "photo",cascade=CascadeType.ALL)
 	private List<Comment> comments;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private Project project;
 
 	// --------------------------------------------

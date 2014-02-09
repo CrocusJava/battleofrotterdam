@@ -3,6 +3,7 @@ package com.battleejb.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,13 +39,13 @@ public class Comment implements Serializable {
 
 	private String commentText;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private User user;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private Project project;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private Photo photo;
 
 //---------------------------------------------	

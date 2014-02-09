@@ -38,19 +38,19 @@ public class Project implements Serializable {
 
 	private String name;
 
-	@OneToMany(mappedBy = "project")
+	@OneToMany(mappedBy = "project",cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy = "project")
+	@OneToMany(mappedBy = "project",cascade=CascadeType.ALL)
 	private List<Photo> photos;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private User user;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
 	private Competition competition;
 
-	@OneToMany(mappedBy = "project")
+	@OneToMany(mappedBy = "project",cascade=CascadeType.ALL)
 	private List<Voice> voices;
 
 	// -----------------------------------

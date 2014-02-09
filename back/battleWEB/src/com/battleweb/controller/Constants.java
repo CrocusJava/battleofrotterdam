@@ -65,6 +65,7 @@ public interface Constants {
 	public static final String COMMAND_LOCALE = "locale";
 	public static final String COMMAND_EDIT_PROJECT = "editproject";
 	public static final String COMMAND_EDIT_PHOTO_DESCRIPTION = "editphotodescription";
+	public static final String COMMAND_DELETE_PHOTO = "deletephoto";
 
 	// Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE = "userlocalization";
