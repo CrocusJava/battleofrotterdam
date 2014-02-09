@@ -865,7 +865,7 @@ function call_uploading_file_on_server() {
                     console.log(parent_block);
                     console.log(window.upload_file.upload_desription);
 
-                    call_send_description_for_this_photo(response, window.upload_file.upload_desription);
+                    call_send_description_for_this_photo(response["idphoto"], window.upload_file.upload_desription);
 
 
                 }
@@ -1650,14 +1650,6 @@ function call_new_added_photo_for_edit_project(photo) {
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
                         {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
                         {tag: "p", children: [
-                                {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Preview", children: [
-                                        {tag: "i", add_class: "icon-angle-right"}
-                                    ]},
-                                {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Edit", children: [
-                                                {tag: "i", add_class: "icon-angle-right"}
-                                            ]}
-                                    ]},
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
@@ -1677,19 +1669,22 @@ function call_new_added_photo_for_edit_project(photo) {
 
 }
 
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
 function call_load_photo_for_edit_project(photo) {
-    function Save_img_and_description(event) {
+    function Save_description_this_photo(event) {
         var parent = $(this).parents("section.project_block");
-//        window.upload_file.block_of_sended_photo = parent;
-//        window.upload_file.submit();
-//        window.upload_file.enable();
-        $("#uploadphoto").css("visibility", "visible");
+        $(parent).trigger("find.description");
+
         event.preventDefault();
     }
-    function Send_description_this_photo(event) {
-        var description = $(this).find("[name=description]").text();
-//        window.upload_file.upload_desription = description;
+    function Find_description_this_photo(event) {
+        var description = $(this).find("[name=description_photo]").text();
+
+        call_send_description_for_this_photo(photo["id"], description);
+
         event.preventDefault();
         console.log(description);
 
@@ -1698,15 +1693,13 @@ function call_load_photo_for_edit_project(photo) {
         var parent = $(this).parents("section.project_block");
 
         $(parent).remove();
-//        window.upload_file._clearInput();
-//        window.upload_file.enable();
-        $("#uploadphoto").css("visibility", "visible");
+
         event.preventDefault();
     }
 
 
     var temlate_for_new_added_photo_for_edit_project = [
-        {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
+        {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"find.description": Find_description_this_photo}, children: [
                 {tag: "a", add_class: "image_link", children: [
                         {tag: "div", add_class: "with_hover"},
                         {tag: "div", attr: {style: "width:25%; margin: 0 1%; float: left;  height:200px;"}, children: [
@@ -1714,23 +1707,15 @@ function call_load_photo_for_edit_project(photo) {
                             ]}
                     ]},
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
-                        {tag: "p", text: "description", attr: {contenteditable: "true", name: "description"}},
+                        {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}},
                         {tag: "p", children: [
-                                {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Preview", children: [
-                                        {tag: "i", add_class: "icon-angle-right"}
-                                    ]},
-                                {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Edit", children: [
-                                                {tag: "i", add_class: "icon-angle-right"}
-                                            ]}
-                                    ]},
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
@@ -1746,13 +1731,13 @@ function call_load_photo_for_edit_project(photo) {
 
 
 
-function call_send_description_for_this_photo(response, description_photo) {
+function call_send_description_for_this_photo(idphoto, description_photo) {
     /* command=editphotodescription
      {"id":234,
      "description":"bla-bla"
      }*/
     var send_data = {
-        id: response.idphoto,
+        id: idphoto,
         description: description_photo
     };
     var url = "/battleWEB/controller?command=editphotodescription";
@@ -1849,21 +1834,7 @@ function call_send_data_editproject() {
         console.log("error onload command=editproject ");
     });
 }
-//	“name” : “***”,
-//		“creationdate”: “***”
-//		“description” : “***”,
-//
-//
-//
-//“footergallery”:[{
-//					"photoid": *,
-//					"photopath": "***",
-//					"projectid": *,
-//	    		    	"projectname": "***",
-//				   	 "userlogin": "***"
-//			          	},
-// создание проекта, загрузку фото и коммнтарии + голосование
-//[20:50:43] Marina: + Ваня: отправка юзеру e-mail из админки
+
 /*
  * search
  {
@@ -1960,14 +1931,10 @@ function paging_for_comments() {
         }).insertBefore(next);
         count += 5;
     }
-//    $("#comments_pagenation").on("click", "li", function(event) {
-//
-//        console.log(this);
-//        event.preventDefault();
-//    });
+
 }
 
-function paging_for_photos() {//
+function paging_for_photos() {
     var photos = window.pagenation.photos;
     var kolichestvo_stranic;
     var next = $("#photos_next");
@@ -1988,11 +1955,7 @@ function paging_for_photos() {//
         }).insertBefore(next);
         count += 2;
     }
-//    $("#photos_pagenation").on("click", "li", function(event) {
-//
-//        console.log(this);
-//        event.preventDefault();
-//    });
+
 }
 
 function paging_for_projects() {
