@@ -1281,6 +1281,9 @@ function call_upload_data_for_updateaccaunt() {
 }
 
 function call_create_murkup_for_account_projects(project, respons) {
+    function  call_delete_project() {
+        console.log("Project deleted");
+    }
     var template_for_project = '<section class="project_block" >' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
@@ -1300,6 +1303,8 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
             '</section>' + '<div style="height:15px;"></div>';
+//    var section = $(template_for_project);
+//    $(section).appendTo("#account_projects"); сначало сформировать объект а потом с ним работать
     $(template_for_project).appendTo("#account_projects");
 }
 
@@ -2053,3 +2058,15 @@ function paging_for_projects() {
         count += 2;
     }
 }
+
+
+
+/*POST
+ command:deleteproject
+ url:http://edu.bionic-university.com:1120/battleWEB/controller
+
+ {
+ “projectid”:23
+ }
+ window.location.reload()
+ **/
