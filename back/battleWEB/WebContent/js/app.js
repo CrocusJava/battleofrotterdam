@@ -865,7 +865,7 @@ function call_uploading_file_on_server() {
                     console.log(parent_block);
                     console.log(window.upload_file.upload_desription);
 
-                    call_send_description_for_this_photo(response, window.upload_file.upload_desription);
+                    call_send_description_for_this_photo(response["idphoto"], window.upload_file.upload_desription);
 
 
                 }
@@ -1617,11 +1617,13 @@ function call_new_added_photo_for_edit_project(photo) {
         window.upload_file.submit();
         window.upload_file.enable();
         $("#uploadphoto").css("visibility", "visible");
+        $(this).removeClass("btn-danger").addClass("btn-primary");
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
         window.upload_file.upload_desription = description;
+        photo["description"] = description;
         event.preventDefault();
         console.log(description);
 
@@ -1636,35 +1638,41 @@ function call_new_added_photo_for_edit_project(photo) {
         event.preventDefault();
     }
 
+    function Fixed_what_this_description_changed() {
+        var prev_text = photo["description"];
+        var current_text = $(this).text();
+        var parent = $(this).parents("section.project_block")[0];
+        if (current_text !== prev_text) {
+            console.log(current_text);
+            $(parent).find("[name=save-description-photo]").removeClass("btn-primary").addClass("btn-danger");
+        }
+        else {
+            $(parent).find("[name=save-description-photo]").removeClass("btn-danger").addClass("btn-primary");
+        }
+
+    }
+
     window.upload_file.disable();
     $("#uploadphoto").css("visibility", "hidden");
 
     var temlate_for_new_added_photo_for_edit_project = [
         {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"my_send.description": Send_description_this_photo}, children: [
-                {tag: "a", add_class: "image_link", attr: {href: "#photo"}, children: [
+                {tag: "a", add_class: "image_link", children: [
                         {tag: "div", add_class: "with_hover"},
                         {tag: "div", attr: {style: "width:25%; margin: 0 1%; float: left;  height:200px;"}, children: [
                                 {tag: "img", add_class: "img-polaroid", attr: {src: photo, style: "width:100%;"}}
                             ]}
                     ]},
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
-                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}},
+                        {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
-                                {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Preview", children: [
-                                        {tag: "i", add_class: "icon-angle-right"}
-                                    ]},
-                                {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Edit", children: [
-                                                {tag: "i", add_class: "icon-angle-right"}
-                                            ]}
-                                    ]},
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_img_and_description}, children: [
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
@@ -1677,13 +1685,87 @@ function call_new_added_photo_for_edit_project(photo) {
 
 }
 
-function call_send_description_for_this_photo(response, description_photo) {
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+function call_load_photo_for_edit_project(photo) {
+    function Save_description_this_photo(event) {
+        var parent = $(this).parents("section.project_block");
+        $(parent).trigger("find.description");
+        $(this).removeClass("btn-danger").addClass("btn-primary");
+        event.preventDefault();
+    }
+    function Find_description_this_photo(event) {
+        var description = $(this).find("[name=description_photo]").text();
+
+        call_send_description_for_this_photo(photo["id"], description);
+        photo["description"] = description;
+        event.preventDefault();
+        console.log(description);
+
+    }
+    function Delete_this_photo_and_description(event) {
+        var parent = $(this).parents("section.project_block");
+
+        $(parent).remove();
+
+        event.preventDefault();
+    }
+
+    function Fixed_what_this_description_changed() {
+        var prev_text = photo["description"];
+        var current_text = $(this).text();
+        var parent = $(this).parents("section.project_block")[0];
+        if (current_text !== prev_text) {
+            console.log(current_text);
+            $(parent).find("[name=save-description-photo]").removeClass("btn-primary").addClass("btn-danger");
+        }
+        else {
+            $(parent).find("[name=save-description-photo]").removeClass("btn-danger").addClass("btn-primary");
+        }
+
+    }
+    var temlate_for_new_added_photo_for_edit_project = [
+        {tag: "section", add_class: "project_block", attr: {style: "border-box: solid #333 1px; padding: 5px; width:95%; height:250px; margin: 0 auto;"}, add_handler: {"find.description": Find_description_this_photo}, children: [
+                {tag: "a", add_class: "image_link", children: [
+                        {tag: "div", add_class: "with_hover"},
+                        {tag: "div", attr: {style: "width:25%; margin: 0 1%; float: left;  height:200px;"}, children: [
+                                {tag: "img", add_class: "img-polaroid", attr: {src: "photopath", style: "width:100%;"}}
+                            ]}
+                    ]},
+                {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
+                        {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}, add_handler: {"blur": Fixed_what_this_description_changed}},
+                        {tag: "p", children: [
+                                {tag: "span", children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                                {tag: "i", add_class: "icon-angle-right"}
+                                            ]}
+                                    ]},
+                                {tag: "span", children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
+                                                {tag: "i", add_class: "icon-angle-right"}
+                                            ]}
+                                    ]}
+                            ]}
+                    ]}
+            ]},
+        {tag: "div", attr: {style: "height:35px;"}
+        }];
+    call_markup_index(temlate_for_new_added_photo_for_edit_project, $("#viewprojectphotos"), photo);
+
+}
+
+
+
+
+function call_send_description_for_this_photo(idphoto, description_photo) {
     /* command=editphotodescription
      {"id":234,
      "description":"bla-bla"
      }*/
     var send_data = {
-        id: response.idphoto,
+        id: idphoto,
         description: description_photo
     };
     var url = "/battleWEB/controller?command=editphotodescription";
@@ -1718,8 +1800,15 @@ function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        for (var photo in respons["photos"]) {
-            call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
+        if (window.location.href.match(/edit_project.html/)) {//<<<<======================= вывести все ранее сохраненные фото с описанием при помощи фукции для создания нового фото
+            for (var photo in respons["photos"]) {
+                call_load_photo_for_edit_project(respons["photos"][photo]);
+            }
+        }
+        else {
+            for (var photo in respons["photos"]) {
+                call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
+            }
         }
 
     }).fail(function() {
@@ -1773,21 +1862,7 @@ function call_send_data_editproject() {
         console.log("error onload command=editproject ");
     });
 }
-//	“name” : “***”,
-//		“creationdate”: “***”
-//		“description” : “***”,
-//
-//
-//
-//“footergallery”:[{
-//					"photoid": *,
-//					"photopath": "***",
-//					"projectid": *,
-//	    		    	"projectname": "***",
-//				   	 "userlogin": "***"
-//			          	},
-// создание проекта, загрузку фото и коммнтарии + голосование
-//[20:50:43] Marina: + Ваня: отправка юзеру e-mail из админки
+
 /*
  * search
  {
@@ -1884,14 +1959,10 @@ function paging_for_comments() {
         }).insertBefore(next);
         count += 5;
     }
-//    $("#comments_pagenation").on("click", "li", function(event) {
-//
-//        console.log(this);
-//        event.preventDefault();
-//    });
+
 }
 
-function paging_for_photos() {//
+function paging_for_photos() {
     var photos = window.pagenation.photos;
     var kolichestvo_stranic;
     var next = $("#photos_next");
@@ -1912,11 +1983,7 @@ function paging_for_photos() {//
         }).insertBefore(next);
         count += 2;
     }
-//    $("#photos_pagenation").on("click", "li", function(event) {
-//
-//        console.log(this);
-//        event.preventDefault();
-//    });
+
 }
 
 function paging_for_projects() {
