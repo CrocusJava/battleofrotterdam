@@ -1281,21 +1281,54 @@ function call_upload_data_for_updateaccaunt() {
 }
 
 function call_create_murkup_for_account_projects(project, respons) {
-    function  call_delete_project() {
-        console.log("Project deleted");
+    function  call_delete_project(event) {
+        var deleting_project = {
+            projectid: project["projectid"]
+        },
+        url = "/battleWEB/controller?command=deleteproject";
+
+        if (confirm("ВЫ В ЭТОМ УВЕРЕНЫ ???!!!!!!!!???????")) {
+            deleting_project = JSON.stringify(deleting_project);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                contentType: "application/json",
+                data: deleting_project
+            }).done(function(data) {
+                console.log(data);
+                window.location.reload();
+            }).fail(function(error) {
+                console.log("Problemi s Удалением проекта", error);
+                alert("УХ какой негодяй, хотел удалить чужой проект, ПАРАЗИТ ");
+                window.location.reload();
+            });
+        }
+        event.preventDefault();
+        /*POST
+         command:deleteproject
+         url:http://edu.bionic-university.com:1120/battleWEB/controller
+
+         {
+         “projectid”:23
+         }
+         window.location.reload()
+         **/
     }
     var template_for_project = '<section class="project_block" >' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
-            '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
-            '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
-            '<a href="#" class="trylater"><i class="icon-comments"></i><span>' + "" + '</span> Comments</a>' +
+            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+            '<a><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
+            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> DELETE THIS PROJECT</span></a>' +
             '</div>' +
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
-            '<article  class="project_block_proj"  >' +
-            '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
-            '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
+            '<article  class="project_block_proj">' +
+            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
+            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
             '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
             '</div>' +
@@ -1303,9 +1336,10 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</article>' +
             '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
             '</section>' + '<div style="height:15px;"></div>';
-//    var section = $(template_for_project);
-//    $(section).appendTo("#account_projects"); сначало сформировать объект а потом с ним работать
-    $(template_for_project).appendTo("#account_projects");
+    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
+    $(section).find("a[name=delete]").click(call_delete_project);
+    $(section).appendTo("#account_projects");
+//    $(template_for_project).appendTo("#account_projects");
 }
 
 
@@ -2058,15 +2092,3 @@ function paging_for_projects() {
         count += 2;
     }
 }
-
-
-
-/*POST
- command:deleteproject
- url:http://edu.bionic-university.com:1120/battleWEB/controller
-
- {
- “projectid”:23
- }
- window.location.reload()
- **/
