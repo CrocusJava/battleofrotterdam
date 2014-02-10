@@ -1334,7 +1334,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</div>' +
             '</div>' +
             '</article>' +
-            '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
+            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
             '</section>' + '<div style="height:15px;"></div>';
     var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
     $(section).find("a[name=delete]").click(call_delete_project);
@@ -1639,7 +1639,7 @@ function call_createproject() {
             window.location = "edit_project.html#projectid=" + respons.projectid;
         }
         else {
-            alert("УУУУ,\n да у вас проблемы,\n сори, наверное проект для этого соривнования уже существует,\n очень жаль =(\n попробуйте принять участие в другом соревнованиии =)");
+            alert(respons["message"]);
         }
     }).fail(function() {
         console.log("Error for projectsave");
