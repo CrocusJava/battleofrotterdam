@@ -1475,14 +1475,16 @@ function call_create_markup_for_viewprojectcomments(respons) {
     var template_for_viewprojectcomments = "<li>" +
             " <!-- Comment Entry -->" +
             " <article>" +
-            " <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
-            "<img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
-            " <div class=comment_inner style=display:block;>" +
-            "<p>" + respons["text"] + "</p>" +
-            "<p style='color:rgba(0, 181, 0,1);'>" +
-            "<i class=icon-time></i>" +
-            "<span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
-            "</div>" +
+            "       <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
+            '       <a href="static_profile.html#userid=' + respons["user"]["id"] + '">' +
+            "            <img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
+            "       </a>" +
+            "       <div class=comment_inner style=display:block;>" +
+            "           <p>" + respons["text"] + "</p>" +
+            "           <p style='color:rgba(0, 181, 0,1);'>" +
+            "               <i class=icon-time></i>" +
+            "               <span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
+            "      </div>" +
             "</article>" +
             "</li>";
     $(template_for_viewprojectcomments).appendTo("#main_conteiner_comments");
