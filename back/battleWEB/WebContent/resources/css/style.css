@@ -8,6 +8,9 @@ body {
 form{
  margin: 2%;
 }
+textarea{
+padding: 25px 25px;
+}
 
 .button{
 background-color: rgba(0,148,0,1);
