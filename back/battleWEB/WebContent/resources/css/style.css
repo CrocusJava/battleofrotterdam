@@ -6,10 +6,10 @@ body {
 }
 
 form{
- margin: 10%;
+ margin: 2%;
 }
 
-input [type="submit"]{
+.button{
 background-color: rgba(0,148,0,1);
 font-size: 15px;
 color: white;
@@ -24,13 +24,32 @@ margin: 0 auto;
 
 }
 a{
-	font-size: large
+font-size: 1.5em;
+-webkit-margin-before: 0.83em;
+-webkit-margin-after: 0.83em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+text-decoration: none; 
 }
+a:hover{
+cursor:pointer;
+}
+a:link {
+    color: #fff; /* Цвет ссылок */
+   }
+   a:visited {
+    color: rgba(00,64,00,1);/* Цвет посещенных ссылок */
+   }
+
+
 
 h4{
 	font-size: large;
 }
-
+.login{
+margin:10%;
+}
 .input_text_size{
 	width: 40%;
 	height: 150px;
