@@ -1245,10 +1245,17 @@ function call_load_data_for_myaccount(id) {
         $("#postcode").text(respons["postcode"]);
         $("#telephone").text(respons["phone"]);
         $("#mail").text(respons["email"]);
-        for (var project in respons["projects"]) {
-            call_create_murkup_for_account_projects(respons["projects"][project], respons);
-        }
 
+        if (id) {
+            for (var project in respons["projects"]) {
+                call_create_murkup_for_static_profile_projects(respons["projects"][project], respons);
+            }
+        }
+        else {
+            for (var project in respons["projects"]) {
+                call_create_murkup_for_account_projects(respons["projects"][project], respons);
+            }
+        }
     });
 }
 
@@ -1313,7 +1320,7 @@ function call_create_murkup_for_account_projects(project, respons) {
         event.preventDefault();
         /*POST
          command:deleteproject
-         url:http://edu.bionic-university.com:1120/battleWEB/controller
+         url:http://edu.bionic-universitsingle_project.htmly.com:1120/battleWEB/controller
 
          {
          “projectid”:23
@@ -1322,11 +1329,10 @@ function call_create_murkup_for_account_projects(project, respons) {
          **/
     }
     var template_for_project = '<section class="project_block" >' +
-	
-			'<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
             '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
-            '</div>'+
-	        '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
+            '</div>' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
@@ -1347,6 +1353,34 @@ function call_create_murkup_for_account_projects(project, respons) {
     var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
     $(section).find("a[name=delete]").click(call_delete_project);
     $(section).appendTo("#account_projects");
+}
+
+function call_create_murkup_for_static_profile_projects(project, respons) {
+    var template_for_project = '<section class="project_block" >' +
+            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
+            '</div>' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
+            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
+            '</div>' +
+            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
+            '</div>' +
+            '<article  class="project_block_proj">' +
+            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
+            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
+            '<div class="viewtheproj">' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
+            '</div>' +
+            '</div>' +
+            '</article>' +
+            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
+            '</section>' + '<div style="height:15px;"></div>';
+    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
+
+    $(section).appendTo("#account_projects");
+
 }
 
 
