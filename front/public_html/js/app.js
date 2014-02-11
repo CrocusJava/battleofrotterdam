@@ -1323,8 +1323,8 @@ function call_create_murkup_for_account_projects(project, respons) {
     }
     var template_for_project = '<section class="project_block" >' +
 	
-			'<div class="blog-line" style="background: rgba(0,181,188,0.3);">' +
-            '<a><i class="icon-user"></i><span>' + project["competitionname"] + '</span></a>' +
+			'<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
             '</div>'+
 	        '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
