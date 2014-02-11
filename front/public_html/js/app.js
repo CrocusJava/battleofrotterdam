@@ -1322,9 +1322,12 @@ function call_create_murkup_for_account_projects(project, respons) {
          **/
     }
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
-            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+	
+			'<div class="blog-line" style="background: rgba(0,181,188,0.3);">' +
             '<a><i class="icon-user"></i><span>' + project["competitionname"] + '</span></a>' +
+            '</div>'+
+	        '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
+            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
             '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> DELETE THIS PROJECT</span></a>' +
