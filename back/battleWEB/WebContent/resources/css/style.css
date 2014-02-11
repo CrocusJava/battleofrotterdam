@@ -1,9 +1,28 @@
 body {
    
-    background-image: url('../img/body_bg.png');
-    background-color: #dcdbda;
+  background: linear-gradient(to right, rgba(0,148,0,1) , #000);
+  color: #fff;
+  padding: 5px 25px;
 }
 
+form{
+ margin: 10%;
+}
+
+input [type="submit"]{
+background-color: rgba(0,148,0,1);
+font-size: 15px;
+color: white;
+font-weight: 300;
+font-family: 'Open Sans', sans-serif;
+border: 1px solid transparent;
+color: white;
+filter: none;
+line-height: 20px;
+padding: 5px 25px;
+margin: 0 auto;
+
+}
 a{
 	font-size: large
 }
