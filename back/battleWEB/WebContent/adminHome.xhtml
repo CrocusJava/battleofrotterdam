@@ -1,46 +1,38 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
 
-<h:head>
+<html>
+<head>
 	<title>Edit Home Page</title>
-	<h:outputStylesheet library="css" name="style.css" />
-</h:head>
-<h:body>
+	<link  href="style.css"  rel="stylesheet">
+<head>
+<body>
 	
 		<br/>
-		<h:outputLink value="administration.xhtml" >
+	
 			Administration Menu
-		</h:outputLink>		
+		
 		<br/><hr/>
-	<h:form>
+	<form>
 		<h2>Edit Home Page Content</h2> 
 	
 		<h4>Wellcome text (en / nl):</h4>
 		<br />
-		<h:inputTextarea class="input_text_size"  value="#{home.battleDescriptionShortEn}" characterEncoding="utf-8" />
-		<h:inputTextarea class="input_text_size" value="#{home.battleDescriptionShortNl}" characterEncoding="utf-8" />
+		
 		<br />
 		<br />
 		
 		<h4>Animation URL:</h4>
-		<h:inputTextarea class="input_url_size" value="#{home.animationURL}" characterEncoding="utf-8"/>
+		
 		<br />	
 		<br />
 		
 		<h4>Animation description (en / nl):</h4>
 		<br />
-		<h:inputTextarea class="input_text_size" value="#{home.battleAnimationDescriptionEn}" characterEncoding="utf-8"/>
-		<h:inputTextarea class="input_text_size" value="#{home.battleAnimationDescriptionNl}" characterEncoding="utf-8"/>
+		
 		<br />
 		<br />
 		
-		<p:commandButton action="#{home.apply()}" value="Apply" update="@form" />
-		<p:commandButton action="#{home.cancel()}" value="Cancel" update="@form" />
 		
-	</h:form>
-</h:body>
+		
+	</form>
+</body>
 </html>
