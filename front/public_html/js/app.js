@@ -1130,7 +1130,7 @@ function call_load_data_for_current_rankings() {
                 {tag: "div", add_class: "span4 text_center", children: [
                         {tag: "div", add_class: "current_rank boxfeature_", children: [
                                 {tag: "div", add_class: "img_preview_", children: [
-                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto.description", "data-href": "lastphoto"}, children: [
+                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto", "data-href": "lastphoto"}, subattr: {src: "path", title:"description"}, children: [
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
