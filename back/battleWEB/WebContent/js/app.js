@@ -835,8 +835,7 @@ function call_uploading_file_on_server() {
                     reader.readAsDataURL(window.upload_file._input.files[0]);
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
-//                    $("#warning_load_file").show();
-//                    $("#warning_load_file").fadeOut(10000);
+
                     alert("Можно загружать только файлы с разширением jpg | gif | jpeg | bmp | png ");
                     return false;
                 }
@@ -951,7 +950,7 @@ function call_load_data_for_news_index() {
                                         ]}
                                 ]},
                             {tag: "div", add_class: "desc", children: [
-                                    {tag: "p", text: "text"},
+                                    {tag: "p", text: "title"},
                                     {tag: "p", children: [
                                             {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
 //, bind: {popup_news:click}
@@ -1282,26 +1281,65 @@ function call_upload_data_for_updateaccaunt() {
 }
 
 function call_create_murkup_for_account_projects(project, respons) {
+    function  call_delete_project(event) {
+        var deleting_project = {
+            projectid: project["projectid"]
+        },
+        url = "/battleWEB/controller?command=deleteproject";
+
+        if (confirm("ВЫ В ЭТОМ УВЕРЕНЫ ???!!!!!!!!???????")) {
+            deleting_project = JSON.stringify(deleting_project);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                contentType: "application/json",
+                data: deleting_project
+            }).done(function(data) {
+                console.log(data);
+                window.location.reload();
+            }).fail(function(error) {
+                console.log("Problemi s Удалением проекта", error);
+                alert("УХ какой негодяй, хотел удалить чужой проект, ПАРАЗИТ ");
+                window.location.reload();
+            });
+        }
+        event.preventDefault();
+        /*POST
+         command:deleteproject
+         url:http://edu.bionic-university.com:1120/battleWEB/controller
+
+         {
+         “projectid”:23
+         }
+         window.location.reload()
+         **/
+    }
     var template_for_project = '<section class="project_block" >' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
-            '<a href="#"><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<a href="#"><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
-            '<span> <a href="#"> <i class="icon-ok"></i><span>' + "" + '</span>  Likes</a></span>' +
-            '<a href="#" class="trylater"><i class="icon-comments"></i><span>' + "" + '</span> Comments</a>' +
+            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+            '<a><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
+            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> DELETE THIS PROJECT</span></a>' +
             '</div>' +
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
-            '<article  class="project_block_proj"  >' +
-            '<div class="project_block_proj_name" >' + project["projectname"] + '</div>' +
-            '<div class="project_block_proj_descr" >' + project["projectdescription"] + '</div>' +
+            '<article  class="project_block_proj">' +
+            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
+            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
             '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
             '</div>' +
             '</div>' +
             '</article>' +
-            '<div class="project_block_photo" ><img src="' + project["photos"][0]["photopath"] + '" class="img-polaroid photo_proj" >' +
+            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
             '</section>' + '<div style="height:15px;"></div>';
-    $(template_for_project).appendTo("#account_projects");
+    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
+    $(section).find("a[name=delete]").click(call_delete_project);
+    $(section).appendTo("#account_projects");
+//    $(template_for_project).appendTo("#account_projects");
 }
 
 
@@ -1601,7 +1639,7 @@ function call_createproject() {
             window.location = "edit_project.html#projectid=" + respons.projectid;
         }
         else {
-            alert("УУУУ,\n да у вас проблемы,\n сори, наверное проект для этого соривнования уже существует,\n очень жаль =(\n попробуйте принять участие в другом соревнованиии =)");
+            alert(respons["message"]);
         }
     }).fail(function() {
         console.log("Error for projectsave");
@@ -1613,17 +1651,31 @@ function call_createproject() {
 function call_new_added_photo_for_edit_project(photo) {
     function Save_img_and_description(event) {
         var parent = $(this).parents("section.project_block");
-        window.upload_file.block_of_sended_photo = parent;
-        window.upload_file.submit();
-        window.upload_file.enable();
-        $("#uploadphoto").css("visibility", "visible");
+        var id = $(parent).data("fixed_id_photo");
+        if (id) {
+            $(parent).trigger("my_send.description");//call_send_description_for_this_photo(id, description_photo);
+        }
+        else {
+            window.upload_file.block_of_sended_photo = parent;
+            window.upload_file.submit();
+            window.upload_file.enable();
+            $("#uploadphoto").css("visibility", "visible");
+        }
+
         $(this).removeClass("btn-danger").addClass("btn-primary");
         event.preventDefault();
     }
     function Send_description_this_photo(event) {
         var description = $(this).find("[name=description]").text();
-        window.upload_file.upload_desription = description;
-        photo["description"] = description;
+        var id = $(this).data("fixed_id_photo");
+        if (id) {
+            call_send_description_for_this_photo(id, description);
+        }
+        else {
+            window.upload_file.upload_desription = description;
+        }
+
+        photo["description"] = description;//<<<<<<<================ нужно разобраться как определять изменения в тексте для только что созданного елемента
         event.preventDefault();
         console.log(description);
 
@@ -1631,15 +1683,21 @@ function call_new_added_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
 
+        var id = $(parent).data("fixed_id_photo");
+        if (id) {
+            call_delete_photo(id);
+        }
+        else {
+            window.upload_file._clearInput();
+            window.upload_file.enable();
+            $("#uploadphoto").css("visibility", "visible");
+        }
         $(parent).remove();
-        window.upload_file._clearInput();
-        window.upload_file.enable();
-        $("#uploadphoto").css("visibility", "visible");
         event.preventDefault();
     }
 
     function Fixed_what_this_description_changed() {
-        var prev_text = photo["description"];
+        var prev_text = photo["description"];//<<<<<<<================ нужно разобраться как определять изменения в тексте для только что созданного елемента
         var current_text = $(this).text();
         var parent = $(this).parents("section.project_block")[0];
         if (current_text !== prev_text) {
@@ -1707,8 +1765,11 @@ function call_load_photo_for_edit_project(photo) {
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
-
-        $(parent).remove();
+        var whate = confirm("У Е Р Е Н Ы ??????!!!!!!!!!");
+        if (whate) {
+            call_delete_photo(photo["id"]);
+            $(parent).remove();
+        }
 
         event.preventDefault();
     }
@@ -1760,10 +1821,7 @@ function call_load_photo_for_edit_project(photo) {
 
 
 function call_send_description_for_this_photo(idphoto, description_photo) {
-    /* command=editphotodescription
-     {"id":234,
-     "description":"bla-bla"
-     }*/
+
     var send_data = {
         id: idphoto,
         description: description_photo
@@ -1782,6 +1840,29 @@ function call_send_description_for_this_photo(idphoto, description_photo) {
         console.log(respons);
     }).fail(function() {
         console.log("error  command=editphotodescription");
+    });
+}
+
+
+function call_delete_photo(id) {
+
+    var delete_photo = {
+        photoid: id
+    };
+    delete_photo = JSON.stringify(delete_photo);
+    var url = "/battleWEB/controller?command=deletephoto";
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: delete_photo,
+        contentType: "application/json"
+    }).done(function(respons) {
+        console.log(" photo DELETED");
+        console.log(respons);
+    }).fail(function() {
+        console.log("error  command = deletephoto");
     });
 }
 
