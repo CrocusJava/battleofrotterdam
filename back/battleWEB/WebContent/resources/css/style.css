@@ -34,6 +34,7 @@ text-decoration: none;
 }
 a:hover{
 cursor:pointer;
+padding: 2px 8px;
 }
 a:link {
     color: #fff; /* Цвет ссылок */
