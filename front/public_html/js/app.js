@@ -1371,7 +1371,7 @@ function call_create_murkup_for_static_profile_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
             '</div>' +
             '</div>' +
             '</article>' +
