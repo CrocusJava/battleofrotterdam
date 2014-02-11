@@ -40,12 +40,10 @@ cursor:pointer;
 padding: 2px 18px;
 }
 
-table a:link {
+td > a:link {
     color: #000; /* Цвет ссылок */
    }
-table a:visited {
-    color: rgba(00,64,00,1);/* Цвет посещенных ссылок */
-   }  
+ 
    
 
 a:link {
