@@ -239,6 +239,8 @@ public interface Constants {
 	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_MAIL_EXIST_IN_DB = 220;
 	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_NO_CORRECT_PASSWORD = 230;
 	public static final Integer TEXT_MESSAGE_UPDATE_ACCOUNT_SUCCESS = 240;
+	public static final Integer TEXT_MESSAGE_DELETE_DATA_SUCCESS = 250;
+	public static final Integer TEXT_MESSAGE_ACCESS_ERROR = 260;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_TRUE = 300;
 	public static final Integer TEXT_MESSAGE_APPROVEREGISTRATION_FALSE = 310;
 	public static final Integer TEXT_BATTLE_DESCRIPTION_SHORT = 500;
