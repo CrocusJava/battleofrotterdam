@@ -1122,7 +1122,12 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-
+        function go_to_project() {
+            var href = $(this).attr("href");
+            var projectid = $(this).attr("projectid");
+            href = href + "#projectid=" + projectid;
+            $(this).attr("href", href);
+        }
         var count = 0;
         function return_carent_rankings_template(count, img) {
 
@@ -1144,12 +1149,12 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
 
 
-                                            ]},
+                                            ]}
                                     ]},
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}}
                                             ]}
                                     ]}
                             ]}
