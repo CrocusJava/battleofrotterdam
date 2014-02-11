@@ -1130,7 +1130,7 @@ function call_load_data_for_current_rankings() {
                 {tag: "div", add_class: "span4 text_center", children: [
                         {tag: "div", add_class: "boxfeature_", children: [
                                 {tag: "div", add_class: "current_rank img_preview_", children: [
-                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto", "data-href": "lastphoto"}, subattr: {src:"path", title:"description"}, children: [
+                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto", "data-href": "lastphoto"}, subattr: {href: "path", title: "description", "data-href": "path"}, children: [
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
@@ -1168,10 +1168,10 @@ function call_load_data_for_current_rankings() {
         for (var i in yearprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
-        
+
         }
 
-    call_lightbox_current_rank();
+        call_lightbox_current_rank();
     }).fail(function() {
         console.log("ошибка загрузки данных по current_rankings");
     });
