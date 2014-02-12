@@ -1122,15 +1122,20 @@ function call_trylater() {
 
 function call_load_data_for_current_rankings() {
     $.post("/battleWEB/controller?command=currentrankings", function(data) {
-
+        function go_to_project() {
+            var href = $(this).attr("href");
+            var projectid = $(this).attr("projectid");
+            href = href + "#projectid=" + projectid;
+            $(this).attr("href", href);
+        }
         var count = 0;
         function return_carent_rankings_template(count, img) {
 
             return [
                 {tag: "div", add_class: "span4 text_center", children: [
-                        {tag: "div", add_class: "current_rank boxfeature_", children: [
-                                {tag: "div", add_class: "img_preview_", children: [
-                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto.description", "data-href": "lastphoto"}, children: [
+                        {tag: "div", add_class: "boxfeature_", children: [
+                                {tag: "div", add_class: "current_rank img_preview_", children: [
+                                        {tag: "a", attr: {href: "lastphoto", title: "lastphoto", "data-href": "lastphoto"}, subattr: {href: "path", title: "description", "data-href": "path"}, children: [
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
@@ -1144,12 +1149,12 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
 
 
-                                            ]},
+                                            ]}
                                     ]},
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More"}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}}
                                             ]}
                                     ]}
                             ]}
@@ -1162,16 +1167,16 @@ function call_load_data_for_current_rankings() {
         for (var i in monthprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#monthly_battle_competitions"), monthprojects[i]);
-            call_lightbox_current_rank();
+
         }
         count = 0;
         for (var i in yearprojects) {
             ++count;
             call_markup_index(return_carent_rankings_template(count, count), $("#yearly_battle_competitions"), yearprojects[i]);
-            call_lightbox_current_rank();
+
         }
 
-
+        call_lightbox_current_rank();
     }).fail(function() {
         console.log("ошибка загрузки данных по current_rankings");
     });
@@ -1240,10 +1245,17 @@ function call_load_data_for_myaccount(id) {
         $("#postcode").text(respons["postcode"]);
         $("#telephone").text(respons["phone"]);
         $("#mail").text(respons["email"]);
-        for (var project in respons["projects"]) {
-            call_create_murkup_for_account_projects(respons["projects"][project], respons);
-        }
 
+        if (id) {
+            for (var project in respons["projects"]) {
+                call_create_murkup_for_static_profile_projects(respons["projects"][project], respons);
+            }
+        }
+        else {
+            for (var project in respons["projects"]) {
+                call_create_murkup_for_account_projects(respons["projects"][project], respons);
+            }
+        }
     });
 }
 
@@ -1308,7 +1320,7 @@ function call_create_murkup_for_account_projects(project, respons) {
         event.preventDefault();
         /*POST
          command:deleteproject
-         url:http://edu.bionic-university.com:1120/battleWEB/controller
+         url:http://edu.bionic-universitsingle_project.htmly.com:1120/battleWEB/controller
 
          {
          “projectid”:23
@@ -1317,9 +1329,11 @@ function call_create_murkup_for_account_projects(project, respons) {
          **/
     }
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
+            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
+            '</div>' +
+            '<div class="blog-line" style="background: rgba(249,394,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<a><i class="icon-user"></i><span>' + respons["login"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
             '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> DELETE THIS PROJECT</span></a>' +
@@ -1339,7 +1353,34 @@ function call_create_murkup_for_account_projects(project, respons) {
     var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
     $(section).find("a[name=delete]").click(call_delete_project);
     $(section).appendTo("#account_projects");
-//    $(template_for_project).appendTo("#account_projects");
+}
+
+function call_create_murkup_for_static_profile_projects(project, respons) {
+    var template_for_project = '<section class="project_block" >' +
+            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
+            '</div>' +
+            '<div class="blog-line" style="background: rgba(190,237,43,0.3);">' +
+            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
+            '</div>' +
+            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
+            '</div>' +
+            '<article  class="project_block_proj">' +
+            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
+            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
+            '<div class="viewtheproj">' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
+            '</div>' +
+            '</div>' +
+            '</article>' +
+            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
+            '</section>' + '<div style="height:15px;"></div>';
+    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
+
+    $(section).appendTo("#account_projects");
+
 }
 
 
@@ -1471,14 +1512,16 @@ function call_create_markup_for_viewprojectcomments(respons) {
     var template_for_viewprojectcomments = "<li>" +
             " <!-- Comment Entry -->" +
             " <article>" +
-            " <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
-            "<img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
-            " <div class=comment_inner style=display:block;>" +
-            "<p>" + respons["text"] + "</p>" +
-            "<p style='color:rgba(0, 181, 0,1);'>" +
-            "<i class=icon-time></i>" +
-            "<span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
-            "</div>" +
+            "       <h5 class=autor>" + respons["user"]["login"] + "</h5>" +
+            '       <a href="static_profile.html#userid=' + respons["user"]["id"] + '">' +
+            "            <img class=avatar src=" + respons["user"]["avatarpath"] + " alt=preview>" +
+            "       </a>" +
+            "       <div class=comment_inner style=display:block;>" +
+            "           <p>" + respons["text"] + "</p>" +
+            "           <p style='color:rgba(0, 181, 0,1);'>" +
+            "               <i class=icon-time></i>" +
+            "               <span class=padding_comment name=time > " + respons["date"] + "</span></p>" +
+            "      </div>" +
             "</article>" +
             "</li>";
     $(template_for_viewprojectcomments).appendTo("#main_conteiner_comments");
