@@ -2147,12 +2147,9 @@ function next_page() {
         var $this = $(this);
 
         var active = $this.siblings(".active");
-        console.log(active, " next");
         if (!active.length) {
-            console.log("if not next");
             var next = $this.siblings("#0").next();
             if ($(next).attr("data-name") === "next") {
-                console.log("end next");
                 return false;
             }
             else {
@@ -2162,7 +2159,6 @@ function next_page() {
         else {
             var next = $(active).next();
             if ($(next).attr("data-name") === "next") {
-                console.log("end next");
                 return false;
             }
             else {
@@ -2179,15 +2175,12 @@ function preview_page() {
         var $this = $(this);
 
         var active = $this.siblings(".active");
-        console.log(active, " prev");
         if (!active.length) {
-            console.log(" prev false");
             return false;
         }
         else {
             var prev = $(active).prev();
             if ($(prev).attr("data-name") === "prev") {
-                console.log("end prev");
                 return false;
             }
             else {
