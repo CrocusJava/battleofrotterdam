@@ -123,9 +123,9 @@
                     <!--Start Pagination -->
                     <div class="pagination flat-pagination  pagination-large text_center">
                         <ul id="projects_pagenation">
-                            <li id="projects_prev"><a href="#">Prev</a></li>
+                            <li id="projects_prev" data-name="prev"><a href="#">Prev</a></li>
 
-                            <li id="projects_next"><a href="#">Next</a></li>
+                            <li id="projects_next" data-name="next"><a href="#">Next</a></li>
                         </ul>
                     </div><!--End Pagination -->
                 </div>
@@ -249,7 +249,10 @@
         <script src="js/app.js"></script>
         <!--end JS config application-->
 
-
+        <script type="text/javascript">
+            next_page();
+            preview_page();
+        </script>
 
 
 

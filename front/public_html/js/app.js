@@ -2077,6 +2077,8 @@ function paging_for_comments() {
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#main_conteiner_comments").empty();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
             var firstposition = $(this).attr("id");
             call_load_data_for_viewprojectcomments(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
@@ -2101,6 +2103,8 @@ function paging_for_photos() {
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#viewprojectphotos").empty();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
             var firstposition = $(this).attr("id");
             call_load_data_for_viewprojectphotos(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
@@ -2128,10 +2132,70 @@ function paging_for_projects() {
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#projects").empty();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
             var firstposition = $(this).attr("id");
             call_load_data_for_projets_page(parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
         count += 2;
     }
+}
+
+function next_page() {
+    $("li[data-name=next]").click(function(event) {
+        var $this = $(this);
+
+        var active = $this.siblings(".active");
+        console.log(active, " next");
+        if (!active.length) {
+            console.log("if not next");
+            var next = $this.siblings("#0").next();
+            if ($(next).attr("data-name") === "next") {
+                console.log("end next");
+                return false;
+            }
+            else {
+                $(next).click();
+            }
+        }
+        else {
+            var next = $(active).next();
+            if ($(next).attr("data-name") === "next") {
+                console.log("end next");
+                return false;
+            }
+            else {
+                $(active).removeClass("active");
+                $(next).trigger("click");
+            }
+
+        }
+        event.preventDefault();
+    });
+}
+function preview_page() {
+    $("li[data-name=prev]").click(function(event) {
+        var $this = $(this);
+
+        var active = $this.siblings(".active");
+        console.log(active, " prev");
+        if (!active.length) {
+            console.log(" prev false");
+            return false;
+        }
+        else {
+            var prev = $(active).prev();
+            if ($(prev).attr("data-name") === "prev") {
+                console.log("end prev");
+                return false;
+            }
+            else {
+                $(active).removeClass("active");
+                $(prev).trigger("click");
+            }
+
+        }
+        event.preventDefault();
+    });
 }
