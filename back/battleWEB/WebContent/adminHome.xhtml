@@ -10,13 +10,15 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	
-		<br/>
-		<h:outputLink value="administration.xhtml" >
-			Administration Menu
-		</h:outputLink>		
-		<br/><hr/>
 	<h:form>
+		<br/>
+		<h:outputLink class="anotmargin" value="administration.xhtml" >
+			Administration Menu
+		</h:outputLink>	
+		<h:commandLink value="Exit" action="#{admin.exitAdministration()}" />	
+		<br/><hr/>
+	
+	
 		<h2>Edit Home Page Content</h2> 
 	
 		<h4>Wellcome text (en / nl):</h4>

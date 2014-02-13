@@ -6,7 +6,13 @@ body {
 }
 
 a{
-	font-size: large
+	font-size: large;
+	margin-left: 4%;
+}
+
+.anotmargin{
+	font-size: large;
+	margin-left: 0%;
 }
 
 h4{
