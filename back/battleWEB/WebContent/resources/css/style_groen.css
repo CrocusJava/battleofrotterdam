@@ -1,5 +1,5 @@
 body {
-   
+  background-image: url('../img/body_bg.png');
   background: linear-gradient(to right, rgba(0,148,0,1) , #000);
   color: #fff;
   padding: 5px 25px;
