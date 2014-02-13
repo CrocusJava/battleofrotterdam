@@ -218,8 +218,8 @@ overflow: hidden;
 
 .single_row_index{
 height: 60px;
-line-height: 20px;
 text-overflow: ellipsis;
+line-height: 20px;
 overflow: hidden;
 }
 
@@ -444,6 +444,10 @@ overflow: hidden;
 float: left;
 }
 
+.setnl, .seteng{
+cursor:pointer;
+
+}
 
 .unvisiblin{
 display: none; }
