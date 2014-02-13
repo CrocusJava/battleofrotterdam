@@ -948,16 +948,15 @@ function call_load_data_for_news_index() {
                                             {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
                                             {tag: "h4", text: "loaddate"}
                                         ]},
-                           
-                            {tag: "div", add_class: "desc", children: [
-                                    {tag: "p", text: "title"},
-                                    {tag: "p", children: [
-                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+                                    {tag: "div", add_class: "desc", children: [
+                                            {tag: "p", text: "title"},
+                                            {tag: "p", children: [
+                                                    {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
 //, bind: {popup_news:click}
-                                            }
+                                                    }
+                                                ]}
                                         ]}
                                 ]}
-								]}
 
                         ]}
 
@@ -1230,10 +1229,11 @@ function call_load_data_for_myaccount(id) {
     }).done(function(respons) {
         if (!send_data.iduser) {
             $.session.set("name", respons["login"]);
+            $.session.set("avatar", respons["photopath"]);
             call_cookie_navigator();
         }
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
-        $.session.set("avatar", respons["photopath"]);
+//        $.session.set("avatar", respons["photopath"]);
         $("#name_static_profile").text(respons["login"]);
         $("#FirstName").text(respons["firstname"]);
         $("#MiddletName").text(respons["middlename"]);
