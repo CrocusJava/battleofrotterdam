@@ -1,0 +1,96 @@
+body {
+  background-image: url('body_bg.png');
+  background-color: #dcdbda; 
+  /* background: linear-gradient(to right, rgba(0,148,0,1) , #000); */
+  color: #fff;
+  padding: 5px 25px;
+}
+
+form{
+ margin: 2%;
+}
+textarea{
+padding: 25px 25px;
+}
+
+.button{
+background-color: rgba(0,148,0,1);
+font-size: 15px;
+color: white;
+font-weight: 300;
+font-family: 'Open Sans', sans-serif;
+border: 1px solid transparent;
+color: white;
+filter: none;
+line-height: 20px;
+padding: 5px 25px;
+margin: 0 auto;
+
+}
+/* a{
+font-size: 1.5em;
+-webkit-margin-before: 0.83em;
+-webkit-margin-after: 0.83em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+text-decoration: none; 
+}
+a:hover{
+cursor:pointer;
+padding: 2px 18px;
+} */
+
+/*  td > a:link {
+    color: rgba(0,148,0,1); Цвет ссылок
+   } 
+ 
+a:link {
+    color: rgba(0,148,0,1); Цвет ссылок
+   }
+   a:visited {
+    color: rgba(0,148,0,1);Цвет посещенных ссылок
+   }
+ */
+
+a{
+	font-size: x-large;
+}
+th{
+	font-size: x-large;
+}
+input{
+	font-size: large;
+}
+.login{
+margin:10%;
+}
+.input_text_size{
+	width: 40%;
+	height: 150px;
+	font-size: medium
+}
+.input_title_size{
+	width: 40%;
+	height: 50px;
+	font-size: x-large
+}
+.input_url_size{
+	width: 60%;
+	height: 50px;
+	font-size: large
+}
+.input_qa_size{
+	width: 40%;
+	height: 100px;
+	font-size: large
+}
+.input_fax_size{
+	width: 40%;
+	height: 50px;
+	font-size: large
+}
+
+.cl{
+	font-size: large;
+}

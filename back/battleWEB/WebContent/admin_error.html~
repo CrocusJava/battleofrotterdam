@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Error!</title>
-<link rel="stylesheet" type="text/css" href="resources/css/loginstyle.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 </head>
 <body bgcolor="#FFF7E5">
-	
-	<form class="login"  method="post" action="j_security_check">
+	<br/><hr/><br/>
+	<form  method="post" action="j_security_check">
 	
 	<table align="center" >
 		<tr>
@@ -17,15 +17,11 @@
 			<th>Please, check your data</th>
 		<tr/>
 		<tr>
-		<tr/>
-		<tr>
-		<tr/>
-		<tr>
-			<th><a href="administration.xhtml"><~  Back</a></th>
+			<th><a href="administration.xhtml"><- Back</a></th>
 		<tr/>
 		
 	</table>
 	</form>
-	
+	<br/><hr/><br/>
 </body>
 </html>

@@ -549,7 +549,7 @@ function call_load_data_for_index_events(load_data) {
                 {tag: "div", add_class: "content_post", children: [
                         {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
                         {tag: "h4", text: "projectname"},
-                        {tag: "p", add_class: "single_row", text: "photodescription"},
+                        {tag: "p", add_class: "single_row_index", text: "photodescription"},
                         {tag: "p", add_class: "clear", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
@@ -947,17 +947,17 @@ function call_load_data_for_news_index() {
                                     {tag: "div", add_class: "img_preview", children: [
                                             {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
                                             {tag: "h4", text: "loaddate"}
-                                        ]}
-                                ]},
+                                        ]},
+                           
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "title"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
 //, bind: {popup_news:click}
                                             }
                                         ]}
                                 ]}
-
+								]}
 
                         ]}
 
@@ -1329,10 +1329,10 @@ function call_create_murkup_for_account_projects(project, respons) {
          **/
     }
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
             '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
             '</div>' +
-            '<div class="blog-line" style="background: rgba(249,394,0,0.3);">' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
@@ -1357,10 +1357,10 @@ function call_create_murkup_for_account_projects(project, respons) {
 
 function call_create_murkup_for_static_profile_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
             '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
             '</div>' +
-            '<div class="blog-line" style="background: rgba(190,237,43,0.3);">' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
@@ -2077,6 +2077,8 @@ function paging_for_comments() {
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#main_conteiner_comments").empty();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
             var firstposition = $(this).attr("id");
             call_load_data_for_viewprojectcomments(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
@@ -2101,6 +2103,8 @@ function paging_for_photos() {
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#viewprojectphotos").empty();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
             var firstposition = $(this).attr("id");
             call_load_data_for_viewprojectphotos(parseInt(window.projectId), parseInt(firstposition));
             event.preventDefault();
@@ -2128,10 +2132,63 @@ function paging_for_projects() {
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
             $("#projects").empty();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
             var firstposition = $(this).attr("id");
             call_load_data_for_projets_page(parseInt(firstposition));
             event.preventDefault();
         }).insertBefore(next);
         count += 2;
     }
+}
+
+function next_page() {
+    $("li[data-name=next]").click(function(event) {
+        var $this = $(this);
+
+        var active = $this.siblings(".active");
+        if (!active.length) {
+            var next = $this.siblings("#0").next();
+            if ($(next).attr("data-name") === "next") {
+                return false;
+            }
+            else {
+                $(next).click();
+            }
+        }
+        else {
+            var next = $(active).next();
+            if ($(next).attr("data-name") === "next") {
+                return false;
+            }
+            else {
+                $(active).removeClass("active");
+                $(next).trigger("click");
+            }
+
+        }
+        event.preventDefault();
+    });
+}
+function preview_page() {
+    $("li[data-name=prev]").click(function(event) {
+        var $this = $(this);
+
+        var active = $this.siblings(".active");
+        if (!active.length) {
+            return false;
+        }
+        else {
+            var prev = $(active).prev();
+            if ($(prev).attr("data-name") === "prev") {
+                return false;
+            }
+            else {
+                $(active).removeClass("active");
+                $(prev).trigger("click");
+            }
+
+        }
+        event.preventDefault();
+    });
 }
