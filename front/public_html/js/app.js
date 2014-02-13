@@ -947,17 +947,17 @@ function call_load_data_for_news_index() {
                                     {tag: "div", add_class: "img_preview", children: [
                                             {tag: "img", attr: {src: "photopath", "data-src": "photopath", alt: "img_preview"}},
                                             {tag: "h4", text: "loaddate"}
-                                        ]}
-                                ]},
+                                        ]},
+                           
                             {tag: "div", add_class: "desc", children: [
                                     {tag: "p", text: "title"},
                                     {tag: "p", children: [
-                                            {tag: "a", add_class: "unvisiblin news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
+                                            {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
 //, bind: {popup_news:click}
                                             }
                                         ]}
                                 ]}
-
+								]}
 
                         ]}
 
