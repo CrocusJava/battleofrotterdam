@@ -1329,10 +1329,10 @@ function call_create_murkup_for_account_projects(project, respons) {
          **/
     }
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
             '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
             '</div>' +
-            '<div class="blog-line" style="background: rgba(249,394,0,0.3);">' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
@@ -1357,10 +1357,10 @@ function call_create_murkup_for_account_projects(project, respons) {
 
 function call_create_murkup_for_static_profile_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(0,181,188,0.3);  margin-bottom: 0px;">' +
+            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
             '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
             '</div>' +
-            '<div class="blog-line" style="background: rgba(190,237,43,0.3);">' +
+            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
             '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
             '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
