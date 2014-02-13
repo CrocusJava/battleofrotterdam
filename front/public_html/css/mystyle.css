@@ -214,6 +214,15 @@ white-space: nowrap;
 text-overflow: ellipsis;
 overflow: hidden;
 }
+
+
+.single_row_index{
+height: 60px;
+line-height: 20px;
+text-overflow: ellipsis;
+overflow: hidden;
+}
+
 .popup_text{
 padding: 20px 20px;
 font-size: 18px;

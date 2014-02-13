@@ -549,7 +549,7 @@ function call_load_data_for_index_events(load_data) {
                 {tag: "div", add_class: "content_post", children: [
                         {tag: "img", add_class: "pull-left img_preview", attr: {src: "photopath", alt: "preview"}},
                         {tag: "h4", text: "projectname"},
-                        {tag: "p", add_class: "single_row", text: "photodescription"},
+                        {tag: "p", add_class: "single_row_index", text: "photodescription"},
                         {tag: "p", add_class: "clear", children: [
                                 {tag: "span", children: [
                                         {tag: "i", add_class: "icon-time"},
