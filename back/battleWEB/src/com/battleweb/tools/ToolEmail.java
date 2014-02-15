@@ -52,7 +52,7 @@ public class ToolEmail {
 				            message.setFrom(new InternetAddress(username));
 				            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
 				            message.setSubject(subject);
-				            message.setText(text);
+				            message.setContent(text, "text/html");
 				 
 				            Transport.send(message);
 				        } catch (MessagingException e) {
