@@ -1626,7 +1626,7 @@ function AjaxSendSearch(form) {
     }).done(function(data) {
 
         var container = $("#result_search");
-        if (data.result > 0) {
+        if (data.result.length > 0) {
             $(container).html("");
             for (var i in data.result) {
                 call_create_template_for_search_page(container, data.result[i]);
