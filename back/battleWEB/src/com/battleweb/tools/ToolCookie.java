@@ -36,6 +36,7 @@ public class ToolCookie {
 	
 	public void setLocaleDefault(ServletRequest request, ServletResponse response){
 		Locale locale=request.getLocale();
+		Log.info(this, "User locale.getLanguage - " + locale.getLanguage());
 		if (locale.getLanguage().equals(new Locale(Constants.PARAMETER_LOCALE_NL).getLanguage())){
 			((HttpServletResponse)response).addCookie(new Cookie(Constants.PARAMETER_LOCALE, Constants.PARAMETER_LOCALE_NL));
 			Log.info(this, "Cookie: set default localization - "+ Constants.PARAMETER_LOCALE_NL);
