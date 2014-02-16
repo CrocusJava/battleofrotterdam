@@ -2,16 +2,17 @@ $(window).load(function() {
     call_all();
 });
 function call_all() {
-//    call_grid();
+    call_setup_localozation();
+
     call_scroll();
 //    call_slider_sequence();
     call_datatables();
     call_tab();
-//    call_full_calendar();
-//    call_functional_reservations();
+
+
     call_lightbox();
     call_control_color_theme();
-//    call_lazy_load_images();
+
     call_form_validation();
 
 
@@ -67,10 +68,6 @@ function call_form_validation() {
 
 
 
-function call_lazy_load_images() {
-//$("#content img").unveil(300)
-    $("#content img").unveil(300);
-}
 
 function call_control_color_theme() {
     if ($.cookie('color_theme')) {
@@ -85,22 +82,7 @@ function call_control_color_theme() {
     });
 }
 
-function call_functional_reservations() {
-    $('.select_room .item_grid').click(function(e) {
-        e.preventDefault();
-        $('.select_room').find('.item_grid').removeClass('selected');
-        $(this).addClass('selected');
-        $('#form_select_room').val($(this).data('date'));
-    });
-    $('.checkbox_extras').click(function(e) {
-        call_grid();
-        if ($(this).is(':checked')) {
-            $(this).parents('.panel').find('select').show();
-        } else {
-            $(this).parents('.panel').find('select').hide();
-        }
-    });
-}
+
 
 function call_tab() {
     $('.nav-tabs a').click(function(e) { //lobster_tab
@@ -109,63 +91,7 @@ function call_tab() {
     });
 }
 
-function call_full_calendar() {
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-    var selector = $('#calendar');
-    if ($(selector).length > 0) {
-        $('#calendar').fullCalendar({
-            editable: false,
-            events: [
-                {
-                    title: 'Full',
-                    start: new Date(y, m, 1)
-                }, {
-                    title: 'Full',
-                    start: new Date()
-                }],
-            dayClick: function() {
-                $('#calendar').find('td').removeClass('selected');
-                $(this).addClass('selected');
-                $('#form_date').val($(this).data('date'));
-            }
-        });
-        $('#calendar2').fullCalendar({
-            editable: false,
-            events: [
-                {
-                    title: 'Full',
-                    start: new Date(y, m, 1)
-                }, {
-                    title: 'Full',
-                    start: new Date()
-                }],
-            dayClick: function() {
-                $('#calendar2').find('td').removeClass('selected');
-                $(this).addClass('selected');
-                $('#form_date2').val($(this).data('date'));
-            }
-        });
-        $('#calendar3').fullCalendar({
-            editable: false,
-            events: [
-                {
-                    title: 'Full',
-                    start: new Date(y, m, 1)
-                }, {
-                    title: 'Full',
-                    start: new Date()
-                }],
-            dayClick: function() {
-                $('#calendar3').find('td').removeClass('selected');
-                $(this).addClass('selected');
-                $('#form_date3').val($(this).data('date'));
-            }
-        });
-    }
-}
+
 
 function call_datatables() {
     if ($('.datatables_group').length > 0) {
@@ -241,19 +167,7 @@ function call_slider_sequence() {
 }
 
 
-function call_grid() {
-    setTimeout(function() {
-        var selector = $('.gridmasonry');
-        if ($(selector).length > 0) {
-            $(selector).fadeIn();
-            var $container = $('.gridmasonry');
-            // trigger masonry
-            $container.masonry({
-                itemSelector: '.item_grid'
-            });
-        }
-    }, 500);
-}
+
 
 function call_scroll() {
     /*Show back to top*/
@@ -2210,4 +2124,30 @@ function preview_page() {
         }
         event.preventDefault();
     });
+}
+
+
+function set_eng_localization() {
+    $(".en").removeClass("unvisiblin");
+    $(".nl").addClass('unvisiblin');
+    $.cookie("locale", "en");
+
+}
+function set_nl_localization() {
+    $(".nl").removeClass("unvisiblin");
+    $(".en").addClass('unvisiblin');
+    $.cookie("locale", "nl");
+
+}
+
+function call_setup_localozation() {
+    var language = $.cookie("locale");
+    switch (language) {
+        case "nl":
+            set_nl_localization();
+            break;
+        case "en":
+            set_eng_localization();
+            break;
+    }
 }

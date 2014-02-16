@@ -302,26 +302,15 @@
         <!--end JS config application-->
 
         <script  type="text/javascript">
-
-
-
             $(".seteng").click(function() {
-
-                $(".en").removeClass("unvisiblin");
-                $(".nl").addClass('unvisiblin');
-
+                set_eng_localization();
+                window.location.reload();
             });
 
             $(".setnl").click(function() {
-                $(".nl").removeClass("unvisiblin");
-                $(".en").addClass('unvisiblin');
-
+                set_nl_localization();
+                window.location.reload();
             });
-
-
-
-
-
         </script>
 
 
