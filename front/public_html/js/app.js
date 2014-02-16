@@ -1624,15 +1624,34 @@ function AjaxSendSearch(form) {
         data: config.data,
         contentType: "application/json"
     }).done(function(data) {
-        var resalt = JSON.stringify(data);
-        var result_search = $("#result_search");
-        $(result_search).text(resalt);
-        console.log(data);
+
+        var container = $("#result_search");
+        if (data.result > 0) {
+            $(container).html("");
+            for (var i in data.result) {
+                call_create_template_for_search_page(container, data.result[i]);
+            }
+        }
+
     }).fail(function(error) {
         console.log(error);
     });
     console.log(JSON.parse(config.data));
     return false;
+}
+
+function call_create_template_for_search_page(container, result) {
+    var template = '<div class="res_search">' +
+            '           <strong style="font-size: 2em;">' +
+            '               <a href="' + (result["type"] === "project" || result["type"] === "comment" ? "single_project.html#projectid=" : "#") + result["id"] + '">  <i class="icon-share-alt"></i> </a>' +
+            '           </strong>' +
+            '           <p>' + result["description"] + '</p>' +
+            '           <p>' + result["name"] + '</p>' +
+            '           <p>' + result["type"] + '</p>' +
+            '</div>';
+    var view = $(template);
+    $(view).appendTo(container);
+
 }
 
 function call_send_vote(projectid) {
