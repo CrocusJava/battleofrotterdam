@@ -1413,10 +1413,12 @@ function call_load_data_for_viewprojectcomments(projectid, firstposition) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        for (var comment in respons["comments"]) {
-            call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
+        if (respons.comments.length) {
+            $("#main_conteiner_comments").empty();
+            for (var comment in respons["comments"]) {
+                call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
+            }
         }
-
     }).fail(function() {
         console.log("error onload command=viewprojectcomments ");
     });
@@ -1463,14 +1465,18 @@ function call_load_data_for_projets_page(firstposition) {
         window.pagenation = {
             projects: respons.projectquantity
         };
-        for (var project in respons.projects) {
-            call_create_markup_for_projects(respons.projects[project]);
+        if (respons.projects.length) {
+            $("#projects").empty();
+            for (var project in respons.projects) {
+                call_create_markup_for_projects(respons.projects[project]);
+            }
+
+            if (!paging_for_projects.loaded) {
+                paging_for_projects();
+                paging_for_projects.loaded = true;
+            }
         }
 
-        if (!paging_for_projects.loaded) {
-            paging_for_projects();
-            paging_for_projects.loaded = true;
-        }
 
     }).fail(function() {
         console.log("error onload command = projects ");
@@ -1857,16 +1863,21 @@ function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        if (window.location.href.match(/edit_project.html/)) {//<<<<======================= вывести все ранее сохраненные фото с описанием при помощи фукции для создания нового фото
-            for (var photo in respons["photos"]) {
-                call_load_photo_for_edit_project(respons["photos"][photo]);
+        if (respons.photos.length) {
+            if (window.location.href.match(/edit_project.html/)) {//<<<<======================= вывести все ранее сохраненные фото с описанием при помощи фукции для создания нового фото
+                $("#viewprojectphotos").empty();
+                for (var photo in respons["photos"]) {
+                    call_load_photo_for_edit_project(respons["photos"][photo]);
+                }
+            }
+            else {
+                $("#viewprojectphotos").empty();
+                for (var photo in respons["photos"]) {
+                    call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
+                }
             }
         }
-        else {
-            for (var photo in respons["photos"]) {
-                call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
-            }
-        }
+
 
     }).fail(function() {
         console.log("error onload command=viewprojectphotos ");
@@ -2009,7 +2020,7 @@ function paging_for_comments() {
     }
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            $("#main_conteiner_comments").empty();
+//            $("#main_conteiner_comments").empty();
             $(this).siblings().removeClass("active");
             $(this).addClass("active");
             var firstposition = $(this).attr("id");
@@ -2035,7 +2046,7 @@ function paging_for_photos() {
 
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            $("#viewprojectphotos").empty();
+//            $("#viewprojectphotos").empty();
             $(this).siblings().removeClass("active");
             $(this).addClass("active");
             var firstposition = $(this).attr("id");
@@ -2064,7 +2075,7 @@ function paging_for_projects() {
 
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            $("#projects").empty();
+//            $("#projects").empty();
             $(this).siblings().removeClass("active");
             $(this).addClass("active");
             var firstposition = $(this).attr("id");
