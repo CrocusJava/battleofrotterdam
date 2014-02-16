@@ -16,6 +16,7 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.entities.Project;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -33,6 +34,8 @@ public class CommandDeleteProject implements Command {
 	private ProjectBean projectBean;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -50,12 +53,12 @@ public class CommandDeleteProject implements Command {
 			deleteResult = true;
 			Log.debug(this, "Project id="+projectId+" was deleted");
 			message=textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_DELETE_DATA_SUCCESS,
-					request.getLocale());
+					toolCookie.getLocaleName(request));
 		}else {
 			deleteResult = false;
 			Log.debug(this, "Access error while deleting Project id="+projectId);
 			message=textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_ACCESS_ERROR,
-					request.getLocale());
+					toolCookie.getLocaleName(request));
 		}
 
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()

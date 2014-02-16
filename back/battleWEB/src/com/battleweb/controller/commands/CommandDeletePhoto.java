@@ -16,6 +16,7 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.entities.Photo;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -33,6 +34,8 @@ public class CommandDeletePhoto implements Command {
 	private PhotoBean photoBean;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -50,12 +53,12 @@ public class CommandDeletePhoto implements Command {
 			deleteResult = true;
 			Log.debug(this, "Photo id="+photoId+" was deleted");
 			message=textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_DELETE_DATA_SUCCESS,
-					request.getLocale());
+					toolCookie.getLocaleName(request));
 		}else {
 			deleteResult = false;
 			Log.debug(this, "Access error while deleting Photo id="+photoId);
 			message=textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_ACCESS_ERROR,
-					request.getLocale());
+					toolCookie.getLocaleName(request));
 		}
 
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()

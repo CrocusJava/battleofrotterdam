@@ -23,6 +23,7 @@ import com.battleejb.entities.Photo;
 import com.battleejb.entities.Project;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
 
@@ -48,6 +49,8 @@ public class CommandSendComment implements Command {
 	private CommentBean commentBean;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -101,7 +104,7 @@ public class CommandSendComment implements Command {
 				jsonObjectResponseBuilder.add(Constants.PARAMETER_MESSAGE,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_MESSAGE_COMMANDABLE_FALSE,
-								request.getLocale()));
+								toolCookie.getLocaleName(request)));
 			}
 
 			jsonObjectResponseBuilder.add(Constants.PARAMETER_STATUS,

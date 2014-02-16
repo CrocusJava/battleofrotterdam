@@ -7,15 +7,14 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
-import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
 import com.battleweb.tools.ToolSession;
@@ -38,14 +37,16 @@ public class CommandWasApprovedRegistration implements Command {
 	private ToolMD5 toolMD5;
 	@EJB
 	private ToolSession toolSession;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String approveRegistrationMessage = textBean.findLocaleTextByKey(
 				Constants.TEXT_MESSAGE_APPROVEREGISTRATION_FALSE,
-				request.getLocale());
+				toolCookie.getLocaleName(request));
 		boolean allRight = false;
 
 		Integer userId = (Integer) request.getSession().getAttribute(
@@ -54,7 +55,7 @@ public class CommandWasApprovedRegistration implements Command {
 		if (userId != null) {
 			approveRegistrationMessage = textBean.findLocaleTextByKey(
 					Constants.TEXT_MESSAGE_APPROVEREGISTRATION_TRUE,
-					request.getLocale());
+					toolCookie.getLocaleName(request));
 			allRight = true;
 		}
 

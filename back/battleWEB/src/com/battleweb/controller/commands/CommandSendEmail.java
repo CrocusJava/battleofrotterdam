@@ -17,6 +17,7 @@ import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 
@@ -36,7 +37,9 @@ public class CommandSendEmail implements Command {
 	private ToolEmail toolEmail;
 	@EJB
 	private TextBean textBean;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -65,7 +68,7 @@ public class CommandSendEmail implements Command {
 					.add(Constants.PARAMETER_MESSAGE,
 							textBean.findLocaleTextByKey(
 									Constants.TEXT_MESSAGE_ADMIN_SEND_EMAIL,
-									request.getLocale()));
+									toolCookie.getLocaleName(request)));
 		} else {
 			Log.error(this, "Command invoked not by admin");
 			jsonObjectResponseBuilder.add(Constants.PARAMETER_ERROR_MESSAGE,

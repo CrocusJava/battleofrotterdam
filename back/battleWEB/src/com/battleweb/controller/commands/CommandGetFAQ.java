@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.battleejb.ejbbeans.TextBean;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -39,8 +40,8 @@ public class CommandGetFAQ implements Command{
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 			
-		JsonArray faqListArrayEn = getFAQListByLocale(new Locale("en"));
-		JsonArray faqListArrayNl = getFAQListByLocale(new Locale("nl"));
+		JsonArray faqListArrayEn = getFAQListByLocale(Constants.PARAMETER_LOCALE_EN);
+		JsonArray faqListArrayNl = getFAQListByLocale(Constants.PARAMETER_LOCALE_NL);
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
@@ -52,7 +53,7 @@ public class CommandGetFAQ implements Command{
 		return null;
 	}
 	
-	private JsonArray getFAQListByLocale(Locale locale){
+	private JsonArray getFAQListByLocale(String locale){
 		question = textBean.findLocaleTextByKey(Constants.TEXT_Q1, locale);
 		ansver = textBean.findLocaleTextByKey(Constants.TEXT_A1, locale);
 		JsonObject jsonObjectQA1 = Json.createObjectBuilder()

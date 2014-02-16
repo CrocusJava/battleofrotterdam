@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.battleejb.ejbbeans.TextBean;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -28,35 +29,38 @@ public class CommandAboutBattle implements Command{
 	private ToolJSON toolJSON;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
+	
 	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		//create json-objects of information
-		String titleBattleDescription = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_BATTLE_DESCRIPTION, request.getLocale());
-		String battleDescriptionFull = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_FULL, request.getLocale());
+		String titleBattleDescription = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_BATTLE_DESCRIPTION, toolCookie.getLocaleName(request));
+		String battleDescriptionFull = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_FULL, toolCookie.getLocaleName(request));
 		JsonObject jsonObjectAboutBattle = Json.createObjectBuilder()
 			.add(Constants.PARAMETER_TITLE, titleBattleDescription)
 			.add(Constants.PARAMETER_DESCRIPTION, battleDescriptionFull)
 			.build();
 		
-		String titleAboutbUs = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_ABOUT_US, request.getLocale());
-		String aboutbUsDescription = textBean.findLocaleTextByKey(Constants.TEXT_ABOUT_US_DESCRIPTION, request.getLocale());
+		String titleAboutbUs = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_ABOUT_US, toolCookie.getLocaleName(request));
+		String aboutbUsDescription = textBean.findLocaleTextByKey(Constants.TEXT_ABOUT_US_DESCRIPTION, toolCookie.getLocaleName(request));
 		JsonObject jsonObjectAboutUs = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_TITLE, titleAboutbUs)
 				.add(Constants.PARAMETER_DESCRIPTION, aboutbUsDescription)
 				.build();
 
-		String titleRules = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_BATTLE_RULES, request.getLocale());
-		String rulesDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_RULES_DESCRIPTION, request.getLocale());
+		String titleRules = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_BATTLE_RULES, toolCookie.getLocaleName(request));
+		String rulesDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_RULES_DESCRIPTION, toolCookie.getLocaleName(request));
 		JsonObject jsonObjectRules = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_TITLE, titleRules)
 				.add(Constants.PARAMETER_DESCRIPTION, rulesDescription)
 				.build();
 
-		String titleInformation = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_INFO, request.getLocale());
-		String informationDescription = textBean.findLocaleTextByKey(Constants.TEXT_INFO_DESCRIPTION, request.getLocale());
+		String titleInformation = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_INFO, toolCookie.getLocaleName(request));
+		String informationDescription = textBean.findLocaleTextByKey(Constants.TEXT_INFO_DESCRIPTION, toolCookie.getLocaleName(request));
 		JsonObject jsonObjectInformation = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_TITLE, titleInformation)
 				.add(Constants.PARAMETER_DESCRIPTION, informationDescription)

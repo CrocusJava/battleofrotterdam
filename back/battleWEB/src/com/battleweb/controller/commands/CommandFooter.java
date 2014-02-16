@@ -21,6 +21,7 @@ import com.battleejb.ejbbeans.URLBean;
 import com.battleejb.entities.Photo;
 import com.battleejb.entities.URL;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -40,7 +41,9 @@ public class CommandFooter implements Command {
 	private URLBean urlBean;
 	@EJB
 	private PhotoBean photoBean;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -74,27 +77,27 @@ public class CommandFooter implements Command {
 				.add(Constants.PARAMETER_CONTACTS_INFO_INDEX,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_CONTACTS_INFO_ON_INDEX,
-								request.getLocale()))
+								toolCookie.getLocaleName(request)))
 				.add(Constants.PARAMETER_CONTACTS_ADDRESS,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_CONTACTS_ADDRESS,
-								request.getLocale()))
+								toolCookie.getLocaleName(request)))
 				.add(Constants.PARAMETER_CONTACTS_EMAIL,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_CONTACTS_EMAIL,
-								request.getLocale()))
+								toolCookie.getLocaleName(request)))
 				.add(Constants.PARAMETER_CONTACTS_PHONE,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_CONTACTS_PHONE,
-								request.getLocale()))
+								toolCookie.getLocaleName(request)))
 				.add(Constants.PARAMETER_CONTACTS_FAX,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_CONTACTS_FAX,
-								request.getLocale()))
+								toolCookie.getLocaleName(request)))
 				.add(Constants.PARAMETER_CONTACTS_SKYPE,
 						textBean.findLocaleTextByKey(
 								Constants.TEXT_CONTACTS_SKYPE,
-								request.getLocale())).build();
+								toolCookie.getLocaleName(request))).build();
 
 		// create list of photos for gallery in footer
 		List<Photo> photosGallery = new ArrayList<Photo>();

@@ -28,6 +28,7 @@ import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
 import com.battleejb.entities.Photo;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 //import org.json.simple.JSONArray
 
@@ -54,6 +55,8 @@ public class CommandIndex implements Command{
 	private CommentBean commentBean;
 	@EJB
 	private PhotoBean photoBean;
+	@EJB
+	private ToolCookie toolCookie;
 	
 	private SimpleDateFormat dateFormatTimer = new SimpleDateFormat("MM/dd/yyyy");
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.ENGLISH);
@@ -75,8 +78,8 @@ public class CommandIndex implements Command{
 		Date monthCompetitionDate = monthCompetition.getDateEnd();
 		
 		//get descriptions from db
-		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, request.getLocale());
-		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, request.getLocale());
+		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, toolCookie.getLocaleName(request));
+		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, toolCookie.getLocaleName(request));
 		
 		//get animation url from db
 		String animationURL = urlBean.findByKey(Constants.URL_BATTLE_ANIMATION).getName();

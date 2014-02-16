@@ -42,10 +42,9 @@ public class TextBean extends AbstractFacade<Text> {
 		return text;
 	}
 
-	public String findLocaleTextByKey(Integer keyval, Locale locale) {
-		String loc = locale.toString();
+	public String findLocaleTextByKey(Integer keyval, String locale) {
 		String queryName = "User.findEnTextByKey";
-		if (loc.equalsIgnoreCase("nl")) {
+		if (locale.equalsIgnoreCase("nl")) {
 			queryName = "User.findNlTextByKey";
 		}
 		return (String) em.createNamedQuery(queryName)

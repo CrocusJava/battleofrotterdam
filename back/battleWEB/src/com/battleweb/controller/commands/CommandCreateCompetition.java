@@ -22,6 +22,7 @@ import com.battleejb.entities.Competition;
 import com.battleejb.entities.CompetitionType;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
 
@@ -43,7 +44,9 @@ public class CommandCreateCompetition implements Command {
 	private CompetitionTypeBean competitionTypeBean;
 	@EJB
 	private TextBean textBean;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -107,7 +110,7 @@ public class CommandCreateCompetition implements Command {
 						.add(Constants.PARAMETER_MESSAGE,
 								textBean.findLocaleTextByKey(
 										Constants.TEXT_MESSAGE_ADMIN_EDIT_USER,
-										request.getLocale()));
+										toolCookie.getLocaleName(request)));
 
 			} else {
 				jsonObjectResponseBuilder

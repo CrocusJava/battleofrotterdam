@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.battleejb.ejbbeans.TextBean;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -28,12 +29,15 @@ public class CommandTerms implements Command{
 	private ToolJSON toolJSON;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
+
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		//get terms&conditions from db
-		String termsAndConditionsTitle = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_TERMS, request.getLocale());
-		String termsAndConditionsText = textBean.findLocaleTextByKey(Constants.TEXT_TERMS, request.getLocale());
+		String termsAndConditionsTitle = textBean.findLocaleTextByKey(Constants.TEXT_TITLE_TERMS, toolCookie.getLocaleName(request));
+		String termsAndConditionsText = textBean.findLocaleTextByKey(Constants.TEXT_TERMS, toolCookie.getLocaleName(request));
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()

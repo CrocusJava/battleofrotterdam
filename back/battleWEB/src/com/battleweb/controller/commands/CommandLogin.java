@@ -17,6 +17,7 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
 import com.battleweb.tools.ToolSession;
@@ -40,14 +41,14 @@ public class CommandLogin implements Command {
 	private ToolMD5 toolMD5;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
 
 	private User user;
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		Locale locale = request.getLocale();
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
 		String login = jsonObjectRequest.getString(Constants.PARAMETER_LOGIN);
@@ -79,7 +80,7 @@ public class CommandLogin implements Command {
 						.add(Constants.PARAMETER_MESSAGE,
 								textBean.findLocaleTextByKey(
 										Constants.TEXT_MESSAGE_ACTOVE_FALSE,
-										locale))
+										toolCookie.getLocaleName(request)))
 						.add(Constants.PARAMETER_IDUSER, 0)
 						.add(Constants.PARAMETER_IDROLE, 0).build();
 
@@ -93,7 +94,7 @@ public class CommandLogin implements Command {
 					.add(Constants.PARAMETER_MESSAGE,
 							textBean.findLocaleTextByKey(
 									Constants.TEXT_MESSAGE_WRONG_LOGIN_OR_PASSWORD,
-									locale)).add(Constants.PARAMETER_IDUSER, 0)
+									toolCookie.getLocaleName(request))).add(Constants.PARAMETER_IDUSER, 0)
 					.add(Constants.PARAMETER_IDROLE, 0).build();
 
 			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);

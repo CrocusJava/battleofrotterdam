@@ -37,23 +37,9 @@ public class CommandGetHome implements Command{
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, new Locale("en"));
-		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, new Locale("en"));
 		String animationURL = urlBean.findByKey(Constants.URL_BATTLE_ANIMATION).getValue();
-		
-		JsonObject jsonObjectEn = Json.createObjectBuilder()
-			.add(Constants.PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT, battleDescriptionShort)
-			.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
-			.build();
-
-		 battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, new Locale("nl"));
-		 battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, new Locale("nl"));
-		
-		JsonObject jsonObjectNl = Json.createObjectBuilder()
-			.add(Constants.PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT, battleDescriptionShort)
-			.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
-			
-			.build();
+		JsonObject jsonObjectEn=getJsonObject(Constants.PARAMETER_LOCALE_EN);
+		JsonObject jsonObjectNl=getJsonObject(Constants.PARAMETER_LOCALE_NL);
 		
 		//create final ison-object
 		JsonObject jsonObjectResponse=Json.createObjectBuilder()
@@ -62,8 +48,17 @@ public class CommandGetHome implements Command{
 			.add(Constants.PARAMETER_URL_BATTLE_ANIMATION, animationURL)
 			.build();
 				
-			toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
+		toolJSON.setJsonObjectResponse(response, jsonObjectResponse);
 		return null;
 	}
-
+	
+	private JsonObject getJsonObject(String locale){
+		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, locale);
+		String battleAnimationDescription = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, locale);
+		JsonObject jsonObject = Json.createObjectBuilder()
+				.add(Constants.PARAMETER_TEXT_BATTLE_DESCRIPTION_SHORT, battleDescriptionShort)
+				.add(Constants.PARAMETER_TEXT_BATTLE_ANIMATION_DESCRIPTION, battleAnimationDescription)
+				.build();
+		return jsonObject;
+	}
 }

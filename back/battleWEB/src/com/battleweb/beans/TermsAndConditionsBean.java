@@ -29,9 +29,9 @@ public class TermsAndConditionsBean {
 	@PostConstruct
 	public void init() {
 		termsAndConditionsEn = textBean.findLocaleTextByKey(
-				Constants.TEXT_TERMS, new Locale("en"));
+				Constants.TEXT_TERMS, Constants.PARAMETER_LOCALE_EN);
 		termsAndConditionsNl = textBean.findLocaleTextByKey(
-				Constants.TEXT_TERMS, new Locale("nl"));		
+				Constants.TEXT_TERMS, Constants.PARAMETER_LOCALE_NL);		
 	}
 
 	public String apply() {		
