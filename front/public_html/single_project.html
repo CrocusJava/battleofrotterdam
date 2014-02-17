@@ -40,7 +40,7 @@
 
     </head>
 
-    <body class="theme_default">
+      <body class="theme_default">
 
         <div id="wrapper">
 
@@ -56,36 +56,61 @@
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
                         <ul class="unstyled">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about_battle.html">About the Battle</a></li>
-                            <li><a href="competitions.html">Competitions</a></li>
-                            <li><a href="current_rankings.html">Current Rankings</a></li>
-                            <li><a href="projets.html">Projects</a></li>
-                            <li><a href="FAQ.html">FAQ</a></li>
-                            <li><a href="contact.html">Contacts</a></li>
-
-                            <li class="dropdown" style="display: none;" id="dropdown_login_no">
-                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">Login-Register <b class="caret"></b></a>
+                             <li><a href="index.html">
+                                    <span class="en unvisiblin" >Home</span>
+                                    <span class="nl">Thuis</span></a></li>
+                            <li><a href="about_battle.html">
+                                    <span class="en unvisiblin" >About the Battle</span>
+                                    <span class="nl"> Over Battle</span></a></li>
+                            <li><a href="competitions.html">
+                                    <span class="en unvisiblin" >Competitions</span>
+                                    <span class="nl"> Wedstrijden</span></a></li>
+                            <li><a href="current_rankings.html">
+                                    <span class="en unvisiblin" >Current Rankings</span>
+                                    <span class="nl"> Huidige Rankings</span></a></li>
+                            <li><a href="projets.html">
+                                    <span class="en unvisiblin" >Projects</span>
+                                    <span class="nl"> Projecten</span></a></li>
+                            <li><a href="FAQ.html">
+                                    <span class="en unvisiblin" >FAQ</span>
+                                    <span class="nl"> FAQ</span></a></li>
+                            <li><a href="contact.html">
+                                    <span class="en unvisiblin" >Contacts</span>
+                                    <span class="nl"> Contacten</span></a></li>
+                            <li class="dropdown active" style="display: none;" id="dropdown_login_no">
+                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="en unvisiblin" >Login-Register</span>
+                                    <span class="nl"> Login- Registeer</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="login.html#login">Login</a></li>
-                                    <li><a href="registration.html#registration">Register</a></li>
+                                    <li><a href="login.html">
+                                            <span class="en unvisiblin" >Login</span>
+                                            <span class="nl"> Login</span></a></li>
+                                    <li><a href="registration.html">
+                                            <span class="en unvisiblin" >Register</span>
+                                            <span class="nl"> Registeer</span></a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="display: none;" id="dropdown_login_yes">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><span id="login_name"></span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li id="myaccount"><a href="myaccount.html"> My Account</a></li>
-                                    <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
+                                    <li id="myaccount"><a href="myaccount.html">
+                                            <span class="en unvisiblin" > My Account</span>
+                                            <span class="nl"> Mijn account</span></a></li>
+                                    <li id="logout"><a href="#logout"><i class="icon-off"></i>
+                                            <span class="en unvisiblin" > Logout</span>
+                                            <span class="nl"> Afmelden</span></a></li>
                                 </ul>
                             </li>
-                            <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
+                            <li> <a href="search.html" > <i class="icon-search"></i>
+                                    <span class="en unvisiblin" > Search</span>
+                                    <span class="nl"> Zoeken</span></a></li>
 
                         </ul>
                     </nav>
                 </div>
             </section>
-            <div class="amortiz inner-wrapper text_center"></div>
+            <div class="inner-wrapper text_center" style="height: 50px;"></div>
             <!--Start main Title content--
             <section id="content_top">
                 <div class="bg_content_top general_bg">
@@ -97,7 +122,7 @@
                 </div>
             </section><!--end main Title content-->
             <!-- Start section logo message area -->
-            <section id="logo_message_area">
+            <section id="logo_message_area" >
                 <div class="inner-wrapper">
 
                     <!-- Start Message Your own -->
@@ -107,8 +132,8 @@
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
 
-                                    <li><a href="img"><img src="img/NL.png" alt="flag"> NL</a></li>
-                                    <li><a href="img"><img src="img/english.png" alt="flag"> ENG</a></li>
+                                   <li class="setnl"><img src="img/NL.png" alt="flag"> NL</li>
+                                    <li class="seteng"><img src="img/english.png" alt="flag"> ENG</li>
                                 </ul>
                             </div>
                             <!--End List Flags-->
@@ -132,12 +157,22 @@
                             <!-- Start section Blog Line details -->
                             <div class="blog-line" >
                                 <a href="#"><i class="icon-calendar"></i><span id="creationdate"></span></a>
-                                <span> <a href="#"> <i class="icon-ok"></i><span id="rating"></span> Likes</a></span>
+                                <span> <a href="#"> <i class="icon-ok"></i><span id="rating"></span> 
+								<span class="en unvisiblin">Likes</span>
+								<span class="nl">Sympathieën</span>
+								
+								</a></span>
                                 <!--  <a href="#"><i class="icon-folder-open"></i> Family Medicine</a> -->
-                                <a href="#" ><i class="icon-comments"></i><span id="commentquantity"></span> Comments</a>
+                                <a href="#" ><i class="icon-comments"></i><span id="commentquantity"></span> 
+								<span class="en unvisiblin">Comments</span>
+								<span class="nl">Reacties</span>
+								</a>
                                 <a href="#" id="user_account"><i class="icon-user"></i> <span id="user"></span></a>
 
-                                <div class="forall"  style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
+                                <div class="forall"  style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">
+								<span class="en unvisiblin">Vote for project </span>
+								<span class="nl">Stem voor project</span>
+								<i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
 
                                 <!-- <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:150px; margin: 0px 10px 0px 10px; float: left;"> <span style="position:relative; float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:18px; font-family: 'Lobster Two', cursive; padding:15px; margin-top: 50px;">[Jhohn Smith]</span>
@@ -160,7 +195,10 @@
                                 <div class="span6">
                                     <div class="panel">
                                         <h4 class="recent-post-header">
-                                            <a href="#">First photo</a>
+                                            <a href="#">
+											<span class="en unvisiblin">First photo</span>
+											<span class="nl">Eerste foto</span>
+											</a>
                                         </h4>
                                         <a href="" class="image_link" id="firstphoto_path_big">
 
@@ -184,7 +222,10 @@
                                 <div class="span6">
                                     <div class="panel">
                                         <h4 class="recent-post-header">
-                                            <a href="#">Current photo</a>
+                                            <a href="#">
+											<span class="en unvisiblin">Current photo</span>
+											<span class="nl">Huidige foto</span>
+											</a>
                                         </h4>
                                         <a href="" class="image_link" id="lastphoto_path_big">
 
@@ -213,7 +254,10 @@
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div><!-- End Break Page Style-->
 
                             <div class="text_center" style=" clear:both; ">
-                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;">Photos</h1>
+                                <h1 class="font_hotel" style=" margin: 10px 0 10px 0;">
+								<span class="en unvisiblin">Photos</span>
+								<span class="nl">Foto's</span>
+								</h1>
                             </div>
 
                             <div style="height:35px;"></div>
@@ -224,9 +268,9 @@
                             <!--Start Pagination -->
                             <div class="pagination flat-pagination text_center">
                                 <ul id="photos_pagenation">
-                                    <li id="photos_prev" data-name="prev"><a href="#">Prev</a></li>
+                                   <li id="projects_prev" data-name="prev"><a href="#"><span class="en unvisiblin">Prev</span><span class="nl">Vorige</span></a></li>
 
-                                    <li id="photos_next" data-name="next"><a href="#">Next</a></li>
+                            <li id="projects_next" data-name="next"><a href="#"><span class="en unvisiblin">Next</span><span class="nl">Volgende</span></a></li>
                                 </ul>
                             </div><!--End Pagination -->
 
@@ -241,9 +285,9 @@
                             <!--Start Pagination -->
                             <div class="pagination flat-pagination text_center">
                                 <ul id="comments_pagenation">
-                                    <li id="comments_prev" data-name="prev"><a href="#">Prev</a></li>
+                                     <li id="projects_prev" data-name="prev"><a href="#"><span class="en unvisiblin">Prev</span><span class="nl">Vorige</span></a></li>
 
-                                    <li id="comments_next" data-name="next"><a href="#">Next</a></li>
+                            <li id="projects_next" data-name="next"><a href="#"><span class="en unvisiblin">Next</span><span class="nl">Volgende</span></a></li>
                                 </ul>
                             </div><!--End Pagination -->
 
@@ -251,13 +295,19 @@
                             <div class="divater"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
                             <!-- Start Form Comment -->
                             <div class="forall">
-                                <h3>LEAVE COMMENT</h3>
+                                <h3>
+								<span class="en unvisiblin">LEAVE COMMENT</span>
+								<span class="nl">GEEF REACTIE</span>
+								</h3>
                                 <form action="" method="post" class="comment_form_validation" novalidate="novalidate" id="sendcomment">
 
                                     <div class="row-fluid">
                                         <div class="span12">
                                             <div class="form-padding">
-                                                <label for="f3">Comment:</label>
+                                                <label for="f3">
+												<span class="en unvisiblin">Comment:</span>
+												<span class="nl">Commentaar:</span>
+												</label>
                                                 <textarea name="commenttext" id="f3" class="input-block-level" rows="10" required=""></textarea>
                                                 <input type="submit" class="btn btn-primary btn-large flat" value="Submit the comment ">
                                             </div>
@@ -276,18 +326,26 @@
             </section><!-- End section content page -->
 
 
-            <!--Start Footer Section-->
+          <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
                     <div class="row-fluid">
                         <div class="span4">
-                            <h3 style="text-align: center;"> <span class="font_hotel">Contacts</span></h3>
-                            <p>University of Applied Sciences Rotterdam</p>
+                            <h3 style="text-align: center;">
+                                <span class="en unvisiblin font_hotel">Contacts</span>
+                                <span class="nl font_hotel"> Contacten</span> </h3>
+                            <p>
+                                <span class="en unvisiblin">University of Applied Sciences Rotterdam</span>
+                                <span class="nl">Universiteit appllied Sciences Rotterdam</span></p>
                             <!--Start List Contact Info-->
                             <ul class="unstyled contact_info" id="index_contact_info"></ul>
                             <!--End List Contact Info-->
-                            <h3>Stay Connect  <span class="font_hotel"> Socials</span></h3>
+                            <h3>
+                                <span class="en unvisiblin">Stay Connect</span>
+                                <span class="nl">Blijven Aansluiten</span>
+                                <span class="en unvisiblin font_hotel"> Socials</span>
+                                <span class="nl font_hotel">Socials </span> </h3>
                             <!--Start List Links Social Network-->
                             <div class="link_socials">
                                 <a href="https://www.facebook.com/" ><img src="img/facebook.png" alt="network"></a>
@@ -299,7 +357,11 @@
                             <!--End List Links Social Network-->
                         </div>
                         <div class="span3">
-                            <h3 style="text-align: center;">Friendly<span class="font_hotel" > Sites</span></h3>
+                            <h3 style="text-align: center;">
+                                <span class="en unvisiblin">Friendly</span>
+                                <span class="nl">Vriendelijke</span>
+                                <span class="en unvisiblin font_hotel" > Sites</span>
+                                <span class="nl font_hotel"> Sites</span> </h3>
                             <!--Start List Link pages-->
                             <ul class="link_list_footer" id="footer_links">
 
@@ -308,7 +370,11 @@
                         </div>
 
                         <div class="span5">
-                            <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
+                            <h3 style="text-align: center;">
+                                <span class="en unvisiblin">The </span>
+                                <span class="nl">The </span>
+                                <span class="en unvisiblin font_hotel">Gallery</span>
+                                <span class="nl font_hotel">Gallery </span> </h3>
                             <!--Start List Grid Galeries img-->
                             <div id="footer_gallery" class="galeries_footer">
 
@@ -323,7 +389,9 @@
                 <div class="footer_bottom">
                     <div class="inner-wrapper">
                         <div class="row-fluid ">
-                            <div class="span12 text-center"><p class="font_hotel">the Battle of Rotterdam</p></div>
+                            <div class="span12 text-center"><p class="font_hotel">
+                                    <span class="en unvisiblin">the Battle of Rotterdam</span>
+                                    <span class="nl"> de Slag van Rotterdam</span> </p></div>
                         </div>
                     </div>
                 </div><!--End Footer Bottom-->
