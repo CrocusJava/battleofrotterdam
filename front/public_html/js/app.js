@@ -474,7 +474,10 @@ function call_load_data_for_index_events(load_data) {
                                         {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
-                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
+                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat",  children: [
+													{tag: "span", add_class: "en unvisiblin", text: "Read More" },
+													{tag: "span", add_class: "nl", text: "Lees meer" }]					
+							}
                     ]}
             ]
         }];
@@ -865,9 +868,16 @@ function call_load_data_for_news_index() {
                                     {tag: "div", add_class: "desc", children: [
                                             {tag: "p", text: "title"},
                                             {tag: "p", children: [
-                                                    {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
-//, bind: {popup_news:click}
+											
+																				
+                                                    {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", children: [
+													{tag: "span", add_class: "en unvisiblin", text: "Read More", add_handler: {"click": "popup_news"} },
+
+													{tag: "span", add_class: "nl", text: "Lees meer", add_handler: {"click": "popup_news"} }]
+													
+													
                                                     }
+													
                                                 ]}
                                         ]}
                                 ]}
