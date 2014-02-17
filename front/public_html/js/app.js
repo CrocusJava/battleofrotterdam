@@ -1527,7 +1527,17 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}},
                             {tag: "div", add_class: "viewtheproj", children: [
                                     {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
-                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
+									
+									
+									{tag: "a", attr: {href: "single_project.html", style: "color:#fff;"},  add_handler: {"click": go_to_project}, children: [
+													{tag: "span", add_class: "en unvisiblin", text: "View the project" },
+
+													{tag: "span", add_class: "nl", text: "Bekijk het project" }]
+													
+													
+                                                    }
+															
+                                            
                                         ]}
                                 ]}
                         ]},
