@@ -56,39 +56,73 @@
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
                         <ul class="unstyled">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about_battle.html">About the Battle</a></li>
-                            <li><a href="competitions.html">Competitions</a></li>
-                            <li><a href="current_rankings.html">Current Rankings</a></li>
-                            <li><a href="projets.html">Projects</a></li>
-                            <li><a href="FAQ.html">FAQ</a></li>
-                            <li><a href="contact.html">Contacts</a></li>
-
-                            <li class="dropdown" style="display: none;" id="dropdown_login_no">
-                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">Login-Register <b class="caret"></b></a>
+                             <li><a href="index.html">
+                                    <span class="en unvisiblin" >Home</span>
+                                    <span class="nl">Thuis</span></a></li>
+                            <li><a href="about_battle.html">
+                                    <span class="en unvisiblin" >About the Battle</span>
+                                    <span class="nl"> Over Battle</span></a></li>
+                            <li><a href="competitions.html">
+                                    <span class="en unvisiblin" >Competitions</span>
+                                    <span class="nl"> Wedstrijden</span></a></li>
+                            <li><a href="current_rankings.html">
+                                    <span class="en unvisiblin" >Current Rankings</span>
+                                    <span class="nl"> Huidige Rankings</span></a></li>
+                            <li><a href="projets.html">
+                                    <span class="en unvisiblin" >Projects</span>
+                                    <span class="nl"> Projecten</span></a></li>
+                            <li><a href="FAQ.html">
+                                    <span class="en unvisiblin" >FAQ</span>
+                                    <span class="nl"> FAQ</span></a></li>
+                            <li><a href="contact.html">
+                                    <span class="en unvisiblin" >Contacts</span>
+                                    <span class="nl"> Contacten</span></a></li>
+                            <li class="dropdown active" style="display: none;" id="dropdown_login_no">
+                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="en unvisiblin" >Login-Register</span>
+                                    <span class="nl"> Login- Registeer</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="registration.html">Register</a></li>
+                                    <li><a href="login.html">
+                                            <span class="en unvisiblin" >Login</span>
+                                            <span class="nl"> Login</span></a></li>
+                                    <li><a href="registration.html">
+                                            <span class="en unvisiblin" >Register</span>
+                                            <span class="nl"> Registeer</span></a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="display: none;" id="dropdown_login_yes">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><span id="login_name"></span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li id="myaccount"><a href="myaccount.html"> My Account</a></li>
-                                    <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
+                                    <li id="myaccount"><a href="myaccount.html">
+                                            <span class="en unvisiblin" > My Account</span>
+                                            <span class="nl"> Mijn account</span></a></li>
+                                    <li id="logout"><a href="#logout"><i class="icon-off"></i>
+                                            <span class="en unvisiblin" > Logout</span>
+                                            <span class="nl"> Afmelden</span></a></li>
                                 </ul>
                             </li>
-                            <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
+                            <li> <a href="search.html" > <i class="icon-search"></i>
+                                    <span class="en unvisiblin" > Search</span>
+                                    <span class="nl"> Zoeken</span></a></li>
 
                         </ul>
                     </nav>
                 </div>
             </section>
             <div class="inner-wrapper text_center" style="height: 50px;"></div>
-
+            <!--Start main Title content--
+            <section id="content_top">
+                <div class="bg_content_top general_bg">
+                    <div class="inner-wrapper text_center">
+                        <h1 class="no_margin main_title font_hotel">
+                            [Jhon Smith]
+                        </h1>
+                    </div>
+                </div>
+            </section><!--end main Title content-->
             <!-- Start section logo message area -->
-            <section id="logo_message_area">
+            <section id="logo_message_area" >
                 <div class="inner-wrapper">
 
                     <!-- Start Message Your own -->
@@ -98,8 +132,8 @@
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
 
-                                    <li><a href="img"><img src="img/NL.png" alt="flag"> NL</a></li>
-                                    <li><a href="img"><img src="img/english.png" alt="flag"> ENG</a></li>
+                                   <li class="setnl"><img src="img/NL.png" alt="flag"> NL</li>
+                                    <li class="seteng"><img src="img/english.png" alt="flag"> ENG</li>
                                 </ul>
                             </div>
                             <!--End List Flags-->
@@ -124,12 +158,21 @@
                                             <div class="panel">
                                                 <label>Login</label>
                                                 <input type="text" name="login" class="input-block-level" required="">
-                                                <label>E-mail</label>
+                                                <label>
+												<span class="en unvisiblin">E-mail</span>
+												<span class="nl">E-mail</span>
+												</label>
                                                 <input type="email" name="email" class="input-block-level" required="">
-                                                <label>Password</label>
+                                                <label>
+												<span class="en unvisiblin">Password</span>
+												<span class="nl">Wachtwoord</span>
+												</label>
                                                 <input type="password"  id="repassword" class="input-block-level" required="">
 
-                                                <label>Confirm Password</label>
+                                                <label>
+												<span class="en unvisiblin">Confirm Password</span>
+												<span class="nl">Bevestig wachtwoord</span>
+												</label>
                                                 <input type="password" name="password"  class="input-block-level" required="">
 
                                             </div>
@@ -137,36 +180,76 @@
                                         <div class="span6">
                                             <div class="panel">
 
-                                                <label>First Name</label>
+                                                <label>
+												<span class="en unvisiblin">First Name</span>
+												<span class="nl">Voornaam</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="firstname">
-                                                <label>Middle Name</label>
+                                                <label>
+												<span class="en unvisiblin">Middle Name</span>
+												<span class="nl">Middelste Naam</span>
+												</label>
                                                 <input type="text" class="input-block-level"  name="middlename">
-                                                <label>Last Name</label>
+                                                <label>
+												<span class="en unvisiblin">Last Name</span>
+												<span class="nl">Achternaam</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="lastname">
-                                                <label>Date of Birth</label>
+                                                <label>
+												<span class="en unvisiblin">Date of Birth</span>
+												<span class="nl">Geboortedatum</span>
+												</label>
                                                 <input type="text" class="input-block-level"  name="birthday">
-                                                <span class="help-block">Exaple: month/day/full year </span>
+                                                <span class="en unvisiblin help-block">Example: month/day/full year</span>
+												<span class="nl help-block" >Voorbeeld: maand / dag / volledige jaar </span>
 
-                                                <label>Town</label>
+                                                <label>
+												<span class="en unvisiblin">Town</span>
+												<span class="nl">Stad</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="town">
-                                                <label>Street</label>
+                                                <label>
+												<span class="en unvisiblin">Street</span>
+												<span class="nl">Straat</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="street">
-                                                <label>House Number</label>
+                                                <label>
+												<span class="en unvisiblin">House Number</span>
+												<span class="nl">Huisnummer</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="housenumber">
-                                                <label>Postal Code</label>
+                                                <label>
+												<span class="en unvisiblin">Postal Code</span>
+												<span class="nl">Postal Code</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="postcode">
-                                                <label>Phone</label>
+                                                <label>
+												<span class="en unvisiblin">Phone</span>
+												<span class="nl">Telefoon</span>
+												</label>
                                                 <input type="text" class="input-block-level" required="" name="phone">
-                                                <span class="help-block">Example: +3(099)123 456 789</span>
+                                               
+												<span class="en unvisiblin help-block">Example: +3(099)123 456 789</span>
+												<span class="nl help-block" >Voorbeeld: +3(099)123 456 789</span>
 
                                                 <label class="checkbox">
                                                     <input type="checkbox" value="" required="">
-                                                    <small>Agree <a href="terms_conditions.html" id="terms_condition">Terms AND Conditions</a></small>
+                                                    <small>
+														<span class="en unvisiblin">Agree</span>
+														<span class="nl">Aanvaard</span>
+													<a href="terms_conditions.html" id="terms_condition">
+													
+													<span class="en unvisiblin">Terms AND Conditions</span>
+													<span class="nl"> de Algemene Voorwaarden EN Bepalingen</span>
+													</a></small>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level">Sign Up</button></div>
+                                    <div class="panel"> <button type="submit" class="btn btn-primary btn-large flat input-block-level">
+									<span class="en unvisiblin">Sign Up</span>
+									<span class="nl">Meld je Aan</span>
+									</button></div>
                                 </form><!-- End Form-->
                             </div>
 
@@ -180,18 +263,26 @@
 
             </section><!-- End section content page -->
 
-            <!--Start Footer Section-->
+  <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
                     <div class="row-fluid">
                         <div class="span4">
-                            <h3 style="text-align: center;"> <span class="font_hotel">Contacts</span></h3>
-                            <p>University of Applied Sciences Rotterdam</p>
+                            <h3 style="text-align: center;">
+                                <span class="en unvisiblin font_hotel">Contacts</span>
+                                <span class="nl font_hotel"> Contacten</span> </h3>
+                            <p>
+                                <span class="en unvisiblin">University of Applied Sciences Rotterdam</span>
+                                <span class="nl">Universiteit appllied Sciences Rotterdam</span></p>
                             <!--Start List Contact Info-->
                             <ul class="unstyled contact_info" id="index_contact_info"></ul>
                             <!--End List Contact Info-->
-                            <h3>Stay Connect  <span class="font_hotel"> Socials</span></h3>
+                            <h3>
+                                <span class="en unvisiblin">Stay Connect</span>
+                                <span class="nl">Blijven Aansluiten</span>
+                                <span class="en unvisiblin font_hotel"> Socials</span>
+                                <span class="nl font_hotel">Socials </span> </h3>
                             <!--Start List Links Social Network-->
                             <div class="link_socials">
                                 <a href="https://www.facebook.com/" ><img src="img/facebook.png" alt="network"></a>
@@ -203,7 +294,11 @@
                             <!--End List Links Social Network-->
                         </div>
                         <div class="span3">
-                            <h3 style="text-align: center;">Friendly<span class="font_hotel" > Sites</span></h3>
+                            <h3 style="text-align: center;">
+                                <span class="en unvisiblin">Friendly</span>
+                                <span class="nl">Vriendelijke</span>
+                                <span class="en unvisiblin font_hotel" > Sites</span>
+                                <span class="nl font_hotel"> Sites</span> </h3>
                             <!--Start List Link pages-->
                             <ul class="link_list_footer" id="footer_links">
 
@@ -212,7 +307,11 @@
                         </div>
 
                         <div class="span5">
-                            <h3 style="text-align: center;">The <span class="font_hotel">Gallery</span></h3>
+                            <h3 style="text-align: center;">
+                                <span class="en unvisiblin">The </span>
+                                <span class="nl">The </span>
+                                <span class="en unvisiblin font_hotel">Gallery</span>
+                                <span class="nl font_hotel">Gallery </span> </h3>
                             <!--Start List Grid Galeries img-->
                             <div id="footer_gallery" class="galeries_footer">
 
@@ -227,7 +326,9 @@
                 <div class="footer_bottom">
                     <div class="inner-wrapper">
                         <div class="row-fluid ">
-                            <div class="span12 text-center"><p class="font_hotel">the Battle of Rotterdam</p></div>
+                            <div class="span12 text-center"><p class="font_hotel">
+                                    <span class="en unvisiblin">the Battle of Rotterdam</span>
+                                    <span class="nl"> de Slag van Rotterdam</span> </p></div>
                         </div>
                     </div>
                 </div><!--End Footer Bottom-->
@@ -238,34 +339,6 @@
                     </a>
                 </div><!--End Arrow Back To TOP Page-->
             </footer><!--End Footer Section-->
-        </div>
-
-        <!-- Modal -->
-        <div id="myModal_TC" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="termstitle"></h3>
-            </div>
-            <div class="modal-body">
-                <p id="termstext"></p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Wellcome</h3>
-            </div>
-            <div class="modal-body">
-                <p></p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
         </div>
 
         <!--=========================================================================-->
@@ -341,7 +414,17 @@
             $(".btn-large:submit").click(valid_checkbox);
         </script>
 
+        <script  type="text/javascript">
+            $(".seteng").click(function() {
+                set_eng_localization();
+                window.location.reload();
+            });
 
+            $(".setnl").click(function() {
+                set_nl_localization();
+                window.location.reload();
+            });
+        </script>
 
 
     </body>

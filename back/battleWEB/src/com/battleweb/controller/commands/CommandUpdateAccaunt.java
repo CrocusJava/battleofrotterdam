@@ -22,6 +22,7 @@ import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
@@ -44,6 +45,9 @@ public class CommandUpdateAccaunt implements Command {
 	private ToolSession toolSession;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
+
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -120,8 +124,7 @@ public class CommandUpdateAccaunt implements Command {
 	}
 	
 	private void makeResponse(HttpServletRequest request, HttpServletResponse response, Integer messageCode) throws IOException{
-		Locale locale = request.getLocale();
-		String message = textBean.findLocaleTextByKey(messageCode, locale);
+		String message = textBean.findLocaleTextByKey(messageCode, toolCookie.getLocaleName(request));
 		
 		JsonObject jsonObjectResponse = Json.createObjectBuilder()
 				.add(Constants.PARAMETER_MESSAGE, message)

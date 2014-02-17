@@ -19,6 +19,7 @@ import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 
 /**
@@ -37,7 +38,9 @@ public class CommandEditUserApply implements Command {
 	private RoleBean roleBean;
 	@EJB
 	private TextBean textBean;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -72,7 +75,7 @@ public class CommandEditUserApply implements Command {
 					.add(Constants.PARAMETER_MESSAGE,
 							textBean.findLocaleTextByKey(
 									Constants.TEXT_MESSAGE_ADMIN_EDIT_USER,
-									request.getLocale()));
+									toolCookie.getLocaleName(request)));
 		} else {
 			Log.error(this, "Command invoked not by admin");
 			jsonObjectResponseBuilder.add(Constants.PARAMETER_ERROR_MESSAGE,

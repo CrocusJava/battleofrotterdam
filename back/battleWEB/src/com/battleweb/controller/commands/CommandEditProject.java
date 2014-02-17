@@ -18,6 +18,7 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.Project;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolSession;
 
@@ -41,7 +42,9 @@ public class CommandEditProject implements Command {
 	private UserBean userBean;
 	@EJB
 	private TextBean textBean;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -71,7 +74,7 @@ public class CommandEditProject implements Command {
 
 				String cteateProjectMessage = textBean.findLocaleTextByKey(
 						Constants.TEXT_MESSAGE_ADMIN_EDIT_USER,
-						request.getLocale());
+						toolCookie.getLocaleName(request));
 
 				jsonObjectResponse = Json.createObjectBuilder()
 						.add(Constants.PARAMETER_STATUS, true)

@@ -21,6 +21,7 @@ import com.battleejb.entities.Role;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
 import com.battleweb.logger.Log;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
@@ -43,14 +44,15 @@ public class CommandRegistration implements Command {
 	private ToolEmail toolEmail;
 	@EJB
 	private TextBean textBean;
+	@EJB
+	private ToolCookie toolCookie;
 	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		Locale locale = request.getLocale();
 		String registrationMessage = textBean.findLocaleTextByKey(
-				Constants.TEXT_MESSAGE_REGISTRATION, locale);
+				Constants.TEXT_MESSAGE_REGISTRATION, toolCookie.getLocaleName(request));
 
 		boolean statusMail = false;
 		boolean statusLogin = false;
@@ -118,7 +120,7 @@ public class CommandRegistration implements Command {
 			userBean.create(user);
 		
 			StringBuilder message = new StringBuilder();
-			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_REGISTRATION_MAIL, locale));
+			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_REGISTRATION_MAIL, toolCookie.getLocaleName(request)));
 			message.append(" http://edu.bionic-university.com:1120/battleWEB/controller?command=approveregistration&iduser=");
 			message.append(user.getId());
 			message.append("&value=");

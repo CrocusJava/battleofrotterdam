@@ -16,6 +16,7 @@ import com.battleejb.ejbbeans.TextBean;
 import com.battleejb.ejbbeans.UserBean;
 import com.battleejb.entities.User;
 import com.battleweb.controller.Constants;
+import com.battleweb.tools.ToolCookie;
 import com.battleweb.tools.ToolEmail;
 import com.battleweb.tools.ToolJSON;
 import com.battleweb.tools.ToolMD5;
@@ -38,13 +39,14 @@ public class CommandForgotPassword implements Command {
 	private ToolEmail toolEmail;
 	@EJB
 	private TextBean textBean;
-
+	@EJB
+	private ToolCookie toolCookie;
+	
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		Locale locale = request.getLocale();
-		String newPasswordMessage = textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_EMAIL_NOT_EXIST, locale);
+		String newPasswordMessage = textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_EMAIL_NOT_EXIST, toolCookie.getLocaleName(request));
 		boolean emailStatus = false;		
 
 		JsonObject jsonObjectRequest = toolJSON.getJsonObjectRequest(request);
@@ -58,16 +60,16 @@ public class CommandForgotPassword implements Command {
 			userBean.edit(user);
 
 			StringBuilder message = new StringBuilder();
-			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_YOUR_LOGIN, locale));
+			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_YOUR_LOGIN, toolCookie.getLocaleName(request)));
 			message.append(user.getLogin());			
-			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_YOUR_PASSWORD, locale));
+			message.append(textBean.findLocaleTextByKey(Constants.TEXT_MESSAGE_YOUR_PASSWORD, toolCookie.getLocaleName(request)));
 			message.append(newPassword);
 
 			toolEmail.send("Battle of Rotterdam new password",
 					message.toString(), email);
 			
 			newPasswordMessage = textBean.findLocaleTextByKey(
-					Constants.TEXT_MESSAGE_NEW_PASSWORD, locale);
+					Constants.TEXT_MESSAGE_NEW_PASSWORD, toolCookie.getLocaleName(request));
 			emailStatus = true;
 		}
 		

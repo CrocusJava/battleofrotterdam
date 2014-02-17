@@ -35,10 +35,10 @@ public class HomeBean {
 	
 	@PostConstruct
 	public void init(){
-		 battleDescriptionShortEn = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, new Locale("en"));
-		 battleDescriptionShortNl = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, new Locale("nl"));
-		 battleAnimationDescriptionEn = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, new Locale("en"));
-		 battleAnimationDescriptionNl = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, new Locale("nl"));
+		 battleDescriptionShortEn = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, Constants.PARAMETER_LOCALE_EN);
+		 battleDescriptionShortNl = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, Constants.PARAMETER_LOCALE_NL);
+		 battleAnimationDescriptionEn = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, Constants.PARAMETER_LOCALE_EN);
+		 battleAnimationDescriptionNl = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_ANIMATION_DESCRIPTION, Constants.PARAMETER_LOCALE_NL);
 		 animationURL = urlBean.findByKey(Constants.URL_BATTLE_ANIMATION).getValue();
 
 	}
