@@ -45,8 +45,7 @@
         <!-- End CountTime -->
 
     </head>
-
-    <body class="theme_default">
+  <body class="theme_default">
 
         <div id="wrapper">
 
@@ -62,39 +61,73 @@
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
                         <ul class="unstyled">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about_battle.html">About the Battle</a></li>
-                            <li><a href="competitions.html">Competitions</a></li>
-                            <li><a href="current_rankings.html">Current Rankings</a></li>
-                            <li><a href="projets.html">Projects</a></li>
-                            <li><a href="FAQ.html">FAQ</a></li>
-                            <li><a href="contact.html">Contacts</a></li>
-
-                            <li class="dropdown" style="display: none;" id="dropdown_login_no">
-                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">Login-Register <b class="caret"></b></a>
+                             <li><a href="index.html">
+                                    <span class="en unvisiblin" >Home</span>
+                                    <span class="nl">Thuis</span></a></li>
+                            <li><a href="about_battle.html">
+                                    <span class="en unvisiblin" >About the Battle</span>
+                                    <span class="nl"> Over Battle</span></a></li>
+                            <li><a href="competitions.html">
+                                    <span class="en unvisiblin" >Competitions</span>
+                                    <span class="nl"> Wedstrijden</span></a></li>
+                            <li><a href="current_rankings.html">
+                                    <span class="en unvisiblin" >Current Rankings</span>
+                                    <span class="nl"> Huidige Rankings</span></a></li>
+                            <li><a href="projets.html">
+                                    <span class="en unvisiblin" >Projects</span>
+                                    <span class="nl"> Projecten</span></a></li>
+                            <li><a href="FAQ.html">
+                                    <span class="en unvisiblin" >FAQ</span>
+                                    <span class="nl"> FAQ</span></a></li>
+                            <li><a href="contact.html">
+                                    <span class="en unvisiblin" >Contacts</span>
+                                    <span class="nl"> Contacten</span></a></li>
+                            <li class="dropdown active" style="display: none;" id="dropdown_login_no">
+                                <a href="#Login-Register" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="en unvisiblin" >Login-Register</span>
+                                    <span class="nl"> Login- Registeer</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="login.html#login">Login</a></li>
-                                    <li><a href="registration.html#registration">Register</a></li>
+                                    <li><a href="login.html">
+                                            <span class="en unvisiblin" >Login</span>
+                                            <span class="nl"> Login</span></a></li>
+                                    <li><a href="registration.html">
+                                            <span class="en unvisiblin" >Register</span>
+                                            <span class="nl"> Registeer</span></a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="display: none;" id="dropdown_login_yes">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><span id="login_name"></span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li id="myaccount"><a href="myaccount.html"> My Account</a></li>
-                                    <li id="logout"><a href="#logout"><i class="icon-off"></i> Logout</a></li>
+                                    <li id="myaccount"><a href="myaccount.html">
+                                            <span class="en unvisiblin" > My Account</span>
+                                            <span class="nl"> Mijn account</span></a></li>
+                                    <li id="logout"><a href="#logout"><i class="icon-off"></i>
+                                            <span class="en unvisiblin" > Logout</span>
+                                            <span class="nl"> Afmelden</span></a></li>
                                 </ul>
                             </li>
-                            <li><a href="search.html"><i class="icon-search"></i> Search</a></li>
+                            <li> <a href="search.html" > <i class="icon-search"></i>
+                                    <span class="en unvisiblin" > Search</span>
+                                    <span class="nl"> Zoeken</span></a></li>
 
                         </ul>
                     </nav>
                 </div>
             </section>
-            <div class="amortiz inner-wrapper text_center"></div>
-
+            <div class="inner-wrapper text_center" style="height: 50px;"></div>
+            <!--Start main Title content--
+            <section id="content_top">
+                <div class="bg_content_top general_bg">
+                    <div class="inner-wrapper text_center">
+                        <h1 class="no_margin main_title font_hotel">
+                            [Jhon Smith]
+                        </h1>
+                    </div>
+                </div>
+            </section><!--end main Title content-->
             <!-- Start section logo message area -->
-            <section id="logo_message_area">
+            <section id="logo_message_area" >
                 <div class="inner-wrapper">
 
                     <!-- Start Message Your own -->
@@ -104,8 +137,8 @@
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
 
-                                    <li><a href="img"><img src="img/NL.png" alt="flag"> NL</a></li>
-                                    <li><a href="img"><img src="img/english.png" alt="flag"> ENG</a></li>
+                                   <li class="setnl"><img src="img/NL.png" alt="flag"> NL</li>
+                                    <li class="seteng"><img src="img/english.png" alt="flag"> ENG</li>
                                 </ul>
                             </div>
                             <!--End List Flags-->
@@ -129,10 +162,19 @@
                             <!-- Start section Blog Line details -->
                             <div class="blog-line" style="background-color: rgba(0,181,0,0.5);">
                                 <a><i class="icon-calendar"></i> <span id="creationdate"></span></a>
-                                <a><i class="icon-ok"></i><span id="rating"></span> Likes</a>
+                                <a><i class="icon-ok"></i><span id="rating"></span>
+								<span class="en unvisiblin">Likes</span>
+								<span class="nl">Sympathieën</span>
+								</a>
 
-                                <a><i class="icon-comments"></i> <span id="commentquantity"></span> Comments</a>
-                                <a><span class="text-error"><i class="icon-pencil"></i> All text editable</span></a>
+                                <a><i class="icon-comments"></i> <span id="commentquantity"></span> 
+								<span class="en unvisiblin">Comments</span>
+								<span class="nl">Reacties</span>
+								</a>
+                                <a><span class="text-error"><i class="icon-pencil"></i> 
+								<span class="en unvisiblin">All text editable</span>
+								<span class="nl">Alle tekst bewerkbaar</span>
+								</span></a>
 
                                 <!--     <div class="forall" style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">Vote for project <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
 
@@ -161,7 +203,8 @@
                                 <div class="span6">
                                     <div class="panel">
                                         <h4 class="recent-post-header">
-                                            <a>First photo</a>
+                                            <a><span class="en unvisiblin">First photo</span>
+											<span class="nl">Eerste foto</span></a>
                                         </h4>
 
                                         <img src="" alt="img_preview" style="width:100%;" id="firstphoto_path">
@@ -176,7 +219,8 @@
                                 <div class="span6">
                                     <div class="panel">
                                         <h4 class="recent-post-header">
-                                            <a>Current photo</a>
+                                            <a><span class="en unvisiblin">Current photo</span>
+											<span class="nl">Huidige foto</span></a>
                                         </h4>
                                         <img src="" alt="img_preview" style="width:100%;" id="lastphoto_path">
                                         <div class="clearfix post_date">
@@ -196,7 +240,11 @@
                             <div id="need_for_nophoto">
                                 <div id="formsg_if_nophoto" class="header_popup_pz" style="visibility: hidden;"><strong style="color:red;"><i class="icon-bullhorn"></i>  THERE IS NO PHOTOS IN YOUR PROJECT   </strong></div>
 
-                                <button class="addphoto btn btn-primary btn-large flat" id="uploadphoto">Add photo</button>
+                                <button class="addphoto btn btn-primary btn-large flat" id="uploadphoto">
+									<span class="en unvisiblin">Add photo</span>
+									<span class="nl">Foto toevoegen</span>
+								
+								</button>
                             </div>
 
                             <!--<div id="button_edit_profile" class=" btn btn-primary btn-large flat" > Update  <i class="icon-pencil"></i></div>-->
@@ -211,9 +259,9 @@
                             <!--Start Pagination -->
                             <div class="pagination flat-pagination text_center">
                                 <ul id="photos_pagenation">
-                                    <li id="photos_prev"><a href="#">Prev</a></li>
+                                    <li id="projects_prev" data-name="prev"><a href="#"><span class="en unvisiblin">Prev</span><span class="nl">Vorige</span></a></li>
 
-                                    <li id="photos_next"><a href="#">Next</a></li>
+                            <li id="projects_next" data-name="next"><a href="#"><span class="en unvisiblin">Next</span><span class="nl">Volgende</span></a></li>
                                 </ul>
                             </div><!--End Pagination -->
 
