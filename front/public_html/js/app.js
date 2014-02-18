@@ -1800,13 +1800,17 @@ function call_load_photo_for_edit_project(photo) {
                         {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
+											{tag: "span", add_class: "en unvisiblin",  text: "Delete"},
+												{tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
-                                                {tag: "i", add_class: "icon-angle-right"}
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"},  add_handler: {"click": Save_description_this_photo}, children: [
+                                                 {tag: "span", add_class: "en unvisiblin", text: "Save"},
+												{tag: "span", add_class: "nl", text: "Besparen"},
+												{tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
                             ]}
