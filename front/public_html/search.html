@@ -157,9 +157,9 @@
                             <div class="span10">
                                 <!--Start Form Subcribe-->
                                 <form id="search">
-                                    <div class="en unvisiblin"><input type="text" name="text" class="input-block-level" placeholder="Enter Your Request"></div>
+                                    <div class="en unvisiblin"><input type="text" name="text" data-type="en" class="input-block-level" placeholder="Enter Your Request"></div>
                                     <input type="submit" name="send" value="Search" class="en unvisiblin btn flat btn-primary btn-large">
-                                    <div class="nl"><input type="text" name="text" class="input-block-level" placeholder="Voer uw verzoek"></div>
+                                    <div class="nl"><input type="text" name="text" data-type="nl" class="input-block-level" placeholder="Voer uw verzoek"></div>
                                     <input type="submit" name="send" value="Zoeken" class="nl btn flat btn-primary btn-large">
                                 </form>
                                 <!--End Form Subcribe-->
@@ -312,7 +312,29 @@
                 window.location.reload();
             });
         </script>
-
+        <script type="text/javascript">
+            (function() {
+                var Gemini = {};
+                $("[name=text]").each(function() {
+                    var type = $(this).attr("data-type");
+                    if (type === "nl") {
+                        Gemini.nl = this;
+                    }
+                    if (type === "en") {
+                        Gemini.en = this;
+                    }
+                    $(this).on("keyup", function() {
+                        var text = $(this).val();
+                        if (this === Gemini.nl) {
+                            $(Gemini.en).val(text);
+                        }
+                        if (this === Gemini.en) {
+                            $(Gemini.nl).val(text);
+                        }
+                    });
+                });
+            })();
+        </script>
 
 
 

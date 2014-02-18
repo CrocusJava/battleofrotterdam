@@ -1075,11 +1075,11 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}, children[
-												{tag: "span", add_class:"en unvisiblin",  text: "Read More"},
-												{tag: "span", add_class:"nl",  text: "Lees meer"}
-												
-												]}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}, children: [
+                                                        {tag: "span", add_class: "en unvisiblin", text: "Read More"},
+                                                        {tag: "span", add_class: "nl", text: "Lees meer"}
+
+                                                    ]}
                                             ]}
                                     ]}
                             ]}
@@ -1727,16 +1727,16 @@ function call_new_added_photo_for_edit_project(photo) {
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
-												{tag: "span", add_class: "en unvisiblin",  text: "Delete"},
-												{tag: "span", add_class: "nl", text: "Verwijderen"},
+                                                {tag: "span", add_class: "en unvisiblin", text: "Delete"},
+                                                {tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, add_handler: {"click": Save_img_and_description}, children: [
                                                 {tag: "span", add_class: "en unvisiblin", text: "Save"},
-												{tag: "span", add_class: "nl", text: "Besparen"},
-												{tag: "i", add_class: "icon-angle-right"}
+                                                {tag: "span", add_class: "nl", text: "Besparen"},
+                                                {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
                             ]}
@@ -1805,16 +1805,16 @@ function call_load_photo_for_edit_project(photo) {
                         {tag: "p", children: [
                                 {tag: "span", children: [
                                         {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
-											{tag: "span", add_class: "en unvisiblin",  text: "Delete"},
-												{tag: "span", add_class: "nl", text: "Verwijderen"},
+                                                {tag: "span", add_class: "en unvisiblin", text: "Delete"},
+                                                {tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"},  add_handler: {"click": Save_description_this_photo}, children: [
-                                                 {tag: "span", add_class: "en unvisiblin", text: "Save"},
-												{tag: "span", add_class: "nl", text: "Besparen"},
-												{tag: "i", add_class: "icon-angle-right"}
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, add_handler: {"click": Save_description_this_photo}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Save"},
+                                                {tag: "span", add_class: "nl", text: "Besparen"},
+                                                {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
                             ]}
