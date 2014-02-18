@@ -1266,7 +1266,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1293,7 +1293,7 @@ function call_create_murkup_for_static_profile_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">View the project</span><span class="nl">Bekijk het project</span></a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1608,7 +1608,7 @@ function call_send_vote(projectid) {
             $("#rating").text(text_rating);
         }
         else {
-            alert("Вам нельзя голосовать!!!!!!!!!!!!!!");
+            alert("You cant vote!");
         }
     }).fail(function() {
         console.log("Error for VOTE");
