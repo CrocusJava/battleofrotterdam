@@ -474,10 +474,10 @@ function call_load_data_for_index_events(load_data) {
                                         {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
-                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat",  children: [
-													{tag: "span", add_class: "en unvisiblin", text: "Read More" },
-													{tag: "span", add_class: "nl", text: "Lees meer" }]					
-							}
+                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat", children: [
+                                {tag: "span", add_class: "en unvisiblin", text: "Read More"},
+                                {tag: "span", add_class: "nl", text: "Lees meer"}]
+                        }
                     ]}
             ]
         }];
@@ -595,6 +595,7 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/projets.html$/)) {
         call_load_data_for_projets_page(0);
+        call_setup_localozation();
     }
 
 //<<<<<<<<<<<<=============================задачи для всех страницы
@@ -868,16 +869,13 @@ function call_load_data_for_news_index() {
                                     {tag: "div", add_class: "desc", children: [
                                             {tag: "p", text: "title"},
                                             {tag: "p", children: [
-											
-																				
                                                     {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", children: [
-													{tag: "span", add_class: "en unvisiblin", text: "Read More", add_handler: {"click": "popup_news"} },
+                                                            {tag: "span", add_class: "en unvisiblin", text: "Read More", add_handler: {"click": "popup_news"}},
+                                                            {tag: "span", add_class: "nl", text: "Lees meer", add_handler: {"click": "popup_news"}}]
 
-													{tag: "span", add_class: "nl", text: "Lees meer", add_handler: {"click": "popup_news"} }]
-													
-													
+
                                                     }
-													
+
                                                 ]}
                                         ]}
                                 ]}
@@ -1077,7 +1075,11 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}, children: [
+                                                        {tag: "span", add_class: "en unvisiblin", text: "Read More"},
+                                                        {tag: "span", add_class: "nl", text: "Lees meer"}
+
+                                                    ]}
                                             ]}
                                     ]}
                             ]}
@@ -1268,7 +1270,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1295,7 +1297,7 @@ function call_create_murkup_for_static_profile_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">View the project</span><span class="nl">Bekijk het project</span></a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1527,7 +1529,14 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}},
                             {tag: "div", add_class: "viewtheproj", children: [
                                     {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
-                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
+                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, add_handler: {"click": go_to_project}, children: [
+                                                    {tag: "span", add_class: "en unvisiblin", text: "View the project"},
+                                                    {tag: "span", add_class: "nl", text: "Bekijk het project"}]
+
+
+                                            }
+
+
                                         ]}
                                 ]}
                         ]},
@@ -1603,7 +1612,7 @@ function call_send_vote(projectid) {
             $("#rating").text(text_rating);
         }
         else {
-            alert("Вам нельзя голосовать!!!!!!!!!!!!!!");
+            alert("You cant vote!");
         }
     }).fail(function() {
         console.log("Error for VOTE");
@@ -1717,12 +1726,16 @@ function call_new_added_photo_for_edit_project(photo) {
                         {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Delete"},
+                                                {tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, add_handler: {"click": Save_img_and_description}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Save"},
+                                                {tag: "span", add_class: "nl", text: "Besparen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
@@ -1791,12 +1804,16 @@ function call_load_photo_for_edit_project(photo) {
                         {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Delete"},
+                                                {tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, add_handler: {"click": Save_description_this_photo}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Save"},
+                                                {tag: "span", add_class: "nl", text: "Besparen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
