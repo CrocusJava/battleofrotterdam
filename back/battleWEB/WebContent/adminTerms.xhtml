@@ -10,15 +10,13 @@
 </h:head>
 <h:body>
 	<h:form>
-		<br />
-		<h:outputLink value="administration.xhtml">
+		<br/>
+		<h:outputLink class="anotmargin" value="administration.xhtml" >
 			Administration Menu
-		</h:outputLink>
-		<br />
-		<hr />
-		<h2>Edit Terms &amp; Conditions</h2>
-
-		<h4>Terms &amp; Conditions (en / nl):</h4>
+		</h:outputLink>	
+		<h:commandLink value="Exit" action="#{admin.exitAdministration()}" />	
+		<br/><hr/>
+		<h2>Edit Terms &amp; Conditions (en / nl)</h2>
 		<br />
 		<h:inputTextarea class="input_text_size" style="hieght:500px"
 			value="#{termsAndConditionsBean.termsAndConditionsEn}" characterEncoding="utf-8" />

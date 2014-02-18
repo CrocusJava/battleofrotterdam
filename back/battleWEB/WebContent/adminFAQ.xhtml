@@ -10,14 +10,14 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	
+	<h:form>
 		<br/>
-		<h:outputLink value="administration.xhtml" >
+		<h:outputLink class="anotmargin" value="administration.xhtml" >
 			Administration Menu
-		</h:outputLink>		
+		</h:outputLink>	
+		<h:commandLink value="Exit" action="#{admin.exitAdministration()}" />	
 		<br/><hr/>
 		<h2>Edit FAQ</h2> 
-	<h:form>
 		
 		<h:commandLink class="cl" value="QA1" action="#{faq.changeView(1)}" >
 			<f:ajax execute="@this" render="@form" />

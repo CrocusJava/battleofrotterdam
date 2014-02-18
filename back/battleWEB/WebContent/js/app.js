@@ -2,16 +2,17 @@ $(window).load(function() {
     call_all();
 });
 function call_all() {
-//    call_grid();
+    call_setup_localozation();
+
     call_scroll();
 //    call_slider_sequence();
     call_datatables();
     call_tab();
-//    call_full_calendar();
-//    call_functional_reservations();
+
+
     call_lightbox();
     call_control_color_theme();
-//    call_lazy_load_images();
+
     call_form_validation();
 
 
@@ -67,10 +68,6 @@ function call_form_validation() {
 
 
 
-function call_lazy_load_images() {
-//$("#content img").unveil(300)
-    $("#content img").unveil(300);
-}
 
 function call_control_color_theme() {
     if ($.cookie('color_theme')) {
@@ -85,22 +82,7 @@ function call_control_color_theme() {
     });
 }
 
-function call_functional_reservations() {
-    $('.select_room .item_grid').click(function(e) {
-        e.preventDefault();
-        $('.select_room').find('.item_grid').removeClass('selected');
-        $(this).addClass('selected');
-        $('#form_select_room').val($(this).data('date'));
-    });
-    $('.checkbox_extras').click(function(e) {
-        call_grid();
-        if ($(this).is(':checked')) {
-            $(this).parents('.panel').find('select').show();
-        } else {
-            $(this).parents('.panel').find('select').hide();
-        }
-    });
-}
+
 
 function call_tab() {
     $('.nav-tabs a').click(function(e) { //lobster_tab
@@ -109,63 +91,7 @@ function call_tab() {
     });
 }
 
-function call_full_calendar() {
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-    var selector = $('#calendar');
-    if ($(selector).length > 0) {
-        $('#calendar').fullCalendar({
-            editable: false,
-            events: [
-                {
-                    title: 'Full',
-                    start: new Date(y, m, 1)
-                }, {
-                    title: 'Full',
-                    start: new Date()
-                }],
-            dayClick: function() {
-                $('#calendar').find('td').removeClass('selected');
-                $(this).addClass('selected');
-                $('#form_date').val($(this).data('date'));
-            }
-        });
-        $('#calendar2').fullCalendar({
-            editable: false,
-            events: [
-                {
-                    title: 'Full',
-                    start: new Date(y, m, 1)
-                }, {
-                    title: 'Full',
-                    start: new Date()
-                }],
-            dayClick: function() {
-                $('#calendar2').find('td').removeClass('selected');
-                $(this).addClass('selected');
-                $('#form_date2').val($(this).data('date'));
-            }
-        });
-        $('#calendar3').fullCalendar({
-            editable: false,
-            events: [
-                {
-                    title: 'Full',
-                    start: new Date(y, m, 1)
-                }, {
-                    title: 'Full',
-                    start: new Date()
-                }],
-            dayClick: function() {
-                $('#calendar3').find('td').removeClass('selected');
-                $(this).addClass('selected');
-                $('#form_date3').val($(this).data('date'));
-            }
-        });
-    }
-}
+
 
 function call_datatables() {
     if ($('.datatables_group').length > 0) {
@@ -241,19 +167,7 @@ function call_slider_sequence() {
 }
 
 
-function call_grid() {
-    setTimeout(function() {
-        var selector = $('.gridmasonry');
-        if ($(selector).length > 0) {
-            $(selector).fadeIn();
-            var $container = $('.gridmasonry');
-            // trigger masonry
-            $container.masonry({
-                itemSelector: '.item_grid'
-            });
-        }
-    }, 500);
-}
+
 
 function call_scroll() {
     /*Show back to top*/
@@ -560,7 +474,10 @@ function call_load_data_for_index_events(load_data) {
                                         {tag: "span", add_class: "padding_comment", text: "userlogin"}
                                     ]}
                             ]},
-                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat", text: "Read More"}
+                        {tag: "a", attr: {href: "single_project.html"}, add_handler: {"click": go_to_project}, add_class: "btn btn-primary btn-mini flat", children: [
+                                {tag: "span", add_class: "en unvisiblin", text: "Read More"},
+                                {tag: "span", add_class: "nl", text: "Lees meer"}]
+                        }
                     ]}
             ]
         }];
@@ -678,6 +595,7 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/projets.html$/)) {
         call_load_data_for_projets_page(0);
+        call_setup_localozation();
     }
 
 //<<<<<<<<<<<<=============================задачи для всех страницы
@@ -951,9 +869,13 @@ function call_load_data_for_news_index() {
                                     {tag: "div", add_class: "desc", children: [
                                             {tag: "p", text: "title"},
                                             {tag: "p", children: [
-                                                    {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", text: "Read More", add_handler: {"click": "popup_news"}
-//, bind: {popup_news:click}
+                                                    {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", children: [
+                                                            {tag: "span", add_class: "en unvisiblin", text: "Read More", add_handler: {"click": "popup_news"}},
+                                                            {tag: "span", add_class: "nl", text: "Lees meer", add_handler: {"click": "popup_news"}}]
+
+
                                                     }
+
                                                 ]}
                                         ]}
                                 ]}
@@ -1153,7 +1075,11 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}, children: [
+                                                        {tag: "span", add_class: "en unvisiblin", text: "Read More"},
+                                                        {tag: "span", add_class: "nl", text: "Lees meer"}
+
+                                                    ]}
                                             ]}
                                     ]}
                             ]}
@@ -1344,7 +1270,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">Edit the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1371,7 +1297,7 @@ function call_create_murkup_for_static_profile_projects(project, respons) {
             '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
             '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
             '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;">View the project</a>' +
+            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="single_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">View the project</span><span class="nl">Bekijk het project</span></a>' +
             '</div>' +
             '</div>' +
             '</article>' +
@@ -1499,10 +1425,12 @@ function call_load_data_for_viewprojectcomments(projectid, firstposition) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        for (var comment in respons["comments"]) {
-            call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
+        if (respons.comments.length) {
+            $("#main_conteiner_comments").empty();
+            for (var comment in respons["comments"]) {
+                call_create_markup_for_viewprojectcomments(respons["comments"][comment]);
+            }
         }
-
     }).fail(function() {
         console.log("error onload command=viewprojectcomments ");
     });
@@ -1549,14 +1477,18 @@ function call_load_data_for_projets_page(firstposition) {
         window.pagenation = {
             projects: respons.projectquantity
         };
-        for (var project in respons.projects) {
-            call_create_markup_for_projects(respons.projects[project]);
+        if (respons.projects.length) {
+            $("#projects").empty();
+            for (var project in respons.projects) {
+                call_create_markup_for_projects(respons.projects[project]);
+            }
+
+            if (!paging_for_projects.loaded) {
+                paging_for_projects();
+                paging_for_projects.loaded = true;
+            }
         }
 
-        if (!paging_for_projects.loaded) {
-            paging_for_projects();
-            paging_for_projects.loaded = true;
-        }
 
     }).fail(function() {
         console.log("error onload command = projects ");
@@ -1597,7 +1529,14 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "div", add_class: "project_block_proj_descr", text: "lastphoto", subattr: {"lastphoto": "description"}},
                             {tag: "div", add_class: "viewtheproj", children: [
                                     {tag: "div", add_class: "buttonviewtheproj btn btn-primary btn-large flat", children: [
-                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, text: "View the project", add_handler: {"click": go_to_project}}
+                                            {tag: "a", attr: {href: "single_project.html", style: "color:#fff;"}, add_handler: {"click": go_to_project}, children: [
+                                                    {tag: "span", add_class: "en unvisiblin", text: "View the project"},
+                                                    {tag: "span", add_class: "nl", text: "Bekijk het project"}]
+
+
+                                            }
+
+
                                         ]}
                                 ]}
                         ]},
@@ -1624,15 +1563,34 @@ function AjaxSendSearch(form) {
         data: config.data,
         contentType: "application/json"
     }).done(function(data) {
-        var resalt = JSON.stringify(data);
-        var result_search = $("#result_search");
-        $(result_search).text(resalt);
-        console.log(data);
+
+        var container = $("#result_search");
+        if (data.result.length > 0) {
+            $(container).html("");
+            for (var i in data.result) {
+                call_create_template_for_search_page(container, data.result[i]);
+            }
+        }
+
     }).fail(function(error) {
         console.log(error);
     });
     console.log(JSON.parse(config.data));
     return false;
+}
+
+function call_create_template_for_search_page(container, result) {
+    var template = '<div class="res_search">' +
+            '           <strong style="font-size: 2em;">' +
+            '               <a href="' + (result["type"] === "project" || result["type"] === "comment" ? "single_project.html#projectid=" : "#") + result["id"] + '">  <i class="icon-share-alt"></i> </a>' +
+            '           </strong>' +
+            '           <p>' + result["description"] + '</p>' +
+            '           <p>' + result["name"] + '</p>' +
+            '           <p>' + result["type"] + '</p>' +
+            '</div>';
+    var view = $(template);
+    $(view).appendTo(container);
+
 }
 
 function call_send_vote(projectid) {
@@ -1654,7 +1612,7 @@ function call_send_vote(projectid) {
             $("#rating").text(text_rating);
         }
         else {
-            alert("Вам нельзя голосовать!!!!!!!!!!!!!!");
+            alert("You cant vote!");
         }
     }).fail(function() {
         console.log("Error for VOTE");
@@ -1768,12 +1726,16 @@ function call_new_added_photo_for_edit_project(photo) {
                         {tag: "p", text: "Description your photo", attr: {contenteditable: "true", name: "description"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Delete"},
+                                                {tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_img_and_description}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-danger flat", attr: {"name": "save-description-photo"}, add_handler: {"click": Save_img_and_description}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Save"},
+                                                {tag: "span", add_class: "nl", text: "Besparen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
@@ -1842,12 +1804,16 @@ function call_load_photo_for_edit_project(photo) {
                         {tag: "p", text: "description", attr: {contenteditable: "true", name: "description_photo"}, add_handler: {"blur": Fixed_what_this_description_changed}},
                         {tag: "p", children: [
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "btn btn-primary flat", text: "Delete", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                        {tag: "a", add_class: "btn btn-primary flat", add_handler: {"click": Delete_this_photo_and_description}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Delete"},
+                                                {tag: "span", add_class: "nl", text: "Verwijderen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]},
                                 {tag: "span", children: [
-                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, text: "Save", add_handler: {"click": Save_description_this_photo}, children: [
+                                        {tag: "a", add_class: "visiblin btn btn-primary flat", attr: {"name": "save-description-photo"}, add_handler: {"click": Save_description_this_photo}, children: [
+                                                {tag: "span", add_class: "en unvisiblin", text: "Save"},
+                                                {tag: "span", add_class: "nl", text: "Besparen"},
                                                 {tag: "i", add_class: "icon-angle-right"}
                                             ]}
                                     ]}
@@ -1924,16 +1890,21 @@ function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
-        if (window.location.href.match(/edit_project.html/)) {//<<<<======================= вывести все ранее сохраненные фото с описанием при помощи фукции для создания нового фото
-            for (var photo in respons["photos"]) {
-                call_load_photo_for_edit_project(respons["photos"][photo]);
+        if (respons.photos.length) {
+            if (window.location.href.match(/edit_project.html/)) {//<<<<======================= вывести все ранее сохраненные фото с описанием при помощи фукции для создания нового фото
+                $("#viewprojectphotos").empty();
+                for (var photo in respons["photos"]) {
+                    call_load_photo_for_edit_project(respons["photos"][photo]);
+                }
+            }
+            else {
+                $("#viewprojectphotos").empty();
+                for (var photo in respons["photos"]) {
+                    call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
+                }
             }
         }
-        else {
-            for (var photo in respons["photos"]) {
-                call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
-            }
-        }
+
 
     }).fail(function() {
         console.log("error onload command=viewprojectphotos ");
@@ -2076,7 +2047,7 @@ function paging_for_comments() {
     }
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            $("#main_conteiner_comments").empty();
+//            $("#main_conteiner_comments").empty();
             $(this).siblings().removeClass("active");
             $(this).addClass("active");
             var firstposition = $(this).attr("id");
@@ -2102,7 +2073,7 @@ function paging_for_photos() {
 
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            $("#viewprojectphotos").empty();
+//            $("#viewprojectphotos").empty();
             $(this).siblings().removeClass("active");
             $(this).addClass("active");
             var firstposition = $(this).attr("id");
@@ -2131,7 +2102,7 @@ function paging_for_projects() {
 
     for (var i = 0; i < kolichestvo_stranic; i++) {
         $('<li id="' + count + '"><a href="#">' + (i + 1) + '</a></li>').click(function(event) {
-            $("#projects").empty();
+//            $("#projects").empty();
             $(this).siblings().removeClass("active");
             $(this).addClass("active");
             var firstposition = $(this).attr("id");
@@ -2191,4 +2162,30 @@ function preview_page() {
         }
         event.preventDefault();
     });
+}
+
+
+function set_eng_localization() {
+    $(".en").removeClass("unvisiblin");
+    $(".nl").addClass('unvisiblin');
+    $.cookie("locale", "en");
+
+}
+function set_nl_localization() {
+    $(".nl").removeClass("unvisiblin");
+    $(".en").addClass('unvisiblin');
+    $.cookie("locale", "nl");
+
+}
+
+function call_setup_localozation() {
+    var language = $.cookie("locale");
+    switch (language) {
+        case "nl":
+            set_nl_localization();
+            break;
+        case "en":
+            set_eng_localization();
+            break;
+    }
 }

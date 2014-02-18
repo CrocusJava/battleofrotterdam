@@ -12,9 +12,10 @@
 <h:body>
 	<h:form>
 		<br/>
-		<h:outputLink value="administration.xhtml" >
+		<h:outputLink class="anotmargin" value="administration.xhtml" >
 			Administration Menu
-		</h:outputLink>		
+		</h:outputLink>	
+		<h:commandLink value="Exit" action="#{admin.exitAdministration()}" />	
 		<br/><hr/>
 		<h2>Edit Contacts</h2> 
 		<h4>Address (en / nl):</h4>

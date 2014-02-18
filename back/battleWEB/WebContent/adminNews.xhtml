@@ -10,14 +10,13 @@
 </h:head>
 <h:body>
 	<h:form id="form">
-		<br />
-		<h:outputLink value="administration.xhtml">
+		<br/>
+		<h:outputLink class="anotmargin" value="administration.xhtml" >
 			Administration Menu
-		</h:outputLink>
-
-		<br />
-		<hr />
-		<h2>News</h2>
+		</h:outputLink>	
+		<h:commandLink value="Exit" action="#{admin.exitAdministration()}" />	
+		<br/><hr/>
+		<h2>Edit News</h2>
 
 		<p:commandButton partialSubmit="true" action="#{newBean.newNews()}"
 			value="Create news">
