@@ -1075,7 +1075,11 @@ function call_load_data_for_current_rankings() {
                                 {tag: "div", add_class: "desc", children: [
                                         {tag: "p", add_class: "single_row", text: "lastphoto", subattr: {"lastphoto": "description"}},
                                         {tag: "p", children: [
-                                                {tag: "a", add_class: "btn btn-primary flat btn-large", text: "Read More", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}}
+                                                {tag: "a", add_class: "btn btn-primary flat btn-large", attr: {href: "single_project.html", projectid: "id"}, add_handler: {"click": go_to_project}, children[
+												{tag: "span", add_class:"en unvisiblin",  text: "Read More"},
+												{tag: "span", add_class:"nl",  text: "Lees meer"}
+												
+												]}
                                             ]}
                                     ]}
                             ]}
