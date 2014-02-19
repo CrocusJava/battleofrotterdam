@@ -448,7 +448,7 @@
 
 
             $("#button_edit_profile").click(function() {
-                if ($(this).text() === "Update profile") || ($(this).text() === "Profiel bijwerken") {
+                if (($(this).text() === "Update profile") || ($(this).text() === "Profiel bijwerken")) {
 						if  $.cookie("locale")==="en"{
 						$(this).html("  Edit profile <i class='icon-pencil'></i>")};
 						if  $.cookie("locale")==="nl"{
