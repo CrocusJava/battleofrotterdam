@@ -86,6 +86,11 @@ public class CommandGetPhoto implements Command {
 				File photoFile = new File(Constants.PATH_SAVE_AVATAR + "/"+ photoName);
 				return photoFile;
 			}
+			case Constants.PARAMETER_PHOTO_NEWS_NAME: {
+				String photoName = request.getParameter(Constants.PARAMETER_PHOTO_NEWS_NAME);
+				File photoFile = new File(Constants.PATH_GET_PHOTO_NEWS + "/"+ photoName);
+				return photoFile;
+			}
 			default:
 				break;
 			}

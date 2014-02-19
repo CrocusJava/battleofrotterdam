@@ -114,7 +114,7 @@
                         </div>
                         <div class="nl">
                             <h1 class="nl no_margin main_title font_hotel">
-                             Rankings
+                                Rankings
 
                             </h1>
                         </div>
@@ -175,7 +175,7 @@
 
 
 
-             <!--Start Footer Section-->
+            <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
@@ -304,28 +304,16 @@
 
 
         <script  type="text/javascript">
-		  
-		  $(window).load(function() {
-		  
-		  $(".seteng").click(function(){
-		  
-		  $(".en").removeClass("unvisiblin");
-		  $(".nl").addClass('unvisiblin');
-		  		  
-		  });
-		  
-		  $(".setnl").click(function(){
-			$(".nl").removeClass("unvisiblin");
-		  $(".en").addClass('unvisiblin');
-		  		  
-		  });
-		  
-		  
-			
-			});
-		  
-		  
-		  </script>
+            $(".seteng").click(function() {
+                set_eng_localization();
+                window.location.reload();
+            });
+
+            $(".setnl").click(function() {
+                set_nl_localization();
+                window.location.reload();
+            });
+        </script>
 
 
 
