@@ -1060,12 +1060,14 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                        {tag: "span", text: "rating"},
-                                                        {tag: "span", text: " Likes"}
+                                                        {tag: "span", add_class:"en unvisiblin", text: " Rating"},
+                                                        {tag: "span", add_class: "nl", text: " Cijfer"},
+														{tag: "span", add_class:"en unvisiblin", text: " Likes"},
+                                                        {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
                                                 {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
-                                                        {tag: "span", text: "commentquantity"},
-                                                        {tag: "span", text: " Comments"}
+                                                        {tag: "span", add_class:"en unvisiblin", text: "commentquantity"},
+                                                        {tag: "span", add_class: "nl", text: " Comments"}
                                                     ]},
                                                 {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
 
@@ -1260,9 +1262,9 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</div>' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
-            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
-            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> DELETE THIS PROJECT</span></a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin"> Likes</span><span class="nl">Sympathieën</span></a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin"> Comments</span><span class="nl">Reacties</span></a>' +
+            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> <span class="en unvisiblin">DELETE THIS PROJECT</span><span class="nl">DELETE DIT PROJECT</span></span></a>' +
             '</div>' +
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
@@ -1288,8 +1290,8 @@ function call_create_murkup_for_static_profile_projects(project, respons) {
             '</div>' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
-            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin">Likes</span><span class="nl">Sympathieën</span></a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin">Comments </span><span class="nl">Reacties</span></a>' +
             '</div>' +
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
@@ -1511,14 +1513,16 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "span", children: [
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
-                                            {tag: "span", text: "rating"},
-                                            {tag: "span", text: " Likes"}
+                                            {tag: "span", add_class:"en unvisiblin", text: " Rating"},
+											{tag: "span", add_class:"nl", text: " Cijfer"},
+                                            {tag: "span", add_class:"en unvisiblin" text: " Likes"},
+											{tag: "span", add_class:"nl", text: " Sympathieën"},
                                         ]}
                                 ]},
                             {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
                                     {tag: "i", add_class: "icon-comments"},
-                                    {tag: "span", text: "commentquantity"},
-                                    {tag: "span", text: " Comments"}
+                                    {tag: "span", add_class:"nl", text: "commentquantity"},
+                                    {tag: "span", add_class:"en unvisiblin", text: " Comments"}
                                 ]}
                         ]},
                     {tag: "div", add_class: "project_block_ava", children: [
