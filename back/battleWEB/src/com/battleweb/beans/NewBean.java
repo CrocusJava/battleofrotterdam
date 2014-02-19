@@ -99,7 +99,7 @@ public class NewBean {
 				fileOutputStream.write(buf, 0, c);
 			}
 			photo = null;
-			path = "controller?command=getphoto&photoname=" + fileNameCorrect;
+			path = Constants.PATH_GET_PHOTO_NEWS + fileNameCorrect;
 			fileOutputStream.close();
 			inputStream.close();
 		} catch (FileNotFoundException e) {
