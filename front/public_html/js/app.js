@@ -595,7 +595,6 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/projets.html$/)) {
         call_load_data_for_projets_page(0);
-        call_setup_localozation();
     }
 
 //<<<<<<<<<<<<=============================задачи для всех страницы
@@ -1060,14 +1059,14 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                        {tag: "span", add_class:"en unvisiblin", text: " Rating"},
+                                                        {tag: "span", add_class: "en unvisiblin", text: " Rating"},
                                                         {tag: "span", add_class: "nl", text: " Cijfer"},
-														{tag: "span", add_class:"en unvisiblin", text: " Likes"},
+                                                        {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                                         {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
                                                 {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
                                                         {tag: "span", text: "commentquantity"},
-														{tag: "span", add_class:"en unvisiblin", text: " Comments"},
+                                                        {tag: "span", add_class: "en unvisiblin", text: " Comments"},
                                                         {tag: "span", add_class: "nl", text: " Reacties"}
                                                     ]},
                                                 {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
@@ -1491,6 +1490,7 @@ function call_load_data_for_projets_page(firstposition) {
                 paging_for_projects.loaded = true;
             }
         }
+        call_setup_localozation();
 
 
     }).fail(function() {
@@ -1514,17 +1514,17 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "span", children: [
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
-                                            {tag: "span", add_class:"en unvisiblin", text: " Rating"},
-											{tag: "span", add_class:"nl", text: " Cijfer"},
-                                            {tag: "span", add_class:"en unvisiblin", text: " Likes"},
-											{tag: "span", add_class:"nl", text: " Sympathieën"},
+                                            {tag: "span", add_class: "en unvisiblin", text: " Rating"},
+                                            {tag: "span", add_class: "nl", text: " Cijfer"},
+                                            {tag: "span", add_class: "en unvisiblin", text: " Likes"},
+                                            {tag: "span", add_class: "nl", text: " Sympathieën"}
                                         ]}
                                 ]},
                             {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
                                     {tag: "i", add_class: "icon-comments"},
                                     {tag: "span", text: "commentquantity"},
-                                    {tag: "span", add_class:"en unvisiblin", text: " Comments"},
-									 {tag: "span", add_class:"nl", text: " Reacties"}
+                                    {tag: "span", add_class: "en unvisiblin", text: " Comments"},
+                                    {tag: "span", add_class: "nl", text: " Reacties"}
                                 ]}
                         ]},
                     {tag: "div", add_class: "project_block_ava", children: [
