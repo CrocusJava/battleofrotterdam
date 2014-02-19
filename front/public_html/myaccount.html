@@ -508,7 +508,29 @@
                 window.location.reload();
             });
         </script>
-
+        <!--        <script type="text/javascript">
+                    (function() {
+                        var Gemini = {};
+                        $("[name=new_pw]").each(function() {
+                            var type = $(this).attr("data-type");
+                            if (type === "nl") {
+                                Gemini.nl = this;
+                            }
+                            if (type === "en") {
+                                Gemini.en = this;
+                            }
+                            $(this).on("keyup", function() {
+                                var text = $(this).val();
+                                if (this === Gemini.nl) {
+                                    $(Gemini.en).val(text);
+                                }
+                                if (this === Gemini.en) {
+                                    $(Gemini.nl).val(text);
+                                }
+                            });
+                        });
+                    })();
+                </script>-->
 
 
     </body>
