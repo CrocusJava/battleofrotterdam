@@ -508,29 +508,31 @@
                 window.location.reload();
             });
         </script>
-        <!--        <script type="text/javascript">
-                    (function() {
-                        var Gemini = {};
-                        $("[name=new_pw]").each(function() {
-                            var type = $(this).attr("data-type");
-                            if (type === "nl") {
-                                Gemini.nl = this;
+        <script type="text/javascript">
+            (function() {
+                var Gemini = {
+                    new_pw: [],
+                    current_pw: [],
+                    confirm_pw: []
+                };
+                $("[name=new_pw], [name=current_pw],[name=confirm_pw]").each(function() {
+
+                    (Gemini[this.name]).push(this);
+
+                    $(this).on("keyup", function() {
+                        var arr = Gemini[this.name],
+                                text = $(this).val(),
+                                i, target;
+                        for (i in arr) {
+                            target = arr[i];
+                            if (this !== target) {
+                                $(target).val(text);
                             }
-                            if (type === "en") {
-                                Gemini.en = this;
-                            }
-                            $(this).on("keyup", function() {
-                                var text = $(this).val();
-                                if (this === Gemini.nl) {
-                                    $(Gemini.en).val(text);
-                                }
-                                if (this === Gemini.en) {
-                                    $(Gemini.nl).val(text);
-                                }
-                            });
-                        });
-                    })();
-                </script>-->
+                        }
+                    });
+                });
+            })();
+        </script>
 
 
     </body>
