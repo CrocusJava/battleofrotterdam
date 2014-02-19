@@ -543,7 +543,7 @@ function call_data_for_index_html() {
                 var dataObj = dataArray[i];
                 call_load_data_for_index_events(dataObj);
             }
-
+            call_setup_localozation();
         }, "json").fail(function() {
             console.log("Somsing wrang for inde post");
         });
@@ -595,7 +595,6 @@ function call_data_for_index_html() {
 
     if (window.location.href.match(/projets.html$/)) {
         call_load_data_for_projets_page(0);
-        call_setup_localozation();
     }
 
 //<<<<<<<<<<<<=============================задачи для всех страницы
@@ -951,6 +950,7 @@ function call_data_load_for_competitions() {
         $("#yearly_battle_competitions_startdate").html(year["startdate"]);
         $("#yearly_battle_competitions_enddate").html(year["enddate"]);
         $("#yearly_battle_competitions_description").html(year["description"]);
+        call_setup_localozation();
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -966,6 +966,7 @@ function call_data_load_for_competitions() {
         $("#monthly_battle_competitions_startdate").html(month["startdate"]);
         $("#monthly_battle_competitions_enddate").html(month["enddate"]);
         $("#monthly_battle_competitions_description").html(month["description"]);
+        call_setup_localozation();
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1060,12 +1061,15 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                        {tag: "span", text: "rating"},
-                                                        {tag: "span", text: " Likes"}
+                                                        {tag: "span", add_class: "en unvisiblin", text: " Rating"},
+                                                        {tag: "span", add_class: "nl", text: " Cijfer"},
+                                                        {tag: "span", add_class: "en unvisiblin", text: " Likes"},
+                                                        {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
                                                 {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
                                                         {tag: "span", text: "commentquantity"},
-                                                        {tag: "span", text: " Comments"}
+                                                        {tag: "span", add_class: "en unvisiblin", text: " Comments"},
+                                                        {tag: "span", add_class: "nl", text: " Reacties"}
                                                     ]},
                                                 {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
 
@@ -1102,6 +1106,7 @@ function call_load_data_for_current_rankings() {
         }
 
         call_lightbox_current_rank();
+        call_setup_localozation();
     }).fail(function() {
         console.log("ошибка загрузки данных по current_rankings");
     });
@@ -1182,6 +1187,7 @@ function call_load_data_for_myaccount(id) {
                 call_create_murkup_for_account_projects(respons["projects"][project], respons);
             }
         }
+        call_setup_localozation();
     });
 }
 
@@ -1202,8 +1208,13 @@ function call_upload_data_for_updateaccaunt() {
     uploadData.street = $("#street").text();
     uploadData.housenumber = $("#housenumber").text();
     uploadData.postcode = $("#postcode").text();
-    uploadData.password = "";
-    uploadData.passwordnew = "";
+    uploadData.password = $("#password").val();
+    uploadData.passwordnew = $("#passwordnew").val();
+    var password_ = $("#password_").val();
+    if (password_ !== uploadData.passwordnew) {
+        alert("Пароль не совпадает!!!!!!!!!!");
+        return false;
+    }
     uploadData = JSON.stringify(uploadData);
     $.ajax({
         type: "POST",
@@ -1212,7 +1223,7 @@ function call_upload_data_for_updateaccaunt() {
         contentType: "application/json",
         data: uploadData
     }).done(function(data) {
-        console.log(data.message);
+        alert(data.message);
     }).fail(function() {
         console.log("Problemi s obnovleniem dannih");
     });
@@ -1260,9 +1271,9 @@ function call_create_murkup_for_account_projects(project, respons) {
             '</div>' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
-            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
-            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> DELETE THIS PROJECT</span></a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin"> Likes</span><span class="nl">Sympathieën</span></a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin"> Comments</span><span class="nl">Reacties</span></a>' +
+            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> <span class="en unvisiblin">DELETE THIS PROJECT</span><span class="nl">DELETE DIT PROJECT</span></span></a>' +
             '</div>' +
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
@@ -1288,8 +1299,8 @@ function call_create_murkup_for_static_profile_projects(project, respons) {
             '</div>' +
             '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
             '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span>  Likes</a></span>' +
-            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> Comments</a>' +
+            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin">Likes</span><span class="nl">Sympathieën</span></a></span>' +
+            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin">Comments </span><span class="nl">Reacties</span></a>' +
             '</div>' +
             '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
             '</div>' +
@@ -1488,6 +1499,7 @@ function call_load_data_for_projets_page(firstposition) {
                 paging_for_projects.loaded = true;
             }
         }
+        call_setup_localozation();
 
 
     }).fail(function() {
@@ -1511,14 +1523,17 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "span", children: [
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
-                                            {tag: "span", text: "rating"},
-                                            {tag: "span", text: " Likes"}
+                                            {tag: "span", add_class: "en unvisiblin", text: " Rating"},
+                                            {tag: "span", add_class: "nl", text: " Cijfer"},
+                                            {tag: "span", add_class: "en unvisiblin", text: " Likes"},
+                                            {tag: "span", add_class: "nl", text: " Sympathieën"}
                                         ]}
                                 ]},
                             {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
                                     {tag: "i", add_class: "icon-comments"},
                                     {tag: "span", text: "commentquantity"},
-                                    {tag: "span", text: " Comments"}
+                                    {tag: "span", add_class: "en unvisiblin", text: " Comments"},
+                                    {tag: "span", add_class: "nl", text: " Reacties"}
                                 ]}
                         ]},
                     {tag: "div", add_class: "project_block_ava", children: [
