@@ -1066,8 +1066,9 @@ function call_load_data_for_current_rankings() {
                                                         {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
                                                 {tag: "a", add_class: "label flat label-success label_comments", attr: {"href": ""}, children: [
-                                                        {tag: "span", add_class:"en unvisiblin", text: "commentquantity"},
-                                                        {tag: "span", add_class: "nl", text: " Comments"}
+                                                        {tag: "span", text: "commentquantity"},
+														{tag: "span", add_class:"en unvisiblin", text: " Comments"},
+                                                        {tag: "span", add_class: "nl", text: " Reacties"}
                                                     ]},
                                                 {tag: "img", attr: {src: "img/" + img + ".png"}, add_class: ("star" + count)}
 
@@ -1521,8 +1522,9 @@ function call_load_data_for_projets_page(firstposition) {
                                 ]},
                             {tag: "a", attr: {href: "#"}, add_class: "trylater", children: [
                                     {tag: "i", add_class: "icon-comments"},
-                                    {tag: "span", add_class:"nl", text: "commentquantity"},
-                                    {tag: "span", add_class:"en unvisiblin", text: " Comments"}
+                                    {tag: "span", text: "commentquantity"},
+                                    {tag: "span", add_class:"en unvisiblin", text: " Comments"},
+									 {tag: "span", add_class:"nl", text: " Reacties"}
                                 ]}
                         ]},
                     {tag: "div", add_class: "project_block_ava", children: [
