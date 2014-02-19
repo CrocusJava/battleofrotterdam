@@ -1208,8 +1208,13 @@ function call_upload_data_for_updateaccaunt() {
     uploadData.street = $("#street").text();
     uploadData.housenumber = $("#housenumber").text();
     uploadData.postcode = $("#postcode").text();
-    uploadData.password = "";
-    uploadData.passwordnew = "";
+    uploadData.password = $("#password").val();
+    uploadData.passwordnew = $("#passwordnew").val();
+    var password_ = $("#password_").val();
+    if (password_ !== uploadData.passwordnew) {
+        alert("Пароль не совпадает!!!!!!!!!!");
+        return false;
+    }
     uploadData = JSON.stringify(uploadData);
     $.ajax({
         type: "POST",
@@ -1218,7 +1223,7 @@ function call_upload_data_for_updateaccaunt() {
         contentType: "application/json",
         data: uploadData
     }).done(function(data) {
-        console.log(data.message);
+        alert(data.message);
     }).fail(function() {
         console.log("Problemi s obnovleniem dannih");
     });
