@@ -543,7 +543,7 @@ function call_data_for_index_html() {
                 var dataObj = dataArray[i];
                 call_load_data_for_index_events(dataObj);
             }
-
+            call_setup_localozation();
         }, "json").fail(function() {
             console.log("Somsing wrang for inde post");
         });
@@ -950,6 +950,7 @@ function call_data_load_for_competitions() {
         $("#yearly_battle_competitions_startdate").html(year["startdate"]);
         $("#yearly_battle_competitions_enddate").html(year["enddate"]);
         $("#yearly_battle_competitions_description").html(year["description"]);
+        call_setup_localozation();
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -965,6 +966,7 @@ function call_data_load_for_competitions() {
         $("#monthly_battle_competitions_startdate").html(month["startdate"]);
         $("#monthly_battle_competitions_enddate").html(month["enddate"]);
         $("#monthly_battle_competitions_description").html(month["description"]);
+        call_setup_localozation();
     }).fail(function() {
         console.log("Error for load for competitions.html");
     });
@@ -1104,6 +1106,7 @@ function call_load_data_for_current_rankings() {
         }
 
         call_lightbox_current_rank();
+        call_setup_localozation();
     }).fail(function() {
         console.log("ошибка загрузки данных по current_rankings");
     });
@@ -1184,6 +1187,7 @@ function call_load_data_for_myaccount(id) {
                 call_create_murkup_for_account_projects(respons["projects"][project], respons);
             }
         }
+        call_setup_localozation();
     });
 }
 
