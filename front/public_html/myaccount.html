@@ -165,7 +165,7 @@
                                         <div class="photo_static_profile"> <img class="img-polaroid photo_static_center" id="preview_avatar" src="" data-src="" alt="preview"></div>
 
                                         <div class="text_center">
-                                            <a href="#" class="margin_text unvisiblin" id="uploadavatar" ><i class="icon-cloud-upload"></i> 
+                                            <a href="#" class="margin_text unvis" id="uploadavatar" ><i class="icon-cloud-upload"></i> 
 											<span class="en unvisiblin">Upload photo </span>
 											<span class="nl">Upload foto</span>
 											</a>
@@ -182,7 +182,7 @@
                                         <div style="height:15px;"></div>
 
 
-                                        <fieldset id="change_password" class="unvisiblin" style="width: 50%; margin: 10px auto;">
+                                        <fieldset id="change_password" class="unvis" style="width: 50%; margin: 10px auto;">
                                             <div class="panel">
                                                 <h4>
 												<span class="en unvisiblin">Change password</span>
@@ -448,13 +448,16 @@
 
 
             $("#button_edit_profile").click(function() {
-                if ($(this).text() === "Update profile") {
-                    $(this).html("  Edit profile <i class='icon-pencil'></i>");
+                if ($(this).text() === "Update profile") || ($(this).text() === "Profiel bijwerken") {
+						if  $.cookie("locale")==="en"{
+						$(this).html("  Edit profile <i class='icon-pencil'></i>")};
+						if  $.cookie("locale")==="nl"{
+						$(this).html("  Profiel bewerken <i class='icon-pencil'></i>")};
                     $(" #longname").removeClass("editable").addClass("margin_text_longname").attr('contenteditable', 'false');
                     $("#adress, #telephone, #birthday").removeClass("editable").addClass("margin_text").attr('contenteditable', 'false');
                     $("#mail").removeClass("editable").addClass("margin_text_email").attr('contenteditable', 'false');
-                    $("#uploadavatar").addClass("unvisiblin");
-                    $("#change_password").addClass("unvisiblin");
+                    $("#uploadavatar").addClass("unvis");
+                    $("#change_password").addClass("unvis");
                     if (window.upload_file && window.upload_file._input) {
                         if (window.upload_file._input.files.length > 0) {
                             window.upload_file.submit();
@@ -463,8 +466,11 @@
                     call_upload_data_for_updateaccaunt();
                 }
                 else {
-                    $("#button_edit_profile").text("Update profile");
-                    $(".unvisiblin").removeClass("unvisiblin");
+						if  $.cookie("locale")==="nl"{
+								$("#button_edit_profile").text("Profiel bijwerken");}
+						if  $.cookie("locale")==="en"{
+								$("#button_edit_profile").text("Update profile");}		
+                    $(".unvis").removeClass("unvis");
                     $(" #longname, #adress, #telephone, #mail, #birthday").removeClass().addClass("editable").attr('contenteditable', 'true');
                     $("#longname").focus();
                 }
