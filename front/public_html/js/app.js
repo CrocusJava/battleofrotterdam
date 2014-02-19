@@ -1516,7 +1516,7 @@ function call_load_data_for_projets_page(firstposition) {
                                             {tag: "i", add_class: "icon-ok"},
                                             {tag: "span", add_class:"en unvisiblin", text: " Rating"},
 											{tag: "span", add_class:"nl", text: " Cijfer"},
-                                            {tag: "span", add_class:"en unvisiblin" text: " Likes"},
+                                            {tag: "span", add_class:"en unvisiblin", text: " Likes"},
 											{tag: "span", add_class:"nl", text: " Sympathieën"},
                                         ]}
                                 ]},
