@@ -88,7 +88,7 @@ public class CommandGetPhoto implements Command {
 			}
 			case Constants.PARAMETER_PHOTO_NEWS_NAME: {
 				String photoName = request.getParameter(Constants.PARAMETER_PHOTO_NEWS_NAME);
-				File photoFile = new File(Constants.PATH_GET_PHOTO_NEWS + "/"+ photoName);
+				File photoFile = new File(Constants.PATH_SAVE_PHOTO_NEWS + "/"+ photoName);
 				return photoFile;
 			}
 			default:
