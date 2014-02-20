@@ -1061,8 +1061,8 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                        {tag: "span", add_class: "en unvisiblin", text: " Rating"},
-                                                        {tag: "span", add_class: "nl", text: " Cijfer"},
+                                                        {tag: "span", text: "rating"},
+                                             
                                                         {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                                         {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
@@ -1523,8 +1523,8 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "span", children: [
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
-                                            {tag: "span", add_class: "en unvisiblin", text: " Rating"},
-                                            {tag: "span", add_class: "nl", text: " Cijfer"},
+                                            {tag: "span", add_class: "en unvisiblin", text: "rating"},
+                                        
                                             {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                             {tag: "span", add_class: "nl", text: " Sympathieën"}
                                         ]}
