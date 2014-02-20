@@ -1148,6 +1148,30 @@ function call_load_data_for_index_footer_contacts(contacts) {
 }
 
 
+ function call_load_data_for_page_contacts(contacts) {
+    var contacts_template = [
+		{tag: "div", add_class: "name_static_profile font-hotel", text: "Contact Us"},
+		{tag: "div", add_class: "margin_text_longname", children:[
+		
+		{tag: "span", add_class: "en unvisiblin", text: "University of Applied Sciences Rotterdam"},
+		{tag: "span", add_class: "nl", text:"Hogeschool Rotterdam"}
+		] },
+        {tag: "div", add_class: "margin_text",  text: "contactsaddress"},
+		 {tag: "div", add_class: "margin_text", text: "contactsphone"}, 
+         {tag: "div", add_class: "margin_text", text: "contactsfax"},       
+          {tag: "div", add_class: "margin_text", text: "contactsemail"},           
+           
+        {tag: "div", add_class: "skype", children: [
+                {tag: "a", attr: {href: "skype:echo123?call"}, text: "contactsskype"}
+            ]}
+     
+    ];
+    call_markup_index(contacts_template, $("#contacts_page_content"), contacts);
+}
+
+
+
+
 function call_load_data_for_myaccount(id) {
 
     var send_data = {iduser: (id ? id : 0)};
@@ -1420,6 +1444,8 @@ function call_create_markup_for_viewproject(respons) {
 
 
 }
+
+
 
 function call_load_data_for_viewprojectcomments(projectid, firstposition) {
     var data = {
