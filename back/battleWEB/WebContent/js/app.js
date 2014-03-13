@@ -1061,8 +1061,8 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "div", add_class: "hover"},
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
-                                                        {tag: "span", add_class: "en unvisiblin", text: " Rating"},
-                                                        {tag: "span", add_class: "nl", text: " Cijfer"},
+                                                        {tag: "span", text: "rating"},
+                                             
                                                         {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                                         {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
@@ -1146,6 +1146,30 @@ function call_load_data_for_index_footer_contacts(contacts) {
     ];
     call_markup_index(index_contacts_template, $("#index_contact_info"), contacts);
 }
+
+
+ function call_load_data_for_page_contacts(contacts) {
+    var contacts_template = [
+		{tag: "div", add_class: "name_static_profile font-hotel", text: "Contact Us"},
+		{tag: "div", add_class: "margin_text_longname", children:[
+		
+		{tag: "span", add_class: "en unvisiblin", text: "University of Applied Sciences Rotterdam"},
+		{tag: "span", add_class: "nl", text:"Hogeschool Rotterdam"}
+		] },
+        {tag: "div", add_class: "margin_text",  text: "contactsaddress"},
+		 {tag: "div", add_class: "margin_text", text: "contactsphone"}, 
+         {tag: "div", add_class: "margin_text", text: "contactsfax"},       
+          {tag: "div", add_class: "margin_text", text: "contactsemail"},           
+           
+        {tag: "div", add_class: "skype", children: [
+                {tag: "a", attr: {href: "skype:echo123?call"}, text: "contactsskype"}
+            ]}
+     
+    ];
+    call_markup_index(contacts_template, $("#contacts_page_content"), contacts);
+}
+
+
 
 
 function call_load_data_for_myaccount(id) {
@@ -1421,6 +1445,8 @@ function call_create_markup_for_viewproject(respons) {
 
 }
 
+
+
 function call_load_data_for_viewprojectcomments(projectid, firstposition) {
     var data = {
         projectid: projectid,
@@ -1523,8 +1549,8 @@ function call_load_data_for_projets_page(firstposition) {
                             {tag: "span", children: [
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
-                                            {tag: "span", add_class: "en unvisiblin", text: " Rating"},
-                                            {tag: "span", add_class: "nl", text: " Cijfer"},
+                                            {tag: "span", add_class: "en unvisiblin", text: "rating"},
+                                        
                                             {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                             {tag: "span", add_class: "nl", text: " Sympathieën"}
                                         ]}
