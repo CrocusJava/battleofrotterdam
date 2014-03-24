@@ -7,7 +7,8 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
 
-        <link rel="shortcut icon" href="#">
+        	<link rel="icon" href="img/medal.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/medal.ico" type="image/x-icon">
         <!-- styles Bootsrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -508,7 +509,31 @@
                 window.location.reload();
             });
         </script>
+        <script type="text/javascript">
+            (function() {
+                var Gemini = {
+                    new_pw: [],
+                    current_pw: [],
+                    confirm_pw: []
+                };
+                $("[name=new_pw], [name=current_pw],[name=confirm_pw]").each(function() {
 
+                    (Gemini[this.name]).push(this);
+
+                    $(this).on("keyup", function() {
+                        var arr = Gemini[this.name],
+                                text = $(this).val(),
+                                i, target;
+                        for (i in arr) {
+                            target = arr[i];
+                            if (this !== target) {
+                                $(target).val(text);
+                            }
+                        }
+                    });
+                });
+            })();
+        </script>
 
 
     </body>
