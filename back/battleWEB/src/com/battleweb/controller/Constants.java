@@ -68,6 +68,7 @@ public interface Constants {
 	public static final String COMMAND_DELETE_PHOTO = "deletephoto";
 	public static final String COMMAND_DELETE_PROJECT = "deleteproject";
 	public static final String COMMAND_CHANGE_LANGUAGE = "changelanguage";
+	public static final String COMMAND_SEND_COMPLAINT = "sendcomplaint";
 	
 	// Set name properties in session
 	public static final String PARAMETER_SESSION_LOCALE = "userlocalization";

@@ -48,6 +48,7 @@ import com.battleweb.controller.commands.CommandProjects;
 import com.battleweb.controller.commands.CommandRegistration;
 import com.battleweb.controller.commands.CommandSearch;
 import com.battleweb.controller.commands.CommandSendComment;
+import com.battleweb.controller.commands.CommandSendComplaint;
 import com.battleweb.controller.commands.CommandSendEmail;
 import com.battleweb.controller.commands.CommandShowUsers;
 import com.battleweb.controller.commands.CommandTerms;
@@ -173,6 +174,8 @@ public class CommandRequest {
 	private CommandDeleteProject commandDeleteProject;
 	@EJB
 	private CommandChangeLanguage commandChangeLanguage;
+	@EJB
+	private CommandSendComplaint commandSendComplaint;
 	
 	private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -228,6 +231,7 @@ public class CommandRequest {
 		commands.put(Constants.COMMAND_DELETE_PHOTO, commandDeletePhoto);
 		commands.put(Constants.COMMAND_DELETE_PROJECT, commandDeleteProject);
 		commands.put(Constants.COMMAND_CHANGE_LANGUAGE, commandChangeLanguage);
+		commands.put(Constants.COMMAND_SEND_COMPLAINT, commandSendComplaint);
 	}
 
 	public Command getCommand(HttpServletRequest request) {
