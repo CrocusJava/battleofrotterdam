@@ -7,7 +7,7 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
 
-        	<link rel="icon" href="img/medal.ico" type="image/x-icon">
+        <link rel="icon" href="img/medal.ico" type="image/x-icon">
         <link rel="shortcut icon" href="img/medal.ico" type="image/x-icon">
         <!-- styles Bootsrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -321,6 +321,21 @@
 
 
 
+            <!--модальное окно для подтверждение удаления проекта-->
+            <div id="delete_Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="delete_Modal" aria-hidden="true">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+                    <h3 class="text-warning">Attention</h3>
+                </div>
+                <div class="modal-body">
+                    <p>You really want to delete this project</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Abort</button>
+                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Yes</button>
+                </div>
+            </div>
+
             <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
@@ -533,6 +548,13 @@
                     });
                 });
             })();
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $('button.btn-primary', '#delete_Modal').click(function() {
+                    return true;
+                });
+            });
         </script>
 
 

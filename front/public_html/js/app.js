@@ -6,8 +6,8 @@ function call_all() {
 
     call_scroll();
 //    call_slider_sequence();
-    call_datatables();
-    call_tab();
+//    call_datatables();
+//    call_tab();
 
 
     call_lightbox();
@@ -84,64 +84,64 @@ function call_control_color_theme() {
 
 
 
-function call_tab() {
-    $('.nav-tabs a').click(function(e) { //lobster_tab
-        e.preventDefault();
-        $(this).tab('show');
-    });
-}
+//function call_tab() {
+//    $('.nav-tabs a').click(function(e) { //lobster_tab
+//        e.preventDefault();
+//        $(this).tab('show');
+//    });
+//}
 
 
 
-function call_datatables() {
-    if ($('.datatables_group').length > 0) {
-        var oTable = $('.datatables_group').dataTable({
-            "fnDrawCallback": function(oSettings) {
-                if (oSettings.aiDisplay.length == 0)
-                {
-                    return;
-                }
-                var nTrs = $('.datatables_group tbody tr');
-                var iColspan = nTrs[0].getElementsByTagName('td').length;
-                var sLastGroup = "";
-                for (var i = 0; i < nTrs.length; i++)
-                {
-                    var iDisplayIndex = oSettings._iDisplayStart + i;
-                    var sGroup = oSettings.aoData[ oSettings.aiDisplay[iDisplayIndex] ]._aData[0];
-                    if (sGroup != sLastGroup)
-                    {
-                        var nGroup = document.createElement('tr');
-                        var nCell = document.createElement('td');
-                        nCell.colSpan = iColspan;
-                        nCell.className = "group";
-                        nCell.innerHTML = sGroup;
-                        nGroup.appendChild(nCell);
-                        nTrs[i].parentNode.insertBefore(nGroup, nTrs[i]);
-                        sLastGroup = sGroup;
-                    }
-                }
-            },
-            "aoColumnDefs": [
-                {
-                    "bVisible": false,
-                    "aTargets": [0]
-                }
-            ],
-            "aaSortingFixed": [[0, 'asc']],
-            "aaSorting": [[1, 'asc']],
-            "sDom": 'lfr<"giveHeight"t>ip',
-            "sPaginationType": "full_numbers",
-            "aoColumns": [
-                {
-                    "sWidth": "10%"
-                }, {
-                    "sWidth": "45%"
-                }, {
-                    "sWidth": "45%"
-                }]
-        });
-    }
-}
+//function call_datatables() {
+//    if ($('.datatables_group').length > 0) {
+//        var oTable = $('.datatables_group').dataTable({
+//            "fnDrawCallback": function(oSettings) {
+//                if (oSettings.aiDisplay.length == 0)
+//                {
+//                    return;
+//                }
+//                var nTrs = $('.datatables_group tbody tr');
+//                var iColspan = nTrs[0].getElementsByTagName('td').length;
+//                var sLastGroup = "";
+//                for (var i = 0; i < nTrs.length; i++)
+//                {
+//                    var iDisplayIndex = oSettings._iDisplayStart + i;
+//                    var sGroup = oSettings.aoData[ oSettings.aiDisplay[iDisplayIndex] ]._aData[0];
+//                    if (sGroup != sLastGroup)
+//                    {
+//                        var nGroup = document.createElement('tr');
+//                        var nCell = document.createElement('td');
+//                        nCell.colSpan = iColspan;
+//                        nCell.className = "group";
+//                        nCell.innerHTML = sGroup;
+//                        nGroup.appendChild(nCell);
+//                        nTrs[i].parentNode.insertBefore(nGroup, nTrs[i]);
+//                        sLastGroup = sGroup;
+//                    }
+//                }
+//            },
+//            "aoColumnDefs": [
+//                {
+//                    "bVisible": false,
+//                    "aTargets": [0]
+//                }
+//            ],
+//            "aaSortingFixed": [[0, 'asc']],
+//            "aaSorting": [[1, 'asc']],
+//            "sDom": 'lfr<"giveHeight"t>ip',
+//            "sPaginationType": "full_numbers",
+//            "aoColumns": [
+//                {
+//                    "sWidth": "10%"
+//                }, {
+//                    "sWidth": "45%"
+//                }, {
+//                    "sWidth": "45%"
+//                }]
+//        });
+//    }
+//}
 
 function call_slider_sequence() {
     if ($('#sequence').length > 0) {
@@ -1062,7 +1062,6 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
                                                         {tag: "span", text: "rating"},
-                                             
                                                         {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                                         {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
@@ -1148,23 +1147,21 @@ function call_load_data_for_index_footer_contacts(contacts) {
 }
 
 
- function call_load_data_for_page_contacts(contacts) {
+function call_load_data_for_page_contacts(contacts) {
     var contacts_template = [
-		{tag: "div", add_class: "name_static_profile font-hotel", text: "Contact Us"},
-		{tag: "div", add_class: "margin_text_longname", children:[
-		
-		{tag: "span", add_class: "en unvisiblin", text: "University of Applied Sciences Rotterdam"},
-		{tag: "span", add_class: "nl", text:"Hogeschool Rotterdam"}
-		] },
-        {tag: "div", add_class: "margin_text",  text: "contactsaddress"},
-		 {tag: "div", add_class: "margin_text", text: "contactsphone"}, 
-         {tag: "div", add_class: "margin_text", text: "contactsfax"},       
-          {tag: "div", add_class: "margin_text", text: "contactsemail"},           
-           
+        {tag: "div", add_class: "name_static_profile font-hotel", text: "Contact Us"},
+        {tag: "div", add_class: "margin_text_longname", children: [
+                {tag: "span", add_class: "en unvisiblin", text: "University of Applied Sciences Rotterdam"},
+                {tag: "span", add_class: "nl", text: "Hogeschool Rotterdam"}
+            ]},
+        {tag: "div", add_class: "margin_text", text: "contactsaddress"},
+        {tag: "div", add_class: "margin_text", text: "contactsphone"},
+        {tag: "div", add_class: "margin_text", text: "contactsfax"},
+        {tag: "div", add_class: "margin_text", text: "contactsemail"},
         {tag: "div", add_class: "skype", children: [
                 {tag: "a", attr: {href: "skype:echo123?call"}, text: "contactsskype"}
             ]}
-     
+
     ];
     call_markup_index(contacts_template, $("#contacts_page_content"), contacts);
 }
@@ -1254,13 +1251,14 @@ function call_upload_data_for_updateaccaunt() {
 }
 
 function call_create_murkup_for_account_projects(project, respons) {
+
     function  call_delete_project(event) {
         var deleting_project = {
             projectid: project["projectid"]
         },
         url = "/battleWEB/controller?command=deleteproject";
 
-        if (confirm("ВЫ В ЭТОМ УВЕРЕНЫ ???!!!!!!!!???????")) {
+        if (confirm("ВЫ В ЭТОМ УВЕРЕНЫ ???!!!!!!!!???????")) {//
             deleting_project = JSON.stringify(deleting_project);
 
             $.ajax({
@@ -1550,7 +1548,6 @@ function call_load_data_for_projets_page(firstposition) {
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
                                             {tag: "span", add_class: "en unvisiblin", text: "rating"},
-                                        
                                             {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                             {tag: "span", add_class: "nl", text: " Sympathieën"}
                                         ]}
