@@ -866,14 +866,8 @@ function call_load_data_for_news_index() {
                                             {tag: "h4", text: "loaddate"}
                                         ]},
                                     {tag: "div", add_class: "desc", children: [
-                                            {tag: "p", text: "title"},
-                                            {tag: "p", children: [
-                                                    {tag: "a", add_class: "news_butt btn btn-primary flat btn-large", children: [
-                                                            {tag: "span", add_class: "en unvisiblin", text: "Read More", add_handler: {"click": "popup_news"}},
-                                                            {tag: "span", add_class: "nl", text: "Lees meer", add_handler: {"click": "popup_news"}}]
-
-
-                                                    }
+                                            {tag: "p", text: "title"}
+                                           
 
                                                 ]}
                                         ]}
