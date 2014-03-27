@@ -1179,24 +1179,32 @@ function call_load_data_for_myaccount(id) {
         contentType: "application/json",
         data: JSON.stringify(send_data)
     }).done(function(respons) {
+
+        window.viewModel = ko.mapping.fromJS(respons);
+        ko.applyBindings(viewModel);
+
         if (!send_data.iduser) {
             $.session.set("name", respons["login"]);
             $.session.set("avatar", respons["photopath"]);
             call_cookie_navigator();
         }
+
+
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
-//        $.session.set("avatar", respons["photopath"]);
-        $("#name_static_profile").text(respons["login"]);
-        $("#FirstName").text(respons["firstname"]);
-        $("#MiddletName").text(respons["middlename"]);
-        $("#LastName").text(respons["lastname"]);
-        $("#birthday").text(respons["birthday"]);
-        $("#town").text(respons["town"]);
-        $("#street").text(respons["street"]);
-        $("#housenumber").text(respons["housenumber"]);
-        $("#postcode").text(respons["postcode"]);
-        $("#telephone").text(respons["phone"]);
-        $("#mail").text(respons["email"]);
+        //        $.session.set("avatar", respons["photopath"]);
+        /* действие области работы KNOCKOUT JS
+         $("#name_static_profile").text(respons["login"]);
+         $("#FirstName").text(respons["firstname"]);
+         $("#MiddletName").text(respons["middlename"]);
+         $("#LastName").text(respons["lastname"]);
+         $("#birthday").text(respons["birthday"]);
+         $("#town").text(respons["town"]);
+         $("#street").text(respons["street"]);
+         $("#housenumber").text(respons["housenumber"]);
+         $("#postcode").text(respons["postcode"]);
+         $("#telephone").text(respons["phone"]);
+         $("#mail").text(respons["email"]);
+         */
 
         if (id) {
             for (var project in respons["projects"]) {
@@ -1257,8 +1265,9 @@ function call_create_murkup_for_account_projects(project, respons) {
             projectid: project["projectid"]
         },
         url = "/battleWEB/controller?command=deleteproject";
+        $("#Modal_delete_project").modal("show");
 
-        if (confirm("ВЫ В ЭТОМ УВЕРЕНЫ ???!!!!!!!!???????")) {//
+        if ('') {
             deleting_project = JSON.stringify(deleting_project);
 
             $.ajax({
@@ -1272,7 +1281,7 @@ function call_create_murkup_for_account_projects(project, respons) {
                 window.location.reload();
             }).fail(function(error) {
                 console.log("Problemi s Удалением проекта", error);
-                alert("УХ какой негодяй, хотел удалить чужой проект, ПАРАЗИТ ");
+                alert("ERRORE DELETING");
                 window.location.reload();
             });
         }
@@ -1934,12 +1943,14 @@ function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
                 for (var photo in respons["photos"]) {
                     call_load_photo_for_edit_project(respons["photos"][photo]);
                 }
+                call_setup_localozation();
             }
             else {
                 $("#viewprojectphotos").empty();
                 for (var photo in respons["photos"]) {
                     call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
                 }
+                call_setup_localozation();
             }
         }
 

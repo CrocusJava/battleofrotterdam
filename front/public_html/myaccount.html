@@ -171,13 +171,13 @@
                                                 <span class="nl">Upload foto</span>
                                             </a>
 
-                                            <div id="name_static_profile" class="name_static_profile font-hotel"></div>
+                                            <div id="name_static_profile" class="name_static_profile font-hotel" data-bind="text:login"></div>
 
-                                            <div id="longname" class="margin_text_longname" > <span id="FirstName"></span> <span id="MiddletName"></span> <span id="LastName"></span></div>
-                                            <div id="birthday" class="margin_text_birthday" ></div>
-                                            <div id="adress" class="margin_text" ><span id="town"></span>, <span id="street"></span>, <span id="housenumber"></span>, <span id="postcode"></span></div>
-                                            <div id="telephone" class="margin_text" ></div>
-                                            <div id="mail" class="margin_text_email" ></div>
+                                            <div id="longname" class="margin_text_longname" > <span id="FirstName" data-bind="editableText: firstname"></span> <span id="MiddletName" data-bind="text:middlename"></span> <span id="LastName" data-bind="text:lastname"></span></div>
+                                            <div id="birthday" class="margin_text_birthday" data-bind="text:birthday"></div>
+                                            <div id="adress" class="margin_text" ><span id="town" data-bind="text:town"></span>, <span id="street" data-bind="text:street"></span>, <span id="housenumber" data-bind="housenumber"></span>, <span id="postcode" data-bind="text:postcode"></span></div>
+                                            <div id="telephone" class="margin_text" data-bind="text:phone"></div>
+                                            <div id="mail" class="margin_text_email" data-bind="text:email"></div>
                                         </div>
 
                                         <div style="height:15px;"></div>
@@ -212,13 +212,13 @@
                                                 </div>
 
                                             </div>
-                                          <!--  <div id="button_pw_profile" class="btn btn-primary btn-large flat" >
+                                            <!--  <div id="button_pw_profile" class="btn btn-primary btn-large flat" >
 
-                                                <span class="en unvisiblin">Save new password </span>
-                                                <span class="nl">Nieuwe wachtwoord opslaan</span>
+                                                  <span class="en unvisiblin">Save new password </span>
+                                                  <span class="nl">Nieuwe wachtwoord opslaan</span>
 
-                                                <i class="icon-ok"></i>
-                                            </div>-->
+                                                  <i class="icon-ok"></i>
+                                              </div>-->
 
 
 
@@ -322,7 +322,7 @@
 
 
             <!--модальное окно для подтверждение удаления проекта-->
-            <div id="delete_Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="delete_Modal" aria-hidden="true">
+            <div id="Modal_delete_project" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="delete_Modal" aria-hidden="true">
                 <div class="modal-header">
                     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
                     <h3 class="text-warning">Attention</h3>
@@ -332,7 +332,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Abort</button>
-                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Yes</button>
+                    <button class="btn btn-primary">Yes</button>
                 </div>
             </div>
 
@@ -461,9 +461,18 @@
         <script src="js/ajaxupload.js"></script>
         <!-- End Load JS AjaxUpload -->
 
+        <!--Load KnockoutJS-->
+        <script src="js/knockout-3.0.0.debug.js"></script>
+        <script src="js/knockout.mapping-latest.debug.js"></script>
+        <script src="js/ko.myaccount.html.js"></script>
+        <!--End Load KnockoutJS-->
+
+
         <!--Load JS config application-->
         <script src="js/app.js"></script>
         <!--end JS config application-->
+
+
 
         <script type="text/javascript">
             $(".createproj").click(function() {
@@ -551,7 +560,10 @@
         </script>
         <script type="text/javascript">
             $(function() {
-                $('button.btn-primary', '#delete_Modal').click(function() {
+                $('button.btn-primary', '#Modal_delete_project').click(function() {
+
+                    $('#Modal_delete_project').modal('hide');
+
                     return true;
                 });
             });
