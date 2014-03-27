@@ -869,7 +869,7 @@ function call_load_data_for_news_index() {
                                             {tag: "p", text: "title"}
                                            
 
-                                                ]}
+                                               
                                         ]}
                                 ]}
 
