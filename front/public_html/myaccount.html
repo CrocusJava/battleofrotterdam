@@ -304,7 +304,7 @@
                                     </div>
 
 
-                                    <div class="btn btn-primary btn-large flat createproj" style="margin: 20px 35%;">
+                                    <div class="btn btn-primary btn-large flat createproj" style="margin: 20px 35%;" data-bind="visible: visibleButtonCreateNewProject">
                                         <span class="en unvisiblin">Create new project</span>
                                         <span class="nl">Nieuw project</span>
                                     </div>
@@ -340,16 +340,16 @@
                     </label>
                     <div style="margin: 25px 25px;">
 
-                        <div class="radio">
+                        <div class="radio" data-bind="visible: choiceCompetitionType().month ">
                             <label>
-                                <input type="radio" name="type" id="month" value="month" checked>
+                                <input type="radio" name="type" id="month" value="month">
 
                                 <span class="en unvisiblin">Monthly competition</span>
                                 <span class="nl">Maandelijkse competitie</span>
 
                             </label>
                         </div>
-                        <div class="radio">
+                        <div class="radio" data-bind="visible: choiceCompetitionType().year ">
                             <label >
                                 <input type="radio" name="type" id="year" value="year">
 

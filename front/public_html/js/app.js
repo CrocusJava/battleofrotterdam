@@ -1213,7 +1213,7 @@ function call_load_data_for_myaccount(id) {
         call_setup_localozation();
     }).fail(function() {
         if (!send_data.iduser) { //если акаунт мой то выйти
-            call_event_logout();
+            $("#logout").trigger("click");
         }
     });
 }
@@ -1256,70 +1256,70 @@ function call_upload_data_for_updateaccaunt() {
     });
 }
 
-function call_create_murkup_for_account_projects(project, respons) {
-
-    function  call_delete_project(event) {
-        var deleting_project = {
-            projectid: project["projectid"]
-        },
-        url = "/battleWEB/controller?command=deleteproject";
-//        $("#Modal_delete_project").modal("show");
-
-        if ('') {
-            deleting_project = JSON.stringify(deleting_project);
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                dataType: "json",
-                contentType: "application/json",
-                data: deleting_project
-            }).done(function(data) {
-                console.log(data);
-                window.location.reload();
-            }).fail(function(error) {
-                console.log("Problemi s Удалением проекта", error);
-                alert("ERRORE DELETING");
-                window.location.reload();
-            });
-        }
-        event.preventDefault();
-        /*POST
-         command:deleteproject
-         url:http://edu.bionic-universitsingle_project.htmly.com:1120/battleWEB/controller
-
-         {
-         “projectid”:23
-         }
-         window.location.reload()
-         **/
-    }
-    var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
-            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
-            '</div>' +
-            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
-            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin"> Likes</span><span class="nl">Sympathieën</span></a></span>' +
-            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin"> Comments</span><span class="nl">Reacties</span></a>' +
-            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> <span class="en unvisiblin">DELETE THIS PROJECT</span><span class="nl">DELETE DIT PROJECT</span></span></a>' +
-            '</div>' +
-            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
-            '</div>' +
-            '<article  class="project_block_proj">' +
-            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
-            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
-            '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
-            '</div>' +
-            '</div>' +
-            '</article>' +
-            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
-            '</section>' + '<div style="height:15px;"></div>';
-    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
-    $(section).find("a[name=delete]").click(call_delete_project);
-    $(section).appendTo("#account_projects");
-}
+//function call_create_murkup_for_account_projects(project, respons) {
+//
+//    function  call_delete_project(event) {
+//        var deleting_project = {
+//            projectid: project["projectid"]
+//        },
+//        url = "/battleWEB/controller?command=deleteproject";
+////        $("#Modal_delete_project").modal("show");
+//
+//        if ('') {
+//            deleting_project = JSON.stringify(deleting_project);
+//
+//            $.ajax({
+//                type: "POST",
+//                url: url,
+//                dataType: "json",
+//                contentType: "application/json",
+//                data: deleting_project
+//            }).done(function(data) {
+//                console.log(data);
+//                window.location.reload();
+//            }).fail(function(error) {
+//                console.log("Problemi s Удалением проекта", error);
+//                alert("ERRORE DELETING");
+//                window.location.reload();
+//            });
+//        }
+//        event.preventDefault();
+//        /*POST
+//         command:deleteproject
+//         url:http://edu.bionic-universitsingle_project.htmly.com:1120/battleWEB/controller
+//
+//         {
+//         “projectid”:23
+//         }
+//         window.location.reload()
+//         **/
+//    }
+//    var template_for_project = '<section class="project_block" >' +
+//            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
+//            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
+//            '</div>' +
+//            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
+//            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+//            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin"> Likes</span><span class="nl">Sympathieën</span></a></span>' +
+//            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin"> Comments</span><span class="nl">Reacties</span></a>' +
+//            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> <span class="en unvisiblin">DELETE THIS PROJECT</span><span class="nl">DELETE DIT PROJECT</span></span></a>' +
+//            '</div>' +
+//            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
+//            '</div>' +
+//            '<article  class="project_block_proj">' +
+//            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
+//            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
+//            '<div class="viewtheproj">' +
+//            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
+//            '</div>' +
+//            '</div>' +
+//            '</article>' +
+//            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
+//            '</section>' + '<div style="height:15px;"></div>';
+//    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
+//    $(section).find("a[name=delete]").click(call_delete_project);
+//    $(section).appendTo("#account_projects");
+//}
 
 function call_create_murkup_for_static_profile_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
@@ -1402,6 +1402,9 @@ function call_load_data_for_viewproject(projectid) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+
+        applyKO(respons.voteable, respons.user.login);
+
         window.pagenation = {
             comments: respons.commentquantity,
             photos: respons.photoquantity

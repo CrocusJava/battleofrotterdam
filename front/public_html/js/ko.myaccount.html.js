@@ -23,9 +23,29 @@ ko.bindingHandlers.editableText = {
 };
 
 function applyKO(Model) {
-    window.viewModel = ko.toJS(Model);
+    var viewModel = ko.toJS(Model);
 
-    window.viewModel.accept_delete_project = function() {
+
+    viewModel.visibleButtonCreateNewProject = ko.computed(function() {
+        var arr = $.map(viewModel.projects, function(element, index) {
+            return element.competitiontypename;
+        });
+        return !($.inArray("month", arr) > -1 && $.inArray("year", arr) > -1);
+    });
+
+    viewModel.choiceCompetitionType = ko.computed(function() {
+        var arr = $.map(viewModel.projects, function(element, index) {
+            return element.competitiontypename;
+        });
+        return {
+            month: !($.inArray("month", arr) > -1),
+            year: !($.inArray("year", arr) > -1)
+        };
+    });
+
+
+
+    viewModel.accept_delete_project = function() {
         var deleting_project = {
             projectid: window.viewModel.accept_delete_project.projectID
         },
@@ -52,12 +72,12 @@ function applyKO(Model) {
 
     };
 
-    window.viewModel.delete_this_project = function(project) {
+    viewModel.delete_this_project = function(project) {
         $("#Modal_delete_project").modal("show");
         window.viewModel.accept_delete_project.projectID = project.projectid;
     };
 
+    window.viewModel = viewModel;
 
-
-    ko.applyBindings(window.viewModel);
+    ko.applyBindings(viewModel);
 }
