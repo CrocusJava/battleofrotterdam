@@ -170,11 +170,26 @@
                                 </a>
                                 <a href="#" id="user_account"><i class="icon-user"></i> <span id="user"></span></a>
 
-                                <div class="forall"  style="margin: 20px 0 0px 0;"> <a href="#" id="vote"> <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">
+                                <!-- ko ifnot: owner-->
+                                <div class="forall"  style="margin: 20px 0 0px 0;">
+                                    <!-- ko if: voteable -->
+                                    <a href="#" id="vote">
+                                        <span class="pull-right" style="color:#fff; background: rgba(0,188,0,0.6); font-size:28px; font-family: 'Lobster Two', cursive; padding:13px; margin-top:10px;">
                                             <span class="en unvisiblin">Vote for project </span>
                                             <span class="nl">Stem voor project</span>
-                                            <i class="icon-ok"></i></span> <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; "></a></div>
-
+                                            <i class="icon-ok"></i>
+                                        </span>
+                                        <img src="img/kubok.jpg" class="img-circle pull-right" style="width:100px; margin-bottom:15px; ">
+                                    </a>
+                                    <!-- /ko -->
+                                    <!-- ko ifnot: voteable -->
+                                    <h4 class="pull-right">
+                                        <span class="en unvisiblin">Thank you for your vote</span>
+                                        <span class="nl">Dank u voor uw stem</span>
+                                    </h4>
+                                    <!-- /ko -->
+                                </div>
+                                <!-- /ko -->
 
                                 <!-- <div class="project_block_ava" ><img src="img/c1.jpg" class="img-circle" style="width:150px; margin: 0px 10px 0px 10px; float: left;"> <span style="position:relative; float: left; color:#fff; background: rgba(0,188,0,0.6); font-size:18px; font-family: 'Lobster Two', cursive; padding:15px; margin-top: 50px;">[Jhohn Smith]</span>
                                 </div>-->
@@ -310,7 +325,11 @@
                                                     <span class="nl">Commentaar:</span>
                                                 </label>
                                                 <textarea name="commenttext" id="f3" class="input-block-level" rows="10" required=""></textarea>
-                                                <input type="submit" class="btn btn-primary btn-large flat" value="Submit the comment ">
+                                                <input type="submit" class="en unvisiblin btn btn-primary btn-large flat" style="clear:both; float:left;" value="Submit the comment ">
+												 <input type="submit" class="nl btn btn-primary btn-large flat" style="clear:both; float:left;" value="Dien de commentaar ">
+												<input type="submit" class="btn btn-primary btn-large flat" style="float:right;" value="Report about fraud">
+												 <input type="submit" class="nl btn btn-primary btn-large flat" style="float:right;" value="Rapport over fraude ">
+												 <div class="divater" style="clear:both;"><div class="line"></div><span><img src="img/deviter.png" alt=""></span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -451,6 +470,12 @@
         <!-- Load JS AjaxUpload -->
         <script src="js/ajaxupload.js"></script>
         <!-- End Load JS AjaxUpload -->
+
+        <!--Load KnockoutJS-->
+        <script src="js/knockout-3.0.0.debug.js"></script>
+        <script src="js/knockout.mapping-latest.debug.js"></script>
+        <script src="js/ko.single_project.html.js"></script>
+        <!--End Load KnockoutJS-->
 
         <!--Load JS config application-->
         <script src="js/app.js"></script>
