@@ -634,7 +634,7 @@ Start Content Section
 
 #content .boxfeature .img_preview {
     width: 100%;
-    min-height: 200px;
+    max-height: 210px;
     overflow: hidden;
     position: relative;
 }
