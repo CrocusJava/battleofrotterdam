@@ -867,9 +867,9 @@ function call_load_data_for_news_index() {
                                         ]},
                                     {tag: "div", add_class: "desc", children: [
                                             {tag: "p", text: "title"}
-                                           
 
-                                               
+
+
                                         ]}
                                 ]}
 
@@ -1174,9 +1174,6 @@ function call_load_data_for_myaccount(id) {
         data: JSON.stringify(send_data)
     }).done(function(respons) {
 
-        window.viewModel = ko.mapping.fromJS(respons);
-        ko.applyBindings(viewModel);
-
         if (!send_data.iduser) {
             $.session.set("name", respons["login"]);
             $.session.set("avatar", respons["photopath"]);
@@ -1185,6 +1182,9 @@ function call_load_data_for_myaccount(id) {
 
 
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
+
+        applyKO(respons);
+
         //        $.session.set("avatar", respons["photopath"]);
         /* действие области работы KNOCKOUT JS
          $("#name_static_profile").text(respons["login"]);
@@ -1206,11 +1206,15 @@ function call_load_data_for_myaccount(id) {
             }
         }
         else {
-            for (var project in respons["projects"]) {
-                call_create_murkup_for_account_projects(respons["projects"][project], respons);
-            }
+//            for (var project in respons["projects"]) {
+//                call_create_murkup_for_account_projects(respons["projects"][project], respons);
+//            }
         }
         call_setup_localozation();
+    }).fail(function() {
+        if (!send_data.iduser) { //если акаунт мой то выйти
+            call_event_logout();
+        }
     });
 }
 
@@ -1259,7 +1263,7 @@ function call_create_murkup_for_account_projects(project, respons) {
             projectid: project["projectid"]
         },
         url = "/battleWEB/controller?command=deleteproject";
-        $("#Modal_delete_project").modal("show");
+//        $("#Modal_delete_project").modal("show");
 
         if ('') {
             deleting_project = JSON.stringify(deleting_project);
