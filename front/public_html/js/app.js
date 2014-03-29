@@ -2249,3 +2249,10 @@ function call_setup_localozation() {
             break;
     }
 }
+
+
+function modal_window(header, message) {
+    var template_for_modal = "<here will be something some time late ibo i want to sleep>" ;
+    
+    $(template_for_modal).appendTo("body");
+}
