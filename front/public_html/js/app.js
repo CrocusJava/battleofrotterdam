@@ -1599,6 +1599,11 @@ function call_load_data_for_projets_page(firstposition) {
 
 //        template_projets_page[0].children[3].children[0].attr.src = "img/nophoto.png";
 //respons.lastphoto.path
+
+        if (!respons.lastphoto.path) {
+            template_projets_page[0].children[3].children[0].attr.src = "img/nophoto.png";
+        }
+
         call_markup_index(template_projets_page, $("#projects"), respons);
 
     }
