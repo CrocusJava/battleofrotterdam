@@ -109,18 +109,26 @@ public class AboutBattleBean {
 		case (1): {
 			battleTitle = textBean.findByKey(Constants.TEXT_TITLE_BATTLE_DESCRIPTION);
 			battleText = textBean.findByKey(Constants.TEXT_BATTLE_DESCRIPTION_FULL);
+			battleView=false;
+			break;
 		}
 		case (2): {
 			aboutUsTitle = textBean.findByKey(Constants.TEXT_TITLE_ABOUT_US);
 			aboutUsText = textBean.findByKey(Constants.TEXT_ABOUT_US_DESCRIPTION);
+			usView=false;
+			break;
 		}
 		case (3): {
 			rulesTitle = textBean.findByKey(Constants.TEXT_TITLE_BATTLE_RULES);
 			rulesText = textBean.findByKey(Constants.TEXT_BATTLE_RULES_DESCRIPTION);
+			rulesView=false;
+			break;
 		}
 		case (4): {
 			infoTitle = textBean.findByKey(Constants.TEXT_TITLE_INFO);
 			infoText = textBean.findByKey(Constants.TEXT_INFO_DESCRIPTION);
+			infoView=false;
+			break;
 		}
 		}
 	}

@@ -41,8 +41,9 @@ public class TermsAndConditionsBean {
 		textBean.edit(text);
 		return "administration";
 	}
-	public void cancel() {
+	public String cancel() {
 		init();
+		return "administration";
 	}
 
 	public String getTermsAndConditionsEn() {

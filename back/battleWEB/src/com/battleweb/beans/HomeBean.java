@@ -61,8 +61,9 @@ public class HomeBean {
 		return "administration";
 	}
 
-	public void cancel(){
+	public String cancel(){
 		init();
+		return "administration";
 	}
 	
 	public String getBattleDescriptionShortEn() {

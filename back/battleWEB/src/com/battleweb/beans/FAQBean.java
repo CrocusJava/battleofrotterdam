@@ -201,42 +201,62 @@ public class FAQBean {
 		case (1): {
 			text_q1 = textBean.findByKey(Constants.TEXT_Q1);
 			text_a1 = textBean.findByKey(Constants.TEXT_A1);
+			qaView1=false;
+			break;
 		}
 		case (2): {
 			text_q2 = textBean.findByKey(Constants.TEXT_Q2);
 			text_a2 = textBean.findByKey(Constants.TEXT_A2);
+			qaView2=false;
+			break;
 		}
 		case (3): {
 			text_q3 = textBean.findByKey(Constants.TEXT_Q3);
 			text_a3 = textBean.findByKey(Constants.TEXT_A3);
+			qaView3=false;
+			break;
 		}
 		case (4): {
 			text_q4 = textBean.findByKey(Constants.TEXT_Q4);
 			text_a4 = textBean.findByKey(Constants.TEXT_A4);
+			qaView4=false;
+			break;
 		}
 		case (5): {
 			text_q5 = textBean.findByKey(Constants.TEXT_Q5);
 			text_a5 = textBean.findByKey(Constants.TEXT_A5);
+			qaView5=false;
+			break;
 		}
 		case (6): {
 			text_q6 = textBean.findByKey(Constants.TEXT_Q6);
 			text_a6 = textBean.findByKey(Constants.TEXT_A6);
+			qaView6=false;
+			break;
 		}
 		case (7): {
 			text_q7 = textBean.findByKey(Constants.TEXT_Q7);
 			text_a7 = textBean.findByKey(Constants.TEXT_A7);
+			qaView7=false;
+			break;
 		}
 		case (8): {
 			text_q8 = textBean.findByKey(Constants.TEXT_Q8);
 			text_a8 = textBean.findByKey(Constants.TEXT_A8);
+			qaView8=false;
+			break;
 		}
 		case (9): {
 			text_q9 = textBean.findByKey(Constants.TEXT_Q9);
 			text_a9 = textBean.findByKey(Constants.TEXT_A9);
+			qaView9=false;
+			break;
 		}
 		case (10): {
 			text_q10 = textBean.findByKey(Constants.TEXT_Q10);
 			text_a10 = textBean.findByKey(Constants.TEXT_A10);
+			qaView10=false;
+			break;
 		}
 		}
 	}

@@ -6,8 +6,8 @@ function call_all() {
 
     call_scroll();
 //    call_slider_sequence();
-    call_datatables();
-    call_tab();
+//    call_datatables();
+//    call_tab();
 
 
     call_lightbox();
@@ -84,64 +84,64 @@ function call_control_color_theme() {
 
 
 
-function call_tab() {
-    $('.nav-tabs a').click(function(e) { //lobster_tab
-        e.preventDefault();
-        $(this).tab('show');
-    });
-}
+//function call_tab() {
+//    $('.nav-tabs a').click(function(e) { //lobster_tab
+//        e.preventDefault();
+//        $(this).tab('show');
+//    });
+//}
 
 
 
-function call_datatables() {
-    if ($('.datatables_group').length > 0) {
-        var oTable = $('.datatables_group').dataTable({
-            "fnDrawCallback": function(oSettings) {
-                if (oSettings.aiDisplay.length == 0)
-                {
-                    return;
-                }
-                var nTrs = $('.datatables_group tbody tr');
-                var iColspan = nTrs[0].getElementsByTagName('td').length;
-                var sLastGroup = "";
-                for (var i = 0; i < nTrs.length; i++)
-                {
-                    var iDisplayIndex = oSettings._iDisplayStart + i;
-                    var sGroup = oSettings.aoData[ oSettings.aiDisplay[iDisplayIndex] ]._aData[0];
-                    if (sGroup != sLastGroup)
-                    {
-                        var nGroup = document.createElement('tr');
-                        var nCell = document.createElement('td');
-                        nCell.colSpan = iColspan;
-                        nCell.className = "group";
-                        nCell.innerHTML = sGroup;
-                        nGroup.appendChild(nCell);
-                        nTrs[i].parentNode.insertBefore(nGroup, nTrs[i]);
-                        sLastGroup = sGroup;
-                    }
-                }
-            },
-            "aoColumnDefs": [
-                {
-                    "bVisible": false,
-                    "aTargets": [0]
-                }
-            ],
-            "aaSortingFixed": [[0, 'asc']],
-            "aaSorting": [[1, 'asc']],
-            "sDom": 'lfr<"giveHeight"t>ip',
-            "sPaginationType": "full_numbers",
-            "aoColumns": [
-                {
-                    "sWidth": "10%"
-                }, {
-                    "sWidth": "45%"
-                }, {
-                    "sWidth": "45%"
-                }]
-        });
-    }
-}
+//function call_datatables() {
+//    if ($('.datatables_group').length > 0) {
+//        var oTable = $('.datatables_group').dataTable({
+//            "fnDrawCallback": function(oSettings) {
+//                if (oSettings.aiDisplay.length == 0)
+//                {
+//                    return;
+//                }
+//                var nTrs = $('.datatables_group tbody tr');
+//                var iColspan = nTrs[0].getElementsByTagName('td').length;
+//                var sLastGroup = "";
+//                for (var i = 0; i < nTrs.length; i++)
+//                {
+//                    var iDisplayIndex = oSettings._iDisplayStart + i;
+//                    var sGroup = oSettings.aoData[ oSettings.aiDisplay[iDisplayIndex] ]._aData[0];
+//                    if (sGroup != sLastGroup)
+//                    {
+//                        var nGroup = document.createElement('tr');
+//                        var nCell = document.createElement('td');
+//                        nCell.colSpan = iColspan;
+//                        nCell.className = "group";
+//                        nCell.innerHTML = sGroup;
+//                        nGroup.appendChild(nCell);
+//                        nTrs[i].parentNode.insertBefore(nGroup, nTrs[i]);
+//                        sLastGroup = sGroup;
+//                    }
+//                }
+//            },
+//            "aoColumnDefs": [
+//                {
+//                    "bVisible": false,
+//                    "aTargets": [0]
+//                }
+//            ],
+//            "aaSortingFixed": [[0, 'asc']],
+//            "aaSorting": [[1, 'asc']],
+//            "sDom": 'lfr<"giveHeight"t>ip',
+//            "sPaginationType": "full_numbers",
+//            "aoColumns": [
+//                {
+//                    "sWidth": "10%"
+//                }, {
+//                    "sWidth": "45%"
+//                }, {
+//                    "sWidth": "45%"
+//                }]
+//        });
+//    }
+//}
 
 function call_slider_sequence() {
     if ($('#sequence').length > 0) {
@@ -867,9 +867,9 @@ function call_load_data_for_news_index() {
                                         ]},
                                     {tag: "div", add_class: "desc", children: [
                                             {tag: "p", text: "title"}
-                                           
 
-                                               
+
+
                                         ]}
                                 ]}
 
@@ -1056,7 +1056,6 @@ function call_load_data_for_current_rankings() {
                                                 {tag: "img", attr: {src: "lastphoto", "data-src": "", alt: "img_preview"}, subattr: {src: "path"}},
                                                 {tag: "a", add_class: "label flat label-success likes", attr: {"href": ""}, children: [
                                                         {tag: "span", text: "rating"},
-                                             
                                                         {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                                         {tag: "span", add_class: "nl", text: " Sympathieën"}
                                                     ]},
@@ -1142,23 +1141,21 @@ function call_load_data_for_index_footer_contacts(contacts) {
 }
 
 
- function call_load_data_for_page_contacts(contacts) {
+function call_load_data_for_page_contacts(contacts) {
     var contacts_template = [
-		{tag: "div", add_class: "name_static_profile font-hotel", text: "Contact Us"},
-		{tag: "div", add_class: "margin_text_longname", children:[
-		
-		{tag: "span", add_class: "en unvisiblin", text: "University of Applied Sciences Rotterdam"},
-		{tag: "span", add_class: "nl", text:"Hogeschool Rotterdam"}
-		] },
-        {tag: "div", add_class: "margin_text",  text: "contactsaddress"},
-		 {tag: "div", add_class: "margin_text", text: "contactsphone"}, 
-         {tag: "div", add_class: "margin_text", text: "contactsfax"},       
-          {tag: "div", add_class: "margin_text", text: "contactsemail"},           
-           
+        {tag: "div", add_class: "name_static_profile font-hotel", text: "Contact Us"},
+        {tag: "div", add_class: "margin_text_longname", children: [
+                {tag: "span", add_class: "en unvisiblin", text: "University of Applied Sciences Rotterdam"},
+                {tag: "span", add_class: "nl", text: "Hogeschool Rotterdam"}
+            ]},
+        {tag: "div", add_class: "margin_text", text: "contactsaddress"},
+        {tag: "div", add_class: "margin_text", text: "contactsphone"},
+        {tag: "div", add_class: "margin_text", text: "contactsfax"},
+        {tag: "div", add_class: "margin_text", text: "contactsemail"},
         {tag: "div", add_class: "skype", children: [
                 {tag: "a", attr: {href: "skype:echo123?call"}, text: "contactsskype"}
             ]}
-     
+
     ];
     call_markup_index(contacts_template, $("#contacts_page_content"), contacts);
 }
@@ -1176,24 +1173,32 @@ function call_load_data_for_myaccount(id) {
         contentType: "application/json",
         data: JSON.stringify(send_data)
     }).done(function(respons) {
+
         if (!send_data.iduser) {
             $.session.set("name", respons["login"]);
             $.session.set("avatar", respons["photopath"]);
             call_cookie_navigator();
         }
+
+
         $("#preview_avatar").attr({"src": respons["photopath"], "data-src": respons["photopath"]});
-//        $.session.set("avatar", respons["photopath"]);
-        $("#name_static_profile").text(respons["login"]);
-        $("#FirstName").text(respons["firstname"]);
-        $("#MiddletName").text(respons["middlename"]);
-        $("#LastName").text(respons["lastname"]);
-        $("#birthday").text(respons["birthday"]);
-        $("#town").text(respons["town"]);
-        $("#street").text(respons["street"]);
-        $("#housenumber").text(respons["housenumber"]);
-        $("#postcode").text(respons["postcode"]);
-        $("#telephone").text(respons["phone"]);
-        $("#mail").text(respons["email"]);
+
+        applyKO(respons);
+
+        //        $.session.set("avatar", respons["photopath"]);
+        /* действие области работы KNOCKOUT JS
+         $("#name_static_profile").text(respons["login"]);
+         $("#FirstName").text(respons["firstname"]);
+         $("#MiddletName").text(respons["middlename"]);
+         $("#LastName").text(respons["lastname"]);
+         $("#birthday").text(respons["birthday"]);
+         $("#town").text(respons["town"]);
+         $("#street").text(respons["street"]);
+         $("#housenumber").text(respons["housenumber"]);
+         $("#postcode").text(respons["postcode"]);
+         $("#telephone").text(respons["phone"]);
+         $("#mail").text(respons["email"]);
+         */
 
         if (id) {
             for (var project in respons["projects"]) {
@@ -1201,11 +1206,15 @@ function call_load_data_for_myaccount(id) {
             }
         }
         else {
-            for (var project in respons["projects"]) {
-                call_create_murkup_for_account_projects(respons["projects"][project], respons);
-            }
+//            for (var project in respons["projects"]) {
+//                call_create_murkup_for_account_projects(respons["projects"][project], respons);
+//            }
         }
         call_setup_localozation();
+    }).fail(function() {
+        if (!send_data.iduser) { //если акаунт мой то выйти
+            $("#logout").trigger("click");
+        }
     });
 }
 
@@ -1247,68 +1256,70 @@ function call_upload_data_for_updateaccaunt() {
     });
 }
 
-function call_create_murkup_for_account_projects(project, respons) {
-    function  call_delete_project(event) {
-        var deleting_project = {
-            projectid: project["projectid"]
-        },
-        url = "/battleWEB/controller?command=deleteproject";
-
-        if (confirm("ВЫ В ЭТОМ УВЕРЕНЫ ???!!!!!!!!???????")) {
-            deleting_project = JSON.stringify(deleting_project);
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                dataType: "json",
-                contentType: "application/json",
-                data: deleting_project
-            }).done(function(data) {
-                console.log(data);
-                window.location.reload();
-            }).fail(function(error) {
-                console.log("Problemi s Удалением проекта", error);
-                alert("УХ какой негодяй, хотел удалить чужой проект, ПАРАЗИТ ");
-                window.location.reload();
-            });
-        }
-        event.preventDefault();
-        /*POST
-         command:deleteproject
-         url:http://edu.bionic-universitsingle_project.htmly.com:1120/battleWEB/controller
-
-         {
-         “projectid”:23
-         }
-         window.location.reload()
-         **/
-    }
-    var template_for_project = '<section class="project_block" >' +
-            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
-            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
-            '</div>' +
-            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
-            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
-            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin"> Likes</span><span class="nl">Sympathieën</span></a></span>' +
-            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin"> Comments</span><span class="nl">Reacties</span></a>' +
-            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> <span class="en unvisiblin">DELETE THIS PROJECT</span><span class="nl">DELETE DIT PROJECT</span></span></a>' +
-            '</div>' +
-            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
-            '</div>' +
-            '<article  class="project_block_proj">' +
-            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
-            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
-            '<div class="viewtheproj">' +
-            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
-            '</div>' +
-            '</div>' +
-            '</article>' +
-            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
-            '</section>' + '<div style="height:15px;"></div>';
-    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
-    $(section).find("a[name=delete]").click(call_delete_project);
-    $(section).appendTo("#account_projects");
-}
+//function call_create_murkup_for_account_projects(project, respons) {
+//
+//    function  call_delete_project(event) {
+//        var deleting_project = {
+//            projectid: project["projectid"]
+//        },
+//        url = "/battleWEB/controller?command=deleteproject";
+////        $("#Modal_delete_project").modal("show");
+//
+//        if ('') {
+//            deleting_project = JSON.stringify(deleting_project);
+//
+//            $.ajax({
+//                type: "POST",
+//                url: url,
+//                dataType: "json",
+//                contentType: "application/json",
+//                data: deleting_project
+//            }).done(function(data) {
+//                console.log(data);
+//                window.location.reload();
+//            }).fail(function(error) {
+//                console.log("Problemi s Удалением проекта", error);
+//                alert("ERRORE DELETING");
+//                window.location.reload();
+//            });
+//        }
+//        event.preventDefault();
+//        /*POST
+//         command:deleteproject
+//         url:http://edu.bionic-universitsingle_project.htmly.com:1120/battleWEB/controller
+//
+//         {
+//         “projectid”:23
+//         }
+//         window.location.reload()
+//         **/
+//    }
+//    var template_for_project = '<section class="project_block" >' +
+//            '<div class="blog-line" style="background: rgba(51,21,272,0.2);  margin-bottom: 0px;">' +
+//            '<a><i class="icon-star-empty"></i><span>' + project["competitionname"] + '</span></a>' +
+//            '</div>' +
+//            '<div class="blog-line" style="background: rgba(0,181,0,0.3);">' +
+//            '<a><i class="icon-calendar"></i><span> ' + project["projectdatecteation"] + '</span></a>' +
+//            '<span> <a> <i class="icon-ok"></i><span>' + project["voicescount"] + '</span> <span class="en unvisiblin"> Likes</span><span class="nl">Sympathieën</span></a></span>' +
+//            '<a class="trylater"><i class="icon-comments"></i><span>' + project["commentscount"] + '</span> <span class="en unvisiblin"> Comments</span><span class="nl">Reacties</span></a>' +
+//            '<a href="#" name="delete"><span class="text-error"><i class="icon-trash"></i> <span class="en unvisiblin">DELETE THIS PROJECT</span><span class="nl">DELETE DIT PROJECT</span></span></a>' +
+//            '</div>' +
+//            '<div class="project_block_ava" ><img src="' + respons["photopath"] + '" class="img-circle ava_proj" >' +
+//            '</div>' +
+//            '<article  class="project_block_proj">' +
+//            '<div class="project_block_proj_name">' + project["projectname"] + '</div>' +
+//            '<div class="project_block_proj_descr">' + project["projectdescription"] + '</div>' +
+//            '<div class="viewtheproj">' +
+//            '<div class="buttonviewtheproj btn btn-primary btn-large flat " > <a href="edit_project.html#projectid=' + project["projectid"] + '" style="color:#fff;"><span class="en unvisiblin">Edit the project</span><span class="nl">Bewerk het project</span></a>' +
+//            '</div>' +
+//            '</div>' +
+//            '</article>' +
+//            '<div class="project_block_photo" ><img src="' + (project.photos.length > 0 ? project["photos"][0]["photopath"] : "img/nophoto.png") + '" class="img-polaroid photo_proj" >' +
+//            '</section>' + '<div style="height:15px;"></div>';
+//    var section = $(template_for_project);  //сначало сформировать объект а потом с ним работать
+//    $(section).find("a[name=delete]").click(call_delete_project);
+//    $(section).appendTo("#account_projects");
+//}
 
 function call_create_murkup_for_static_profile_projects(project, respons) {
     var template_for_project = '<section class="project_block" >' +
@@ -1391,6 +1402,9 @@ function call_load_data_for_viewproject(projectid) {
         data: data,
         contentType: "application/json"
     }).done(function(respons) {
+
+        applyKO(respons.voteable, respons.user.login);
+
         window.pagenation = {
             comments: respons.commentquantity,
             photos: respons.photoquantity
@@ -1544,7 +1558,6 @@ function call_load_data_for_projets_page(firstposition) {
                                     {tag: "a", attr: {href: "#"}, children: [
                                             {tag: "i", add_class: "icon-ok"},
                                             {tag: "span", add_class: "en unvisiblin", text: "rating"},
-                                        
                                             {tag: "span", add_class: "en unvisiblin", text: " Likes"},
                                             {tag: "span", add_class: "nl", text: " Sympathieën"}
                                         ]}
@@ -1931,12 +1944,14 @@ function  call_load_data_for_viewprojectphotos(projectid, firstposition) {
                 for (var photo in respons["photos"]) {
                     call_load_photo_for_edit_project(respons["photos"][photo]);
                 }
+                call_setup_localozation();
             }
             else {
                 $("#viewprojectphotos").empty();
                 for (var photo in respons["photos"]) {
                     call_create_markup_for_viewprojectphotos(respons["photos"][photo]);
                 }
+                call_setup_localozation();
             }
         }
 

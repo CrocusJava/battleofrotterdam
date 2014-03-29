@@ -57,7 +57,7 @@
                     <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> the Battle of<strong>&nbsp;&nbsp;Rotterdam </strong></div>
                     <nav class="main_navbar collapse">
                         <ul class="unstyled">
-                             <li><a href="index.html">
+                            <li><a href="index.html">
                                     <span class="en unvisiblin" >Home</span>
                                     <span class="nl">Thuis</span></a></li>
                             <li><a href="about_battle.html">
@@ -133,7 +133,7 @@
                             <div id="languages" class="pull-right">
                                 <ul class="unstyled">
 
-                                   <li class="setnl"><img src="img/NL.png" alt="flag"> NL</li>
+                                    <li class="setnl"><img src="img/NL.png" alt="flag"> NL</li>
                                     <li class="seteng"><img src="img/english.png" alt="flag"> ENG</li>
                                 </ul>
                             </div>
@@ -164,21 +164,21 @@
 
 
                                         <label>
-										<span class="en unvisiblin">Login</span>
-										<span class="nl">Login</span>
-										</label>
+                                            <span class="en unvisiblin">Login</span>
+                                            <span class="nl">Login</span>
+                                        </label>
                                         <input type="text" name="login" class="input-block-level" required="">
                                         <label>
-										<span class="en unvisiblin">Password</span>
-										<span class="nl">Wachtwoord</span>
-										</label>
+                                            <span class="en unvisiblin">Password</span>
+                                            <span class="nl">Wachtwoord</span>
+                                        </label>
                                         <input type="password" name="password" class="input-block-level" required="">
                                         <p class="text-error" id="sorry"></p>
                                         <label><a href="#login" id="forgotten_password">
-										
-										<span class="en unvisiblin">Forgotten your password?</span>
-										<span class="nl">Wachtwoord vergeten?</span>
-										</a></label>
+
+                                                <span class="en unvisiblin">Forgotten your password?</span>
+                                                <span class="nl">Wachtwoord vergeten?</span>
+                                            </a></label>
                                         <button type="submit" class="btn btn-primary btn-large flat input-block-level">Log in</button>
                                     </div>
 
@@ -196,7 +196,7 @@
 
             </section><!-- End section content page -->
 
-          <!--Start Footer Section-->
+            <!--Start Footer Section-->
             <footer id="footer">
                 <div class="inner-wrapper driver_space"></div>
                 <div class="inner-wrapper content">
@@ -272,6 +272,25 @@
                     </a>
                 </div><!--End Arrow Back To TOP Page-->
             </footer><!--End Footer Section-->
+        </div>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form id="forgotpassword" novalidate="novalidate" method="POST" action="">
+                <div class="modal-header">
+                    <h4 id="myModalLabel">Please enter your email and wait for an answer</h4>
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" name="email" class="input-block-level" required=""/>
+                    <h4 id="newpasswordmessage" class="text-error"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="submit">Send</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </form>
         </div>
 
         <!--=========================================================================-->
