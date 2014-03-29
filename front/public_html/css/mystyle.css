@@ -31,6 +31,15 @@
 
 }
 
+.grey{
+background-color: rgba(66,66,66,0.7) !important;
+}
+
+.grey:hover{
+background-color: rgba(66,66,66,1) !important;
+}
+
+
 @media (max-width: 480px){
     .hide-count {
         display:none;
