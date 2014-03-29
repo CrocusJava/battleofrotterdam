@@ -1596,6 +1596,9 @@ function call_load_data_for_projets_page(firstposition) {
             {tag: "div", attr: {"style": "height:35px;"}}
 
         ];
+
+//        template_projets_page[0].children[3].children[0].attr.src = "img/nophoto.png";
+//respons.lastphoto.path
         call_markup_index(template_projets_page, $("#projects"), respons);
 
     }
@@ -1845,7 +1848,8 @@ function call_load_photo_for_edit_project(photo) {
                 {tag: "a", add_class: "image_link", children: [
                         {tag: "div", add_class: "with_hover"},
                         {tag: "div", attr: {style: "width:25%; margin: 0 1%; float: left;  height:200px;"}, children: [
-                                {tag: "img", add_class: "img-polaroid", attr: {src: "photopath", style: "width:100%;"}}
+                                {tag: "img", add_class: "img-polaroid", attr: {src: "photopath", style: "width:100%;"}},
+                                {tag: "span", text: "date"}
                             ]}
                     ]},
                 {tag: "article", attr: {style: "width:65%;  float: left; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; padding: 15px;  font-size: 1em; text-align: left;"}, children: [
@@ -1965,6 +1969,7 @@ function call_create_markup_for_viewprojectphotos(respons) {
             ' <a href="' + respons["photopath"] + '" class="image_link">' +
             ' <div class="with_hover"></div>' +
             '<div class="hover singlephoto" ><img src="' + respons["photopath"] + '" class="img-polaroid" style="width:100%;">' +
+            '<span>' + respons["date"] + '</span>' +
             '</div>  </a>' +
             '<article class="descr_singlephoto"  >' +
             ' <p class="abzac" >' + respons["description"] + '</p>' +
