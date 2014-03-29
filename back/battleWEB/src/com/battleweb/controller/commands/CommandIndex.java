@@ -74,8 +74,14 @@ public class CommandIndex implements Command{
 		Competition yearCompetition = competitionBean.getCurrentCompetitionByType(yearType, currentDate);
 		Competition monthCompetition = competitionBean.getCurrentCompetitionByType(monthType, currentDate);
 		
-		Date yearCompetitionDate = yearCompetition.getDateEnd();
-		Date monthCompetitionDate = monthCompetition.getDateEnd();
+		Date yearCompetitionDate = currentDate;
+		Date monthCompetitionDate = currentDate;
+		if(yearCompetition!=null){
+			yearCompetitionDate = yearCompetition.getDateEnd();
+		}
+		if(monthCompetition!=null){
+			monthCompetitionDate = monthCompetition.getDateEnd();
+		}
 		
 		//get descriptions from db
 		String battleDescriptionShort = textBean.findLocaleTextByKey(Constants.TEXT_BATTLE_DESCRIPTION_SHORT, toolCookie.getLocaleName(request));
