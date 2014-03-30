@@ -1832,7 +1832,7 @@ function call_load_photo_for_edit_project(photo) {
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
 		
-		$('body').append('<div class="popup_text"><div class="popup_head"> ALARM! <div style="clear:both;" ></div></div> Are you sure? <div style="clear:both;" ></div></div>');
+		$('body').append('<div class="popup_text"><div class="popup_head" style="color:red;"> ALARM! <div style="clear:both;" ></div></div> Are you sure? <div style="clear:both;" ></div></div>');
         $('body').append('<div class="popup_back"></div>');
         $('.popup_text').append('<input type="button" class="close_popup confirm" value="Yes"></div>');
 		$('.popup_text').append('<input type="button" class="close_popup" value="No"></div>');
