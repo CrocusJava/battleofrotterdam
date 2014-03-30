@@ -304,12 +304,12 @@ function AjaxRegistrationLogin(form) {
                 });
             }
             else if (!data.statuslogin) {
-				var message = "когда логин занят \n" + data.registrationmessage + "\n попробуйте еще раз";
+                var message = "когда логин занят \n" + data.registrationmessage + "\n попробуйте еще раз";
                 modal_window("!", message);
             }
             else if (!data.statusemail) {
-			var message1 = "когда эмэел занят \n" + data.registrationmessage + "\n попробуйте еще раз";
-                 modal_window("!", message1);
+                var message1 = "когда эмэел занят \n" + data.registrationmessage + "\n попробуйте еще раз";
+                modal_window("!", message1);
             }
         }
         if (form.id === "login") {
@@ -361,7 +361,7 @@ function AjaxSendComment(form) {
             $("#f3").val("");
         }
         else {
-		var message2 = data["message"];
+            var message2 = data["message"];
             modal_window("!", message2);
         }
         console.log(data);
@@ -756,7 +756,7 @@ function call_uploading_file_on_server() {
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
 
-                    modal_window("Attention!","You can load only jpg | gif | jpeg | bmp | png files");
+                    modal_window("Attention!", "You can load only jpg | gif | jpeg | bmp | png files");
                     return false;
                 }
 
@@ -1242,7 +1242,7 @@ function call_upload_data_for_updateaccaunt() {
     uploadData.passwordnew = $("#passwordnew").val();
     var password_ = $("#password_").val();
     if (password_ !== uploadData.passwordnew) {
-        modal_window("Attention!","Password is not match");
+        modal_window("Attention!", "Password is not match");
         return false;
     }
     uploadData = JSON.stringify(uploadData);
@@ -1253,7 +1253,7 @@ function call_upload_data_for_updateaccaunt() {
         contentType: "application/json",
         data: uploadData
     }).done(function(data) {
-	var message3 = data.message;
+        var message3 = data.message;
         modal_window("!", message3);
     }).fail(function() {
         console.log("Problemi s obnovleniem dannih");
@@ -1407,7 +1407,7 @@ function call_load_data_for_viewproject(projectid) {
         contentType: "application/json"
     }).done(function(respons) {
 
-        applyKO(respons.voteable, respons.user.login);
+        applyKO(respons.voteable, respons.user.login, data);
 
         window.pagenation = {
             comments: respons.commentquantity,
@@ -1672,7 +1672,7 @@ function call_send_vote(projectid) {
             $("#rating").text(text_rating);
         }
         else {
-            modal_window("Sorry!","You cant vote!");
+            modal_window("Sorry!", "You cant vote!");
         }
     }).fail(function() {
         console.log("Error for VOTE");
@@ -1700,7 +1700,7 @@ function call_createproject() {
             window.location = "edit_project.html#projectid=" + respons.projectid;
         }
         else {
-		var message4 = respons["message"];
+            var message4 = respons["message"];
             modal_window("!", message4)
         }
     }).fail(function() {
@@ -1831,18 +1831,18 @@ function call_load_photo_for_edit_project(photo) {
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
-		
-		$('body').append('<div class="popup_text"><div class="popup_head" style="color:red;"> ALARM! <div style="clear:both;" ></div></div> Are you sure? <div style="clear:both;" ></div></div>');
+
+        $('body').append('<div class="popup_text"><div class="popup_head" style="color:red;"> ALARM! <div style="clear:both;" ></div></div> Are you sure? <div style="clear:both;" ></div></div>');
         $('body').append('<div class="popup_back"></div>');
         $('.popup_text').append('<input type="button" class="close_popup confirm" value="Yes"></div>');
-		$('.popup_text').append('<input type="button" class="close_popup" value="No"></div>');
+        $('.popup_text').append('<input type="button" class="close_popup" value="No"></div>');
         $('.close_popup').click(function() {
             $('.popup_text').remove();
             $('.popup_back').remove();
         });
-		$('.confirm').click(function(){
-        
-       
+        $('.confirm').click(function() {
+
+
             call_delete_photo(photo["id"]);
             $(parent).remove();
         });
@@ -2267,15 +2267,15 @@ function call_setup_localozation() {
 
 
 function modal_window(header, message) {
-   //функция для вызова всплывающих окон в стиле сайта. передавать текст заголовка и сообщения 
-		
-        $('body').append('<div class="popup_text"><div class="popup_head">'+header+'<div style="clear:both;" ></div></div>'+message+'<div style="clear:both;" ></div></div>');
-        $('body').append('<div class="popup_back"></div>');
-        $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
-        $('.close_popup').click(function() {
-            $('.popup_text').remove();
-            $('.popup_back').remove();
-        });
-   
+    //функция для вызова всплывающих окон в стиле сайта. передавать текст заголовка и сообщения
+
+    $('body').append('<div class="popup_text"><div class="popup_head">' + header + '<div style="clear:both;" ></div></div>' + message + '<div style="clear:both;" ></div></div>');
+    $('body').append('<div class="popup_back"></div>');
+    $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+    $('.close_popup').click(function() {
+        $('.popup_text').remove();
+        $('.popup_back').remove();
+    });
+
 
 }
