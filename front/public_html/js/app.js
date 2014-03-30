@@ -1239,7 +1239,7 @@ function call_upload_data_for_updateaccaunt() {
     uploadData.passwordnew = $("#passwordnew").val();
     var password_ = $("#password_").val();
     if (password_ !== uploadData.passwordnew) {
-        alert("Пароль не совпадает!!!!!!!!!!");
+        modal_window("Attention!","Password is not match");
         return false;
     }
     uploadData = JSON.stringify(uploadData);
