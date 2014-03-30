@@ -198,9 +198,22 @@ input[type="text"].input-search-small{
 
     padding: 5px 25px 5px 25px;
     float: right;
-    margin: 0px 0px 0px 25px;
+    margin: 25px 0px 0px 25px;
     background: rgba(1, 56, 56, 0.9);
     color: white;
+}
+
+.popup_head{
+	font-family: 'Lobster Two', cursive;
+	color: rgb(1, 56, 56);
+	
+	text-align: center;
+    padding: 20px 20px;
+    font-size: 28px;
+
+   
+	
+	
 }
 
 .close_popup_news{
@@ -233,16 +246,20 @@ input[type="text"].input-search-small{
 }
 
 .popup_text{
+
+	border-radius: 15px;
     padding: 20px 20px;
     font-size: 18px;
 
     position: fixed;
     top: 10%;
-    left: 25%;
+    left: 33%;
     z-index:2002;
-    width: 50%;
+    width: 33%;
     background: white;
     color: black;
+	
+	
 }
 
 .popup_back{

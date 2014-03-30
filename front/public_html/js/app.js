@@ -2252,7 +2252,15 @@ function call_setup_localozation() {
 
 
 function modal_window(header, message) {
-    var template_for_modal = "<here will be something some time late ibo i want to sleep>" ;
-    
-    $(template_for_modal).appendTo("body");
+   //функция для вызова всплывающих окон в стиле сайта. передавать текст заголовка и сообщения 
+		
+        $('body').append('<div class="popup_text"><div class="popup_head">'+header+'<div style="clear:both;" ></div></div>'+message+'<div style="clear:both;" ></div></div>');
+        $('body').append('<div class="popup_back"></div>');
+        $('.popup_text').append('<input type="button" class="close_popup" value="Ok"></div>');
+        $('.close_popup').click(function() {
+            $('.popup_text').remove();
+            $('.popup_back').remove();
+        });
+   
+
 }
