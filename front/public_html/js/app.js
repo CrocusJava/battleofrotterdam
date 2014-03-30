@@ -1831,11 +1831,21 @@ function call_load_photo_for_edit_project(photo) {
     }
     function Delete_this_photo_and_description(event) {
         var parent = $(this).parents("section.project_block");
-        var whate = confirm("У Е Р Е Н Ы ??????!!!!!!!!!");
-        if (whate) {
+		
+		$('body').append('<div class="popup_text"><div class="popup_head"> ALARM! <div style="clear:both;" ></div></div> Are you sure? <div style="clear:both;" ></div></div>');
+        $('body').append('<div class="popup_back"></div>');
+        $('.popup_text').append('<input type="button" class="close_popup confirm" value="Yes"></div>');
+		$('.popup_text').append('<input type="button" class="close_popup" value="No"></div>');
+        $('.close_popup').click(function() {
+            $('.popup_text').remove();
+            $('.popup_back').remove();
+        });
+		$('.confirm').click(function(){
+        
+       
             call_delete_photo(photo["id"]);
             $(parent).remove();
-        }
+        });
 
         event.preventDefault();
     }
