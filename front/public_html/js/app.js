@@ -304,10 +304,12 @@ function AjaxRegistrationLogin(form) {
                 });
             }
             else if (!data.statuslogin) {
-                alert("когда логин занят \n" + data.registrationmessage + "\n попробуйте еще раз");
+				var message = "когда логин занят \n" + data.registrationmessage + "\n попробуйте еще раз";
+                modal_window("!", message);
             }
             else if (!data.statusemail) {
-                alert("когда эмэел занят \n" + data.registrationmessage + "\n попробуйте еще раз");
+			var message1 = "когда эмэел занят \n" + data.registrationmessage + "\n попробуйте еще раз";
+                 modal_window("!", message1);
             }
         }
         if (form.id === "login") {
@@ -359,7 +361,8 @@ function AjaxSendComment(form) {
             $("#f3").val("");
         }
         else {
-            alert(data["message"]);
+		var message2 = data["message"];
+            modal_window("!", message2);
         }
         console.log(data);
     }).fail(function(error) {
@@ -753,7 +756,7 @@ function call_uploading_file_on_server() {
                 } else {
 //<<<<<<<<<<<<<<<<<<<<<=========================здесь код что файл не поддерживается
 
-                    alert("Можно загружать только файлы с разширением jpg | gif | jpeg | bmp | png ");
+                    modal_window("Attention!","You can load only jpg | gif | jpeg | bmp | png files");
                     return false;
                 }
 
@@ -1250,7 +1253,8 @@ function call_upload_data_for_updateaccaunt() {
         contentType: "application/json",
         data: uploadData
     }).done(function(data) {
-        alert(data.message);
+	var message3 = data.message;
+        modal_window("!", message3);
     }).fail(function() {
         console.log("Problemi s obnovleniem dannih");
     });
@@ -1668,7 +1672,7 @@ function call_send_vote(projectid) {
             $("#rating").text(text_rating);
         }
         else {
-            alert("You cant vote!");
+            modal_window("Sorry!","You cant vote!");
         }
     }).fail(function() {
         console.log("Error for VOTE");
@@ -1696,7 +1700,8 @@ function call_createproject() {
             window.location = "edit_project.html#projectid=" + respons.projectid;
         }
         else {
-            alert(respons["message"]);
+		var message4 = respons["message"];
+            modal_window("!", message4)
         }
     }).fail(function() {
         console.log("Error for projectsave");
